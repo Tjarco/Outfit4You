@@ -12,7 +12,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
 import main.WinkelApplication;
-import model.Klant;
+import model.Gebruiker;
 
 /**
  * @version 1.0

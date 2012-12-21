@@ -9,7 +9,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import main.WinkelApplication;
-import model.Klant;
+import model.Gebruiker;
 
 /**
  * @version 1.0
@@ -25,11 +25,11 @@ public class KlantenOverzicht extends javax.swing.JPanel {
      */
     public KlantenOverzicht() {
         initComponents();
-        List<Klant> klanten = WinkelApplication.getQueryManager().getKlantenList();
+        List<Gebruiker> klanten = WinkelApplication.getQueryManager().getKlantenList();
         DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
-        for (Klant klant : klanten) {
+        for (Gebruiker klant : klanten) {
             model.addRow(new Object[]{new Integer(klant.getKlantId()),
-                        klant.getNaam(),
+                        klant.getVoornaam(),
                         klant.getAdres(),
                         klant.getPostcode(),
                         klant.getWoonplaats()});

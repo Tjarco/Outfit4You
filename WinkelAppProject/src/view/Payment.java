@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import main.WinkelApplication;
-import model.Klant;
+import model.Gebruiker;
 import model.Product;
 import model.Session;
 
@@ -213,7 +213,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         tfNaam = new JTextField();
         tfNaam.setBounds(120, verticalPosition + products.size() * productOffset + (formOffset * 3), 130, 20);
         tfNaam.setFont(WinkelApplication.FONT_12_BOLD);
-        tfNaam.setText(WinkelApplication.getKlant().getNaam());
+        tfNaam.setText(WinkelApplication.getKlant().getVoornaam());
         tfNaam.getDocument().addDocumentListener(new ValidateListener());
         content.add(tfNaam);
 

@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import main.WinkelApplication;
-import model.Klant;
+import model.Gebruiker;
 import model.Session;
 
 /**

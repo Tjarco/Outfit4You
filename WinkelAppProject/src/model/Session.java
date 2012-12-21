@@ -9,14 +9,14 @@ package model;
  * @author Tjarco
  */
 public class Session {
-    static private Klant klant = null;
+    static private Gebruiker klant = null;
     static private boolean isIngelogd;
     
-    public static Klant getKlant(){
+    public static Gebruiker getKlant(){
         return klant;
     }
     
-    public static void startSesionFor(Klant sessionKlant){
+    public static void startSesionFor(Gebruiker sessionKlant){
         klant = sessionKlant;
     }
     
