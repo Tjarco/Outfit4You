@@ -2,16 +2,14 @@ package view;
 
 import main.WinkelApplication;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import model.Product;
 
@@ -78,13 +76,15 @@ public class BasketDisplay extends JPanel implements ActionListener, Observer {
         lblTotalPrice.setFont(WinkelApplication.FONT_12_BOLD);
         add(lblTotalPrice);
 
-        JButton btnGoToPay = new JButton("Betalen...");
-
+        JButton btnGoToPay = new JButton("Betalen");
+        btnGoToPay.setIcon(new ImageIcon(getClass().getResource("/pictures/icons/Afrekenen.png")));
+        btnGoToPay.setContentAreaFilled(false);
+        btnGoToPay.setBorderPainted(false);
+        btnGoToPay.setFocusPainted(false);
+        btnGoToPay.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btnGoToPay.setFont(WinkelApplication.FONT_14_BOLD);
         btnGoToPay.addActionListener(this);
-        if (basket.size() <= 0) {
-            btnGoToPay.setEnabled(false);
-        }
+
         add(btnGoToPay);
     }
 
