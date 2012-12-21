@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Category;
-import model.Klant;
+import model.Gebruiker;
 import model.Product;
 
 public class QueryManager {
@@ -101,19 +101,19 @@ public class QueryManager {
         return products;
     }
     
-    public Klant getKlant(int klantId){
-        Klant klant = new Klant();
+    public Gebruiker getKlant(int klantId){
+        Gebruiker klant = new Gebruiker();
         
         try{
             String sql = "SELECT * FROM klant WHERE klant_id = '" + klantId + "'";
             ResultSet result = dbmanager.doQuery(sql);
             
             if(result.next()){
-                klant = new Klant(result.getInt("klant_id"),
-                      result.getString("naam"),
-                      result.getString("adres"),
-                      result.getString("postcode"),
-                      result.getString("woonplaats"));
+//                klant = new Gebruiker(result.getInt("klant_id"),
+//                      result.getString("naam"),
+//                      result.getString("adres"),
+//                      result.getString("postcode"),
+//                      result.getString("woonplaats"));
                
             }
         }catch(SQLException e){
@@ -122,18 +122,18 @@ public class QueryManager {
         return klant;
     }
     
-    public List<Klant> getKlantenList(){
-        List<Klant> klanten = new ArrayList<Klant>();
+    public List<Gebruiker> getKlantenList(){
+        List<Gebruiker> klanten = new ArrayList<Gebruiker>();
         
         try{
             String sql = "SELECT * FROM klant";
             ResultSet result = dbmanager.doQuery(sql);
             while(result.next()){
-                klanten.add(new Klant(result.getInt("klant_id"),
-                        result.getString("naam"),
-                        result.getString("adres"),
-                        result.getString("postcode"),
-                        result.getString("woonplaats")));
+//                klanten.add(new Gebruiker(result.getInt("klant_id"),
+//                        result.getString("naam"),
+//                        result.getString("adres"),
+//                        result.getString("postcode"),
+//                        result.getString("woonplaats")));
             }
         }catch(SQLException e){
             System.err.print(Dbmanager.SQL_EXCEPTION + e.getMessage());
@@ -141,9 +141,9 @@ public class QueryManager {
         return klanten;
     }
     
-    public void addKlant(Klant klant){
+    public void addKlant(Gebruiker klant){
         String sql = "INSERT INTO  `klant` (klant_id, naam, adres, postcode, woonplaats) "
-                + " VALUES('"+ klant.getKlantId() + "', '"+ klant.getNaam() + "', '"
+                + " VALUES('"+ klant.getKlantId() + "', '"+ klant.getVoornaam() + "', '"
                 + klant.getAdres() + "', '" + klant.getPostcode() + "', '" + klant.getWoonplaats() + "')";
              
         dbmanager.insertQuery(sql);

@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import model.Klant;
+import model.Gebruiker;
 
 /**
  * @version 1
@@ -37,7 +37,7 @@ public final class WinkelApplication {
     /** models used in the application */
     private model.Basket basket;
     //** klant */
-    private model.Klant klant;
+    private model.Gebruiker klant;
     /** the main window */
     private JFrame mainWindow;
     /** singleton of the application */
@@ -115,9 +115,9 @@ public final class WinkelApplication {
     }
     /**
      * 
-     * @return the Klant
+     * @return the Gebruiker
      */
-   public static Klant getKlant(){
+   public static Gebruiker getKlant(){
        return getInstance().klant;
    }
 
