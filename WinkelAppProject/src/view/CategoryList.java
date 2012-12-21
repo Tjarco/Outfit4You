@@ -211,7 +211,7 @@ public class CategoryList extends JPanel implements MouseListener {
             // do nothing
         }
         items.add(jpProducts, BorderLayout.LINE_END);
-        jpProducts.setBorder(BorderFactory.createMatteBorder(0, 2, 0,0,Color.black));
+        jpProducts.setBorder(BorderFactory.createMatteBorder(0, 1, 0,1,Color.black));
         revalidate();
     
     }
