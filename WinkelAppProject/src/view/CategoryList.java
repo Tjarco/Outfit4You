@@ -244,7 +244,6 @@ public class CategoryList extends JPanel implements MouseListener {
         }catch(Exception e){
             //do nothing
         }
-        
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.weighty=1;
         gbc.anchor = GridBagConstraints.PAGE_START;

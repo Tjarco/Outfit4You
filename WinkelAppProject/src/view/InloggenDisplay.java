@@ -9,8 +9,11 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import main.WinkelApplication;
 import model.Gebruiker;
 import model.Session;
@@ -29,6 +32,10 @@ public class InloggenDisplay extends JPanel {
     private Font labels ;
     private GridBagConstraints gbc;
     private boolean isingelogd;
+    
+    
+        private JPanel gegevensPanel=new JPanel();
+        
     //private InloggenRegistreren inloggenRegistreren=new InloggenRegistreren();
     
     //De kleuren voor de labels
@@ -54,7 +61,11 @@ public class InloggenDisplay extends JPanel {
             
         addTitle();
         gbc.anchor = GridBagConstraints.LINE_END;
+            addProfiel();
         addInUitLoglabel();
+            profiel.setVisible(Session.getIngelogd());
+           // if (Session.getIngelogd()==false){profiel.setVisible(false);}
+            //else {profiel.setVisible(true);}
         
         //addInloggen();
         //addProfiel();
@@ -82,12 +93,11 @@ public class InloggenDisplay extends JPanel {
         InUitlogLabel.addMouseListener(new ClickListener());
         gbc.anchor = GridBagConstraints.LINE_END;
         gbc.insets = new Insets(15,15,15,15);
-        gbc.gridx=1;
+        gbc.gridx=2;
         gbc.gridy=0;
         
         if (Session.getIngelogd()==true){
             InUitlogLabel.setText("Uitloggen");
-            addProfiel();
         }
         else if (Session.getIngelogd()==false){InUitlogLabel.setText("Inloggen");}
                 
@@ -132,7 +142,7 @@ public class InloggenDisplay extends JPanel {
         profiel.setForeground(foreground);
         profiel.addMouseListener(new ClickListener());
         gbc.insets = new Insets(15,15,15,15);
-        gbc.gridx =2;
+        gbc.gridx =1;
         gbc.gridy =0;
         add(profiel, gbc);
     }
@@ -147,6 +157,29 @@ public class InloggenDisplay extends JPanel {
         gbc.gridx =0;
         gbc.gridy =0;
         add(titel, gbc);
+    }
+    public void loadGegevensPanel(){///-----------------
+        gegevensPanel.setSize(500,500);
+        gegevensPanel.setLayout(new FlowLayout());
+        JLabel lNaam=new JLabel("Naam");
+        
+        JTextField tfNaam=new JTextField();
+        
+        JButton bWijzigenNaam=new JButton("Wijzigen");
+        
+        JLabel rest=new JLabel("Dit word nog aangevuld, ben nog niet klaar (Alex)");
+        
+        gegevensPanel.add(lNaam);
+        gegevensPanel.add(tfNaam);
+        gegevensPanel.add(bWijzigenNaam);
+        
+        gegevensPanel.add(rest);
+        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        gbc.insets = new Insets(15,15,15,15);
+        gbc.gridx =2;
+        gbc.gridy =2;
+        
+        add(gegevensPanel,gbc);
     }
     
     private class ClickListener implements MouseListener{
@@ -163,7 +196,7 @@ public class InloggenDisplay extends JPanel {
                logIn.setVisible(true);
            }
            else if(e.getSource().equals(profiel)){
-           
+                main.WinkelApplication.getInstance().showPanel(new KlantGegevens());
            }
            else if (e.getSource().equals(InUitlogLabel)){
                if (Session.getIngelogd()==true){
@@ -171,11 +204,14 @@ public class InloggenDisplay extends JPanel {
                    //main.WinkelApplication.getInstance().showPanel(new MainMenu());
                 Session.setIngelogd(false);
                 InUitlogLabel.setText("Inloggen");
+                profiel.setVisible(false);
+                main.WinkelApplication.getInstance().showPanel(new CategoryList());
                }
                else {
                 main.WinkelApplication.getInstance().showPanel(new InloggenRegistreren());
                }
            }
+           
             
         }
 
