@@ -237,7 +237,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         tfAddress = new JTextField();
         tfAddress.setBounds(120, verticalPosition + products.size() * productOffset + (formOffset * 4), 130, 20);
         tfAddress.setFont(WinkelApplication.FONT_12_BOLD);
-        tfAddress.setText(WinkelApplication.getKlant().getAdres());
+        tfAddress.setText(WinkelApplication.getKlant().getStraatnaam());
         tfAddress.getDocument().addDocumentListener(new ValidateListener());
         content.add(tfAddress);
 

@@ -101,24 +101,62 @@ public class QueryManager {
         return products;
     }
     
-    public Gebruiker getGebruiker(int Id){
+    public Gebruiker getGebruiker(int klantId)
+    {
         Gebruiker gebruiker = new Gebruiker();
         
-        try{
-            String sql = "SELECT * FROM gebruiker WHERE id = '" + Id + "'";
+        try
+        {
+            String sql = "SELECT "
+            + "             `id`, "
+            + "             `datum_aangemaakt`, "
+            + "             `datum_gewijzigd`, "
+            + "             `datum_laatst_ingelogd`, "
+            + "             `email`, "
+            + "             `voornaam`, "
+            + "             `tussenvoegsel`, "
+            + "             `achternaam`, "
+            + "             `straatnaam`, "
+            + "             `huisnummer`, "
+            + "             `postcode`, "
+            + "             `woonplaats`, "
+            + "             `medewerker`, "
+            + "             `manager`, "
+            + "             `actief`, "
+            + "             `geboortedatum`"
+            + "         FROM gebruiker "
+            + "             WHERE id = " + klantId + "";
+            
             ResultSet result = dbmanager.doQuery(sql);
             
-            if(result.next()){
-//                klant = new Gebruiker(result.getInt("klant_id"),
-//                      result.getString("naam"),
-//                      result.getString("adres"),
-//                      result.getString("postcode"),
-//                      result.getString("woonplaats"));
-               
+            if(result.next())
+            {
+                gebruiker = new Gebruiker(
+                    result.getInt("id"),
+                    result.getInt("huisnummer"),
+                    result.getString("datum_aangemaakt"),
+                    result.getString("datum_gewijzigd"),
+                    result.getString("datum_laatst_ingelogd"),
+                    "", //wachtwoord veld
+                    result.getString("email"),
+                    result.getString("voornaam"),
+                    result.getString("tussenvoegsel"),
+                    result.getString("achternaam"),
+                    result.getString("straatnaam"),
+                    result.getString("postcode"),
+                    result.getString("woonplaats"),
+                    result.getString("geboortedatum"),
+                    result.getBoolean("medewerker"),
+                    result.getBoolean("manager"),
+                    result.getBoolean("actief")
+                );
             }
-        }catch(SQLException e){
-            System.err.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
         }
+        catch(SQLException e)
+        {
+            System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
+        }
+        
         return gebruiker;
     }
     
@@ -126,14 +164,28 @@ public class QueryManager {
         List<Gebruiker> klanten = new ArrayList<Gebruiker>();
         
         try{
-            String sql = "SELECT * FROM gebruiker";
+            String sql = "SELECT * FROM gebruiker WHERE `actief` = 1";
             ResultSet result = dbmanager.doQuery(sql);
             while(result.next()){
-//                klanten.add(new Gebruiker(result.getInt("klant_id"),
-//                        result.getString("naam"),
-//                        result.getString("adres"),
-//                        result.getString("postcode"),
-//                        result.getString("woonplaats")));
+                klanten.add(new Gebruiker(
+                    result.getInt("id"),
+                    result.getInt("huisnummer"),
+                    result.getString("datum_aangemaakt"),
+                    result.getString("datum_gewijzigd"),
+                    result.getString("datum_laatst_ingelogd"),
+                    result.getString("wachtwoord"),
+                    result.getString("email"),
+                    result.getString("voornaam"),
+                    result.getString("tussenvoegsel"),
+                    result.getString("achternaam"),
+                    result.getString("straatnaam"),
+                    result.getString("postcode"),
+                    result.getString("woonplaats"),
+                    result.getString("geboortedatum"),
+                    result.getBoolean("medewerker"),
+                    result.getBoolean("manager"),
+                    result.getBoolean("actief")
+                ));
             }
         }catch(SQLException e){
             System.err.print(Dbmanager.SQL_EXCEPTION + e.getMessage());
@@ -142,11 +194,11 @@ public class QueryManager {
     }
     
     public void addKlant(Gebruiker klant){
-        String sql = "INSERT INTO  `gebruiker` (id, naam, adres, postcode, woonplaats) "
-                + " VALUES('"+ klant.getKlantId() + "', '"+ klant.getVoornaam() + "', '"
-                + klant.getAdres() + "', '" + klant.getPostcode() + "', '" + klant.getWoonplaats() + "')";
-             
-        dbmanager.insertQuery(sql);
+//        String sql = "INSERT INTO  `klant` (klant_id, naam, adres, postcode, woonplaats) "
+//                + " VALUES('"+ klant.getKlantId() + "', '"+ klant.getVoornaam() + "', '"
+//                + klant.getAdres() + "', '" + klant.getPostcode() + "', '" + klant.getWoonplaats() + "')";
+//             
+//        dbmanager.insertQuery(sql);
     }
  
     public void setOrder(model.Basket basket, String naam, String adres,

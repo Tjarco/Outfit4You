@@ -9,114 +9,280 @@ package model;
  * @author Tjarco
  */
 public class Gebruiker {
-    private int klantId;
+    private int id;
+    private int huisnummer;
+    
+    private String datum_aangemaakt;
+    private String datum_gewijzigd;
+    private String datum_laatst_ingelogd;
+    private String wachtwoord;
+    private String email;
     private String voornaam;
+    private String tussenvoegsel;
     private String achternaam;
-    private String wachtwoord;  
-    private String adres;
+    private String straatnaam;
     private String postcode;
     private String woonplaats;
+    private String geboortedatum;
     
     private boolean isMedewerker;
-    private boolean isManger;
-    private boolean isActive;
-    
-    public Gebruiker(){};
+    private boolean isManager;
+    private boolean isActief;
 
-    public Gebruiker(int klantId, String voorNaam, String achternaam, String wachtwoord, String adres, String postcode, String woonplaats, boolean isMedewerker, boolean isManger, boolean isActive) {
-        this.klantId = klantId;
-        this.voornaam = voorNaam;
-        this.achternaam = achternaam;
+    public Gebruiker()
+    {
+        
+    }
+    
+    public Gebruiker(int id, int huisnummer, String datum_aangemaakt, String datum_gewijzigd, String datum_laatst_ingelogd, String wachtwoord, String email, String voornaam, String tussenvoegsel, String achternaam, String straatnaam, String postcode, String woonplaats, String geboortedatum, boolean isMedewerker, boolean isManager, boolean isActief)
+    {
+        this.id = id;
+        this.huisnummer = huisnummer;
+        this.datum_aangemaakt = datum_aangemaakt;
+        this.datum_gewijzigd = datum_gewijzigd;
+        this.datum_laatst_ingelogd = datum_laatst_ingelogd;
         this.wachtwoord = wachtwoord;
-        this.adres = adres;
+        this.email = email;
+        this.voornaam = voornaam;
+        this.tussenvoegsel = tussenvoegsel;
+        this.achternaam = achternaam;
+        this.straatnaam = straatnaam;
         this.postcode = postcode;
         this.woonplaats = woonplaats;
+        this.geboortedatum = geboortedatum;
         this.isMedewerker = isMedewerker;
-        this.isManger = isManger;
-        this.isActive = isActive;
+        this.isManager = isManager;
+        this.isActief = isActief;
+    }  
+
+    /**
+     * @return gebruiker's id
+     */
+    public int getId() {
+        return id;
     }
 
-    public String getAchternaam() {
-        return achternaam;
+    /**
+     * @return gebruiker's huisnummer
+     */
+    public int getHuisnummer() {
+        return huisnummer;
     }
 
-    public void setAchternaam(String achternaam) {
-        this.achternaam = achternaam;
+    /**
+     * @param huisnummer huisnummer van de gebruiker
+     */
+    public void setHuisnummer(int huisnummer) {
+        this.huisnummer = huisnummer;
     }
 
-    public String getAdres() {
-        return adres;
+    /**
+     * @return gebruiker's datum_aangemaakt
+     */
+    public String getDatum_aangemaakt() {
+        return datum_aangemaakt;
     }
 
-    public void setAdres(String adres) {
-        this.adres = adres;
+    /**
+     * @param datum_aangemaakt datum waarop gebruiker is aangemaakt
+     */
+    public void setDatum_aangemaakt(String datum_aangemaakt) {
+        this.datum_aangemaakt = datum_aangemaakt;
     }
 
-    public boolean isIsActive() {
-        return isActive;
+    /**
+     * @return gebruiker's datum_gewijzigd
+     */
+    public String getDatum_gewijzigd() {
+        return datum_gewijzigd;
     }
 
-    public void setIsActive(boolean isActive) {
-        this.isActive = isActive;
+    /**
+     * @param datum_gewijzigd datum waarop gebruiker als laatst is gewijzigd
+     */
+    public void setDatum_gewijzigd(String datum_gewijzigd) {
+        this.datum_gewijzigd = datum_gewijzigd;
     }
 
-    public boolean isIsManger() {
-        return isManger;
+    /**
+     * @return gebruiker's datum_laatst_ingelogd
+     */
+    public String getDatum_laatst_ingelogd() {
+        return datum_laatst_ingelogd;
     }
 
-    public void setIsManger(boolean isManger) {
-        this.isManger = isManger;
+    /**
+     * @param datum_laatst_ingelogd datum waarop de gebruiker als laatst is ingelogd
+     */
+    public void setDatum_laatst_ingelogd(String datum_laatst_ingelogd) {
+        this.datum_laatst_ingelogd = datum_laatst_ingelogd;
     }
 
-    public boolean isIsMedewerker() {
+    /**
+     * @return the gebruiker's email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email email van de gebruiker
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * @return the gebruiker's tussenvoegsel
+     */
+    public String getTussenvoegsel() {
+        return tussenvoegsel;
+    }
+
+    /**
+     * @param tussenvoegsel tussenvoegsel van de gebruiker
+     */
+    public void setTussenvoegsel(String tussenvoegsel) {
+        this.tussenvoegsel = tussenvoegsel;
+    }
+
+    /**
+     * @return the gebruiker's straatnaam
+     */
+    public String getStraatnaam() {
+        return straatnaam;
+    }
+
+    /**
+     * @param straatnaam gebruikers straatnaam
+     */
+    public void setStraatnaam(String straatnaam) {
+        this.straatnaam = straatnaam;
+    }
+
+    /**
+     * @return the gebruiker's geboortedatum
+     */
+    public String getGeboortedatum() {
+        return geboortedatum;
+    }
+
+    /**
+     * @param geboortedatum geboortedatum gebruiker
+     */
+    public void setGeboortedatum(String geboortedatum) {
+        this.geboortedatum = geboortedatum;
+    }
+
+    /**
+     * @return boolean isMedewerker
+     */
+    public boolean isMedewerker() {
         return isMedewerker;
     }
 
-    public void setIsMedewerker(boolean isMedewerker) {
+    /**
+     * @param isMedewerker boolean
+     */
+    public void setMedewerker(boolean isMedewerker) {
         this.isMedewerker = isMedewerker;
     }
 
-    public int getKlantId() {
-        return klantId;
+    /**
+     * @return boolean isManager
+     */
+    public boolean isManager() {
+        return isManager;
     }
 
-    public void setKlantId(int klantId) {
-        this.klantId = klantId;
+    /**
+     * @param isManager boolean isManager
+     */
+    public void setManager(boolean isManager) {
+        this.isManager = isManager;
     }
 
+    /**
+     * @return boolean isActief
+     */
+    public boolean isActief() {
+        return isActief;
+    }
+
+    /**
+     * @param isActief boolean isActief
+     */
+    public void setActief(boolean isActief) {
+        this.isActief = isActief;
+    }
+
+    /**
+     * @return the postcode
+     */
     public String getPostcode() {
         return postcode;
     }
 
+    /**
+     * @param postcode the postcode to set
+     */
     public void setPostcode(String postcode) {
         this.postcode = postcode;
     }
 
-    public String getVoornaam() {
-        return voornaam;
-    }
-
-    public void setVoornaam(String voorNaam) {
-        this.voornaam = voorNaam;
-    }
-
-    public String getWachtwoord() {
-        return wachtwoord;
-    }
-
-    public void setWachtwoord(String wachtwoord) {
-        this.wachtwoord = wachtwoord;
-    }
-
+    /**
+     * @return the woonplaats
+     */
     public String getWoonplaats() {
         return woonplaats;
     }
 
+    /**
+     * @param woonplaats the woonplaats to set
+     */
     public void setWoonplaats(String woonplaats) {
         this.woonplaats = woonplaats;
     }
 
-    
-    
-    
+    /**
+     * @return the achternaam
+     */
+    public String getAchternaam() {
+        return achternaam;
+    }
+
+    /**
+     * @param achternaam the achternaam to set
+     */
+    public void setAchternaam(String achternaam) {
+        this.achternaam = achternaam;
+    }
+
+    /**
+     * @return the voornaam
+     */
+    public String getVoornaam() {
+        return voornaam;
+    }
+
+    /**
+     * @param voornaam the voornaam to set
+     */
+    public void setVoornaam(String voornaam) {
+        this.voornaam = voornaam;
+    }
+
+    /**
+     * @return the wachtwoord
+     */
+    public String getWachtwoord() {
+        return wachtwoord;
+    }
+
+    /**
+     * @param wachtwoord the wachtwoord to set
+     */
+    public void setWachtwoord(String wachtwoord) {
+        this.wachtwoord = wachtwoord;
+    }
 }
