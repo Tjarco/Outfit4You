@@ -204,6 +204,7 @@ public class ProductenOverzicht extends javax.swing.JPanel {
     private void searchCategory(String category, Object field) {
         
         int col = 0;
+        
         if (field.equals(jcCategoryVeld.getItemAt(1))) {
             col = 0;
         } else if (field.equals(jcCategoryVeld.getItemAt(0))) {
@@ -213,11 +214,11 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         } else if (field.equals(jcCategoryVeld.getItemAt(3))) {
             col = 3;
         }
-        int rows = jtCategorie.getModel().getRowCount();
-       
+        
+        int rows = jtCategorie.getModel().getRowCount();       
 
         for (int i = rows - 1; i >= 0; i--) {
-            String value = (String) (jtCategorie.getModel().getValueAt(i, col));
+            String value = String.valueOf(jtCategorie.getModel().getValueAt(i, col));
 
             try {
 

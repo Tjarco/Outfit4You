@@ -4,6 +4,8 @@
  */
 package view;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -36,6 +38,43 @@ public class KlantenOverzicht extends javax.swing.JPanel {
         }
 
         jtZoekveld.getDocument().addDocumentListener(new ZoekListener());
+        jtZoekveld.addKeyListener(new SnelToetsListener());
+    }
+    /**
+     * De listener voor sneltoetsen.
+     * Er kan tijdens het typen in het zoekveld met de toetsen naar boven en beneden een rij geselecteerd worden
+     */
+    private class SnelToetsListener implements KeyListener{
+
+        public void keyTyped(KeyEvent e) {
+            //Niet nodig
+        }
+
+        public void keyPressed(KeyEvent e) {
+            if(e.getKeyCode() == KeyEvent.VK_DOWN){
+                int row = jTable1.getSelectedRow();
+                
+                try{
+                    jTable1.setRowSelectionInterval(row+1, row+1);
+                }catch(Exception ex){
+                    //Geen actie, de laatse rij is geselecteerd
+                }                       
+            }
+            else if(e.getKeyCode() == KeyEvent.VK_UP){
+               int row = jTable1.getSelectedRow();
+                
+                try{
+                    jTable1.setRowSelectionInterval(row-1, row-1);
+                }catch(Exception ex){
+                    //Geen actie, de eerste rij is geselecteerd
+                } 
+            }
+        }
+
+        public void keyReleased(KeyEvent e) {
+            //Niet nodig
+        }
+    
     }
 
     /**
@@ -47,30 +86,52 @@ public class KlantenOverzicht extends javax.swing.JPanel {
     private class ZoekListener implements DocumentListener {
 
         public void insertUpdate(DocumentEvent e) {
-            SearchKlant(jtZoekveld.getText());
+            SearchKlant(jtZoekveld.getText(), jcKlantenZoekOpties.getSelectedItem());
         }
 
         public void removeUpdate(DocumentEvent e) {
-            SearchKlant(jtZoekveld.getText());
+            SearchKlant(jtZoekveld.getText(), jcKlantenZoekOpties.getSelectedItem());
         }
 
         public void changedUpdate(DocumentEvent e) {
-            SearchKlant(jtZoekveld.getText());
+            SearchKlant(jtZoekveld.getText(), jcKlantenZoekOpties.getSelectedItem());
         }
         
-        //Zoekt een klant op naam. Een gedeelte van de naam intikken werkt ook.
-        private void SearchKlant(String klant) {
-            int rows = jTable1.getModel().getRowCount();
+        /**
+         * De functie die de gezochte klant selecteerd in de tabel.
+         * 
+         * Er worden twee parameters meegegeven:
+         * @param gebruiker
+         * @param field 
+         * 
+         * De eerste parameter is een zoekterm. De tweede is het veld waarin gezocht moet worden.
+         */
+        private void SearchKlant(String gebruiker, Object field) {
+           
             int col = 1;
 
+        if (field.equals(jcKlantenZoekOpties.getItemAt(1))) {
+            col = 0;
+        } else if (field.equals(jcKlantenZoekOpties.getItemAt(0))) {
+            col = 1;
+        } else if (field.equals(jcKlantenZoekOpties.getItemAt(2))) {
+            col = 2;
+        } else if (field.equals(jcKlantenZoekOpties.getItemAt(3))) {
+            col = 3;
+        }
+        
+         int rows = jTable1.getModel().getRowCount();
+
             for (int i = rows-1; i >=0; i--) {
-                String value = (String) (jTable1.getModel().getValueAt(i, col));
+                String value = String.valueOf(jTable1.getModel().getValueAt(i, col));
    
                 try {                   
                     
-                    if (value.toLowerCase().contains(klant.toLowerCase()) && klant.length()!=0) {                       
+                    if (value.toLowerCase().contains(gebruiker.toLowerCase()) && gebruiker.length()!=0) {                       
                         jTable1.setRowSelectionInterval(i, i);
-                    } 
+                    }  else if (gebruiker.length() == 0) {
+                    jTable1.setRowSelectionInterval(0, 0);
+                    }
                 } catch (Exception e) {
                     //Do nothing
                 }
@@ -95,6 +156,7 @@ public class KlantenOverzicht extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jcKlantenZoekOpties = new javax.swing.JComboBox();
         jtZoekveld = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -112,17 +174,19 @@ public class KlantenOverzicht extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                { new Integer(1), "piet", "adf", "adf"},
+                { new Integer(2), "jan", "lkj", "lkj"},
+                { new Integer(3), "klaas", "ha", "h"}
             },
             new String [] {
-                "Klant_id", "Naam", "Adres", "Postcode", "Postcode"
+                "Klant_id", "Naam", "Adres", "Postcode"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -144,25 +208,34 @@ public class KlantenOverzicht extends javax.swing.JPanel {
 
         jLabel1.setText("Zoek klant met naam:");
 
+        jcKlantenZoekOpties.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Naam", "Id", "Adres", "Postcode" }));
+        jcKlantenZoekOpties.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcKlantenZoekOptiesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(72, 72, 72)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jtZoekveld, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(67, 67, 67)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(164, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addComponent(jButton1)))
+                .addContainerGap(47, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(416, Short.MAX_VALUE)
+                    .addComponent(jcKlantenZoekOpties, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(415, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,11 +244,19 @@ public class KlantenOverzicht extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtZoekveld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(11, 11, 11)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(294, 294, 294)
+                        .addComponent(jButton1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(52, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jcKlantenZoekOpties, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(369, Short.MAX_VALUE)))
         );
 
         jPanel2.add(jPanel1, new java.awt.GridBagConstraints());
@@ -251,6 +332,10 @@ public class KlantenOverzicht extends javax.swing.JPanel {
         WinkelApplication.getInstance().showPanel(new MainMenu());
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jcKlantenZoekOptiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcKlantenZoekOptiesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcKlantenZoekOptiesActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
@@ -262,6 +347,7 @@ public class KlantenOverzicht extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JComboBox jcKlantenZoekOpties;
     private javax.swing.JTextField jtZoekveld;
     // End of variables declaration//GEN-END:variables
 }

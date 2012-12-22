@@ -101,11 +101,11 @@ public class QueryManager {
         return products;
     }
     
-    public Gebruiker getKlant(int klantId){
-        Gebruiker klant = new Gebruiker();
+    public Gebruiker getGebruiker(int Id){
+        Gebruiker gebruiker = new Gebruiker();
         
         try{
-            String sql = "SELECT * FROM klant WHERE klant_id = '" + klantId + "'";
+            String sql = "SELECT * FROM gebruiker WHERE id = '" + Id + "'";
             ResultSet result = dbmanager.doQuery(sql);
             
             if(result.next()){
@@ -119,14 +119,14 @@ public class QueryManager {
         }catch(SQLException e){
             System.err.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
         }
-        return klant;
+        return gebruiker;
     }
     
     public List<Gebruiker> getKlantenList(){
         List<Gebruiker> klanten = new ArrayList<Gebruiker>();
         
         try{
-            String sql = "SELECT * FROM klant";
+            String sql = "SELECT * FROM gebruiker";
             ResultSet result = dbmanager.doQuery(sql);
             while(result.next()){
 //                klanten.add(new Gebruiker(result.getInt("klant_id"),
@@ -142,7 +142,7 @@ public class QueryManager {
     }
     
     public void addKlant(Gebruiker klant){
-        String sql = "INSERT INTO  `klant` (klant_id, naam, adres, postcode, woonplaats) "
+        String sql = "INSERT INTO  `gebruiker` (id, naam, adres, postcode, woonplaats) "
                 + " VALUES('"+ klant.getKlantId() + "', '"+ klant.getVoornaam() + "', '"
                 + klant.getAdres() + "', '" + klant.getPostcode() + "', '" + klant.getWoonplaats() + "')";
              

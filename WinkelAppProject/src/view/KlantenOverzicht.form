@@ -52,25 +52,27 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Component id="jLabel1" min="-2" pref="112" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jtZoekveld" min="-2" pref="208" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane1" min="-2" pref="669" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jScrollPane1" min="-2" pref="669" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="164" max="32767" attributes="0"/>
+                      <EmptySpace pref="47" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace pref="416" max="32767" attributes="0"/>
+                          <Component id="jcKlantenZoekOpties" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="415" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -82,11 +84,24 @@
                           <Component id="jtZoekveld" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="277" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
+                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="277" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace pref="52" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jcKlantenZoekOpties" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="369" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -102,12 +117,27 @@
                 <Component class="javax.swing.JTable" name="jTable1">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="0">
-                        <Column editable="false" title="Klant_id" type="java.lang.Integer"/>
-                        <Column editable="false" title="Naam" type="java.lang.String"/>
-                        <Column editable="false" title="Adres" type="java.lang.String"/>
-                        <Column editable="false" title="Postcode" type="java.lang.String"/>
-                        <Column editable="false" title="Postcode" type="java.lang.String"/>
+                      <Table columnCount="4" rowCount="3">
+                        <Column editable="false" title="Klant_id" type="java.lang.Integer">
+                          <Data value="1"/>
+                          <Data value="2"/>
+                          <Data value="3"/>
+                        </Column>
+                        <Column editable="false" title="Naam" type="java.lang.String">
+                          <Data value="piet"/>
+                          <Data value="jan"/>
+                          <Data value="klaas"/>
+                        </Column>
+                        <Column editable="false" title="Adres" type="java.lang.String">
+                          <Data value="adf"/>
+                          <Data value="lkj"/>
+                          <Data value="ha"/>
+                        </Column>
+                        <Column editable="false" title="Postcode" type="java.lang.String">
+                          <Data value="adf"/>
+                          <Data value="lkj"/>
+                          <Data value="h"/>
+                        </Column>
                       </Table>
                     </Property>
                   </Properties>
@@ -126,6 +156,21 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Zoek klant met naam:"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="jcKlantenZoekOpties">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="Naam"/>
+                    <StringItem index="1" value="Id"/>
+                    <StringItem index="2" value="Adres"/>
+                    <StringItem index="3" value="Postcode"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcKlantenZoekOptiesActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jtZoekveld">
             </Component>

@@ -67,7 +67,7 @@ public final class WinkelApplication {
         mainWindow = new JFrame(NAME);
        // Zet het scherm fullScreen
         mainWindow.setExtendedState(Frame.MAXIMIZED_BOTH);
-        klant = this.queryManager.getKlant(1);
+        klant = this.queryManager.getGebruiker(1);
         /** Make the window closing [x] button on the frame active */
         mainWindow.addWindowListener(new WindowAdapter() {
 
