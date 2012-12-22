@@ -7,7 +7,7 @@ package view;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
@@ -25,7 +25,7 @@ public class Vooraad extends javax.swing.JPanel {
     public Vooraad() {
         initComponents();
         addData();
-
+        
         jtZoekveld.getDocument().addDocumentListener(new ZoekListener());
         jtZoekveld.addKeyListener(new SnelToetsListener());
 
@@ -44,7 +44,7 @@ public class Vooraad extends javax.swing.JPanel {
                         new Integer(p.getProductId()),
                         p.getName(),
                         p.getDescription(),
-                        "-", //p.getStatus
+                        p.getVooraad()
                     });
         }
 
@@ -52,42 +52,40 @@ public class Vooraad extends javax.swing.JPanel {
 
 
     }
-    
-        /**
-     * De listener voor sneltoetsen.
-     * Er kan tijdens het typen in het zoekveld met de toetsen naar boven en beneden een rij geselecteerd worden
+
+    /**
+     * De listener voor sneltoetsen. Er kan tijdens het typen in het zoekveld
+     * met de toetsen naar boven en beneden een rij geselecteerd worden
      */
-    private class SnelToetsListener implements KeyListener{
+    private class SnelToetsListener implements KeyListener {
 
         public void keyTyped(KeyEvent e) {
             //Niet nodig
         }
 
         public void keyPressed(KeyEvent e) {
-            if(e.getKeyCode() == KeyEvent.VK_DOWN){
+            if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                 int row = jtProducten.getSelectedRow();
-                
-                try{
-                    jtProducten.setRowSelectionInterval(row+1, row+1);
-                }catch(Exception ex){
+
+                try {
+                    jtProducten.setRowSelectionInterval(row + 1, row + 1);
+                } catch (Exception ex) {
                     //Geen actie, de laatse rij is geselecteerd
-                }                       
-            }
-            else if(e.getKeyCode() == KeyEvent.VK_UP){
-               int row =jtProducten.getSelectedRow();
-                
-                try{
-                    jtProducten.setRowSelectionInterval(row-1, row-1);
-                }catch(Exception ex){
+                }
+            } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+                int row = jtProducten.getSelectedRow();
+
+                try {
+                    jtProducten.setRowSelectionInterval(row - 1, row - 1);
+                } catch (Exception ex) {
                     //Geen actie, de eerste rij is geselecteerd
-                } 
+                }
             }
         }
 
         public void keyReleased(KeyEvent e) {
             //Niet nodig
         }
-    
     }
 
     /**
@@ -119,16 +117,16 @@ public class Vooraad extends javax.swing.JPanel {
         private void searchProduct(String product, Object field) {
             int rows = jtProducten.getModel().getRowCount();
             int col = 1;
-        
-        if (field.equals(jComboBox1.getItemAt(1))) {
-            col = 0;
-        } else if (field.equals(jComboBox1.getItemAt(0))) {
-            col = 1;
-        } else if (field.equals(jComboBox1.getItemAt(2))) {
-            col = 2;
-        } else if (field.equals(jComboBox1.getItemAt(3))) {
-            col = 3;
-        }
+
+            if (field.equals(jComboBox1.getItemAt(1))) {
+                col = 0;
+            } else if (field.equals(jComboBox1.getItemAt(0))) {
+                col = 1;
+            } else if (field.equals(jComboBox1.getItemAt(2))) {
+                col = 2;
+            } else if (field.equals(jComboBox1.getItemAt(3))) {
+                col = 3;
+            }
 
             for (int i = rows - 1; i >= 0; i--) {
                 String value = (String) (jtProducten.getModel().getValueAt(i, col));
@@ -146,8 +144,22 @@ public class Vooraad extends javax.swing.JPanel {
             }
 
         }
+    }
 
-
+    private void veranderVoorraad() {
+        JFrame options = new JFrame();
+        options.setSize(150, 70);
+        
+        String product = String.valueOf(jtProducten.getModel().getValueAt(jtProducten.getSelectedRow(), 1));
+        JLabel mes = new JLabel("Wat is de vooraad van " + product + "?" );
+        options.getContentPane().add(mes);
+        
+        JTextField jtVoorraad = new JTextField();
+        jtVoorraad.setSize(120, 20);
+        options.getContentPane().add(jtVoorraad);
+        
+        JOptionPane.showInputDialog(options, null);       
+        
 
     }
 
@@ -211,6 +223,11 @@ public class Vooraad extends javax.swing.JPanel {
         jLabel1.setText("Zoek Product");
 
         jButton3.setText("Wijzig Vooraad");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Naam", "Product_idd", "Beschrijving", "Voorraad" }));
 
@@ -321,6 +338,10 @@ public class Vooraad extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         main.WinkelApplication.getInstance().showPanel(new MainMenu());
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.veranderVoorraad();
+    }//GEN-LAST:event_jButton3ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

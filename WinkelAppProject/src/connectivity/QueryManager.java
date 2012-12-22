@@ -57,7 +57,10 @@ public class QueryManager {
                         result.getInt("categorie_id"),
                         result.getString("naam"),
                         result.getString("omschrijving"),
-                        result.getDouble("prijs"));
+                        result.getDouble("prijs"),
+                        result.getInt("vooraad"),
+                        //Zet de int in de database om naar een boolean
+                        (result.getInt("is_actief") == 0) ? false : true ) ;
             }
         } catch (SQLException e) {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
@@ -75,7 +78,9 @@ public class QueryManager {
                         result.getInt("categorie_id"),
                         result.getString("naam"),
                         result.getString("omschrijving"),
-                        result.getDouble("prijs")));
+                        result.getDouble("prijs"),
+                        result.getInt("vooraad"),
+                        (result.getInt("is_actief") == 0) ? false : true));
             }
         } catch (SQLException e) {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
@@ -89,11 +94,13 @@ public class QueryManager {
             String sql = "SELECT * FROM product ORDER BY naam ASC";
             ResultSet result = dbmanager.doQuery(sql);
             while (result.next()) {
-                products.add(new Product(result.getInt("product_id"),
+               products.add(new Product(result.getInt("product_id"),
                         result.getInt("categorie_id"),
                         result.getString("naam"),
                         result.getString("omschrijving"),
-                        result.getDouble("prijs")));
+                        result.getDouble("prijs"),
+                        result.getInt("voorraad"),
+                        true)); //(result.getInt("is_actief") == 0) ? false : true ));
             }
         } catch (SQLException e) {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());

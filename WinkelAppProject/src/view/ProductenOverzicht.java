@@ -49,9 +49,11 @@ public class ProductenOverzicht extends javax.swing.JPanel {
                         new Integer(p.getProductId()),
                         p.getName(),
                         p.getDescription(),
-                        "-", //p.getStatus
+                        p.isActief()
                     });
         }
+        
+       System.out.println( products.get(1).getName());
 
         List<model.Category> categorys = main.WinkelApplication.getQueryManager().getCategories();
 

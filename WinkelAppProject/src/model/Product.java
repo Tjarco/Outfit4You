@@ -4,20 +4,25 @@ public class Product {
 
     private int productId;
     private int categorieId;
+    private int vooraad;
     private String name;
     private String description;
     private double price;
+    private boolean actief;
 
     public Product() {
-        this(-1, -1, "", "", 0.0);
+        this(-1, -1, "", "", 0.0, 1, true);
     }
 
-    public Product(int product_id, int categorie_id, String name, String description, double price) {
+    public Product(int product_id, int categorie_id, String name, String description, double price, int vooraad,
+            boolean actief) {
         this.productId = product_id;
         this.categorieId = categorie_id;
         this.name = name;
+        this.vooraad = vooraad;
         this.description = description;
         this.price = price;
+        this.actief = actief;
     }
 
     /**
@@ -90,6 +95,22 @@ public class Product {
         this.categorieId = categorieId;
     }
 
+    public boolean isActief() {
+        return actief;
+    }
+
+    public void setActief(boolean actief) {
+        this.actief = actief;
+    }
+
+    public int getVooraad() {
+        return vooraad;
+    }
+
+    public void setVooraad(int vooraad) {
+        this.vooraad = vooraad;
+    }
+
     @Override
     public String toString() {
         return name;
@@ -99,7 +120,7 @@ public class Product {
     public boolean equals(Object obj) {
         boolean value;
         if (obj instanceof Product) {
-            value = this.productId == ((Product)obj).productId;
+            value = this.productId == ((Product) obj).productId;
         } else {
             value = super.equals(obj);
         }
