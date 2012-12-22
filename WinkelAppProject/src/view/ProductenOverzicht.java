@@ -269,6 +269,7 @@ public class ProductenOverzicht extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jPanel6.setMaximumSize(new java.awt.Dimension(800, 400));

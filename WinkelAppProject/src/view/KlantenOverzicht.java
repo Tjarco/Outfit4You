@@ -174,9 +174,7 @@ public class KlantenOverzicht extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                { new Integer(1), "piet", "adf", "adf"},
-                { new Integer(2), "jan", "lkj", "lkj"},
-                { new Integer(3), "klaas", "ha", "h"}
+
             },
             new String [] {
                 "Klant_id", "Naam", "Adres", "Postcode"

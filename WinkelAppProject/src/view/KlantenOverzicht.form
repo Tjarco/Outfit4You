@@ -117,27 +117,11 @@
                 <Component class="javax.swing.JTable" name="jTable1">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="3">
-                        <Column editable="false" title="Klant_id" type="java.lang.Integer">
-                          <Data value="1"/>
-                          <Data value="2"/>
-                          <Data value="3"/>
-                        </Column>
-                        <Column editable="false" title="Naam" type="java.lang.String">
-                          <Data value="piet"/>
-                          <Data value="jan"/>
-                          <Data value="klaas"/>
-                        </Column>
-                        <Column editable="false" title="Adres" type="java.lang.String">
-                          <Data value="adf"/>
-                          <Data value="lkj"/>
-                          <Data value="ha"/>
-                        </Column>
-                        <Column editable="false" title="Postcode" type="java.lang.String">
-                          <Data value="adf"/>
-                          <Data value="lkj"/>
-                          <Data value="h"/>
-                        </Column>
+                      <Table columnCount="4" rowCount="0">
+                        <Column editable="false" title="Klant_id" type="java.lang.Integer"/>
+                        <Column editable="false" title="Naam" type="java.lang.String"/>
+                        <Column editable="false" title="Adres" type="java.lang.String"/>
+                        <Column editable="false" title="Postcode" type="java.lang.String"/>
                       </Table>
                     </Property>
                   </Properties>

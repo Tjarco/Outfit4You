@@ -4,6 +4,8 @@
  */
 package view;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
@@ -25,6 +27,7 @@ public class Vooraad extends javax.swing.JPanel {
         addData();
 
         jtZoekveld.getDocument().addDocumentListener(new ZoekListener());
+        jtZoekveld.addKeyListener(new SnelToetsListener());
 
     }
 
@@ -49,6 +52,43 @@ public class Vooraad extends javax.swing.JPanel {
 
 
     }
+    
+        /**
+     * De listener voor sneltoetsen.
+     * Er kan tijdens het typen in het zoekveld met de toetsen naar boven en beneden een rij geselecteerd worden
+     */
+    private class SnelToetsListener implements KeyListener{
+
+        public void keyTyped(KeyEvent e) {
+            //Niet nodig
+        }
+
+        public void keyPressed(KeyEvent e) {
+            if(e.getKeyCode() == KeyEvent.VK_DOWN){
+                int row = jtProducten.getSelectedRow();
+                
+                try{
+                    jtProducten.setRowSelectionInterval(row+1, row+1);
+                }catch(Exception ex){
+                    //Geen actie, de laatse rij is geselecteerd
+                }                       
+            }
+            else if(e.getKeyCode() == KeyEvent.VK_UP){
+               int row =jtProducten.getSelectedRow();
+                
+                try{
+                    jtProducten.setRowSelectionInterval(row-1, row-1);
+                }catch(Exception ex){
+                    //Geen actie, de eerste rij is geselecteerd
+                } 
+            }
+        }
+
+        public void keyReleased(KeyEvent e) {
+            //Niet nodig
+        }
+    
+    }
 
     /**
      * De listener klasse van de zoekvelden. Deze klasse wordt gebruikt om naar
@@ -59,16 +99,16 @@ public class Vooraad extends javax.swing.JPanel {
     private class ZoekListener implements DocumentListener {
 
         public void insertUpdate(DocumentEvent e) {
-            searchProduct(jtZoekveld.getText());
+            searchProduct(jtZoekveld.getText(), jComboBox1.getSelectedItem());
 
         }
 
         public void removeUpdate(DocumentEvent e) {
-            searchProduct(jtZoekveld.getText());
+            searchProduct(jtZoekveld.getText(), jComboBox1.getSelectedItem());
         }
 
         public void changedUpdate(DocumentEvent e) {
-            searchProduct(jtZoekveld.getText());
+            searchProduct(jtZoekveld.getText(), jComboBox1.getSelectedItem());
         }
 
         /**
@@ -76,9 +116,19 @@ public class Vooraad extends javax.swing.JPanel {
          *
          * @param product , de parameter geeft aan waarnaar gezocht moet worden.
          */
-        private void searchProduct(String product) {
+        private void searchProduct(String product, Object field) {
             int rows = jtProducten.getModel().getRowCount();
             int col = 1;
+        
+        if (field.equals(jComboBox1.getItemAt(1))) {
+            col = 0;
+        } else if (field.equals(jComboBox1.getItemAt(0))) {
+            col = 1;
+        } else if (field.equals(jComboBox1.getItemAt(2))) {
+            col = 2;
+        } else if (field.equals(jComboBox1.getItemAt(3))) {
+            col = 3;
+        }
 
             for (int i = rows - 1; i >= 0; i--) {
                 String value = (String) (jtProducten.getModel().getValueAt(i, col));
@@ -118,6 +168,7 @@ public class Vooraad extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jtZoekveld = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -125,6 +176,7 @@ public class Vooraad extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jPanel5.setMaximumSize(new java.awt.Dimension(1000, 400));
@@ -136,7 +188,7 @@ public class Vooraad extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Product_id", "Naam", "Beschrijving", "Vooraad"
+                "Product_id", "Naam", "Beschrijving", "Voorraad"
             }
         ) {
             Class[] types = new Class [] {
@@ -160,6 +212,8 @@ public class Vooraad extends javax.swing.JPanel {
 
         jButton3.setText("Wijzig Vooraad");
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Naam", "Product_idd", "Beschrijving", "Voorraad" }));
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -172,6 +226,8 @@ public class Vooraad extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(jtZoekveld, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -184,7 +240,8 @@ public class Vooraad extends javax.swing.JPanel {
                 .addGap(41, 41, 41)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jtZoekveld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtZoekveld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -267,6 +324,7 @@ public class Vooraad extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JPanel jPanel1;
