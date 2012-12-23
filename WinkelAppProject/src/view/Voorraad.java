@@ -4,6 +4,8 @@
  */
 package view;
 
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
@@ -17,17 +19,25 @@ import model.Product;
  *
  * @author Tjarco
  */
-public class Vooraad extends javax.swing.JPanel {
+public class Voorraad extends javax.swing.JPanel {
 
     /**
-     * Creates new form Vooraad
+     * Creates new form Voorraad
      */
-    public Vooraad() {
+    public Voorraad() {
         initComponents();
         addData();
-        
+
         jtZoekveld.getDocument().addDocumentListener(new ZoekListener());
         jtZoekveld.addKeyListener(new SnelToetsListener());
+        
+        //Geef het zoekveld de focus
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent ce) {
+                jtZoekveld.requestFocusInWindow();
+            }
+        });
 
     }
 
@@ -80,6 +90,8 @@ public class Vooraad extends javax.swing.JPanel {
                 } catch (Exception ex) {
                     //Geen actie, de eerste rij is geselecteerd
                 }
+            } else if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                veranderVoorraad();
             }
         }
 
@@ -145,21 +157,29 @@ public class Vooraad extends javax.swing.JPanel {
 
         }
     }
-
+    /**
+     * Verander de voorraad met een Input dialog. 
+     * 
+     * Valideer de input met een regex. Als de input niet correct is, laat het nog een keer 
+     * de input dialog zien.
+     */
     private void veranderVoorraad() {
-        JFrame options = new JFrame();
-        options.setSize(150, 70);
-        
-        String product = String.valueOf(jtProducten.getModel().getValueAt(jtProducten.getSelectedRow(), 1));
-        JLabel mes = new JLabel("Wat is de vooraad van " + product + "?" );
-        options.getContentPane().add(mes);
-        
-        JTextField jtVoorraad = new JTextField();
-        jtVoorraad.setSize(120, 20);
-        options.getContentPane().add(jtVoorraad);
-        
-        JOptionPane.showInputDialog(options, null);       
-        
+
+        try {
+            String product = String.valueOf(jtProducten.getModel().getValueAt(jtProducten.getSelectedRow(), 1));
+
+            String output = "*";
+            String format = "[\\d]+";
+            while (!output.matches(format) && !output.equals("")) {
+                output = JOptionPane.showInputDialog("wat is de voorraad van ' " + product + "'?");
+            }            
+            main.WinkelApplication.getQueryManager().UpdateProducts(product, Integer.parseInt(output));
+            
+            jtProducten.getModel().setValueAt(Integer.parseInt(output), jtProducten.getSelectedRow(), 3);
+            
+        } catch (Exception e) {
+            //Doe niks, er is geen rij geselecteerd.
+        }
 
     }
 
@@ -279,7 +299,7 @@ public class Vooraad extends javax.swing.JPanel {
 
         jLabel14.setFont(main.WinkelApplication.TITEL);
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Vooraad beheer");
+        jLabel14.setText("Voorraad beheer");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

@@ -67,6 +67,16 @@ public class QueryManager {
         }
         return product;
     }
+    
+    public void UpdateProducts(String productNaam, int vooraad){
+        try{
+            String sql = "UPDATE product SET voorraad = '" + vooraad + "'"
+                    + "WHERE naam = '"+productNaam+"'";
+            dbmanager.insertQuery(sql);            
+        }catch(Exception e){
+           System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage()); 
+        }
+    }
 
     public List<Product> getProducts(int categoryId) {
         List<Product> products = new ArrayList<Product>();

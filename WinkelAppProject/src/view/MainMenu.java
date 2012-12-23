@@ -13,7 +13,7 @@ import main.WinkelApplication;
  * -Categorielijst
  * -Klantenoverzicht
  * -Productovericht
- * -Vooraad
+ * -Voorraad
  * -Rapporten
  */
 public class MainMenu extends javax.swing.JPanel {
@@ -158,7 +158,7 @@ public class MainMenu extends javax.swing.JPanel {
 
         jButton6.setFont(main.WinkelApplication.FONT_14_BOLD);
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons/Vooraad.png"))); // NOI18N
-        jButton6.setText("Vooraad");
+        jButton6.setText("Voorraad");
         jButton6.setToolTipText("");
         jButton6.setBorderPainted(false);
         jButton6.setContentAreaFilled(false);
@@ -239,7 +239,7 @@ public class MainMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        WinkelApplication.getInstance().showPanel(new Vooraad());
+        WinkelApplication.getInstance().showPanel(new Voorraad());
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

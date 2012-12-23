@@ -261,7 +261,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/pictures/icons/Vooraad.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Vooraad"/>
+                <Property name="text" type="java.lang.String" value="Voorraad"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="borderPainted" type="boolean" value="false"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
