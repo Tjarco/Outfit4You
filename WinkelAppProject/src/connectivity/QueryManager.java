@@ -11,7 +11,8 @@ import model.Product;
 public class QueryManager {
 
     private final Dbmanager dbmanager;
-
+    private final String tbl_gebruiker = "gebruiker";
+    
     public QueryManager(Dbmanager dbmanager) {
         this.dbmanager = dbmanager;
     }
@@ -118,6 +119,48 @@ public class QueryManager {
         return products;
     }
     
+    /**
+     * 
+     * @param gebruiker
+     * @return boolean update/insert success
+     */
+    public boolean setGebruiker(Gebruiker gebruiker)
+    {
+        boolean success = false;
+        
+        String fields = "datum_aangemaakt = '" + gebruiker.getDatum_aangemaakt() + "', "
+                +       "datum_gewijzigd = '" + gebruiker.getDatum_gewijzigd() + "', "
+                +       "datum_laatst_ingelogd = '" + gebruiker.getDatum_laatst_ingelogd() + "', "
+                +       "wachtwoord = '" + gebruiker.getWachtwoord() + "', "
+                +       "email = '" + gebruiker.getWachtwoord() + "', "
+                +       "voornaam = '" + gebruiker.getVoornaam() + "', "
+                +       "tussenvoegsel = '" + gebruiker.getTussenvoegsel() + "', "
+                +       "achternaam = '" + gebruiker.getAchternaam() + "', "
+                +       "straatnaam = '" + gebruiker.getStraatnaam() + "', "
+                +       "huisnummer = " + gebruiker.getHuisnummer() + ", "
+                +       "postcode = '" + gebruiker.getPostcode() + "', "
+                +       "woonplaats = '" + gebruiker.getWoonplaats() + "', "
+                +       "medewerker = " + gebruiker.isMedewerker() + ", "
+                +       "manager = " + gebruiker.isManager() + ", "
+                +       "actief = " + gebruiker.isActief() + ", "
+                +       "geboortedatum = '" + gebruiker.getGeboortedatum() + "'";
+        
+        String sql =    "INSERT INTO " + this.tbl_gebruiker + " "
+                +           "SET id = " + gebruiker.getId() + ", " + fields + " ON DUPLICATE KEY UPDATE " + fields;
+        
+        try 
+        {
+            ResultSet result = dbmanager.insertQuery(sql);
+            success = result.next();
+        } 
+        catch (SQLException e) 
+        {
+            System.out.println("connectivity.QueryManager.setOrder() Exception:" + e.getMessage());
+        }
+        
+        return success;
+    }
+    
     public Gebruiker getGebruiker(int klantId)
     {
         Gebruiker gebruiker = new Gebruiker();
@@ -177,6 +220,7 @@ public class QueryManager {
         return gebruiker;
     }
     
+    
     public List<Gebruiker> getKlantenList(){
         List<Gebruiker> klanten = new ArrayList<Gebruiker>();
         
@@ -209,28 +253,26 @@ public class QueryManager {
         }
         return klanten;
     }
-    
-    public void addKlant(Gebruiker klant){
-//        String sql = "INSERT INTO  `klant` (klant_id, naam, adres, postcode, woonplaats) "
-//                + " VALUES('"+ klant.getKlantId() + "', '"+ klant.getVoornaam() + "', '"
-//                + klant.getAdres() + "', '" + klant.getPostcode() + "', '" + klant.getWoonplaats() + "')";
-//             
-//        dbmanager.insertQuery(sql);
-    }
  
-    public void setOrder(model.Basket basket, String naam, String adres,
-            String postcode, String woonplaats, String opmerking, String betaalmethode) {
+    public void setOrder(model.Basket basket, String naam, String adres, String postcode, String woonplaats, String opmerking, String betaalmethode) 
+    {
         String SQL_order = "INSERT INTO `order` (naam, adres, postcode, woonplaats, notes, betaalmethode, datum)"
                 + " VALUES('" + naam + "', '" + adres + "', '" + postcode + "', '"
                 + woonplaats + "', '" + opmerking + "', '" + betaalmethode + "', CURDATE() )";
+        
         int order_id = 0;
-        try {
+        
+        try 
+        {
             ResultSet result = dbmanager.insertQuery(SQL_order);
             result.next();
             order_id = result.getInt(1);
-        } catch (SQLException e) {
+        } 
+        catch (SQLException e) 
+        {
             System.out.println("connectivity.QueryManager.setOrder() Exception:" + e.getMessage());
         }
+        
         List<Product> products = basket.getProducts();
         for (Product product : products) {
             int product_id = product.getProductId();

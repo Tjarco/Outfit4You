@@ -7,6 +7,8 @@ package view;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
@@ -345,8 +347,16 @@ public class KlantenOverzicht extends javax.swing.JPanel {
 
     private void buttonVerwijderenGebruikerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonVerwijderenGebruikerMouseClicked
         Gebruiker gebruiker = WinkelApplication.getQueryManager().getGebruiker(1);
-        System.out.println(gebruiker.getAchternaam());
-        System.out.println(gebruiker.isActief());
+        gebruiker.setActief(false);
+        
+        if(WinkelApplication.getQueryManager().setGebruiker(gebruiker))
+        {
+            JOptionPane.showMessageDialog(null, "De gebruiker is verwijderd", "Success", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Er is een fout opgetreden\nDe gebruiker is niet verwijderd\nNeem contact op met uw systeem administrator voor meer informatie", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_buttonVerwijderenGebruikerMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
