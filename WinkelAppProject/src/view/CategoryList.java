@@ -199,7 +199,7 @@ public class CategoryList extends JPanel implements MouseListener {
             lblProduct.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             pnlProduct.add(lblProduct);
             
-            JLabel lblPrice = new JLabel(WinkelApplication.CURRENCY + product.getPrice());
+            JLabel lblPrice = new JLabel(WinkelApplication.CURRENCY.format(product.getPrice()));
             lblPrice.setFont(WinkelApplication.FONT_12_PLAIN);
             pnlProduct.add(lblPrice);
 

@@ -5,6 +5,8 @@ import connectivity.QueryManager;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.NumberFormat;
+import java.util.Locale;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -24,7 +26,7 @@ public final class WinkelApplication {
     public static final int FRAME_WIDTH = 1200;
     public static final int FRAME_HEIGHT = 800;
     public static final String NAME = "WinkelApplicatie";
-    public static final String CURRENCY = "\u20AC";
+    public static final NumberFormat CURRENCY = NumberFormat.getCurrencyInstance(Locale.getDefault());
     /** static fonts which are used within the application */
     public static final Font FONT_12_PLAIN = new Font("Calibri", Font.PLAIN, 12);
     public static final Font FONT_12_BOLD = new Font("Calibri", Font.BOLD, 12);

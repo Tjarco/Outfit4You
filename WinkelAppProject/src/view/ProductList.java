@@ -76,7 +76,7 @@ public class ProductList extends JPanel implements MouseListener, ActionListener
             lblDescription.setFont(WinkelApplication.FONT_12_PLAIN);
             this.add(lblDescription);
 
-            JLabel lblPrice = new JLabel(WinkelApplication.CURRENCY + product.getPrice());
+            JLabel lblPrice = new JLabel(WinkelApplication.CURRENCY.format(product.getPrice()));
             lblPrice.setBounds(380, verticalPosition  + i * offset + 15, 80, 20);
             lblPrice.setFont(WinkelApplication.FONT_12_BOLD);
             add(lblPrice);

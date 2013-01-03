@@ -177,7 +177,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
             lblAmount.setFont(WinkelApplication.FONT_12_PLAIN);
             content.add(lblAmount);
 
-            JLabel lblPrice = new JLabel(WinkelApplication.CURRENCY + product.getPrice());
+            JLabel lblPrice = new JLabel(WinkelApplication.CURRENCY.format(product.getPrice()));
             lblPrice.setBounds(480, verticalPosition + i * productOffset, 70, 20);
             lblPrice.setFont(WinkelApplication.FONT_12_PLAIN);
             content.add(lblPrice);
@@ -190,7 +190,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         content.add(lblTotal);
 
         // create total labels
-        JLabel lblTotalPrice = new JLabel(WinkelApplication.CURRENCY + WinkelApplication.getBasket().getTotalCosts());
+        JLabel lblTotalPrice = new JLabel(WinkelApplication.CURRENCY.format(WinkelApplication.getBasket().getTotalCosts()));
         lblTotalPrice.setBounds(480, verticalPosition + products.size() * productOffset, 70, 20);
         lblTotalPrice.setFont(WinkelApplication.FONT_12_BOLD);
         content.add(lblTotalPrice);
