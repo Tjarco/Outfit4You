@@ -73,6 +73,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
           <BorderConstraints direction="Center"/>
@@ -200,7 +205,7 @@
                   <Connection code="main.WinkelApplication.FONT_14_BOLD" type="code"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/pictures/icons/producten.gif"/>
+                  <Image iconType="3" name="/pictures/icons/basketFull.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Producten"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>

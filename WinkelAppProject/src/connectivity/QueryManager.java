@@ -59,7 +59,7 @@ public class QueryManager {
                         result.getString("naam"),
                         result.getString("omschrijving"),
                         result.getDouble("prijs"),
-                        result.getInt("vooraad"),
+                        result.getInt("voorraad"),
                         //Zet de int in de database om naar een boolean
                         (result.getInt("is_actief") == 0) ? false : true ) ;
             }
@@ -90,7 +90,7 @@ public class QueryManager {
                         result.getString("naam"),
                         result.getString("omschrijving"),
                         result.getDouble("prijs"),
-                        result.getInt("vooraad"),
+                        result.getInt("voorraad"),
                         (result.getInt("is_actief") == 0) ? false : true));
             }
         } catch (SQLException e) {

@@ -76,6 +76,7 @@ public class MainMenu extends javax.swing.JPanel {
 
         add(jPanel2, java.awt.BorderLayout.PAGE_START);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jPanel4.setFocusable(false);
@@ -119,7 +120,7 @@ public class MainMenu extends javax.swing.JPanel {
         });
 
         jButton4.setFont(main.WinkelApplication.FONT_14_BOLD);
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons/producten.gif"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons/basketFull.png"))); // NOI18N
         jButton4.setText("Producten");
         jButton4.setToolTipText("");
         jButton4.setBorderPainted(false);
