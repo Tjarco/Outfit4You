@@ -31,7 +31,7 @@ public class Gebruiker {
 
     public Gebruiker()
     {
-        
+
     }
     
     public Gebruiker(int id, int huisnummer, String datum_aangemaakt, String datum_gewijzigd, String datum_laatst_ingelogd, String wachtwoord, String email, String voornaam, String tussenvoegsel, String achternaam, String straatnaam, String postcode, String woonplaats, String geboortedatum, boolean isMedewerker, boolean isManager, boolean isActief)

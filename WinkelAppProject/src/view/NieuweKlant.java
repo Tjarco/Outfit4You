@@ -484,6 +484,7 @@ public class NieuweKlant extends JPanel {
     }//GEN-LAST:event_jLabel1MouseEntered
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         if(source == NieuweKlant.KLANTEN_OVERZICHT){
             main.WinkelApplication.getInstance().showPanel(new KlantenOverzicht());
          } else if(source == NieuweKlant.REGISTREREN){
