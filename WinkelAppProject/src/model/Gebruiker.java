@@ -12,6 +12,7 @@ public class Gebruiker {
     private int id;
     private int huisnummer;
     
+    //private String telefoonnummer;
     private String datum_aangemaakt;
     private String datum_gewijzigd;
     private String datum_laatst_ingelogd;
@@ -34,10 +35,11 @@ public class Gebruiker {
         
     }
     
-    public Gebruiker(int id, int huisnummer, String datum_aangemaakt, String datum_gewijzigd, String datum_laatst_ingelogd, String wachtwoord, String email, String voornaam, String tussenvoegsel, String achternaam, String straatnaam, String postcode, String woonplaats, String geboortedatum, boolean isMedewerker, boolean isManager, boolean isActief)
+    public Gebruiker(int id, int huisnummer, /*String telefoonnummer,*/  String datum_aangemaakt, String datum_gewijzigd, String datum_laatst_ingelogd, String wachtwoord, String email, String voornaam, String tussenvoegsel, String achternaam, String straatnaam, String postcode, String woonplaats, String geboortedatum, boolean isMedewerker, boolean isManager, boolean isActief)
     {
         this.id = id;
         this.huisnummer = huisnummer;
+        //this.telefoonnummer = telefoonnummer;
         this.datum_aangemaakt = datum_aangemaakt;
         this.datum_gewijzigd = datum_gewijzigd;
         this.datum_laatst_ingelogd = datum_laatst_ingelogd;
@@ -75,7 +77,22 @@ public class Gebruiker {
     public void setHuisnummer(int huisnummer) {
         this.huisnummer = huisnummer;
     }
-
+    
+    
+    /**
+     * @return gebruiker's telefoonnummer
+     */
+    /*public String getTelefoonnummer(){
+        return telefoonnummer;
+    }
+    
+    /**
+     * @param telefoonnummer telefoonnummer van de gebruiker
+     */
+    /*public void setTelefoonnummer(String telefoonnummer){
+        this.telefoonnummer = telefoonnummer;
+    }
+    
     /**
      * @return gebruiker's datum_aangemaakt
      */

@@ -203,7 +203,8 @@ public class NieuweKlant extends JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jTextField6 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
@@ -255,8 +256,10 @@ public class NieuweKlant extends JPanel {
         jlTitel.setText("Klantgegevens:");
 
         jLabel1.setText("Tussenvoegsel");
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseEntered(java.awt.event.MouseEvent evt)
+            {
                 jLabel1MouseEntered(evt);
             }
         });
@@ -276,8 +279,10 @@ public class NieuweKlant extends JPanel {
         jLabel12.setText("Herhaal Wachtwoord");
 
         jbVoegToe.setText("Voeg toe");
-        jbVoegToe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jbVoegToe.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jbVoegToeActionPerformed(evt);
             }
         });
@@ -291,7 +296,7 @@ public class NieuweKlant extends JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jlTitel)
-                        .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -434,8 +439,10 @@ public class NieuweKlant extends JPanel {
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setFocusPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton1ActionPerformed(evt);
             }
         });
@@ -484,6 +491,23 @@ public class NieuweKlant extends JPanel {
     }//GEN-LAST:event_jLabel1MouseEntered
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        Gebruiker g = new Gebruiker();
+            g.setVoornaam(tfNaam.getText());
+            g.setTussenvoegsel(tfTussenvoegsel.getText());
+            g.setAchternaam(tfAchternaam.getText());
+            g.setStraatnaam(tfStraat.getText());
+            g.setHuisnummer(Integer.parseInt(tfHuisnummer.getText()));
+            g.setWoonplaats(tfWoonplaats.getText());
+            g.setPostcode(tfPostcode.getText());
+            //g.setTelefoonnummer(tfTelefoon.getText());
+            g.setEmail(tfEmail.getText());
+            g.setWachtwoord(tfWachtwoord.getText());
+            
+            main.WinkelApplication.getQueryManager().setGebruiker(g);
+            
+            
+        
         if(source == NieuweKlant.KLANTEN_OVERZICHT){
             main.WinkelApplication.getInstance().showPanel(new KlantenOverzicht());
          } else if(source == NieuweKlant.REGISTREREN){
