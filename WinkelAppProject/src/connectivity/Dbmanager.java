@@ -14,20 +14,39 @@ public class Dbmanager {
      * Open database connection
      */
     public void openConnection() {
+                    
+            //online database
+            String url = "jdbc:mysql://192.169.52.228:3306/vernondg_winkelApp2012";
+            String user = "vernondg_goedev", pass = "geheim123";
+            
+            //locale database
+            String localUser = "root";
+            String localPass = "";
+            String localUrl = "jdbc:mysql://localhost/vernondg_winkelApp2012";
+            
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            String url = "jdbc:mysql://192.169.52.228:3306/vernondg_winkelApp2012";
-            String user = "vernondg_goedev", pass = "geheim123";
-
-            /** Open connection */
+            /** Open connection met online database */
             connection = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException e) {
             System.err.println(JDBC_EXCEPTION + e);
         } catch (java.sql.SQLException e) {
-            System.err.println(SQL_EXCEPTION + e);
+            //als er geen internetverbinding is, probeer dan nog een keer via local database
+            if (e.getMessage().contains("Communications link failure")){
+                System.out.println("Can't connect, falling back on localhost.");
+                try {
+                    connection = DriverManager.getConnection(localUrl, localUser, localPass);
+                } catch (SQLException ex) {
+                    System.err.println(SQL_EXCEPTION + e);
+                }
+            }
+            else{
+                System.err.println(SQL_EXCEPTION + e);
+            }
         }
-    }
+        }
+    
 
     /**
      * Close database connection
