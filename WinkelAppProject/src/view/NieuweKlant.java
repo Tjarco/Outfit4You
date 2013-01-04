@@ -505,6 +505,15 @@ public class NieuweKlant extends JPanel {
             g.setEmail(tfEmail.getText());
             g.setWachtwoord(tfWachtwoord.getText());
             
+            g.setDatum_aangemaakt(WinkelApplication.getCurrentTimeStamp());
+            g.setDatum_gewijzigd(WinkelApplication.getCurrentTimeStamp());
+            g.setDatum_laatst_ingelogd(WinkelApplication.getCurrentTimeStamp());
+            //g.setisMedewerker(0);
+            //g.setisActief(1);
+            //g.setisManager(0);
+            //g.setId();
+            
+            
             main.WinkelApplication.getQueryManager().setGebruiker(g);
             
            

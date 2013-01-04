@@ -13,6 +13,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import model.Gebruiker;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * @version 1
  * @author Administrator
@@ -46,6 +49,7 @@ public final class WinkelApplication {
     private static WinkelApplication instance = new WinkelApplication();
    //de achtergrondKleur voor de layout
     static public final Color BACKGROUND = Color.getHSBColor(0.7f, 0.1f, 0.2f);
+    
 
     private WinkelApplication() {
     }
@@ -129,6 +133,13 @@ public final class WinkelApplication {
     public static model.Basket getBasket() {
         return getInstance().basket;
     }
+    
+    public static String getCurrentTimeStamp() {
+    SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//dd/MM/yyyy
+    Date now = new Date();
+    String strDate = sdfDate.format(now);
+    return strDate;
+}
 
     public static void main(String args[]) {
         final WinkelApplication applicatie = WinkelApplication.getInstance();
