@@ -152,7 +152,7 @@ public class InloggenDisplay extends JPanel {
     }
     
     private void addIngelogdAls(){
-        lIngelogdAls= new JLabel("Ingelogd als: "+ Gebruiker.getVoornaam());
+//        lIngelogdAls= new JLabel("Ingelogd als: "+ Gebruiker.getVoornaam());
         lIngelogdAls.setFont(labels);
         lIngelogdAls.setForeground(foreground);
         lIngelogdAls.addMouseListener(new ClickListener());
@@ -163,7 +163,7 @@ public class InloggenDisplay extends JPanel {
         add(lIngelogdAls, gbc);
     }
     public static void updateLoginDisplay(){
-        lIngelogdAls.setText("Ingelogd als: "+Gebruiker.getVoornaam());
+//        lIngelogdAls.setText("Ingelogd als: "+Gebruiker.getVoornaam());
     }
     
     

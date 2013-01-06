@@ -14,8 +14,8 @@ public class Product {
         this(-1, -1, "", "", 0.0, 1, true);
     }
 
-    public Product(int product_id, int categorie_id, String name, String description, double price, int vooraad,
-            boolean actief) {
+    public Product(int product_id, int categorie_id, String name, String description, double price, int vooraad, boolean actief) 
+    {
         this.productId = product_id;
         this.categorieId = categorie_id;
         this.name = name;
