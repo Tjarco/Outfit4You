@@ -12,6 +12,7 @@ public class QueryManager {
 
     private final Dbmanager dbmanager;
     private final String tbl_gebruiker = "gebruiker";
+    private final String tbl_product = "product";
     
     public QueryManager(Dbmanager dbmanager) {
         this.dbmanager = dbmanager;
@@ -48,10 +49,45 @@ public class QueryManager {
         return categories;
     }
 
+    public boolean setProduct(Product product)
+    {
+        boolean success = false;
+        int actief = 0;
+        if(product.getIs_actief()) actief = 1;
+        
+        String fields = "categorie_id = " + product.getCategorie_id() + ", "
+                +       "naam = '" + product.getNaam() + "', "
+                +       "prijs = '" + product.getPrijs() + "', "
+                +       "omschrijving = '" + product.getOmschrijving() + "', "
+                +       "datum_aangemaakt = '" + product.getDatum_aangemaakt() + "', "
+                +       "datum_gewijzigd = '" + product.getDatum_gewijzigd() + "', "
+                +       "sku = " + product.getSku() + ", "
+                +       "omschrijving_kort = '" + product.getOmschrijving_kort() + "', "
+                +       "voorraad = " + product.getVoorraad() + ", "
+                +       "afbeelding = '" + product.getAfbeelding() + "', "
+                +       "thumbnail = '" + product.getThumbnail() + "', "
+                +       "is_actief = " + actief + "";
+        
+        String sql =    "INSERT INTO " + this.tbl_product + " "
+                +           "SET product_id = " + product.getProduct_id() + ", " + fields + " ON DUPLICATE KEY UPDATE " + fields;
+        
+        try 
+        {
+            ResultSet result = dbmanager.insertQuery(sql);
+            success = result.next();
+        } 
+        catch (SQLException e) 
+        {
+            System.out.println("connectivity.QueryManager.setOrder() Exception:" + e.getMessage());
+        }
+        
+        return success;
+    }
+    
     public Product getProduct(int productId) {
         Product product = new Product();
         try {
-            String sql = "SELECT * FROM product WHERE product_id='" + productId + "'";
+            String sql = "SELECT * FROM "+ this.tbl_product +" WHERE product_id='" + productId + "'";
             ResultSet result = dbmanager.doQuery(sql);
             if (result.next()) {
                 product = new Product(

@@ -7,9 +7,11 @@ package view;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import main.WinkelApplication;
 import model.Product;
 
 /**
@@ -48,7 +50,7 @@ public class ProductenOverzicht extends javax.swing.JPanel {
                         new Integer(p.getProduct_id()),
                         p.getNaam(),
                         p.getOmschrijving(),
-                        p.isIs_actief()
+                        p.getIs_actief()
                     });
         }
         
@@ -263,6 +265,7 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jcProductVeld = new javax.swing.JComboBox();
+        buttonProductVerwijderen = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -412,6 +415,13 @@ public class ProductenOverzicht extends javax.swing.JPanel {
 
         jcProductVeld.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Naam", "Product_id", "Beschrijving", "Status" }));
 
+        buttonProductVerwijderen.setText("Verwijderen");
+        buttonProductVerwijderen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonProductVerwijderenMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -430,6 +440,8 @@ public class ProductenOverzicht extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(buttonProductVerwijderen)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1))
@@ -450,7 +462,8 @@ public class ProductenOverzicht extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonProductVerwijderen, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 42, Short.MAX_VALUE))
         );
 
@@ -535,7 +548,31 @@ public class ProductenOverzicht extends javax.swing.JPanel {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    //Verwijderen product (klik op knop "verwijderen")
+    private void buttonProductVerwijderenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonProductVerwijderenMouseClicked
+        //Product_id ophalen uit de table
+        int row = jtProducten.getSelectedRow();
+        int col = 0;
+        int id = (Integer) jtProducten.getModel().getValueAt(row, col);
+        
+        //Verwijderen product (actief = false)
+        Product product = WinkelApplication.getQueryManager().getProduct(id);
+        product.setIs_actief(false);
+        
+        //feedback window voor gebruiker
+        if(WinkelApplication.getQueryManager().setProduct(product))
+        {
+            JOptionPane.showMessageDialog(null, "Het product is verwijderd", "Succes", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Er is een fout opgetreden\nHet product is niet verwijderd\nNeem contact op met uw systeem administrator voor meer informatie", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_buttonProductVerwijderenMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonProductVerwijderen;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

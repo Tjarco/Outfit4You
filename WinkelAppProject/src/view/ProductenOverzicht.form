@@ -198,6 +198,8 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="buttonProductVerwijderen" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jButton3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
@@ -224,6 +226,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButton1" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                           <Component id="jButton3" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="buttonProductVerwijderen" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="42" max="32767" attributes="0"/>
                   </Group>
@@ -291,6 +294,14 @@
                   </StringArray>
                 </Property>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="buttonProductVerwijderen">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Verwijderen"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonProductVerwijderenMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

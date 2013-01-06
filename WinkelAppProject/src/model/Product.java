@@ -133,7 +133,7 @@ public class Product {
         this.thumbnail = thumbnail;
     }
 
-    public boolean isIs_actief() {
+    public boolean getIs_actief() {
         return is_actief;
     }
 

@@ -354,9 +354,10 @@ public class KlantenOverzicht extends javax.swing.JPanel {
         Gebruiker gebruiker = WinkelApplication.getQueryManager().getGebruiker(id);
         gebruiker.setActief(false);
         
+        //Feedback window voor de gebruiker
         if(WinkelApplication.getQueryManager().setGebruiker(gebruiker))
         {
-            JOptionPane.showMessageDialog(null, "De gebruiker is verwijderd", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "De gebruiker is verwijderd", "Succes", JOptionPane.INFORMATION_MESSAGE);
         }
         else
         {
