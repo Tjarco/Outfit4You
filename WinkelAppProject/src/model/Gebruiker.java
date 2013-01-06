@@ -18,7 +18,7 @@ public class Gebruiker {
     private String datum_laatst_ingelogd;
     private String wachtwoord;
     private String email;
-    private String voornaam;
+    private static String voornaam;
     private String tussenvoegsel;
     private String achternaam;
     private String straatnaam;
@@ -278,7 +278,7 @@ public class Gebruiker {
     /**
      * @return the voornaam
      */
-    public String getVoornaam() {
+    public static String getVoornaam() {
         return voornaam;
     }
 

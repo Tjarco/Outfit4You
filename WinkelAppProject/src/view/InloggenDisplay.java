@@ -29,9 +29,11 @@ public class InloggenDisplay extends JPanel {
     private JLabel logIn;
     private JLabel logUit;
     private JLabel profiel;
+    private static JLabel lIngelogdAls;
     private Font labels ;
     private GridBagConstraints gbc;
     private boolean isingelogd;
+    
     
     
         private JPanel gegevensPanel=new JPanel();
@@ -63,6 +65,8 @@ public class InloggenDisplay extends JPanel {
         gbc.anchor = GridBagConstraints.LINE_END;
             addProfiel();
         addInUitLoglabel();
+        //
+        addIngelogdAls();
             profiel.setVisible(Session.getIngelogd());
            // if (Session.getIngelogd()==false){profiel.setVisible(false);}
             //else {profiel.setVisible(true);}
@@ -93,7 +97,7 @@ public class InloggenDisplay extends JPanel {
         InUitlogLabel.addMouseListener(new ClickListener());
         gbc.anchor = GridBagConstraints.LINE_END;
         gbc.insets = new Insets(15,15,15,15);
-        gbc.gridx=2;
+        gbc.gridx=3;
         gbc.gridy=0;
         
         if (Session.getIngelogd()==true){
@@ -146,6 +150,22 @@ public class InloggenDisplay extends JPanel {
         gbc.gridy =0;
         add(profiel, gbc);
     }
+    
+    private void addIngelogdAls(){
+        lIngelogdAls= new JLabel("Ingelogd als: "+ Gebruiker.getVoornaam());
+        lIngelogdAls.setFont(labels);
+        lIngelogdAls.setForeground(foreground);
+        lIngelogdAls.addMouseListener(new ClickListener());
+        gbc.insets = new Insets(15,15,15,15);
+        gbc.gridx =2;
+        gbc.gridy =0;
+        lIngelogdAls.setVisible(Session.getIngelogd());
+        add(lIngelogdAls, gbc);
+    }
+    public static void updateLoginDisplay(){
+        lIngelogdAls.setText("Ingelogd als: "+Gebruiker.getVoornaam());
+    }
+    
     
     //Zet die titel van de applicatie in het frame 
     private void addTitle(){

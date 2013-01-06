@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton2"/>
+      </Properties>
+    </Component>
+  </NonVisualComponents>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,-56,0,0,4,123"/>
+  </AuxValues>
+
+  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="jPanel4">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+          <BorderConstraints direction="Center"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace pref="60" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                                      <Component id="lTelefoonnummer" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="lPostcode" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="lEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="lWoonplaats" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="lHuisnummer" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="lStraatnaam" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="lAchternaam" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="lTussenvoegsel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="lNaam" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="73" pref="73" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="tfTussenvoegsel" max="32767" attributes="0"/>
+                                      <Component id="tfNaam" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lTussenvoegselWijzigen" min="-2" max="-2" attributes="0"/>
+                                      <Component id="bWachtwoordWijzigen" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lNaamWijzigen" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lAchternaamWijzigen" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lStraatnaamWijzigen" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lHuisnummerWijzigen" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lWoonplaatsWijzigen" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lPostcodeWijzigen" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lTelefoonnummerWijzigen" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lEmailWijzigen" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="tfEmail" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="tfAchternaam" alignment="0" pref="106" max="32767" attributes="0"/>
+                                      <Component id="tfStraatnaam" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="tfHuisnummer" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="tfWoonplaats" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="tfPostcode" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="tfTelefoonnummer" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="214" pref="214" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="596" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="tfNaam" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lNaam" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="tfTussenvoegsel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lTussenvoegsel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="lNaamWijzigen" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lTussenvoegselWijzigen" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="tfAchternaam" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lAchternaam" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="lAchternaamWijzigen" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="tfStraatnaam" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lStraatnaam" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="lStraatnaamWijzigen" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="tfHuisnummer" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lHuisnummer" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="lHuisnummerWijzigen" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="tfWoonplaats" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lWoonplaats" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="lWoonplaatsWijzigen" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="tfPostcode" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lPostcode" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="lPostcodeWijzigen" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="tfTelefoonnummer" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lTelefoonnummer" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="lTelefoonnummerWijzigen" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="tfEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="bWachtwoordWijzigen" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="lEmailWijzigen" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="159" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="lNaam">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Naam"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfNaam">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lTussenvoegsel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Tussenvoegsel"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfTussenvoegsel">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lAchternaam">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Achternaam"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfAchternaam">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lStraatnaam">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Straatnaam"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfStraatnaam">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lHuisnummer">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Huisnummer"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfHuisnummer">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lWoonplaats">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Woonplaats"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfWoonplaats">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lPostcode">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Postcode"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfPostcode">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lTelefoonnummer">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Telefoonnummer"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfTelefoonnummer">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lEmail">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="E-mail"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfEmail">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="bWachtwoordWijzigen">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Wachtwoord wijzigen"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bWachtwoordWijzigenActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jLabel1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lTussenvoegselWijzigen">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/pictures/icons/wijzigen.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lTussenvoegselWijzigenMousePressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lNaamWijzigen">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/pictures/icons/wijzigen.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lNaamWijzigenMousePressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lAchternaamWijzigen">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/pictures/icons/wijzigen.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lAchternaamWijzigenMousePressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lStraatnaamWijzigen">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/pictures/icons/wijzigen.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lStraatnaamWijzigenMousePressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lHuisnummerWijzigen">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/pictures/icons/wijzigen.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lHuisnummerWijzigenMousePressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lWoonplaatsWijzigen">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/pictures/icons/wijzigen.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lWoonplaatsWijzigenMousePressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lPostcodeWijzigen">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/pictures/icons/wijzigen.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lPostcodeWijzigenMousePressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lTelefoonnummerWijzigen">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/pictures/icons/wijzigen.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lTelefoonnummerWijzigenMousePressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lEmailWijzigen">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/pictures/icons/wijzigen.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lEmailWijzigenMousePressed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="jPanel3">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="main.WinkelApplication.BACKGROUND" type="code"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[892, 70]"/>
+        </Property>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+          <BorderConstraints direction="Last"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="1147" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="70" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
+  </SubComponents>
+</Form>
