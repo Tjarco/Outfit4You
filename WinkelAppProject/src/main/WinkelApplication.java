@@ -75,18 +75,21 @@ public final class WinkelApplication {
         mainWindow.setExtendedState(Frame.MAXIMIZED_BOTH);
         klant = this.queryManager.getGebruiker(1);
         /** Make the window closing [x] button on the frame active */
-        mainWindow.addWindowListener(new WindowAdapter() {
-
+        mainWindow.addWindowListener(new WindowAdapter() 
+        {
             @Override
-            public void windowClosing(WindowEvent event) {
+            public void windowClosing(WindowEvent event) 
+            {
                 shutdown();
             }
         });
-
+        
         mainWindow.getContentPane().setLayout(new BorderLayout());
+        System.out.println("layout set");
         showPanel(new view.CategoryList());
-
+        System.out.println("panel shown");
         mainWindow.setVisible(true);
+        System.out.println("set to visibru");
     }
 
     public void showPanel(JPanel panel) {

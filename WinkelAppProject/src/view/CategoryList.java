@@ -3,18 +3,16 @@ package view;
 
 import connectivity.QueryManager;
 import java.awt.*;
-import main.WinkelApplication;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import main.WinkelApplication;
 import model.Category;
 import model.Product;
-import model.Session;
 
 /**
  * @version 1.0
@@ -40,14 +38,17 @@ public class CategoryList extends JPanel implements MouseListener {
     
 
 
-    public CategoryList() {
+    public CategoryList() 
+    {
+        
         super();
+        System.out.println("construct");
         setLayout(new BorderLayout());
+        System.out.println("layout set");
         initComponents();
+        System.out.println("components initialized");
         this.setBackground(Color.white);
         this.setOpaque(true);
-        
-
     }
     
     /** The listener For the back Button */
@@ -78,12 +79,18 @@ public class CategoryList extends JPanel implements MouseListener {
     }
 
     /** create the gui for this page */
-    private void initComponents() {
+    private void initComponents() 
+    {
         initPanels();
+        System.out.println("panels init");
         addInlog();
+        System.out.println("inlog added");
         addcategoryItems();
+        System.out.println("cat items added");
         addBasket(); 
+        System.out.println("basket added");
         addBackButton();
+        System.out.println("back added");
     }
     
     //Initialiseerd de panels om de producten weer te kunnen geven
@@ -227,9 +234,12 @@ public class CategoryList extends JPanel implements MouseListener {
     /**
      * Voegt de inlog panel toe
      */
-    private void addInlog(){
+    private void addInlog()
+    {
         InloggenDisplay logIn = new InloggenDisplay();
+        System.out.println("new display");
         this.add(logIn, BorderLayout.NORTH);
+        System.out.println("add");
     }
     
     /**
