@@ -346,7 +346,12 @@ public class KlantenOverzicht extends javax.swing.JPanel {
     }//GEN-LAST:event_jcKlantenZoekOptiesActionPerformed
 
     private void buttonVerwijderenGebruikerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonVerwijderenGebruikerMouseClicked
-        Gebruiker gebruiker = WinkelApplication.getQueryManager().getGebruiker(1);
+        //verkrijg id van de geselecteerde gebruiker
+        int row = jTable1.getSelectedRow();
+        int id = (Integer) jTable1.getModel().getValueAt(row, 0);
+        
+        //Zet de gebruiker op inactief
+        Gebruiker gebruiker = WinkelApplication.getQueryManager().getGebruiker(id);
         gebruiker.setActief(false);
         
         if(WinkelApplication.getQueryManager().setGebruiker(gebruiker))

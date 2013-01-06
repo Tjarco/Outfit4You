@@ -90,6 +90,8 @@ public final class WinkelApplication {
         System.out.println("panel shown");
         mainWindow.setVisible(true);
         System.out.println("set to visibru");
+        System.out.println("Start up finished");
+        System.out.println("-----------------------------");
     }
 
     public void showPanel(JPanel panel) {
