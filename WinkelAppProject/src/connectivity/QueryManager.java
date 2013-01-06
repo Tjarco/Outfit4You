@@ -54,14 +54,30 @@ public class QueryManager {
             String sql = "SELECT * FROM product WHERE product_id='" + productId + "'";
             ResultSet result = dbmanager.doQuery(sql);
             if (result.next()) {
-                product = new Product(result.getInt("product_id"),
+                product = new Product(
+                        result.getInt("product_id"),
+                        result.getInt("categorie_id"),
+                        result.getString("naam"),
+                        result.getDouble("prijs"),
+                        result.getString("omschrijving"),
+                        result.getInt("datum_aangemaakt"),
+                        result.getInt("datum_gewijzigd"),
+                        result.getInt("sku"),
+                        result.getString("omschrijving_kort"),
+                        result.getInt("voorraad"),
+                        result.getString("afbeelding"),
+                        result.getString("thumbnail"),
+                        (result.getInt("is_actief") == 0) ? false : true
+                );
+                
+                /*product = new Product(result.getInt("product_id"),
                         result.getInt("categorie_id"),
                         result.getString("naam"),
                         result.getString("omschrijving"),
                         result.getDouble("prijs"),
                         result.getInt("voorraad"),
                         //Zet de int in de database om naar een boolean
-                        (result.getInt("is_actief") == 0) ? false : true ) ;
+                        (result.getInt("is_actief") == 0) ? false : true ) ;*/
             }
         } catch (SQLException e) {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
@@ -85,13 +101,30 @@ public class QueryManager {
             String sql = "SELECT * FROM product WHERE categorie_id='" + categoryId + "' ORDER BY naam ASC";
             ResultSet result = dbmanager.doQuery(sql);
             while (result.next()) {
-                products.add(new Product(result.getInt("product_id"),
+                
+                products.add(new Product(
+                        result.getInt("product_id"),
+                        result.getInt("categorie_id"),
+                        result.getString("naam"),
+                        result.getDouble("prijs"),
+                        result.getString("omschrijving"),
+                        result.getInt("datum_aangemaakt"),
+                        result.getInt("datum_gewijzigd"),
+                        result.getInt("sku"),
+                        result.getString("omschrijving_kort"),
+                        result.getInt("voorraad"),
+                        result.getString("afbeelding"),
+                        result.getString("thumbnail"),
+                        (result.getInt("is_actief") == 0) ? false : true
+                ));
+                
+                /*products.add(new Product(result.getInt("product_id"),
                         result.getInt("categorie_id"),
                         result.getString("naam"),
                         result.getString("omschrijving"),
                         result.getDouble("prijs"),
                         result.getInt("voorraad"),
-                        (result.getInt("is_actief") == 0) ? false : true));
+                        (result.getInt("is_actief") == 0) ? false : true));*/
             }
         } catch (SQLException e) {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
@@ -105,13 +138,30 @@ public class QueryManager {
             String sql = "SELECT * FROM product ORDER BY naam ASC";
             ResultSet result = dbmanager.doQuery(sql);
             while (result.next()) {
-               products.add(new Product(result.getInt("product_id"),
+                
+                products.add(new Product(
+                        result.getInt("product_id"),
+                        result.getInt("categorie_id"),
+                        result.getString("naam"),
+                        result.getDouble("prijs"),
+                        result.getString("omschrijving"),
+                        result.getInt("datum_aangemaakt"),
+                        result.getInt("datum_gewijzigd"),
+                        result.getInt("sku"),
+                        result.getString("omschrijving_kort"),
+                        result.getInt("voorraad"),
+                        result.getString("afbeelding"),
+                        result.getString("thumbnail"),
+                        (result.getInt("is_actief") == 0) ? false : true
+                ));
+                
+               /*products.add(new Product(result.getInt("product_id"),
                         result.getInt("categorie_id"),
                         result.getString("naam"),
                         result.getString("omschrijving"),
                         result.getDouble("prijs"),
                         result.getInt("voorraad"),
-                        true)); //(result.getInt("is_actief") == 0) ? false : true ));
+                        true)); //(result.getInt("is_actief") == 0) ? false : true ));*/
             }
         } catch (SQLException e) {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
@@ -279,7 +329,7 @@ public class QueryManager {
         
         List<Product> products = basket.getProducts();
         for (Product product : products) {
-            int product_id = product.getProductId();
+            int product_id = product.getProduct_id();
             int aantal = basket.getProductAmount(product);
             String SQL_orderProduct = "INSERT INTO orderregel (product_id,order_id,aantal) VALUES (" + product_id + "," + order_id + "," + aantal + ")";
             dbmanager.insertQuery(SQL_orderProduct);

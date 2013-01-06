@@ -199,14 +199,14 @@ public class CategoryList extends JPanel implements MouseListener {
             
             
             JLabel lblProduct = new JLabel();
-            lblProduct.setName(String.valueOf(product.getProductId()));
-            lblProduct.setText(product.getName());
+            lblProduct.setName(String.valueOf(product.getProduct_id()));
+            lblProduct.setText(product.getNaam());
             lblProduct.setFont(WinkelApplication.FONT_12_BOLD);
             lblProduct.addMouseListener(new ProductListener());
             lblProduct.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             pnlProduct.add(lblProduct);
             
-            JLabel lblPrice = new JLabel(WinkelApplication.CURRENCY.format(product.getPrice()));
+            JLabel lblPrice = new JLabel(WinkelApplication.CURRENCY.format(product.getPrijs()));
             lblPrice.setFont(WinkelApplication.FONT_12_PLAIN);
             pnlProduct.add(lblPrice);
 
@@ -264,7 +264,7 @@ public class CategoryList extends JPanel implements MouseListener {
         image.setIcon(new ImageIcon(getClass().getResource("/pictures/icons/noImage.gif")));
         productDetails.add(image, gbc);
         
-        JLabel description = new JLabel(product.getDescription());
+        JLabel description = new JLabel(product.getOmschrijving());
         description.setFont(new Font("Calibri", Font.ITALIC, 20));
         gbc.gridy = 1;
         productDetails.add(description,gbc);

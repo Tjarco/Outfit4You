@@ -51,10 +51,10 @@ public class Voorraad extends javax.swing.JPanel {
         DefaultTableModel data = (DefaultTableModel) jtProducten.getModel();
         for (Product p : products) {
             data.addRow(new Object[]{
-                        new Integer(p.getProductId()),
-                        p.getName(),
-                        p.getDescription(),
-                        p.getVooraad()
+                        new Integer(p.getProduct_id()),
+                        p.getNaam(),
+                        p.getOmschrijving(),
+                        p.getVoorraad()
                     });
         }
 

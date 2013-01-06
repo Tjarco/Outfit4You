@@ -45,14 +45,14 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         DefaultTableModel data = (DefaultTableModel) jtProducten.getModel();
         for (Product p : products) {
             data.addRow(new Object[]{
-                        new Integer(p.getProductId()),
-                        p.getName(),
-                        p.getDescription(),
-                        p.isActief()
+                        new Integer(p.getProduct_id()),
+                        p.getNaam(),
+                        p.getOmschrijving(),
+                        p.isIs_actief()
                     });
         }
         
-       System.out.println( products.get(1).getName());
+       System.out.println( products.get(1).getNaam());
 
         List<model.Category> categorys = main.WinkelApplication.getQueryManager().getCategories();
 

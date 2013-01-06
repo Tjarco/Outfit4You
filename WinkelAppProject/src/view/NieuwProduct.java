@@ -302,11 +302,11 @@ public class NieuwProduct extends JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        Product p = new Product();
        //SKU hier wanneer mogelijk...
-       p.setName(tfNaam.getText());
+       p.setNaam(tfNaam.getText());
        //p.setPrice(Double.parseDouble(tfPrijs.getText()));
        //p.setVooraad(Integer.parseInt(tfVoorraad.getText()));
-       //Korte omschrijving hier wanneer mogelijk...
-       p.setDescription(tfOmscrhijving.getText());
+       p.setOmschrijving_kort(tfOmschrijvingKort.getText());
+       p.setOmschrijving(tfOmscrhijving.getText());
        
        //Product opslaan in de database...
         

@@ -63,20 +63,20 @@ public class ProductList extends JPanel implements MouseListener, ActionListener
             lblDot.setBounds(20, verticalPosition + i * offset, 10, 20);
             add(lblDot);
 
-            JLabel lblProduct = new JLabel(product.getName());
+            JLabel lblProduct = new JLabel(product.getNaam());
             lblProduct.setBounds(35, verticalPosition + i * offset, 340, 20);
             lblProduct.setFont(WinkelApplication.FONT_12_BOLD);
             lblProduct.addMouseListener(this);
-            lblProduct.setName(String.valueOf(product.getProductId()));
+            lblProduct.setName(String.valueOf(product.getProduct_id()));
             lblProduct.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             add(lblProduct);
 
-            JLabel lblDescription = new JLabel(product.getDescription());
+            JLabel lblDescription = new JLabel(product.getOmschrijving());
             lblDescription.setBounds(35, verticalPosition + i * offset + 15, 340, 20);
             lblDescription.setFont(WinkelApplication.FONT_12_PLAIN);
             this.add(lblDescription);
 
-            JLabel lblPrice = new JLabel(WinkelApplication.CURRENCY.format(product.getPrice()));
+            JLabel lblPrice = new JLabel(WinkelApplication.CURRENCY.format(product.getPrijs()));
             lblPrice.setBounds(380, verticalPosition  + i * offset + 15, 80, 20);
             lblPrice.setFont(WinkelApplication.FONT_12_BOLD);
             add(lblPrice);
@@ -84,7 +84,7 @@ public class ProductList extends JPanel implements MouseListener, ActionListener
             JButton btnOrder = new JButton("Bestel");
             btnOrder.setBounds(450, verticalPosition  + i * offset + 15, 90, 20);
             btnOrder.setFont(WinkelApplication.FONT_12_BOLD);
-            btnOrder.setName(String.valueOf(product.getProductId()));
+            btnOrder.setName(String.valueOf(product.getProduct_id()));
             btnOrder.addActionListener(this);
             add(btnOrder);
         }

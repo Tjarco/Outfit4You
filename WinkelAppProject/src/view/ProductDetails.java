@@ -78,19 +78,19 @@ public class ProductDetails extends JPanel implements MouseListener, ActionListe
         Product currentProduct = WinkelApplication.getQueryManager().getProduct(product_id);
 
         JLabel lblProductName = new JLabel();
-        lblProductName.setText(currentProduct.getName());
+        lblProductName.setText(currentProduct.getNaam());
         lblProductName.setBounds(20, 60, 500, 20);
         lblProductName.setFont(WinkelApplication.FONT_18_BOLD);
         add(lblProductName);
 
         JLabel lblDescription = new JLabel();
-        lblDescription.setText(currentProduct.getDescription());
+        lblDescription.setText(currentProduct.getOmschrijving());
         lblDescription.setBounds(20, 80, 500, 20);
         lblDescription.setFont(WinkelApplication.FONT_12_PLAIN);
         add(lblDescription);
 
         JLabel lblProductPrice = new JLabel();
-        lblProductPrice.setText("Price: " + WinkelApplication.CURRENCY + currentProduct.getPrice());
+        lblProductPrice.setText("Price: " + WinkelApplication.CURRENCY + currentProduct.getPrijs());
         lblProductPrice.setBounds(20, 100, 500, 20);
         lblProductPrice.setFont(WinkelApplication.FONT_12_PLAIN);
         add(lblProductPrice);

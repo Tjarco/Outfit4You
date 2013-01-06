@@ -50,7 +50,7 @@ public class Basket extends Observable {
     public double getTotalCosts() {
         double total = 0.0;
         for (Entry<Product, Integer> entry : products.entrySet()) {
-            total += entry.getKey().getPrice() * entry.getValue();
+            total += entry.getKey().getPrijs() * entry.getValue();
         }
         return total;
     }
