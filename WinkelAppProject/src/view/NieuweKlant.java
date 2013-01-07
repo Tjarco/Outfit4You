@@ -15,9 +15,12 @@ import main.WinkelApplication;
 import model.Gebruiker;
 
 /**
+ * @version 1.1
+ * @author Kevin
+ * Medewerker toevoegen
+ * 
  * @version 1.0
- * @author Tjarco
- *
+ * @author Tjarco 
  * De klasse met de velden om een nieuwe klant toe te voegen. Deze klasse kan
  * vanaf meerdere klasse gebruikt worden, daarom moet als parameter worden
  * meegegeven wat de source is, zodat kan worden teruggekeerd naar het juiste
