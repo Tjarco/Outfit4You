@@ -487,7 +487,12 @@ public class NieuweKlant extends JPanel {
             g.setPostcode(tfPostcode.getText());
             //g.setTelefoonnummer(tfTelefoon.getText());
             g.setEmail(tfEmail.getText());
-            g.setWachtwoord(tfWachtwoord.getPassword().toString());
+            String wachtwoord = "";
+            for(int i = 0; i <=tfWachtwoord.getPassword().length-1; i++){
+                wachtwoord += tfWachtwoord.getPassword()[i];
+            }
+            g.setWachtwoord(wachtwoord);
+            
             
             g.setDatum_aangemaakt(WinkelApplication.getCurrentTimeStamp());
             g.setDatum_gewijzigd(WinkelApplication.getCurrentTimeStamp());
