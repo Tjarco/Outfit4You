@@ -475,6 +475,31 @@ public class NieuweKlant extends JPanel {
                 && validateEmail(tfEmail.getText()) && validateWachtwoord(tfWachtwoord.getPassword())
                 && validateWachtwoordHerhaling(tfWachtwoordHerhaal.getPassword())) {
 
+            
+        
+        Gebruiker g = new Gebruiker();
+            g.setVoornaam(tfNaam.getText());
+            g.setTussenvoegsel(tfTussenvoegsel.getText());
+            g.setAchternaam(tfAchternaam.getText());
+            g.setStraatnaam(tfStraat.getText());
+            g.setHuisnummer(Integer.parseInt(tfHuisnummer.getText()));
+            g.setWoonplaats(tfWoonplaats.getText());
+            g.setPostcode(tfPostcode.getText());
+            //g.setTelefoonnummer(tfTelefoon.getText());
+            g.setEmail(tfEmail.getText());
+            g.setWachtwoord(tfWachtwoord.getPassword().toString());
+            
+            g.setDatum_aangemaakt(WinkelApplication.getCurrentTimeStamp());
+            g.setDatum_gewijzigd(WinkelApplication.getCurrentTimeStamp());
+            g.setDatum_laatst_ingelogd(WinkelApplication.getCurrentTimeStamp());
+            //g.setisMedewerker(0);
+            //g.setisActief(1);
+            //g.setisManager(0);
+            //g.setId();
+            
+            
+            main.WinkelApplication.getQueryManager().setGebruiker(g);
+            
             //Keert terug naar het klantenoverzicht als deze klasse vanaf het klantenoverzicht is aangeroepen
             //Als deze klasse vanaf registreren is aangeroepen wordt er terug gekeerd naar de categorielijst.
             //Tevens wordt er een sessie gestart voor de net geregistreerde klant.
@@ -492,30 +517,6 @@ public class NieuweKlant extends JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        
-        Gebruiker g = new Gebruiker();
-            g.setVoornaam(tfNaam.getText());
-            g.setTussenvoegsel(tfTussenvoegsel.getText());
-            g.setAchternaam(tfAchternaam.getText());
-            g.setStraatnaam(tfStraat.getText());
-            g.setHuisnummer(Integer.parseInt(tfHuisnummer.getText()));
-            g.setWoonplaats(tfWoonplaats.getText());
-            g.setPostcode(tfPostcode.getText());
-            //g.setTelefoonnummer(tfTelefoon.getText());
-            g.setEmail(tfEmail.getText());
-            g.setWachtwoord(tfWachtwoord.getText());
-            
-            g.setDatum_aangemaakt(WinkelApplication.getCurrentTimeStamp());
-            g.setDatum_gewijzigd(WinkelApplication.getCurrentTimeStamp());
-            g.setDatum_laatst_ingelogd(WinkelApplication.getCurrentTimeStamp());
-            //g.setisMedewerker(0);
-            //g.setisActief(1);
-            //g.setisManager(0);
-            //g.setId();
-            
-            
-            main.WinkelApplication.getQueryManager().setGebruiker(g);
-            
            
         if(source == NieuweKlant.KLANTEN_OVERZICHT){
             main.WinkelApplication.getInstance().showPanel(new KlantenOverzicht());
