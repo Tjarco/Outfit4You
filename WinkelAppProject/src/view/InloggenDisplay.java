@@ -33,6 +33,7 @@ public class InloggenDisplay extends JPanel {
     private Font labels ;
     private GridBagConstraints gbc;
     private boolean isingelogd;
+    private Gebruiker gebruiker=WinkelApplication.getQueryManager().getGebruiker(Session.getIngelogdeKlant());
     
     
     
@@ -65,26 +66,8 @@ public class InloggenDisplay extends JPanel {
         gbc.anchor = GridBagConstraints.LINE_END;
             addProfiel();
         addInUitLoglabel();
-        //
         addIngelogdAls();
             profiel.setVisible(Session.getIngelogd());
-           // if (Session.getIngelogd()==false){profiel.setVisible(false);}
-            //else {profiel.setVisible(true);}
-        
-        //addInloggen();
-        //addProfiel();
-        //addUitloggen();
-        /*
-        if(Session.getKlant() == null){
-            addInloggen();
-        }
-        else{
-           addInloggen();
-           addProfiel(); 
-           addUitloggen();  
-           logIn.setVisible(false);
-        }
-       */
         this.setVisible(true);
         
     }
@@ -110,34 +93,6 @@ public class InloggenDisplay extends JPanel {
         add(InUitlogLabel, gbc);
         
     }
-    
-    
-    //Zet de Inlog label in de panel /// ----------------------------
-    private void addInloggen(){
-        logIn = new JLabel("Inloggen");
-        logIn.setFont(labels);
-        logIn.setForeground(foreground);
-        logIn.addMouseListener(new ClickListener());
-        logIn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        gbc.anchor = GridBagConstraints.LINE_END;
-        gbc.insets = new Insets(15,15,15,15);
-        gbc.gridx=1;
-        gbc.gridy=0;
-        add(logIn, gbc);
-    }
-    
-    //Zet de uitlog label in de panel  /////--------------------------
-    private void addUitloggen(){
-        logUit = new JLabel("Uitloggen");
-        logUit.setFont(labels);
-        logUit.setForeground(foreground);
-        logUit.addMouseListener(new ClickListener());
-        gbc.insets= new Insets(15,15,15,15);
-        gbc.gridx = 3;
-        gbc.gridy =0;
-        gbc.weightx = 0;
-        add(logUit,gbc);
-    }
    
     //Zet de label om het profiel te kunnen bekijken in de panel
     private void addProfiel(){
@@ -150,9 +105,9 @@ public class InloggenDisplay extends JPanel {
         gbc.gridy =0;
         add(profiel, gbc);
     }
-    
+    // add de "ingelogd als: ___" label
     private void addIngelogdAls(){
-        lIngelogdAls= new JLabel("Ingelogd als: "+ "EDIT"/*Alex: geen voornaam direct uit de klasse halen, voornaam mag NIET static zijn! - Gebruiker.getVoornaam()*/);
+        lIngelogdAls= new JLabel("Ingelogd als: "+ gebruiker.getVoornaam());
         lIngelogdAls.setFont(labels);
         lIngelogdAls.setForeground(foreground);
         lIngelogdAls.addMouseListener(new ClickListener());
@@ -162,8 +117,9 @@ public class InloggenDisplay extends JPanel {
         lIngelogdAls.setVisible(Session.getIngelogd());
         add(lIngelogdAls, gbc);
     }
-    public static void updateLoginDisplay(){
-        lIngelogdAls.setText("Ingelogd als: "+ "EDIT"/*Alex: geen voornaam direct uit de klasse halen, voornaam mag NIET static zijn! - Gebruiker.getVoornaam()*/);
+    
+    public static void updateLoginDisplay(String gebruikersnaam){
+        lIngelogdAls.setText("Ingelogd als: "+ gebruikersnaam);
     }
     
     
@@ -183,16 +139,7 @@ public class InloggenDisplay extends JPanel {
 
         public void mouseClicked(MouseEvent e) {
            
-            if(e.getSource().equals(logIn)){ ///// ----------------
-                main.WinkelApplication.getInstance().showPanel(new InloggenRegistreren());
-           }
-           else if(e.getSource().equals(logUit)){//-------------------
-               Session.stopSession();
-               logUit.setVisible(false);
-               profiel.setVisible(false);
-               logIn.setVisible(true);
-           }
-           else if(e.getSource().equals(profiel)){
+           if(e.getSource().equals(profiel)){
                 main.WinkelApplication.getInstance().showPanel(new KlantGegevens());
            }
            else if (e.getSource().equals(InUitlogLabel)){

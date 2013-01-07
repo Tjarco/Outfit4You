@@ -107,7 +107,6 @@ boolean isValid=true;
             tfPostcode.setText(gebruiker.getPostcode());
            // tfTelefoonnummer.setText(gebruiker.getTelefoonnummer); // er is nog geen getTelefoonnummer in de gebruiker klasse
             tfEmail.setText(gebruiker.getEmail());
-           // InloggenDisplay.updateLoginDisplay();
         }
         
         
@@ -368,7 +367,7 @@ boolean isValid=true;
             }
         });
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText(" ");
 
         lTussenvoegselWijzigen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons/wijzigen.png"))); // NOI18N
         lTussenvoegselWijzigen.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -444,10 +443,6 @@ boolean isValid=true;
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(1068, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(38, 38, 38))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -471,7 +466,7 @@ boolean isValid=true;
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(bOpslaan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -500,6 +495,10 @@ boolean isValid=true;
                             .addComponent(tfTelefoonnummer, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(214, 214, 214)))
                 .addGap(596, 596, 596))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -634,6 +633,7 @@ boolean isValid=true;
 
     private void bOpslaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOpslaanActionPerformed
         WinkelApplication.getQueryManager().setGebruiker(gebruiker);
+        InloggenDisplay.updateLoginDisplay(gebruiker.getVoornaam());
     }//GEN-LAST:event_bOpslaanActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
