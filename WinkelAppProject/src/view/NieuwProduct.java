@@ -4,6 +4,7 @@
  */
 package view;
 
+import java.awt.Color;
 import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
@@ -74,7 +75,7 @@ public class NieuwProduct extends JPanel {
         jLabel7 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tfOmscrhijving = new javax.swing.JTextPane();
+        tfOmschrijving = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         tfOmschrijvingKort = new javax.swing.JTextPane();
         tfSKU = new javax.swing.JTextField();
@@ -125,7 +126,7 @@ public class NieuwProduct extends JPanel {
             }
         });
 
-        jScrollPane1.setViewportView(tfOmscrhijving);
+        jScrollPane1.setViewportView(tfOmschrijving);
 
         jScrollPane2.setViewportView(tfOmschrijvingKort);
 
@@ -300,44 +301,87 @@ public class NieuwProduct extends JPanel {
     }//GEN-LAST:event_tfActiefActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       Product p = new Product();
-       //SKU hier wanneer mogelijk...
-       p.setNaam(tfNaam.getText());
-       //p.setPrice(Double.parseDouble(tfPrijs.getText()));
-       //p.setVooraad(Integer.parseInt(tfVoorraad.getText()));
-       p.setOmschrijving_kort(tfOmschrijvingKort.getText());
-       p.setOmschrijving(tfOmscrhijving.getText());
+       //Velden valideren
+       boolean isValid = true;
        
-       //Product opslaan in de database...
-        
-       //Ga terug naar productoverzicht
-       main.WinkelApplication.getInstance().showPanel(new ProductenOverzicht());
+       if (tfNaam.getText().length() == 0) //Naam
+       {
+           tfNaam.setBackground(Color.red);
+           isValid = false;
+       } else
+       {
+           tfNaam.setBackground(Color.green);
+       }
+       
+       if (  tfPrijs.getText().length() == 0 || !tfPrijs.getText().replace(',','.').matches("\\d{1,9}\\.\\d{1,9}") ) //Prijs
+       {
+           tfPrijs.setBackground(Color.red);
+           isValid = false;
+       } else
+       {
+           tfPrijs.setBackground(Color.green);
+       }
+       
+       if (tfOmschrijving.getText().length() == 0) //Omschrijving
+       {
+           tfOmschrijving.setBackground(Color.red);
+           isValid = false;
+       } else
+       {
+           tfOmschrijving.setBackground(Color.green);
+       }
+       
+       if ( tfSKU.getText().length() == 0 || !tfSKU.getText().matches("[\\d]+") ) //SKU
+       {
+           tfSKU.setBackground(Color.red);
+           isValid = false;
+       } else
+       {
+           tfSKU.setBackground(Color.green);
+       }
+       
+       if (tfOmschrijvingKort.getText().length() == 0) //Omschrijving Kort
+       {
+           tfOmschrijvingKort.setBackground(Color.red);
+           isValid = false;
+       } else
+       {
+           tfOmschrijvingKort.setBackground(Color.green);
+       }
+       
+       if ( tfVoorraad.getText().length() == 0 || !tfVoorraad.getText().matches("[\\d]+")) //Voorraad
+       {
+           tfVoorraad.setBackground(Color.red);
+           isValid = false;
+       } else
+       {
+           tfVoorraad.setBackground(Color.green);
+       }
+       
+       if (isValid)
+       {
+            //Product opslaan in de database...
+            Product p = new Product();
+            p.setNaam(tfNaam.getText());
+            p.setPrijs(Double.parseDouble(tfPrijs.getText().replace(',', '.')));
+            p.setOmschrijving(tfOmschrijving.getText());
+            //datum aangemaakt
+            //datum gewijzigd
+            p.setSku(Integer.parseInt(tfSKU.getText()));
+            p.setOmschrijving_kort(tfOmschrijvingKort.getText());
+            p.setVoorraad(Integer.parseInt(tfVoorraad.getText()));
+            //afbeelding
+            //thumbnail
+            p.setIs_actief( (boolean) tfActief.isSelected() );
+            
+            main.WinkelApplication.getQueryManager().setProduct(p);
+
+            //Ga terug naar productoverzicht
+            
+            main.WinkelApplication.getInstance().showPanel(new ProductenOverzicht());
+       }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * A listener for the textfields The listener validates the input at the
-     * time it changes.
-     */
-    private class ValidationListener implements DocumentListener {
-
-        public void insertUpdate(DocumentEvent e) {
-            validateFields(e.getDocument());
-        }
-
-        public void removeUpdate(DocumentEvent e) {
-            validateFields(e.getDocument());
-
-        }
-
-        public void changedUpdate(DocumentEvent e) {
-            validateFields(e.getDocument());
-        }
-
-        private void validateFields(Document d) {
-            //
-        }
-    }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -361,8 +405,8 @@ public class NieuwProduct extends JPanel {
     private javax.swing.JComboBox selectCategories;
     private javax.swing.JCheckBox tfActief;
     private javax.swing.JTextField tfNaam;
+    private javax.swing.JTextPane tfOmschrijving;
     private javax.swing.JTextPane tfOmschrijvingKort;
-    private javax.swing.JTextPane tfOmscrhijving;
     private javax.swing.JTextField tfPrijs;
     private javax.swing.JTextField tfSKU;
     private javax.swing.JTextField tfVoorraad;
