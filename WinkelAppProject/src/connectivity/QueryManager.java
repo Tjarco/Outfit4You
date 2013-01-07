@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Category;
 import model.Gebruiker;
 import model.Product;
@@ -219,7 +221,7 @@ public class QueryManager {
                 +       "datum_laatst_ingelogd = '" + gebruiker.getDatum_laatst_ingelogd() + "', "
               //+       "Telefoonnummer = '" + gebruiker.Telefoonnummer() + "', "  
                 +       "wachtwoord = '" + gebruiker.getWachtwoord() + "', "
-                +       "email = '" + gebruiker.getWachtwoord() + "', "
+                +       "email = '" + gebruiker.getEmail() + "', "
                 +       "voornaam = '" + gebruiker.getVoornaam() + "', "
                 +       "tussenvoegsel = '" + gebruiker.getTussenvoegsel() + "', "
                 +       "achternaam = '" + gebruiker.getAchternaam() + "', "
@@ -371,4 +373,38 @@ public class QueryManager {
             dbmanager.insertQuery(SQL_orderProduct);
         }
     }
+    /// kijkt of de login correct is
+    public boolean isValidLogin(String email, String wachtwoord){
+        String sql= "SELECT * FROM gebruiker WHERE `email` = '"+email+"'";
+        ResultSet result = dbmanager.doQuery(sql);
+        String pass="";
+        try {
+            while(result.next())
+                {
+                    pass=result.getString("wachtwoord");
+                }
+        } catch (SQLException ex) {
+            System.out.println("connectivity.QueryManager.isValidInlog() Exception:"+ ex.getMessage());
+            
+        }
+        if (pass.equals(wachtwoord)){ return true;}
+        else {return false;}
+        
+    }
+    // returnt de gebruikerId, aangezien je met je mail inlog
+    public int getGebruikerId(String email){
+        String sql= "SELECT * FROM gebruiker WHERE `email` = '"+email+"'";
+        ResultSet result = dbmanager.doQuery(sql);
+        int gebruikerId=0;
+        try{
+            while (result.next())
+            {
+                gebruikerId=result.getInt("id");
+            }
+        } catch (SQLException ex){
+            System.out.println("connectivity.QueryManager.getGebruikerId() Exception:"+ ex.getMessage());
+        }
+        return gebruikerId;
+    }
+    
 }

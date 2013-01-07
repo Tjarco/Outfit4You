@@ -178,29 +178,6 @@ public class InloggenDisplay extends JPanel {
         gbc.gridy =0;
         add(titel, gbc);
     }
-    public void loadGegevensPanel(){///-----------------
-        gegevensPanel.setSize(500,500);
-        gegevensPanel.setLayout(new FlowLayout());
-        JLabel lNaam=new JLabel("Naam");
-        
-        JTextField tfNaam=new JTextField();
-        
-        JButton bWijzigenNaam=new JButton("Wijzigen");
-        
-        JLabel rest=new JLabel("Dit word nog aangevuld, ben nog niet klaar (Alex)");
-        
-        gegevensPanel.add(lNaam);
-        gegevensPanel.add(tfNaam);
-        gegevensPanel.add(bWijzigenNaam);
-        
-        gegevensPanel.add(rest);
-        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-        gbc.insets = new Insets(15,15,15,15);
-        gbc.gridx =2;
-        gbc.gridy =2;
-        
-        add(gegevensPanel,gbc);
-    }
     
     private class ClickListener implements MouseListener{
 

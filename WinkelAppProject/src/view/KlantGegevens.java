@@ -1,6 +1,7 @@
 
 package view;
 
+import connectivity.QueryManager;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Cursor;
@@ -24,6 +25,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import main.WinkelApplication;
 import model.Gebruiker;
+import model.Session;
 
 /**
  * @version 1.0
@@ -40,7 +42,7 @@ import model.Gebruiker;
  */
 public class KlantGegevens extends javax.swing.JPanel{
 JButton jbTerug;
-Gebruiker gebruiker = new Gebruiker();
+Gebruiker gebruiker;
 String wijzigingonthoud;
 
 // kan later weg
@@ -50,7 +52,7 @@ boolean isValid=true;
      * Creates new form MainMenu
      */
     public KlantGegevens() {
-        
+        gebruiker=WinkelApplication.getQueryManager().getGebruiker(Session.getIngelogdeKlant());
         initComponents();
         addInlog();
         addBasket();
@@ -105,7 +107,7 @@ boolean isValid=true;
             tfPostcode.setText(gebruiker.getPostcode());
            // tfTelefoonnummer.setText(gebruiker.getTelefoonnummer); // er is nog geen getTelefoonnummer in de gebruiker klasse
             tfEmail.setText(gebruiker.getEmail());
-            InloggenDisplay.updateLoginDisplay();
+           // InloggenDisplay.updateLoginDisplay();
         }
         
         
@@ -160,7 +162,7 @@ boolean isValid=true;
                         }
                         loadGegevens();
                         frame.dispose();
-                        resultaatFrame("Profiel wijzigen", "Uw gegevens zijn bijgewerkt");
+                        resultaatFrame("Profiel wijzigen", "Druk op de knop 'Wijzigingen opslaan' om uw wijzigingen op te slaan.");
                     }
                     else resultaatFrame("Fout" , "U heeft niks ingevuld");
                 }
@@ -223,7 +225,9 @@ boolean isValid=true;
             bWijzigen.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e)
                 {
-                    if (!pfOudWachtwoord.getText().equals(gebruiker.getWachtwoord())){ 
+                    // als het oude wachtwoord niet klopt, een foutmelding geven
+                    // hiervoor kan je de isvalidlogin gebruiken aangezien die true of false terug stuurd en de email van de gebruiker heb je al.
+                    if (WinkelApplication.getQueryManager().isValidLogin(gebruiker.getEmail(), pfOudWachtwoord.getText())==false){
                         resultaatFrame("Wachtwoord wijzigen", "Fout: het ingevulde wachtwoord klopt niet");
                         //Fout: wachtwoord klopt niet
                     }
@@ -231,7 +235,7 @@ boolean isValid=true;
                         if (pfNieuwWachtwoord.getText().equals(pfNieuwWachtwoord2.getText())){
                             frame.dispose();
                             gebruiker.setWachtwoord(pfNieuwWachtwoord2.getText());
-                            resultaatFrame("Wachtwoord wijzigen", "Wachtwoord succesvol gewijzigd");
+                            resultaatFrame("Wachtwoord wijzigen", "Wachtwoord succesvol gewijzigd, druk op de knop 'Wijzigingen opslaan' om uw wijzigingen op te slaan.");
                             
                         }
                         else {
@@ -314,6 +318,7 @@ boolean isValid=true;
         lPostcodeWijzigen = new javax.swing.JLabel();
         lTelefoonnummerWijzigen = new javax.swing.JLabel();
         lEmailWijzigen = new javax.swing.JLabel();
+        bOpslaan = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
 
         jButton2.setText("jButton2");
@@ -428,14 +433,24 @@ boolean isValid=true;
             }
         });
 
+        bOpslaan.setText("Wijzigingen opslaan");
+        bOpslaan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bOpslaanActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(1068, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(38, 38, 38))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -452,38 +467,39 @@ boolean isValid=true;
                                     .addComponent(lAchternaam))
                                 .addComponent(lTussenvoegsel))
                             .addComponent(lNaam))
-                        .addGap(73, 73, 73)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfTussenvoegsel)
-                                    .addComponent(tfNaam))
-                                .addGap(59, 59, 59)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lTussenvoegselWijzigen)
-                                    .addComponent(bWachtwoordWijzigen)
-                                    .addComponent(lNaamWijzigen)
-                                    .addComponent(lAchternaamWijzigen)
-                                    .addComponent(lStraatnaamWijzigen)
-                                    .addComponent(lHuisnummerWijzigen)
-                                    .addComponent(lWoonplaatsWijzigen)
-                                    .addComponent(lPostcodeWijzigen)
-                                    .addComponent(lTelefoonnummerWijzigen)
-                                    .addComponent(lEmailWijzigen)))
-                            .addComponent(tfEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(tfAchternaam, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                                    .addComponent(tfStraatnaam, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfHuisnummer, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfWoonplaats, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfPostcode, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfTelefoonnummer, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(214, 214, 214)))
-                        .addGap(596, 596, 596))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(38, 38, 38))))
+                        .addGap(73, 73, 73))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(bOpslaan)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfTussenvoegsel)
+                            .addComponent(tfNaam))
+                        .addGap(59, 59, 59)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lTussenvoegselWijzigen)
+                            .addComponent(bWachtwoordWijzigen)
+                            .addComponent(lNaamWijzigen)
+                            .addComponent(lAchternaamWijzigen)
+                            .addComponent(lStraatnaamWijzigen)
+                            .addComponent(lHuisnummerWijzigen)
+                            .addComponent(lWoonplaatsWijzigen)
+                            .addComponent(lPostcodeWijzigen)
+                            .addComponent(lTelefoonnummerWijzigen)
+                            .addComponent(lEmailWijzigen)))
+                    .addComponent(tfEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tfAchternaam, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                            .addComponent(tfStraatnaam, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfHuisnummer, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfWoonplaats, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfPostcode, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfTelefoonnummer, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(214, 214, 214)))
+                .addGap(596, 596, 596))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -546,10 +562,15 @@ boolean isValid=true;
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lEmail))
-                        .addGap(40, 40, 40)
-                        .addComponent(bWachtwoordWijzigen))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(bWachtwoordWijzigen))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addComponent(bOpslaan))))
                     .addComponent(lEmailWijzigen))
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
         add(jPanel4, java.awt.BorderLayout.CENTER);
@@ -611,7 +632,12 @@ boolean isValid=true;
         passwordFrame();
     }//GEN-LAST:event_bWachtwoordWijzigenActionPerformed
 
+    private void bOpslaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOpslaanActionPerformed
+        WinkelApplication.getQueryManager().setGebruiker(gebruiker);
+    }//GEN-LAST:event_bOpslaanActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bOpslaan;
     private javax.swing.JButton bWachtwoordWijzigen;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

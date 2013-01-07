@@ -11,6 +11,7 @@ package model;
 public class Session {
     static private Gebruiker klant = null;
     static private boolean isIngelogd;
+    static private int ingelogdeKlantId=0;
     
     public static Gebruiker getKlant(){
         return klant;
@@ -28,5 +29,11 @@ public class Session {
     }
     public static boolean getIngelogd(){
         return isIngelogd;
+    }
+    public static void setIngelogdeKlant(int klantId){
+        ingelogdeKlantId=klantId;
+    }
+    public static int getIngelogdeKlant(){
+        return ingelogdeKlantId;
     }
 }

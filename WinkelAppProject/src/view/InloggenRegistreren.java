@@ -74,7 +74,7 @@ public class InloggenRegistreren extends MainLayout {
         gbcIn.gridy = 1;
         inloggen.add(lblmail, gbcIn);
 
-        JTextField txtmail = new JTextField();
+        final JTextField txtmail = new JTextField();
         txtmail.setMinimumSize(new Dimension(100, 20));
         txtmail.setMaximumSize(new Dimension(300, 20));
         txtmail.setPreferredSize(new Dimension(150, 20));
@@ -88,7 +88,7 @@ public class InloggenRegistreren extends MainLayout {
         gbcIn.gridy = 2;
         inloggen.add(lblwachtwoord, gbcIn);
 
-        JPasswordField jpwachtwoord = new JPasswordField();
+        final JPasswordField jpwachtwoord = new JPasswordField();
         jpwachtwoord.setMinimumSize(new Dimension(100, 20));
         jpwachtwoord.setMaximumSize(new Dimension(300, 20));
         jpwachtwoord.setPreferredSize(new Dimension(150, 20));
@@ -105,9 +105,25 @@ public class InloggenRegistreren extends MainLayout {
 
         btninloggen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
-                Session.setIngelogd(true);
-                WinkelApplication.getInstance().showPanel(new CategoryList());
+                if (WinkelApplication.getQueryManager().isValidLogin(txtmail.getText(), jpwachtwoord.getText())){
+                    if (WinkelApplication.getQueryManager().getGebruikerId(txtmail.getText())<=0){
+                        JOptionPane.showMessageDialog(registreren,
+                        "U heeft een verkeerde e-mail of wachtwoord ingevuld",//"tekst",
+                        "Fout",//"titel",
+                        JOptionPane.PLAIN_MESSAGE);
+                    }
+                    else {
+                            Session.setIngelogdeKlant(WinkelApplication.getQueryManager().getGebruikerId(txtmail.getText()));
+                            Session.setIngelogd(true);
+                    WinkelApplication.getInstance().showPanel(new CategoryList());
+                    }
+                }
+                else {
+                    JOptionPane.showMessageDialog(registreren,
+                        "U heeft een verkeerde e-mail of wachtwoord ingevuld",//"tekst",
+                        "Fout",//"titel",
+                        JOptionPane.PLAIN_MESSAGE);
+                }
             }
         });
 
