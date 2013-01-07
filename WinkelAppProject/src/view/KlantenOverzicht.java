@@ -398,7 +398,7 @@ public class KlantenOverzicht extends javax.swing.JPanel {
     //Toevoegen van Medewerker
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
     {//GEN-HEADEREND:event_jButton2ActionPerformed
-           WinkelApplication.getInstance().showPanel(new NieuweKlant(NieuweKlant.KLANTEN_OVERZICHT));
+           WinkelApplication.getInstance().showPanel(new NieuweKlant(NieuweKlant.KLANTEN_OVERZICHT_MEDEWERKER));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
