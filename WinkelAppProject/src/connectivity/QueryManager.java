@@ -54,8 +54,6 @@ public class QueryManager {
     public boolean setProduct(Product product)
     {
         boolean success = false;
-        int actief = 0;
-        if(product.getIs_actief()) actief = 1;
         
         String fields = "categorie_id = " + product.getCategorie_id() + ", "
                 +       "naam = '" + product.getNaam() + "', "
@@ -68,7 +66,7 @@ public class QueryManager {
                 +       "voorraad = " + product.getVoorraad() + ", "
                 +       "afbeelding = '" + product.getAfbeelding() + "', "
                 +       "thumbnail = '" + product.getThumbnail() + "', "
-                +       "is_actief = " + actief + "";
+                +       "is_actief = " + product.getIs_actief() + "";
         
         String sql =    "INSERT INTO " + this.tbl_product + " "
                 +           "SET product_id = " + product.getProduct_id() + ", " + fields + " ON DUPLICATE KEY UPDATE " + fields;
@@ -173,7 +171,7 @@ public class QueryManager {
     public List<Product> getAllProducts(){
                List<Product> products = new ArrayList<Product>();
         try {
-            String sql = "SELECT * FROM product ORDER BY naam ASC";
+            String sql = "SELECT * FROM product WHERE is_actief = 1 ORDER BY naam ASC";
             ResultSet result = dbmanager.doQuery(sql);
             while (result.next()) {
                 

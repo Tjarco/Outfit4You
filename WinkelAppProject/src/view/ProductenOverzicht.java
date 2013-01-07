@@ -558,17 +558,24 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         
         //Verwijderen product (actief = false)
         Product product = WinkelApplication.getQueryManager().getProduct(id);
-        product.setIs_actief(false);
-        
-        //feedback window voor gebruiker
-        if(WinkelApplication.getQueryManager().setProduct(product))
+        if(product.getIs_actief())
         {
-            JOptionPane.showMessageDialog(null, "Het product is verwijderd", "Succes", JOptionPane.INFORMATION_MESSAGE);
+            product.setIs_actief(false);
+            
+            //feedback window voor gebruiker
+            if(WinkelApplication.getQueryManager().setProduct(product))
+            {
+                JOptionPane.showMessageDialog(null, "Het product is verwijderd", "Succes", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Er is een fout opgetreden\nHet product is niet verwijderd\nNeem contact op met uw systeem administrator voor meer informatie", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
-        else
+        else //Product is al verwijderd (inactief)
         {
-            JOptionPane.showMessageDialog(null, "Er is een fout opgetreden\nHet product is niet verwijderd\nNeem contact op met uw systeem administrator voor meer informatie", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+            JOptionPane.showMessageDialog(null, "Dit product is al inacief", "Error", JOptionPane.ERROR_MESSAGE);
+        }    
     }//GEN-LAST:event_buttonProductVerwijderenMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
