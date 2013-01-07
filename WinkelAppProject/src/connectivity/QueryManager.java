@@ -136,7 +136,7 @@ public class QueryManager {
     public List<Product> getProducts(int categoryId) {
         List<Product> products = new ArrayList<Product>();
         try {
-            String sql = "SELECT * FROM product WHERE categorie_id='" + categoryId + "' ORDER BY naam ASC";
+            String sql = "SELECT * FROM product WHERE categorie_id='" + categoryId + "' AND is_actief = 1 ORDER BY naam ASC";
             ResultSet result = dbmanager.doQuery(sql);
             while (result.next()) {
                 
