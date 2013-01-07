@@ -18,6 +18,14 @@ import model.Product;
  *
  * @author Tjarco
  */
+
+/**
+ * @version 1.1
+ * @author Bono
+ * 
+ * Producten verwijderen toegevoegd
+ * updateTable() method toegevoegd om sneller data toe te voegen/verversen
+ */
 public class ProductenOverzicht extends javax.swing.JPanel {
 
     /**

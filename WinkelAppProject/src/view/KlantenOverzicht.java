@@ -39,6 +39,8 @@ public class KlantenOverzicht extends javax.swing.JPanel {
     {
         initComponents();
 
+        updateTable(false);
+        
         jtZoekveld.getDocument().addDocumentListener(new ZoekListener());
         jtZoekveld.addKeyListener(new SnelToetsListener());
     }

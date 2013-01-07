@@ -389,6 +389,7 @@ public class QueryManager {
         else {return false;}
         
     }
+    
     // returnt de gebruikerId, aangezien je met je mail inlog
     public int getGebruikerId(String email){
         String sql= "SELECT * FROM gebruiker WHERE `email` = '"+email+"'";
