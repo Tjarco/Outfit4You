@@ -12,6 +12,7 @@ import java.util.Observer;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import model.Product;
+import model.Session;
 
 /**
  * @version 1.0
@@ -98,11 +99,12 @@ public class BasketDisplay extends JPanel implements ActionListener, Observer {
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        //Laat het inlog of registreren scherm zien als de gebruiker nog niet is ingelogd
-        if(model.Session.getKlant()!=null){
-        WinkelApplication.getInstance().showPanel(new Payment());
-        }else{
-           WinkelApplication.getInstance().showPanel(new InloggenRegistreren());
+        // als gebruiker is ingelogd: new payment, anders inloggenRegistreren
+        if (Session.getIngelogd()){
+            WinkelApplication.getInstance().showPanel(new Payment());
+        }
+        else {
+            WinkelApplication.getInstance().showPanel((new InloggenRegistreren()));
         }
     }
 }
