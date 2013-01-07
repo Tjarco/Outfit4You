@@ -27,6 +27,7 @@ public class NieuweKlant extends JPanel {
 
     public static final int REGISTREREN = 0;
     public static final int KLANTEN_OVERZICHT = 1;
+    public static final int KLANTEN_OVERZICHT_MEDEWERKER = 2;
     private int source;
 
     /**
@@ -497,8 +498,13 @@ public class NieuweKlant extends JPanel {
             g.setDatum_aangemaakt(WinkelApplication.getCurrentTimeStamp());
             g.setDatum_gewijzigd(WinkelApplication.getCurrentTimeStamp());
             g.setDatum_laatst_ingelogd(WinkelApplication.getCurrentTimeStamp());
-            //g.setisMedewerker(0);
-            //g.setisActief(1);
+            
+            if(source == NieuweKlant.KLANTEN_OVERZICHT_MEDEWERKER){
+                System.out.println("test");
+                g.setMedewerker(true);
+            }
+            
+            g.setActief(true);
             //g.setisManager(0);
             //g.setId();
             
@@ -508,7 +514,7 @@ public class NieuweKlant extends JPanel {
             //Keert terug naar het klantenoverzicht als deze klasse vanaf het klantenoverzicht is aangeroepen
             //Als deze klasse vanaf registreren is aangeroepen wordt er terug gekeerd naar de categorielijst.
             //Tevens wordt er een sessie gestart voor de net geregistreerde klant.
-            if (source == NieuweKlant.KLANTEN_OVERZICHT) {
+            if (source == NieuweKlant.KLANTEN_OVERZICHT || source == NieuweKlant.KLANTEN_OVERZICHT_MEDEWERKER) {
                 main.WinkelApplication.getInstance().showPanel(new KlantenOverzicht());
             } else if (source == NieuweKlant.REGISTREREN) {
                 main.WinkelApplication.getInstance().showPanel(new CategoryList());
@@ -523,7 +529,7 @@ public class NieuweKlant extends JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
            
-        if(source == NieuweKlant.KLANTEN_OVERZICHT){
+        if(source == NieuweKlant.KLANTEN_OVERZICHT || source == NieuweKlant.KLANTEN_OVERZICHT_MEDEWERKER){
             main.WinkelApplication.getInstance().showPanel(new KlantenOverzicht());
          } else if(source == NieuweKlant.REGISTREREN){
              main.WinkelApplication.getInstance().showPanel(new CategoryList());
