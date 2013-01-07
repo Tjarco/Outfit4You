@@ -361,7 +361,10 @@ public class NieuwProduct extends JPanel {
        if (isValid)
        {
             //Product opslaan in de database...
+            ComboItem cat = (ComboItem) selectCategories.getSelectedItem();
             Product p = new Product();
+            
+            p.setCategorie_id(Integer.parseInt(cat.getValue()));
             p.setNaam(tfNaam.getText());
             p.setPrijs(Double.parseDouble(tfPrijs.getText().replace(',', '.')));
             p.setOmschrijving(tfOmschrijving.getText());
@@ -377,7 +380,6 @@ public class NieuwProduct extends JPanel {
             main.WinkelApplication.getQueryManager().setProduct(p);
 
             //Ga terug naar productoverzicht
-            
             main.WinkelApplication.getInstance().showPanel(new ProductenOverzicht());
        }
     }//GEN-LAST:event_jButton2ActionPerformed
