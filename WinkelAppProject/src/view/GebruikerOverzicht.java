@@ -30,12 +30,12 @@ import model.Gebruiker;
  * Klanten verwijderen toegevoegd
  * updateTable() method toegevoegd om sneller data toe te voegen/verversen
  */
-public class KlantenOverzicht extends javax.swing.JPanel {
+public class GebruikerOverzicht extends javax.swing.JPanel {
 
     /**
      * Maakt het form aan en zet de data in de tabel
      */
-    public KlantenOverzicht() 
+    public GebruikerOverzicht() 
     {
         initComponents();
 
@@ -66,10 +66,11 @@ public class KlantenOverzicht extends javax.swing.JPanel {
         for (Gebruiker klant : klanten) 
         {
             model.addRow(new Object[]{new Integer(klant.getId()),
-            klant.getVoornaam(),
+            klant.getVoornaam() + klant.getAchternaam(),
             klant.getStraatnaam(),
             klant.getPostcode(),
-            klant.getWoonplaats()});
+            klant.getWoonplaats(),
+            klant.isMedewerker()});
         }
     }
     
@@ -181,8 +182,7 @@ public class KlantenOverzicht extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -209,42 +209,33 @@ public class KlantenOverzicht extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(900, 400));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
+            new Object [][] {
 
             },
-            new String []
-            {
-                "Klant_id", "Naam", "Adres", "Postcode"
+            new String [] {
+                "Klant_id", "Naam", "Adres", "Postcode", "Woonplaats", "Medewerker"
             }
-        )
-        {
-            Class[] types = new Class []
-            {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
-            boolean[] canEdit = new boolean []
-            {
-                false, false, false, false
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true, false
             };
 
-            public Class getColumnClass(int columnIndex)
-            {
+            public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
 
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Klant Toevoegen");
-        jButton1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
@@ -252,28 +243,22 @@ public class KlantenOverzicht extends javax.swing.JPanel {
         jLabel1.setText("Zoek klant met naam:");
 
         jcKlantenZoekOpties.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Naam", "Id", "Adres", "Postcode" }));
-        jcKlantenZoekOpties.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jcKlantenZoekOpties.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcKlantenZoekOptiesActionPerformed(evt);
             }
         });
 
         buttonVerwijderenGebruiker.setText("Verwijderen");
-        buttonVerwijderenGebruiker.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        buttonVerwijderenGebruiker.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonVerwijderenGebruikerMouseClicked(evt);
             }
         });
 
         jButton2.setText("Medew. Toevoegen");
-        jButton2.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
@@ -366,10 +351,8 @@ public class KlantenOverzicht extends javax.swing.JPanel {
         jButton3.setContentAreaFilled(false);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setFocusPainted(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
@@ -395,7 +378,7 @@ public class KlantenOverzicht extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        WinkelApplication.getInstance().showPanel(new NieuweKlant(NieuweKlant.KLANTEN_OVERZICHT));
+        WinkelApplication.getInstance().showPanel(new NieuweGebruiker(NieuweGebruiker.KLANTEN_OVERZICHT));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -432,7 +415,7 @@ public class KlantenOverzicht extends javax.swing.JPanel {
     //Toevoegen van Medewerker
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
     {//GEN-HEADEREND:event_jButton2ActionPerformed
-           WinkelApplication.getInstance().showPanel(new NieuweKlant(NieuweKlant.KLANTEN_OVERZICHT_MEDEWERKER));
+           WinkelApplication.getInstance().showPanel(new NieuweGebruiker(NieuweGebruiker.KLANTEN_OVERZICHT_MEDEWERKER));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -104,7 +104,7 @@ public class MainMenu extends javax.swing.JPanel {
 
         jButton3.setFont(main.WinkelApplication.FONT_14_BOLD);
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons/klanten.png"))); // NOI18N
-        jButton3.setText("Klanten");
+        jButton3.setText("Gebruikers");
         jButton3.setBorderPainted(false);
         jButton3.setContentAreaFilled(false);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -236,7 +236,7 @@ public class MainMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        WinkelApplication.getInstance().showPanel(new KlantenOverzicht());
+        WinkelApplication.getInstance().showPanel(new GebruikerOverzicht());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

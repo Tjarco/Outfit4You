@@ -26,7 +26,7 @@ import model.Gebruiker;
  * meegegeven wat de source is, zodat kan worden teruggekeerd naar het juiste
  * menu na het registreren.
  */
-public class NieuweKlant extends JPanel {
+public class NieuweGebruiker extends JPanel {
 
     public static final int REGISTREREN = 0;
     public static final int KLANTEN_OVERZICHT = 1;
@@ -34,9 +34,9 @@ public class NieuweKlant extends JPanel {
     private int source;
 
     /**
-     * Creates new form NieuweKlant
+     * Creates new form NieuweGebruiker
      */
-    public NieuweKlant(int source) {
+    public NieuweGebruiker(int source) {
         initComponents();
         this.source = source;
 
@@ -207,8 +207,7 @@ public class NieuweKlant extends JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jTextField6 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
@@ -260,10 +259,8 @@ public class NieuweKlant extends JPanel {
         jlTitel.setText("Klantgegevens:");
 
         jLabel1.setText("Tussenvoegsel");
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseEntered(java.awt.event.MouseEvent evt)
-            {
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel1MouseEntered(evt);
             }
         });
@@ -283,10 +280,8 @@ public class NieuweKlant extends JPanel {
         jLabel12.setText("Herhaal Wachtwoord");
 
         jbVoegToe.setText("Voeg toe");
-        jbVoegToe.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jbVoegToe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbVoegToeActionPerformed(evt);
             }
         });
@@ -300,7 +295,7 @@ public class NieuweKlant extends JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jlTitel)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -443,10 +438,8 @@ public class NieuweKlant extends JPanel {
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setFocusPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
@@ -502,7 +495,7 @@ public class NieuweKlant extends JPanel {
             g.setDatum_gewijzigd(WinkelApplication.getCurrentTimeStamp());
             g.setDatum_laatst_ingelogd(WinkelApplication.getCurrentTimeStamp());
             
-            if(source == NieuweKlant.KLANTEN_OVERZICHT_MEDEWERKER){
+            if(source == NieuweGebruiker.KLANTEN_OVERZICHT_MEDEWERKER){
                 System.out.println("test");
                 g.setMedewerker(true);
             }
@@ -517,9 +510,9 @@ public class NieuweKlant extends JPanel {
             //Keert terug naar het klantenoverzicht als deze klasse vanaf het klantenoverzicht is aangeroepen
             //Als deze klasse vanaf registreren is aangeroepen wordt er terug gekeerd naar de categorielijst.
             //Tevens wordt er een sessie gestart voor de net geregistreerde klant.
-            if (source == NieuweKlant.KLANTEN_OVERZICHT || source == NieuweKlant.KLANTEN_OVERZICHT_MEDEWERKER) {
-                main.WinkelApplication.getInstance().showPanel(new KlantenOverzicht());
-            } else if (source == NieuweKlant.REGISTREREN) {
+            if (source == NieuweGebruiker.KLANTEN_OVERZICHT || source == NieuweGebruiker.KLANTEN_OVERZICHT_MEDEWERKER) {
+                main.WinkelApplication.getInstance().showPanel(new GebruikerOverzicht());
+            } else if (source == NieuweGebruiker.REGISTREREN) {
                 main.WinkelApplication.getInstance().showPanel(new CategoryList());
             }
         }
@@ -532,9 +525,9 @@ public class NieuweKlant extends JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
            
-        if(source == NieuweKlant.KLANTEN_OVERZICHT || source == NieuweKlant.KLANTEN_OVERZICHT_MEDEWERKER){
-            main.WinkelApplication.getInstance().showPanel(new KlantenOverzicht());
-         } else if(source == NieuweKlant.REGISTREREN){
+        if(source == NieuweGebruiker.KLANTEN_OVERZICHT || source == NieuweGebruiker.KLANTEN_OVERZICHT_MEDEWERKER){
+            main.WinkelApplication.getInstance().showPanel(new GebruikerOverzicht());
+         } else if(source == NieuweGebruiker.REGISTREREN){
              main.WinkelApplication.getInstance().showPanel(new CategoryList());
          }
     }//GEN-LAST:event_jButton1ActionPerformed

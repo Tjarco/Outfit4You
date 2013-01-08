@@ -207,7 +207,7 @@ public class InloggenRegistreren extends MainLayout {
         public void actionPerformed(ActionEvent e) {
             JButton button = (JButton) e.getSource();
             if (button.getText().equalsIgnoreCase("Registreren")) {
-                main.WinkelApplication.getInstance().showPanel(new NieuweKlant(NieuweKlant.REGISTREREN));
+                main.WinkelApplication.getInstance().showPanel(new NieuweGebruiker(NieuweGebruiker.REGISTREREN));
             } else {
                 main.WinkelApplication.getInstance().showPanel(new Payment());
             }
