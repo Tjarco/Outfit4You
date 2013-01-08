@@ -18,7 +18,7 @@ public class Product {
     
     public Product()
     {
-        this(-1, -1, "", 0.0, "", 0, 0, 0, "", 0, "", "", true);
+        
     }
 
     public Product(int product_id, int categorie_id, String naam, double prijs, String omschrijving, int datum_aangemaakt, int datum_gewijzigd, int sku, String omschrijving_kort, int voorraad, String afbeelding, String thumbnail, boolean is_actief) {
