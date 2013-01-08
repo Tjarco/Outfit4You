@@ -264,7 +264,15 @@ public class CategoryList extends JPanel implements MouseListener {
         image.setIcon(new ImageIcon(getClass().getResource("/pictures/icons/noImage.gif")));
         productDetails.add(image, gbc);
         
-        JLabel description = new JLabel(product.getOmschrijving());
+        
+        StringBuilder omschrijving =  new StringBuilder(product.getOmschrijving());
+        omschrijving.insert(0, "<html> ");
+        omschrijving.append("</html>");
+        for(int i = 80; i<omschrijving.length(); i+=80){
+            omschrijving.insert(i, " <br/>");
+        }
+        String str = omschrijving.toString();
+        JLabel description = new JLabel(str);
         description.setFont(new Font("Calibri", Font.ITALIC, 20));
         gbc.gridy = 1;
         productDetails.add(description,gbc);
