@@ -152,7 +152,7 @@ public final class WinkelApplication {
     return strDate;
 }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         System.out.println("Starting main...");
         final WinkelApplication applicatie = WinkelApplication.getInstance();
         SwingUtilities.invokeLater(new Runnable() {
