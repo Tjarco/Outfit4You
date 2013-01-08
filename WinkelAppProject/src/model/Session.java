@@ -1,39 +1,38 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model;
 
 /**
- *
  * @author Tjarco
+ * @version 1.0
+ * 
+ * De klasse die de actieve sessie bijhoudt. 
  */
 public class Session {
-    static private Gebruiker klant = null;
+    static private Gebruiker gebruiker = null;
     static private boolean isIngelogd;
     static private int ingelogdeKlantId=0;
     
     public static Gebruiker getKlant(){
-        return klant;
+        return gebruiker;
     }
     
-    public static void startSesionFor(Gebruiker sessionKlant){
-        klant = sessionKlant;
+    public static void startSesionFor(Gebruiker sessionGebruiker){
+        gebruiker = sessionGebruiker;
     }
     
     public static void stopSession(){
-        klant = null;
+        gebruiker = null;
     }
-    public static void setIngelogd(boolean isIngelogd2){
-        isIngelogd=isIngelogd2;
+    public static void setIngelogd(boolean isIngelogd){
+        Session.isIngelogd = isIngelogd;
     }
     public static boolean getIngelogd(){
         return isIngelogd;
     }
-    public static void setIngelogdeKlant(int klantId){
+    public static void setIngelogdeGebruiker(int klantId){
         ingelogdeKlantId=klantId;
     }
-    public static int getIngelogdeKlant(){
+    public static int getIngelogdeGebruiker(){
         return ingelogdeKlantId;
     }
 }

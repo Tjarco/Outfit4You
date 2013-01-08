@@ -33,7 +33,7 @@ public class InloggenDisplay extends JPanel {
     private Font labels ;
     private GridBagConstraints gbc;
     private boolean isingelogd;
-    private Gebruiker gebruiker=WinkelApplication.getQueryManager().getGebruiker(Session.getIngelogdeKlant());
+    private Gebruiker gebruiker;
     
     
     
@@ -52,6 +52,9 @@ public class InloggenDisplay extends JPanel {
     //uitloggen.
     public InloggenDisplay(){
         
+       
+        gebruiker = Session.getKlant();
+        
         
         this.setLayout(new GridBagLayout());
         this.setBackground(WinkelApplication.BACKGROUND);
@@ -66,7 +69,9 @@ public class InloggenDisplay extends JPanel {
         gbc.anchor = GridBagConstraints.LINE_END;
             addProfiel();
         addInUitLoglabel();
+        if(gebruiker!=null){
         addIngelogdAls();
+        }
             profiel.setVisible(Session.getIngelogd());
         this.setVisible(true);
         

@@ -113,7 +113,8 @@ public class InloggenRegistreren extends MainLayout {
                         JOptionPane.PLAIN_MESSAGE);
                     }
                     else {
-                            Session.setIngelogdeKlant(WinkelApplication.getQueryManager().getGebruikerId(txtmail.getText()));
+                            int id = WinkelApplication.getQueryManager().getGebruikerId(txtmail.getText());
+                            Session.startSesionFor(WinkelApplication.getQueryManager().getGebruiker(id));
                             Session.setIngelogd(true);
                     WinkelApplication.getInstance().showPanel(new CategoryList());
                     }
