@@ -306,7 +306,7 @@ boolean isValid=true;
         tfTelefoonnummer = new javax.swing.JTextField();
         lEmail = new javax.swing.JLabel();
         tfEmail = new javax.swing.JTextField();
-        bWachtwoordWijzigen = new javax.swing.JButton();
+        jbWachtwoordWijzigen = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lTussenvoegselWijzigen = new javax.swing.JLabel();
         lNaamWijzigen = new javax.swing.JLabel();
@@ -317,7 +317,7 @@ boolean isValid=true;
         lPostcodeWijzigen = new javax.swing.JLabel();
         lTelefoonnummerWijzigen = new javax.swing.JLabel();
         lEmailWijzigen = new javax.swing.JLabel();
-        bOpslaan = new javax.swing.JButton();
+        jbOpslaan = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
 
         jButton2.setText("jButton2");
@@ -360,10 +360,10 @@ boolean isValid=true;
 
         tfEmail.setEditable(false);
 
-        bWachtwoordWijzigen.setText("Wachtwoord wijzigen");
-        bWachtwoordWijzigen.addActionListener(new java.awt.event.ActionListener() {
+        jbWachtwoordWijzigen.setText("Wachtwoord wijzigen");
+        jbWachtwoordWijzigen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bWachtwoordWijzigenActionPerformed(evt);
+                jbWachtwoordWijzigenActionPerformed(evt);
             }
         });
 
@@ -432,10 +432,10 @@ boolean isValid=true;
             }
         });
 
-        bOpslaan.setText("Wijzigingen opslaan");
-        bOpslaan.addActionListener(new java.awt.event.ActionListener() {
+        jbOpslaan.setText("Wijzigingen opslaan");
+        jbOpslaan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bOpslaanActionPerformed(evt);
+                jbOpslaanActionPerformed(evt);
             }
         });
 
@@ -465,8 +465,8 @@ boolean isValid=true;
                         .addGap(73, 73, 73))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addComponent(bOpslaan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)))
+                        .addComponent(jbOpslaan)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -475,7 +475,7 @@ boolean isValid=true;
                         .addGap(59, 59, 59)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lTussenvoegselWijzigen)
-                            .addComponent(bWachtwoordWijzigen)
+                            .addComponent(jbWachtwoordWijzigen)
                             .addComponent(lNaamWijzigen)
                             .addComponent(lAchternaamWijzigen)
                             .addComponent(lStraatnaamWijzigen)
@@ -564,12 +564,12 @@ boolean isValid=true;
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(40, 40, 40)
-                                .addComponent(bWachtwoordWijzigen))
+                                .addComponent(jbWachtwoordWijzigen))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(64, 64, 64)
-                                .addComponent(bOpslaan))))
+                                .addComponent(jbOpslaan))))
                     .addComponent(lEmailWijzigen))
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
 
         add(jPanel4, java.awt.BorderLayout.CENTER);
@@ -627,22 +627,22 @@ boolean isValid=true;
         newFrame(9, "E-mail wijzigen", "Uw E-mail wijzigen in: ");
     }//GEN-LAST:event_lEmailWijzigenMousePressed
 
-    private void bWachtwoordWijzigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bWachtwoordWijzigenActionPerformed
+    private void jbWachtwoordWijzigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbWachtwoordWijzigenActionPerformed
         passwordFrame();
-    }//GEN-LAST:event_bWachtwoordWijzigenActionPerformed
+    }//GEN-LAST:event_jbWachtwoordWijzigenActionPerformed
 
-    private void bOpslaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOpslaanActionPerformed
+    private void jbOpslaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbOpslaanActionPerformed
         WinkelApplication.getQueryManager().setGebruiker(gebruiker);
         InloggenDisplay.updateLoginDisplay(gebruiker.getVoornaam());
-    }//GEN-LAST:event_bOpslaanActionPerformed
+    }//GEN-LAST:event_jbOpslaanActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bOpslaan;
-    private javax.swing.JButton bWachtwoordWijzigen;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JButton jbOpslaan;
+    private javax.swing.JButton jbWachtwoordWijzigen;
     private javax.swing.JLabel lAchternaam;
     private javax.swing.JLabel lAchternaamWijzigen;
     private javax.swing.JLabel lEmail;

@@ -15,8 +15,10 @@ import main.WinkelApplication;
 import model.Product;
 
 /**
- *
  * @author Tjarco
+ * @version 1.0
+ * 
+ * Een overzicht van de categoriën en producten
  */
 
 /**
@@ -289,8 +291,8 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         jtCategorie = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jtZoekveldCat = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jbToevoegenCategorie = new javax.swing.JButton();
+        jbWijzigCategorie = new javax.swing.JButton();
         jcCategoryVeld = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -298,15 +300,15 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         jtProducten = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jtZoekveld = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jbProductToevoegen = new javax.swing.JButton();
+        jbProductWijzigen = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jcProductVeld = new javax.swing.JComboBox();
-        buttonProductVerwijderen = new javax.swing.JButton();
+        jbProductVerwijderen = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        jbBack = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -344,15 +346,15 @@ public class ProductenOverzicht extends javax.swing.JPanel {
 
         jLabel2.setText("Zoek Categorie");
 
-        jButton4.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
-        jButton4.setText("Voeg een cattegorie toe");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jbToevoegenCategorie.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jbToevoegenCategorie.setText("Voeg een categorie toe");
+        jbToevoegenCategorie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jbToevoegenCategorieActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Wijzig een cattegorie");
+        jbWijzigCategorie.setText("Wijzig een categorie");
 
         jcCategoryVeld.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Naam", "Categorie_id", "Beschrijving", "Status" }));
 
@@ -375,9 +377,9 @@ public class ProductenOverzicht extends javax.swing.JPanel {
                         .addComponent(jcCategoryVeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel6Layout.createSequentialGroup()
-                            .addComponent(jButton5)
+                            .addComponent(jbWijzigCategorie)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jButton4))
+                            .addComponent(jbToevoegenCategorie))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
@@ -394,8 +396,8 @@ public class ProductenOverzicht extends javax.swing.JPanel {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbWijzigCategorie, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbToevoegenCategorie, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 44, Short.MAX_VALUE))
         );
 
@@ -438,24 +440,24 @@ public class ProductenOverzicht extends javax.swing.JPanel {
 
         jLabel1.setText("Zoek Product");
 
-        jButton1.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
-        jButton1.setText("Voeg een product toe");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbProductToevoegen.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jbProductToevoegen.setText("Voeg een product toe");
+        jbProductToevoegen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbProductToevoegenActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Wijzig een product");
+        jbProductWijzigen.setText("Wijzig een product");
 
         jLabel3.setText("op");
 
         jcProductVeld.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Naam", "Product_id", "Beschrijving", "Status" }));
 
-        buttonProductVerwijderen.setText("Verwijderen");
-        buttonProductVerwijderen.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbProductVerwijderen.setText("Verwijderen");
+        jbProductVerwijderen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonProductVerwijderenMouseClicked(evt);
+                jbProductVerwijderenMouseClicked(evt);
             }
         });
 
@@ -477,11 +479,11 @@ public class ProductenOverzicht extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(buttonProductVerwijderen)
+                        .addComponent(jbProductVerwijderen)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
+                        .addComponent(jbProductWijzigen)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
+                        .addComponent(jbProductToevoegen))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -498,9 +500,9 @@ public class ProductenOverzicht extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonProductVerwijderen, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbProductToevoegen, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbProductWijzigen, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbProductVerwijderen, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 42, Short.MAX_VALUE))
         );
 
@@ -541,16 +543,16 @@ public class ProductenOverzicht extends javax.swing.JPanel {
 
         jPanel3.setBackground(main.WinkelApplication.BACKGROUND);
 
-        jButton2.setFont(main.WinkelApplication.FONT_14_BOLD);
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/backButton.png"))); // NOI18N
-        jButton2.setText("Terug");
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setFocusPainted(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbBack.setFont(main.WinkelApplication.FONT_14_BOLD);
+        jbBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/backButton.png"))); // NOI18N
+        jbBack.setText("Terug");
+        jbBack.setBorderPainted(false);
+        jbBack.setContentAreaFilled(false);
+        jbBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbBack.setFocusPainted(false);
+        jbBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbBackActionPerformed(evt);
             }
         });
 
@@ -560,34 +562,34 @@ public class ProductenOverzicht extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(jButton2)
+                .addComponent(jbBack)
                 .addContainerGap(1208, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jButton2)
+                .addComponent(jbBack)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         add(jPanel3, java.awt.BorderLayout.PAGE_END);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbProductToevoegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbProductToevoegenActionPerformed
         main.WinkelApplication.getInstance().showPanel(new NieuwProduct());
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbProductToevoegenActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jbBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBackActionPerformed
         main.WinkelApplication.getInstance().showPanel(new MainMenu());
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jbBackActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jbToevoegenCategorieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbToevoegenCategorieActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jbToevoegenCategorieActionPerformed
 
     //Verwijderen product (klik op knop "verwijderen")
-    private void buttonProductVerwijderenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonProductVerwijderenMouseClicked
+    private void jbProductVerwijderenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbProductVerwijderenMouseClicked
         //Product_id ophalen uit de table
         int row = jtProducten.getSelectedRow();
         int col = 0;
@@ -616,15 +618,9 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         
         //refresh jtable
         updateTable(true, false, true, false);
-    }//GEN-LAST:event_buttonProductVerwijderenMouseClicked
+    }//GEN-LAST:event_jbProductVerwijderenMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonProductVerwijderen;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
@@ -637,6 +633,12 @@ public class ProductenOverzicht extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jbBack;
+    private javax.swing.JButton jbProductToevoegen;
+    private javax.swing.JButton jbProductVerwijderen;
+    private javax.swing.JButton jbProductWijzigen;
+    private javax.swing.JButton jbToevoegenCategorie;
+    private javax.swing.JButton jbWijzigCategorie;
     private javax.swing.JComboBox jcCategoryVeld;
     private javax.swing.JComboBox jcProductVeld;
     private javax.swing.JTable jtCategorie;

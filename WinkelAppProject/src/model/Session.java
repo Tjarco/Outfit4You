@@ -22,6 +22,10 @@ public class Session {
         return gebruiker;
     }
     
+    /**
+     * Start de sessie voor de meegegeven gebruiker.
+     * @param sessionGebruiker 
+     */
     public static void startSesionFor(Gebruiker sessionGebruiker){
         gebruiker = sessionGebruiker;
     }

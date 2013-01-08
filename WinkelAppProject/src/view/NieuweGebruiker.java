@@ -239,7 +239,7 @@ public class NieuweGebruiker extends JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jbBack = new javax.swing.JButton();
 
         jTextField6.setText("jTextField6");
 
@@ -430,16 +430,16 @@ public class NieuweGebruiker extends JPanel {
 
         jPanel3.setBackground(main.WinkelApplication.BACKGROUND);
 
-        jButton1.setFont(main.WinkelApplication.FONT_14_BOLD);
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/backButton.png"))); // NOI18N
-        jButton1.setText("Terug");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setFocusPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbBack.setFont(main.WinkelApplication.FONT_14_BOLD);
+        jbBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/backButton.png"))); // NOI18N
+        jbBack.setText("Terug");
+        jbBack.setBorderPainted(false);
+        jbBack.setContentAreaFilled(false);
+        jbBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbBack.setFocusPainted(false);
+        jbBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbBackActionPerformed(evt);
             }
         });
 
@@ -449,14 +449,14 @@ public class NieuweGebruiker extends JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(jButton1)
+                .addComponent(jbBack)
                 .addContainerGap(862, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jButton1)
+                .addComponent(jbBack)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -557,7 +557,7 @@ public class NieuweGebruiker extends JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel1MouseEntered
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBackActionPerformed
 
 
         if (source == NieuweGebruiker.KLANTEN_OVERZICHT || source == NieuweGebruiker.KLANTEN_OVERZICHT_MEDEWERKER) {
@@ -565,7 +565,7 @@ public class NieuweGebruiker extends JPanel {
         } else if (source == NieuweGebruiker.REGISTREREN) {
             main.WinkelApplication.getInstance().showPanel(new CategoryList());
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbBackActionPerformed
 
     /**
      * A listener for the textfields The listener validates the input at the
@@ -615,7 +615,6 @@ public class NieuweGebruiker extends JPanel {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -634,6 +633,7 @@ public class NieuweGebruiker extends JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JButton jbBack;
     private javax.swing.JButton jbVoegToe;
     private javax.swing.JLabel jlTitel;
     private javax.swing.JTextField tfAchternaam;

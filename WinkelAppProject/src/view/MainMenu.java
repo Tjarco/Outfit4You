@@ -39,11 +39,11 @@ public class MainMenu extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jbCatalogus = new javax.swing.JButton();
+        jbGebruikers = new javax.swing.JButton();
+        jbProducten = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        jbVoorraad = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
 
         jButton2.setText("jButton2");
@@ -85,55 +85,55 @@ public class MainMenu extends javax.swing.JPanel {
         jPanel4.setPreferredSize(new java.awt.Dimension(1000, 300));
         jPanel4.setRequestFocusEnabled(false);
 
-        jButton1.setFont(main.WinkelApplication.FONT_14_BOLD);
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons/shoppingChart.png"))); // NOI18N
-        jButton1.setText("Catalogus");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setFocusPainted(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setMaximumSize(new java.awt.Dimension(150, 100));
-        jButton1.setPreferredSize(new java.awt.Dimension(150, 100));
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbCatalogus.setFont(main.WinkelApplication.FONT_14_BOLD);
+        jbCatalogus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons/shoppingChart.png"))); // NOI18N
+        jbCatalogus.setText("Catalogus");
+        jbCatalogus.setBorderPainted(false);
+        jbCatalogus.setContentAreaFilled(false);
+        jbCatalogus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbCatalogus.setFocusPainted(false);
+        jbCatalogus.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbCatalogus.setMaximumSize(new java.awt.Dimension(150, 100));
+        jbCatalogus.setPreferredSize(new java.awt.Dimension(150, 100));
+        jbCatalogus.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbCatalogus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbCatalogusActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(main.WinkelApplication.FONT_14_BOLD);
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons/klanten.png"))); // NOI18N
-        jButton3.setText("Gebruikers");
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.setFocusPainted(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setMaximumSize(new java.awt.Dimension(150, 100));
-        jButton3.setPreferredSize(new java.awt.Dimension(150, 100));
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jbGebruikers.setFont(main.WinkelApplication.FONT_14_BOLD);
+        jbGebruikers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons/klanten.png"))); // NOI18N
+        jbGebruikers.setText("Gebruikers");
+        jbGebruikers.setBorderPainted(false);
+        jbGebruikers.setContentAreaFilled(false);
+        jbGebruikers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbGebruikers.setFocusPainted(false);
+        jbGebruikers.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbGebruikers.setMaximumSize(new java.awt.Dimension(150, 100));
+        jbGebruikers.setPreferredSize(new java.awt.Dimension(150, 100));
+        jbGebruikers.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbGebruikers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jbGebruikersActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(main.WinkelApplication.FONT_14_BOLD);
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons/basketFull.png"))); // NOI18N
-        jButton4.setText("Producten");
-        jButton4.setToolTipText("");
-        jButton4.setBorderPainted(false);
-        jButton4.setContentAreaFilled(false);
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton4.setFocusPainted(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setMaximumSize(new java.awt.Dimension(150, 100));
-        jButton4.setPreferredSize(new java.awt.Dimension(150, 100));
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jbProducten.setFont(main.WinkelApplication.FONT_14_BOLD);
+        jbProducten.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons/basketFull.png"))); // NOI18N
+        jbProducten.setText("Producten");
+        jbProducten.setToolTipText("");
+        jbProducten.setBorderPainted(false);
+        jbProducten.setContentAreaFilled(false);
+        jbProducten.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbProducten.setFocusPainted(false);
+        jbProducten.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbProducten.setMaximumSize(new java.awt.Dimension(150, 100));
+        jbProducten.setPreferredSize(new java.awt.Dimension(150, 100));
+        jbProducten.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbProducten.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jbProductenActionPerformed(evt);
             }
         });
 
@@ -157,21 +157,21 @@ public class MainMenu extends javax.swing.JPanel {
             }
         });
 
-        jButton6.setFont(main.WinkelApplication.FONT_14_BOLD);
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons/Vooraad.png"))); // NOI18N
-        jButton6.setText("Voorraad");
-        jButton6.setToolTipText("");
-        jButton6.setBorderPainted(false);
-        jButton6.setContentAreaFilled(false);
-        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton6.setFocusPainted(false);
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setMaximumSize(new java.awt.Dimension(150, 100));
-        jButton6.setPreferredSize(new java.awt.Dimension(150, 100));
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jbVoorraad.setFont(main.WinkelApplication.FONT_14_BOLD);
+        jbVoorraad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons/Vooraad.png"))); // NOI18N
+        jbVoorraad.setText("Voorraad");
+        jbVoorraad.setToolTipText("");
+        jbVoorraad.setBorderPainted(false);
+        jbVoorraad.setContentAreaFilled(false);
+        jbVoorraad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbVoorraad.setFocusPainted(false);
+        jbVoorraad.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbVoorraad.setMaximumSize(new java.awt.Dimension(150, 100));
+        jbVoorraad.setPreferredSize(new java.awt.Dimension(150, 100));
+        jbVoorraad.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbVoorraad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jbVoorraadActionPerformed(evt);
             }
         });
 
@@ -181,13 +181,13 @@ public class MainMenu extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbCatalogus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, Short.MAX_VALUE)
+                .addComponent(jbGebruikers, javax.swing.GroupLayout.PREFERRED_SIZE, 164, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbProducten, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbVoorraad, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(159, 159, 159))
@@ -197,12 +197,12 @@ public class MainMenu extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbVoorraad, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbProducten, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                        .addComponent(jbCatalogus, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jbGebruikers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(81, Short.MAX_VALUE))
         );
 
@@ -227,37 +227,37 @@ public class MainMenu extends javax.swing.JPanel {
         add(jPanel3, java.awt.BorderLayout.PAGE_END);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbCatalogusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCatalogusActionPerformed
         WinkelApplication.getInstance().showPanel(new CategoryList());
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbCatalogusActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jbProductenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbProductenActionPerformed
         WinkelApplication.getInstance().showPanel(new ProductenOverzicht());
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jbProductenActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jbGebruikersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGebruikersActionPerformed
         WinkelApplication.getInstance().showPanel(new GebruikerOverzicht());
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jbGebruikersActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void jbVoorraadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVoorraadActionPerformed
         WinkelApplication.getInstance().showPanel(new Voorraad());
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_jbVoorraadActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         WinkelApplication.getInstance().showPanel(new Rapporten());
     }//GEN-LAST:event_jButton5ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JButton jbCatalogus;
+    private javax.swing.JButton jbGebruikers;
+    private javax.swing.JButton jbProducten;
+    private javax.swing.JButton jbVoorraad;
     // End of variables declaration//GEN-END:variables
 }

@@ -33,7 +33,7 @@ public class Rapporten extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        jbBack = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -96,16 +96,16 @@ public class Rapporten extends javax.swing.JPanel {
 
         jPanel5.setBackground(main.WinkelApplication.BACKGROUND);
 
-        jButton3.setFont(main.WinkelApplication.FONT_14_BOLD);
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/backButton.png"))); // NOI18N
-        jButton3.setText("Terug");
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.setFocusPainted(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jbBack.setFont(main.WinkelApplication.FONT_14_BOLD);
+        jbBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/backButton.png"))); // NOI18N
+        jbBack.setText("Terug");
+        jbBack.setBorderPainted(false);
+        jbBack.setContentAreaFilled(false);
+        jbBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbBack.setFocusPainted(false);
+        jbBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jbBackActionPerformed(evt);
             }
         });
 
@@ -115,32 +115,32 @@ public class Rapporten extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(jButton3)
+                .addComponent(jbBack)
                 .addContainerGap(564, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jButton3)
+                .addComponent(jbBack)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         add(jPanel5, java.awt.BorderLayout.PAGE_END);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jbBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBackActionPerformed
         main.WinkelApplication.getInstance().showPanel(new MainMenu());
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jbBackActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JButton jbBack;
     // End of variables declaration//GEN-END:variables
 }

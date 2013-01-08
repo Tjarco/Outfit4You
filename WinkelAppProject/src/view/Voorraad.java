@@ -173,7 +173,7 @@ public class Voorraad extends javax.swing.JPanel {
             while (!output.matches(format) && !output.equals("")) {
                 output = JOptionPane.showInputDialog("wat is de voorraad van ' " + product + "'?");
             }            
-            main.WinkelApplication.getQueryManager().UpdateProducts(product, Integer.parseInt(output));
+            main.WinkelApplication.getQueryManager().UpdateVoorraad(product, Integer.parseInt(output));
             
             jtProducten.getModel().setValueAt(Integer.parseInt(output), jtProducten.getSelectedRow(), 3);
             
@@ -199,12 +199,12 @@ public class Voorraad extends javax.swing.JPanel {
         jtProducten = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jtZoekveld = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        jbWijzigVoorraad = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        jbBack = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -242,10 +242,10 @@ public class Voorraad extends javax.swing.JPanel {
 
         jLabel1.setText("Zoek Product");
 
-        jButton3.setText("Wijzig Vooraad");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jbWijzigVoorraad.setText("Wijzig Voorraad");
+        jbWijzigVoorraad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jbWijzigVoorraadActionPerformed(evt);
             }
         });
 
@@ -268,7 +268,7 @@ public class Voorraad extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton3)))
+                        .addComponent(jbWijzigVoorraad)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -282,7 +282,7 @@ public class Voorraad extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbWijzigVoorraad, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 23, Short.MAX_VALUE))
         );
 
@@ -322,16 +322,16 @@ public class Voorraad extends javax.swing.JPanel {
 
         jPanel3.setBackground(main.WinkelApplication.BACKGROUND);
 
-        jButton2.setFont(main.WinkelApplication.FONT_14_BOLD);
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/backButton.png"))); // NOI18N
-        jButton2.setText("Terug");
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setFocusPainted(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbBack.setFont(main.WinkelApplication.FONT_14_BOLD);
+        jbBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/backButton.png"))); // NOI18N
+        jbBack.setText("Terug");
+        jbBack.setBorderPainted(false);
+        jbBack.setContentAreaFilled(false);
+        jbBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbBack.setFocusPainted(false);
+        jbBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbBackActionPerformed(evt);
             }
         });
 
@@ -341,30 +341,28 @@ public class Voorraad extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(jButton2)
+                .addComponent(jbBack)
                 .addContainerGap(1208, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jButton2)
+                .addComponent(jbBack)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         add(jPanel3, java.awt.BorderLayout.PAGE_END);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jbBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBackActionPerformed
         main.WinkelApplication.getInstance().showPanel(new MainMenu());
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jbBackActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jbWijzigVoorraadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbWijzigVoorraadActionPerformed
         this.veranderVoorraad();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jbWijzigVoorraadActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
@@ -373,6 +371,8 @@ public class Voorraad extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbBack;
+    private javax.swing.JButton jbWijzigVoorraad;
     private javax.swing.JTable jtProducten;
     private javax.swing.JTextField jtZoekveld;
     // End of variables declaration//GEN-END:variables

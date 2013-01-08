@@ -19,7 +19,12 @@ public class QueryManager {
     public QueryManager(Dbmanager dbmanager) {
         this.dbmanager = dbmanager;
     }
-
+    /**
+     * Vraagt een cattegorienaam op op basis van de categorie Id
+     * @param categoryId
+     * @return <String> categorie naam
+     *
+     */
     public String getCategoryName(int categoryId) {
         String categoryName = "";
         try {
@@ -33,7 +38,10 @@ public class QueryManager {
         }
         return categoryName;
     }
-
+    /**
+     * Geeft alle cattegorieën uit de database terug
+     * @return Categoriën. 
+     */
     public List<Category> getCategories() {
         List<Category> categories = new ArrayList<Category>();
         try {
@@ -50,7 +58,12 @@ public class QueryManager {
         }
         return categories;
     }
-
+    
+    /**
+     * Voegt een product toe.
+     * @param product
+     * @return true als het gelukt is
+     */
     public boolean setProduct(Product product)
     {
         boolean success = false;
@@ -83,7 +96,12 @@ public class QueryManager {
         
         return success;
     }
-    
+    /**
+     * 
+     * Geeft het product terug dat overeen komt met het gegeven product id
+     * @param productId
+     * @return 
+     */
     public Product getProduct(int productId) {
         Product product = new Product();
         try {
@@ -121,9 +139,14 @@ public class QueryManager {
         return product;
     }
     
-    public void UpdateProducts(String productNaam, int vooraad){
+    /**
+     * Verandert de vooraad van het gegeven product.
+     * @param productNaam
+     * @param voorraad 
+     */
+    public void UpdateVoorraad(String productNaam, int voorraad){
         try{
-            String sql = "UPDATE product SET voorraad = '" + vooraad + "'"
+            String sql = "UPDATE product SET voorraad = '" + voorraad + "'"
                     + "WHERE naam = '"+productNaam+"'";
             dbmanager.insertQuery(sql);            
         }catch(Exception e){
@@ -131,6 +154,11 @@ public class QueryManager {
         }
     }
 
+    /**
+     * Geeft alle producten die horen bij een bepaalde categorie.
+     * @param categoryId
+     * @return een lijst met categorieën
+     */
     public List<Product> getProducts(int categoryId) {
         List<Product> products = new ArrayList<Product>();
         try {
@@ -168,6 +196,10 @@ public class QueryManager {
         return products;
     }
     
+    /**
+     *  
+     * @return Alle producten
+     */
     public List<Product> getAllProducts(){
                List<Product> products = new ArrayList<Product>();
         try {
@@ -206,9 +238,9 @@ public class QueryManager {
     }
     
     /**
-     * 
+     * Voegt een gebruiker toe aan de database
      * @param gebruiker
-     * @return boolean update/insert success
+     * @return True als het geslaagd is.
      */
     public boolean setGebruiker(Gebruiker gebruiker)
     {
@@ -248,6 +280,11 @@ public class QueryManager {
         return success;
     }
     
+    /**
+     * Vraag de gebruiker op die hoort bij het meegegeven klant id
+     * @param klantId
+     * @return Gebruiker
+     */
     public Gebruiker getGebruiker(int klantId)
     {
         Gebruiker gebruiker = new Gebruiker();
@@ -309,15 +346,18 @@ public class QueryManager {
         return gebruiker;
     }
     
-    
-    public List<Gebruiker> getKlantenList(){
-        List<Gebruiker> klanten = new ArrayList<Gebruiker>();
+    /**
+     * Geeft een lijst van alle gebruikers
+     * @return lijst gebruikers
+     */
+    public List<Gebruiker> getGebruikersList(){
+        List<Gebruiker> gebruikers = new ArrayList<Gebruiker>();
         
         try{
             String sql = "SELECT * FROM gebruiker WHERE `actief` = 1";
             ResultSet result = dbmanager.doQuery(sql);
             while(result.next()){
-                klanten.add(new Gebruiker(
+                gebruikers.add(new Gebruiker(
                     result.getInt("id"),
                     result.getInt("huisnummer"),
                     //result.getString("telefoonnummer"),
@@ -341,9 +381,18 @@ public class QueryManager {
         }catch(SQLException e){
             System.err.print(Dbmanager.SQL_EXCEPTION + e.getMessage());
         }
-        return klanten;
+        return gebruikers;
     }
- 
+    /**
+     * Plaatst een order. Krijgt als parameters de bestelling(en) en de klantgegevens.
+     * @param basket
+     * @param naam
+     * @param adres
+     * @param postcode
+     * @param woonplaats
+     * @param opmerking
+     * @param betaalmethode 
+     */
     public void setOrder(model.Basket basket, String naam, String adres, String postcode, String woonplaats, String opmerking, String betaalmethode) 
     {
         String SQL_order = "INSERT INTO `order` (naam, adres, postcode, woonplaats, notes, betaalmethode, datum)"
@@ -371,7 +420,13 @@ public class QueryManager {
             dbmanager.insertQuery(SQL_orderProduct);
         }
     }
-    /// kijkt of de login correct is
+    
+    /**
+     * Checkt of de inloggevens correct zijn.
+     * @param email
+     * @param wachtwoord
+     * @return true als de gegevens kloppen.
+     */
     public boolean isValidLogin(String email, String wachtwoord){
         String sql= "SELECT * FROM gebruiker WHERE `email` = '"+email+"'";
         ResultSet result = dbmanager.doQuery(sql);
@@ -390,7 +445,11 @@ public class QueryManager {
         
     }
     
-    // returnt de gebruikerId, aangezien je met je mail inlog
+    /**
+     * 
+     * @param email
+     * @return De gebruiker id die hoort bij het email adres
+     */
     public int getGebruikerId(String email){
         String sql= "SELECT * FROM gebruiker WHERE `email` = '"+email+"'";
         ResultSet result = dbmanager.doQuery(sql);

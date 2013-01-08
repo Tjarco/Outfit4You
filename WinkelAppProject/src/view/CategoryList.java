@@ -73,7 +73,7 @@ public class CategoryList extends JPanel implements MouseListener {
     }
 
     /**
-     * create the gui for this page
+     * Bouw het GUI op. 
      */
     private void initComponents() {
         System.out.println("initpanels");
@@ -90,7 +90,9 @@ public class CategoryList extends JPanel implements MouseListener {
         }
     }
 
-    //Initialiseerd de panels om de producten weer te kunnen geven
+    /**
+     * Initialiseerd de panels die de producten bevatten.
+     */
     private void initPanels() {
         //Maak de items panel aan
         this.items = new JPanel(new BorderLayout());
@@ -131,7 +133,7 @@ public class CategoryList extends JPanel implements MouseListener {
     }
 
     /**
-     * Voegt de categorieën toe aan de lijst *
+     * Voegt de categorieën toe aan de lijst 
      */
     private void addcategoryItems() {
         QueryManager queryManager = WinkelApplication.getQueryManager();

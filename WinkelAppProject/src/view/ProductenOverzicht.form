@@ -65,9 +65,9 @@
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jbWijzigCategorie" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jbToevoegenCategorie" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane2" alignment="0" min="-2" pref="560" max="-2" attributes="0"/>
                           </Group>
@@ -90,8 +90,8 @@
                       <Component id="jScrollPane2" min="-2" pref="252" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButton5" min="-2" pref="39" max="-2" attributes="0"/>
-                          <Component id="jButton4" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="jbWijzigCategorie" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="jbToevoegenCategorie" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="44" max="32767" attributes="0"/>
                   </Group>
@@ -127,20 +127,20 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jtZoekveldCat">
             </Component>
-            <Component class="javax.swing.JButton" name="jButton4">
+            <Component class="javax.swing.JButton" name="jbToevoegenCategorie">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Calibri" size="12" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Voeg een cattegorie toe"/>
+                <Property name="text" type="java.lang.String" value="Voeg een categorie toe"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbToevoegenCategorieActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton5">
+            <Component class="javax.swing.JButton" name="jbWijzigCategorie">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Wijzig een cattegorie"/>
+                <Property name="text" type="java.lang.String" value="Wijzig een categorie"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="jcCategoryVeld">
@@ -198,11 +198,11 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="buttonProductVerwijderen" min="-2" max="-2" attributes="0"/>
+                              <Component id="jbProductVerwijderen" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jbProductWijzigen" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jbProductToevoegen" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" alignment="1" pref="580" max="32767" attributes="0"/>
                       </Group>
@@ -224,9 +224,9 @@
                       <Component id="jScrollPane1" min="-2" pref="253" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton1" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                          <Component id="jButton3" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                          <Component id="buttonProductVerwijderen" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="jbProductToevoegen" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="jbProductWijzigen" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="jbProductVerwijderen" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="42" max="32767" attributes="0"/>
                   </Group>
@@ -262,7 +262,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jtZoekveld">
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="jbProductToevoegen">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Calibri" size="12" style="0"/>
@@ -270,10 +270,10 @@
                 <Property name="text" type="java.lang.String" value="Voeg een product toe"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbProductToevoegenActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton3">
+            <Component class="javax.swing.JButton" name="jbProductWijzigen">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Wijzig een product"/>
               </Properties>
@@ -295,12 +295,12 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="buttonProductVerwijderen">
+            <Component class="javax.swing.JButton" name="jbProductVerwijderen">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Verwijderen"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonProductVerwijderenMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbProductVerwijderenMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
@@ -373,7 +373,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbBack" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="1208" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -382,14 +382,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbBack" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="jbBack">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="main.WinkelApplication.FONT_14_BOLD" type="code"/>
@@ -406,7 +406,7 @@
             <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbBackActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
