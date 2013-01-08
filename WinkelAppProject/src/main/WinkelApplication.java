@@ -42,7 +42,7 @@ public final class WinkelApplication {
     /** models used in the application */
     private model.Basket basket;
     //** klant */
-    private model.Gebruiker klant;
+    private model.Gebruiker gebruiker;
     /** the main window */
     private JFrame mainWindow;
     /** singleton of the application */
@@ -134,8 +134,8 @@ public final class WinkelApplication {
      * 
      * @return the Gebruiker
      */
-   public static Gebruiker getKlant(){
-       return getInstance().klant;
+   public static Gebruiker getGebruiker(){
+       return getInstance().gebruiker;
    }
 
     /**

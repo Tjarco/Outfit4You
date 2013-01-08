@@ -199,7 +199,6 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
     private void addForm() {
         List<Product> products = WinkelApplication.getBasket().getProducts();
         
-        if(Session.getGebruiker()==null){
         lblFormTitle = new JLabel("Verzendgegevens");
         lblFormTitle.setBounds(20, verticalPosition + products.size() * productOffset + (formOffset * 2), 150, 20);
         lblFormTitle.setFont(WinkelApplication.FONT_14_BOLD);
@@ -213,7 +212,12 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         tfNaam = new JTextField();
         tfNaam.setBounds(120, verticalPosition + products.size() * productOffset + (formOffset * 3), 130, 20);
         tfNaam.setFont(WinkelApplication.FONT_12_BOLD);
-        tfNaam.setText(WinkelApplication.getKlant().getVoornaam());
+        tfNaam.setText("");
+        if(Session.getGebruiker() != null)
+        {
+            System.out.println("gebruiker ingelogd: set naam etc.");
+            tfNaam.setText(Session.getGebruiker().getVoornaam() + " " + Session.getGebruiker().getTussenvoegsel() + " " + Session.getGebruiker().getAchternaam());
+        }
         tfNaam.getDocument().addDocumentListener(new ValidateListener());
         content.add(tfNaam);
 
@@ -225,7 +229,11 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         tfPostcode = new JTextField();
         tfPostcode.setBounds(420, verticalPosition + products.size() * productOffset + (formOffset * 3), 130, 20);
         tfPostcode.setFont(WinkelApplication.FONT_12_BOLD);
-        tfPostcode.setText(WinkelApplication.getKlant().getPostcode());
+        tfPostcode.setText("");
+        if(Session.getGebruiker() != null)
+        {
+            tfPostcode.setText(Session.getGebruiker().getPostcode());
+        }
         tfPostcode.getDocument().addDocumentListener(new ValidateListener());
         content.add(tfPostcode);
 
@@ -237,7 +245,11 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         tfAddress = new JTextField();
         tfAddress.setBounds(120, verticalPosition + products.size() * productOffset + (formOffset * 4), 130, 20);
         tfAddress.setFont(WinkelApplication.FONT_12_BOLD);
-        tfAddress.setText(WinkelApplication.getKlant().getStraatnaam());
+        tfAddress.setText("");
+        if(Session.getGebruiker() != null)
+        {
+            tfAddress.setText(Session.getGebruiker().getStraatnaam() + " " + Session.getGebruiker().getHuisnummer());
+        }
         tfAddress.getDocument().addDocumentListener(new ValidateListener());
         content.add(tfAddress);
 
@@ -249,11 +261,14 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         tfWoonplaats = new JTextField();
         tfWoonplaats.setBounds(420, verticalPosition + products.size() * productOffset + (formOffset * 4), 130, 20);
         tfWoonplaats.setFont(WinkelApplication.FONT_12_BOLD);
-        tfWoonplaats.setText(WinkelApplication.getKlant().getWoonplaats());
-        tfWoonplaats.getDocument().addDocumentListener(new ValidateListener());
-        content.add(tfWoonplaats);  
-        
+        tfWoonplaats.setText("");
+        if(Session.getGebruiker() != null)
+        {
+            tfWoonplaats.setText(Session.getGebruiker().getWoonplaats());
         }
+
+        tfWoonplaats.getDocument().addDocumentListener(new ValidateListener());
+        content.add(tfWoonplaats);
 
         JLabel lblPayMethod = new JLabel("Betaalmethode:");
         lblPayMethod.setBounds(20, verticalPosition + products.size() * productOffset + (formOffset * 5), 100, 20);
