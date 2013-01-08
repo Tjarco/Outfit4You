@@ -22,26 +22,57 @@ import model.Gebruiker;
  * Een klasse die het overzicht geeft van alle klanten in de database. Er kunnen vanaf hier nieuwe 
  * klanten worden toegevoegd. Ook kunenn klanten gewijzigd worden.
  */
+
+/**
+ * @version 1.1
+ * @author Bono
+ * 
+ * Klanten verwijderen toegevoegd
+ * updateTable() method toegevoegd om sneller data toe te voegen/verversen
+ */
 public class KlantenOverzicht extends javax.swing.JPanel {
 
     /**
      * Maakt het form aan en zet de data in de tabel
      */
-    public KlantenOverzicht() {
+    public KlantenOverzicht() 
+    {
         initComponents();
-        List<Gebruiker> klanten = WinkelApplication.getQueryManager().getKlantenList();
-        DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
-        for (Gebruiker klant : klanten) {
-            model.addRow(new Object[]{new Integer(klant.getId()),
-                        klant.getVoornaam(),
-                        klant.getStraatnaam(),
-                        klant.getPostcode(),
-                        klant.getWoonplaats()});
-        }
 
+        updateTable(false);
+        
         jtZoekveld.getDocument().addDocumentListener(new ZoekListener());
         jtZoekveld.addKeyListener(new SnelToetsListener());
     }
+    
+    /**
+     * @version 1.0
+     * @author Bono
+     * @param refresh Specificeer of de tabel leeg gemaakt moet worden voordat er nieuwe data in komt.
+     * 
+     * <p>Gebruik deze methode om JTable te verversen met nieuwe data.<p>
+     */
+    private void updateTable(boolean refresh)
+    {        
+        List<Gebruiker> klanten = WinkelApplication.getQueryManager().getKlantenList();
+        DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
+        
+        //Tabel leeg maken
+        if(refresh)
+        {
+            model.setRowCount(0);
+        }
+        
+        for (Gebruiker klant : klanten) 
+        {
+            model.addRow(new Object[]{new Integer(klant.getId()),
+            klant.getVoornaam(),
+            klant.getStraatnaam(),
+            klant.getPostcode(),
+            klant.getWoonplaats()});
+        }
+    }
+    
     /**
      * De listener voor sneltoetsen.
      * Er kan tijdens het typen in het zoekveld met de toetsen naar boven en beneden een rij geselecteerd worden
@@ -393,6 +424,9 @@ public class KlantenOverzicht extends javax.swing.JPanel {
         {
             JOptionPane.showMessageDialog(null, "Er is een fout opgetreden\nDe gebruiker is niet verwijderd\nNeem contact op met uw systeem administrator voor meer informatie", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
+        //refresh jtable
+        this.updateTable(true);
     }//GEN-LAST:event_buttonVerwijderenGebruikerMouseClicked
     
     //Toevoegen van Medewerker

@@ -40,13 +40,9 @@ public class CategoryList extends JPanel implements MouseListener {
 
     public CategoryList() 
     {
-        
         super();
-        System.out.println("construct");
         setLayout(new BorderLayout());
-        System.out.println("layout set");
         initComponents();
-        System.out.println("components initialized");
         this.setBackground(Color.white);
         this.setOpaque(true);
     }
@@ -82,15 +78,10 @@ public class CategoryList extends JPanel implements MouseListener {
     private void initComponents() 
     {
         initPanels();
-        System.out.println("panels init");
         addInlog();
-        System.out.println("inlog added");
         addcategoryItems();
-        System.out.println("cat items added");
         addBasket(); 
-        System.out.println("basket added");
         addBackButton();
-        System.out.println("back added");
     }
     
     //Initialiseerd de panels om de producten weer te kunnen geven
@@ -237,9 +228,7 @@ public class CategoryList extends JPanel implements MouseListener {
     private void addInlog()
     {
         InloggenDisplay logIn = new InloggenDisplay();
-        System.out.println("new display");
         this.add(logIn, BorderLayout.NORTH);
-        System.out.println("add");
     }
     
     /**

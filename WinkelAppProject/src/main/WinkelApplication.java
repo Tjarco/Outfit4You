@@ -56,24 +56,32 @@ public final class WinkelApplication {
 
     public void initialize() {
         try {
+            System.out.println("setting look and feel...");
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
             System.err.println("Error setting LookAndFeelClassName: " + e);
         }
         // create and initialize the connectivity
+        System.out.println("Creating new DB manager...");
         dbManager = new Dbmanager();
+        System.out.println("Opening connection to DB...");
         dbManager.openConnection();
+        System.out.println("Creating new query manager...");
         queryManager = new QueryManager(dbManager);
 
         // create an empty basket
+        System.out.println("Creating basket...");
         basket = new model.Basket();
     }
 
     public void startup() {
+        System.out.println("Creating main window...");
         mainWindow = new JFrame(NAME);
        // Zet het scherm fullScreen
+        System.out.println("Maximizing window...");
         mainWindow.setExtendedState(Frame.MAXIMIZED_BOTH);
-        klant = this.queryManager.getGebruiker(1);
+
+        System.out.println("Adding listeners to window...");
         /** Make the window closing [x] button on the frame active */
         mainWindow.addWindowListener(new WindowAdapter() 
         {
@@ -84,14 +92,12 @@ public final class WinkelApplication {
             }
         });
         
+        System.out.println("Setting layout...");
         mainWindow.getContentPane().setLayout(new BorderLayout());
-        System.out.println("layout set");
+        System.out.println("creating new category list...");
         showPanel(new view.CategoryList());
-        System.out.println("panel shown");
+        System.out.println("Showing main window...");
         mainWindow.setVisible(true);
-        System.out.println("set to visibru");
-        System.out.println("Start up finished");
-        System.out.println("-----------------------------");
     }
 
     public void showPanel(JPanel panel) {
@@ -147,14 +153,21 @@ public final class WinkelApplication {
 }
 
     public static void main(String args[]) {
+        System.out.println("Starting main...");
         final WinkelApplication applicatie = WinkelApplication.getInstance();
         SwingUtilities.invokeLater(new Runnable() {
 
             @Override
             public void run() {
                 try {
+                    System.out.println("Initializing application...");
                     applicatie.initialize();
+                    System.out.println("Application initialized");
+                    System.out.println("-----------------------");
+                    System.out.println("Starting up application...");
                     applicatie.startup();
+                    System.out.println("Application started");
+                    System.out.println("-----------------------");
                 } catch (Exception e) {
                     System.out.println("Application" + applicatie.getClass().getName() + "failed to launch");
                     

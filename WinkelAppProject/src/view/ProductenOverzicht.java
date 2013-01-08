@@ -18,6 +18,14 @@ import model.Product;
  *
  * @author Tjarco
  */
+
+/**
+ * @version 1.1
+ * @author Bono
+ * 
+ * Producten verwijderen toegevoegd
+ * updateTable() method toegevoegd om sneller data toe te voegen/verversen
+ */
 public class ProductenOverzicht extends javax.swing.JPanel {
 
     /**
@@ -25,7 +33,7 @@ public class ProductenOverzicht extends javax.swing.JPanel {
      */
     public ProductenOverzicht() {
         initComponents();
-        addData();
+        updateTable(true, true, false, false);
 
         jtZoekveld.getDocument().addDocumentListener(new ZoekListener());
         jtZoekveld.addKeyListener(new SnelToetsListener());
@@ -37,39 +45,68 @@ public class ProductenOverzicht extends javax.swing.JPanel {
 
     }
 
-    /*
-     * Voegt de data uit de database toe aan de tabellen
+     /**
+     * @version 1.0
+     * @author Bono
+     * 
+     * @param doProduct Specificeer of de producten tabel ververst moet worden
+     * @param doCategorie Specificeer of de categorie tabel ververst moet worden
+     * @param refreshProduct Specificeer of de product tabel leeggehaald moet worden
+     * @param refreshCategorie Specifiveer of de categorie tabel leeggehaald moet worden
+     * 
+     * <p>Gebruik deze methode om JTable te verversen met nieuwe data.<p>
      */
-    private void addData() {
-        List<Product> products = main.WinkelApplication.getQueryManager().getAllProducts();
+    private void updateTable(boolean doProduct, boolean doCategorie, boolean refreshProduct, boolean refreshCategorie) 
+    {
+        //Producten
+        if(doProduct)
+        {
+            List<Product> products = main.WinkelApplication.getQueryManager().getAllProducts();
 
-        //Maakt een tabelModel aan om de data te beheren
-        DefaultTableModel data = (DefaultTableModel) jtProducten.getModel();
-        for (Product p : products) {
-            data.addRow(new Object[]{
-                        new Integer(p.getProduct_id()),
-                        p.getNaam(),
-                        p.getOmschrijving(),
-                        p.getIs_actief()
-                    });
+            //Maakt een tabelModel aan om de data te beheren
+            DefaultTableModel productModel = (DefaultTableModel) jtProducten.getModel();
+
+            if(refreshProduct)
+            {
+                productModel.setRowCount(0);
+            }
+
+            for (Product p : products) 
+            {
+                productModel.addRow(new Object[]{
+                    
+                    new Integer(p.getProduct_id()),
+                    p.getNaam(),
+                    p.getOmschrijving(),
+                    p.getIs_actief()
+                        
+                });
+            }
         }
-        
-       System.out.println( products.get(1).getNaam());
 
-        List<model.Category> categorys = main.WinkelApplication.getQueryManager().getCategories();
+        //Categorie
+        if(doCategorie)
+        {
+            List<model.Category> categorys = main.WinkelApplication.getQueryManager().getCategories();
 
-        //Maakt een tabel model aan om de data te beheren
-        DefaultTableModel dataCat = (DefaultTableModel) jtCategorie.getModel();
-        for (model.Category c : categorys) {
-            dataCat.addRow(new Object[]{
-                        new Integer(c.getCategoryId()),
-                        c.getName(),
-                        c.getDescription()
-                    });
+            //Maakt een tabel model aan om de data te beheren
+            DefaultTableModel catModel = (DefaultTableModel) jtCategorie.getModel();
 
+            if(refreshCategorie)
+            {
+                catModel.setRowCount(0);
+            }
+
+            for (model.Category c : categorys) 
+            {
+                catModel.addRow(new Object[]
+                {
+                    new Integer(c.getCategoryId()),
+                    c.getName(),
+                    c.getDescription()
+                });
+            }
         }
-
-
     }
 
     /**
@@ -558,17 +595,27 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         
         //Verwijderen product (actief = false)
         Product product = WinkelApplication.getQueryManager().getProduct(id);
-        product.setIs_actief(false);
+        if(product.getIs_actief())
+        {
+            product.setIs_actief(false);
+            
+            //feedback window voor gebruiker
+            if(WinkelApplication.getQueryManager().setProduct(product))
+            {
+                JOptionPane.showMessageDialog(null, "Het product is verwijderd", "Succes", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Er is een fout opgetreden\nHet product is niet verwijderd\nNeem contact op met uw systeem administrator voor meer informatie", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else //Product is al verwijderd (inactief)
+        {
+            JOptionPane.showMessageDialog(null, "Dit product is al inacief", "Error", JOptionPane.ERROR_MESSAGE);
+        }
         
-        //feedback window voor gebruiker
-        if(WinkelApplication.getQueryManager().setProduct(product))
-        {
-            JOptionPane.showMessageDialog(null, "Het product is verwijderd", "Succes", JOptionPane.INFORMATION_MESSAGE);
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Er is een fout opgetreden\nHet product is niet verwijderd\nNeem contact op met uw systeem administrator voor meer informatie", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        //refresh jtable
+        updateTable(true, false, true, false);
     }//GEN-LAST:event_buttonProductVerwijderenMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
