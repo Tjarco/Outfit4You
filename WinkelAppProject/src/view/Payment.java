@@ -199,7 +199,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
     private void addForm() {
         List<Product> products = WinkelApplication.getBasket().getProducts();
         
-        if(Session.getKlant()==null){
+        if(Session.getGebruiker()==null){
         lblFormTitle = new JLabel("Verzendgegevens");
         lblFormTitle.setBounds(20, verticalPosition + products.size() * productOffset + (formOffset * 2), 150, 20);
         lblFormTitle.setFont(WinkelApplication.FONT_14_BOLD);

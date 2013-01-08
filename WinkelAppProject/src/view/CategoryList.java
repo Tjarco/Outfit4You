@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import main.WinkelApplication;
 import model.Category;
 import model.Product;
+import model.Session;
 
 /**
  * @version 1.0
@@ -22,6 +23,11 @@ import model.Product;
  * @author Tjarco
  * 
  * De klasse die een overzicht geeft van de categorieën en producten.
+ * 
+ * @version 2.1
+ * @author Bono
+ * 
+ * Alleen terug knop toevoegen als er een medewerker/manager is ingelogd
  */
 
 public class CategoryList extends JPanel implements MouseListener {
@@ -69,19 +75,24 @@ public class CategoryList extends JPanel implements MouseListener {
         public void mouseExited(MouseEvent e) {
            // do nothing
         }
-
-   
-    
     }
 
     /** create the gui for this page */
     private void initComponents() 
     {
+        System.out.println("initpanels");
         initPanels();
+        System.out.println("adding inlog");
         addInlog();
+        System.out.println("adding cat items");
         addcategoryItems();
+        System.out.println("adding basket");
         addBasket(); 
-        addBackButton();
+        System.out.println("adding back button");
+        if((Session.getGebruiker() != null) && (Session.getGebruiker().isManager() || Session.getGebruiker().isMedewerker()))
+        {
+            addBackButton();
+        }
     }
     
     //Initialiseerd de panels om de producten weer te kunnen geven

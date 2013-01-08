@@ -100,7 +100,7 @@ public class BasketDisplay extends JPanel implements ActionListener, Observer {
     @Override
     public void actionPerformed(ActionEvent event) {
         // als gebruiker is ingelogd: new payment, anders inloggenRegistreren
-        if (Session.getIngelogd()){
+        if (Session.getGebruiker().isActief()){ //Hoeft helemaal niet ingelogd te zijn
             WinkelApplication.getInstance().showPanel(new Payment());
         }
         else {

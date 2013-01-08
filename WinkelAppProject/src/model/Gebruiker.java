@@ -8,6 +8,13 @@ package model;
  *
  * @author Tjarco
  */
+
+/**
+ * @author Bono
+ * @version 1.2
+ * 
+ * Gehele klasse geresiveerd met meer methodes en overzichtelijker opgesteld
+ */
 public class Gebruiker {
     private int id;
     private int huisnummer;

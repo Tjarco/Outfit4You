@@ -7,12 +7,18 @@ package model;
  * 
  * De klasse die de actieve sessie bijhoudt. 
  */
+
+/**
+ * @author Bono
+ * @version 1.1
+ * 
+ * Klant vervangen voor gebruiker
+ * Niet nuttige methodes weggehaald
+ */
 public class Session {
     static private Gebruiker gebruiker = null;
-    static private boolean isIngelogd;
-    static private int ingelogdeKlantId=0;
     
-    public static Gebruiker getKlant(){
+    public static Gebruiker getGebruiker(){
         return gebruiker;
     }
     
@@ -22,17 +28,5 @@ public class Session {
     
     public static void stopSession(){
         gebruiker = null;
-    }
-    public static void setIngelogd(boolean isIngelogd){
-        Session.isIngelogd = isIngelogd;
-    }
-    public static boolean getIngelogd(){
-        return isIngelogd;
-    }
-    public static void setIngelogdeGebruiker(int klantId){
-        ingelogdeKlantId=klantId;
-    }
-    public static int getIngelogdeGebruiker(){
-        return ingelogdeKlantId;
     }
 }

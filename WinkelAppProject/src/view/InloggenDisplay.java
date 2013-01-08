@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BoxLayout;
@@ -50,11 +52,10 @@ public class InloggenDisplay extends JPanel {
     
     //Zet de componenten op de panel, als de gebruiker als is ingelogd kan hij/zij zijn/haar profiel bekijken of
     //uitloggen.
-    public InloggenDisplay(){
-        
-       
-        gebruiker = Session.getKlant();
-        
+    public InloggenDisplay()
+    {
+        System.out.println("getting user");
+        this.gebruiker = Session.getGebruiker();
         
         this.setLayout(new GridBagLayout());
         this.setBackground(WinkelApplication.BACKGROUND);
@@ -65,21 +66,30 @@ public class InloggenDisplay extends JPanel {
         gbc.weightx = 1d;
         labels = new Font("Arial", Font.BOLD, 16);
             
+        System.out.println("adding title");
         addTitle();
+        
         gbc.anchor = GridBagConstraints.LINE_END;
-            addProfiel();
+        
+        System.out.println("adding profile");
+        addProfiel();
+        System.out.println("in uitlog label");
         addInUitLoglabel();
-        if(gebruiker!=null){
-        addIngelogdAls();
+        
+        System.out.println("checking if ingelogd");
+        if(gebruiker != null && gebruiker.getId() > 0)
+        {
+            addIngelogdAls();
         }
-            profiel.setVisible(Session.getIngelogd());
+        
+        profiel.setVisible(Session.getGebruiker() == null ? false : true);
         this.setVisible(true);
         
     }
     
     // inlog label en uitlog label
     private void addInUitLoglabel(){
-        InUitlogLabel =new JLabel();
+        InUitlogLabel = new JLabel();
         InUitlogLabel.setFont(labels);
         InUitlogLabel.setForeground(foreground);
         InUitlogLabel.addMouseListener(new ClickListener());
@@ -88,13 +98,15 @@ public class InloggenDisplay extends JPanel {
         gbc.gridx=3;
         gbc.gridy=0;
         
-        if (Session.getIngelogd()==true){
+        if (Session.getGebruiker() != null && Session.getGebruiker().getId() > 0)
+        {
             InUitlogLabel.setText("Uitloggen");
         }
-        else if (Session.getIngelogd()==false){InUitlogLabel.setText("Inloggen");}
+        else
+        {
+            InUitlogLabel.setText("Inloggen");
+        }
                 
-        
-        
         add(InUitlogLabel, gbc);
         
     }
@@ -119,7 +131,7 @@ public class InloggenDisplay extends JPanel {
         gbc.insets = new Insets(15,15,15,15);
         gbc.gridx =2;
         gbc.gridy =0;
-        lIngelogdAls.setVisible(Session.getIngelogd());
+        lIngelogdAls.setVisible(Session.getGebruiker().isActief());
         add(lIngelogdAls, gbc);
     }
     
@@ -147,14 +159,15 @@ public class InloggenDisplay extends JPanel {
            if(e.getSource().equals(profiel)){
                 main.WinkelApplication.getInstance().showPanel(new KlantGegevens());
            }
-           else if (e.getSource().equals(InUitlogLabel)){
-               if (Session.getIngelogd()==true){
-                
+           else if (e.getSource().equals(InUitlogLabel))
+           {
+               if (Session.getGebruiker() != null && Session.getGebruiker().getId() > 0)
+               {
                    //main.WinkelApplication.getInstance().showPanel(new MainMenu());
-                Session.setIngelogd(false);
-                InUitlogLabel.setText("Inloggen");
-                profiel.setVisible(false);
-                main.WinkelApplication.getInstance().showPanel(new CategoryList());
+                   Session.stopSession();
+                   InUitlogLabel.setText("Inloggen");
+                   profiel.setVisible(false);
+                   main.WinkelApplication.getInstance().showPanel(new CategoryList());
                }
                else {
                 main.WinkelApplication.getInstance().showPanel(new InloggenRegistreren());

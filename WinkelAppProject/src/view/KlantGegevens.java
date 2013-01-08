@@ -52,7 +52,7 @@ boolean isValid=true;
      * Creates new form MainMenu
      */
     public KlantGegevens() {
-        gebruiker=WinkelApplication.getQueryManager().getGebruiker(Session.getIngelogdeGebruiker());
+        gebruiker = Session.getGebruiker();
         initComponents();
         addInlog();
         addBasket();
