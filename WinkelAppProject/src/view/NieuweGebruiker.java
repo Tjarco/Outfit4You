@@ -7,6 +7,7 @@ package view;
 import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -16,15 +17,13 @@ import model.Gebruiker;
 
 /**
  * @version 1.1
- * @author Kevin
- * Medewerker toevoegen
- * 
+ * @author Kevin Medewerker toevoegen
+ *
  * @version 1.0
- * @author Tjarco 
- * De klasse met de velden om een nieuwe klant toe te voegen. Deze klasse kan
- * vanaf meerdere klasse gebruikt worden, daarom moet als parameter worden
- * meegegeven wat de source is, zodat kan worden teruggekeerd naar het juiste
- * menu na het registreren.
+ * @author Tjarco De klasse met de velden om een nieuwe klant toe te voegen.
+ * Deze klasse kan vanaf meerdere klasse gebruikt worden, daarom moet als
+ * parameter worden meegegeven wat de source is, zodat kan worden teruggekeerd
+ * naar het juiste menu na het registreren.
  */
 public class NieuweGebruiker extends JPanel {
 
@@ -69,7 +68,7 @@ public class NieuweGebruiker extends JPanel {
         Boolean isValid = true;
         String format = "[\\d]{4}+[A-Z]{2}";
 
-        if (!validatie.matches(format) || validatie.length() == 0) {
+        if (!validatie.matches(format)) {
             tfPostcode.setBackground(Color.red);
             isValid = false;
         } else {
@@ -82,7 +81,7 @@ public class NieuweGebruiker extends JPanel {
         Boolean isValid = true;
         String format = "([\\d]+)+([- \\s]?)+([\\d]+)";
 
-        if (!validatie.matches(format) || validatie.length() == 0 || validatie.length() > 13) {
+        if (!validatie.matches(format) || validatie.length() > 13) {
             tfTelefoon.setBackground(Color.red);
             isValid = false;
         } else {
@@ -94,7 +93,7 @@ public class NieuweGebruiker extends JPanel {
     private Boolean validateNaam(String validatie) {
         Boolean isValid = true;
         String format = "[a-zA-Z . \\s]+";
-        if (validatie.length() > 49 || validatie.length() == 0 || !validatie.matches(format)) {
+        if (validatie.length() > 49 || !validatie.matches(format)) {
             tfNaam.setBackground(Color.red);
             isValid = false;
         } else {
@@ -472,9 +471,9 @@ public class NieuweGebruiker extends JPanel {
                 && validateEmail(tfEmail.getText()) && validateWachtwoord(tfWachtwoord.getPassword())
                 && validateWachtwoordHerhaling(tfWachtwoordHerhaal.getPassword())) {
 
-            
-        
-        Gebruiker g = new Gebruiker();
+
+
+            Gebruiker g = new Gebruiker();
             g.setVoornaam(tfNaam.getText());
             g.setTussenvoegsel(tfTussenvoegsel.getText());
             g.setAchternaam(tfAchternaam.getText());
@@ -485,28 +484,28 @@ public class NieuweGebruiker extends JPanel {
             //g.setTelefoonnummer(tfTelefoon.getText());
             g.setEmail(tfEmail.getText());
             String wachtwoord = "";
-            for(int i = 0; i <=tfWachtwoord.getPassword().length-1; i++){
+            for (int i = 0; i <= tfWachtwoord.getPassword().length - 1; i++) {
                 wachtwoord += tfWachtwoord.getPassword()[i];
             }
             g.setWachtwoord(wachtwoord);
-            
-            
+
+
             g.setDatum_aangemaakt(WinkelApplication.getCurrentTimeStamp());
             g.setDatum_gewijzigd(WinkelApplication.getCurrentTimeStamp());
             g.setDatum_laatst_ingelogd(WinkelApplication.getCurrentTimeStamp());
-            
-            if(source == NieuweGebruiker.KLANTEN_OVERZICHT_MEDEWERKER){
+
+            if (source == NieuweGebruiker.KLANTEN_OVERZICHT_MEDEWERKER) {
                 System.out.println("test");
                 g.setMedewerker(true);
             }
-            
+
             g.setActief(true);
             //g.setisManager(0);
             //g.setId();
-            
-            
+
+
             main.WinkelApplication.getQueryManager().setGebruiker(g);
-            
+
             //Keert terug naar het klantenoverzicht als deze klasse vanaf het klantenoverzicht is aangeroepen
             //Als deze klasse vanaf registreren is aangeroepen wordt er terug gekeerd naar de categorielijst.
             //Tevens wordt er een sessie gestart voor de net geregistreerde klant.
@@ -515,6 +514,42 @@ public class NieuweGebruiker extends JPanel {
             } else if (source == NieuweGebruiker.REGISTREREN) {
                 main.WinkelApplication.getInstance().showPanel(new CategoryList());
             }
+        } else {
+            //Toon de dingen die fout zijn:
+            String message = "<html><h3>De volgende dingen zijn niet correct ingevuld:</h3> ";
+            if (!this.validateNaam(tfNaam.getText())) {
+                message += "<br/>Naam: De naam is te lang of bevat ongebruikelijke tekens.<br/>";
+            }
+            if (!this.validateAchternaam(tfAchternaam.getText())) {
+                message += "<br/>Achternaam: De achternaam is te lang of bevat ongebruikelijke tekens.<br/>";
+            }
+            if (!this.validateStraat(tfStraat.getText())){
+                message += "<br/>Straat: De straatnaam is te lang of bevat ongebruikelijke tekens.<br/>";
+            }
+            if (!this.validateHuisnummer(tfHuisnummer.getText())){
+                message += "<br/>Huisnummer: Het huisnummer is te lang of <u>begint</u> met een letter.<br/>";
+            }
+            if (!this.validateWoonplaats(tfWoonplaats.getText())){
+                message += "<br/>Woonplaats: De naam is te lang of bevat ongebruikelijke tekens<br/>";
+            }
+            if (!this.validatePostcode(tfPostcode.getText())){
+                message += "<br/>Postcode: de postcode moet in de volgende vorm gegeven worden: '1000AA'<br/> ";
+            }
+            if (!this.validateTelefoon(tfTelefoon.getText())){
+                message += "<Br/>Telefoon: Het telefoonnummer is te lang of bevat ongebruikelijke tekens <br/>";
+            }
+            if (!this.validateEmail(tfEmail.getText())){
+                message +="<br/>Email: Het emailadres kan in de volgende vormen gegeven worden:<br/>"
+                        + " 'iemand@host.nl', 'ik.naam.achternaam@host.com'<br/>";
+            }
+            if (!this.validateWachtwoordHerhaling(tfWachtwoord.getPassword())){
+                message +="<br/>Wachtwoord: de wachtwoorden komen niet overeen";
+            }
+            
+
+            message += "</html>";
+            JOptionPane.showMessageDialog(this, message);
+
         }
     }//GEN-LAST:event_jbVoegToeActionPerformed
 
@@ -524,12 +559,12 @@ public class NieuweGebruiker extends JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-           
-        if(source == NieuweGebruiker.KLANTEN_OVERZICHT || source == NieuweGebruiker.KLANTEN_OVERZICHT_MEDEWERKER){
+
+        if (source == NieuweGebruiker.KLANTEN_OVERZICHT || source == NieuweGebruiker.KLANTEN_OVERZICHT_MEDEWERKER) {
             main.WinkelApplication.getInstance().showPanel(new GebruikerOverzicht());
-         } else if(source == NieuweGebruiker.REGISTREREN){
-             main.WinkelApplication.getInstance().showPanel(new CategoryList());
-         }
+        } else if (source == NieuweGebruiker.REGISTREREN) {
+            main.WinkelApplication.getInstance().showPanel(new CategoryList());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

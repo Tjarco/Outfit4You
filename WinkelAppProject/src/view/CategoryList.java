@@ -1,4 +1,3 @@
-
 package view;
 
 import connectivity.QueryManager;
@@ -18,43 +17,39 @@ import model.Session;
 /**
  * @version 1.0
  * @author Administrator
- * 
+ *
  * @version 2.0
  * @author Tjarco
- * 
+ *
  * De klasse die een overzicht geeft van de categorieën en producten.
- * 
+ *
  * @version 2.1
  * @author Bono
- * 
+ *
  * Alleen terug knop toevoegen als er een medewerker/manager is ingelogd
  */
-
 public class CategoryList extends JPanel implements MouseListener {
+
     private JButton jbTerug;
-    
     //Het panel voor de items, d.w.z catetorieën en producten
     private JPanel items;
-    
     //Het panel voor de productdetails
     private JPanel productDetails;
-    
     //Het product dat de 'focus' heeft
     private Product currentProduct;
-    
 
-
-    public CategoryList() 
-    {
+    public CategoryList() {
         super();
         setLayout(new BorderLayout());
         initComponents();
         this.setBackground(Color.white);
         this.setOpaque(true);
     }
-    
-    /** The listener For the back Button */
-    private class BackButtonListener implements MouseListener{
+
+    /**
+     * The listener For the back Button
+     */
+    private class BackButtonListener implements MouseListener {
 
         public void mouseClicked(MouseEvent e) {
             WinkelApplication.getInstance().showPanel(new MainMenu());
@@ -69,17 +64,18 @@ public class CategoryList extends JPanel implements MouseListener {
         }
 
         public void mouseEntered(MouseEvent e) {
-           // do nothing
+            // do nothing
         }
 
         public void mouseExited(MouseEvent e) {
-           // do nothing
+            // do nothing
         }
     }
 
-    /** create the gui for this page */
-    private void initComponents() 
-    {
+    /**
+     * create the gui for this page
+     */
+    private void initComponents() {
         System.out.println("initpanels");
         initPanels();
         System.out.println("adding inlog");
@@ -87,41 +83,40 @@ public class CategoryList extends JPanel implements MouseListener {
         System.out.println("adding cat items");
         addcategoryItems();
         System.out.println("adding basket");
-        addBasket(); 
+        addBasket();
         System.out.println("adding back button");
-        if((Session.getGebruiker() != null) && (Session.getGebruiker().isManager() || Session.getGebruiker().isMedewerker()))
-        {
+        if ((Session.getGebruiker() != null) && (Session.getGebruiker().isManager() || Session.getGebruiker().isMedewerker())) {
             addBackButton();
         }
     }
-    
+
     //Initialiseerd de panels om de producten weer te kunnen geven
-    private void initPanels(){
+    private void initPanels() {
         //Maak de items panel aan
         this.items = new JPanel(new BorderLayout());
         add(items, BorderLayout.LINE_START);
-                
+
         //Maak de productdetails panel aan    
         productDetails = new JPanel(new GridBagLayout());
         productDetails.setBackground(Color.white);
-        productDetails.setOpaque(true);                
+        productDetails.setOpaque(true);
         this.add(productDetails, BorderLayout.CENTER);
     }
 
-   /**
-    * Voegt de back button om naar het hoofdmenu te gaan. 
-    * (Alleen voor de medewerkers)
-    * 
-    */
-    private void addBackButton(){
+    /**
+     * Voegt de back button om naar het hoofdmenu te gaan. (Alleen voor de
+     * medewerkers)
+     *
+     */
+    private void addBackButton() {
         JPanel down = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        
+
         //de dimensie van de panel (de breedte is nul, want deze wordt door de borderlayout bepaald)
-        down.setPreferredSize(new Dimension(0,70));
+        down.setPreferredSize(new Dimension(0, 70));
         down.setBackground(WinkelApplication.BACKGROUND);
         down.setOpaque(true);
-        
-        
+
+
         jbTerug = new JButton("Terug");
         jbTerug.setFont(new Font("Calibri", Font.PLAIN, 18));
         jbTerug.setIcon(new ImageIcon(getClass().getResource("/pictures/backButton.png")));
@@ -129,31 +124,31 @@ public class CategoryList extends JPanel implements MouseListener {
         jbTerug.setBorderPainted(false);
         jbTerug.setFocusPainted(false);
         jbTerug.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jbTerug.addMouseListener(new BackButtonListener());       
-        down.add(jbTerug);        
-        
+        jbTerug.addMouseListener(new BackButtonListener());
+        down.add(jbTerug);
+
         add(down, BorderLayout.PAGE_END);
     }
 
     /**
-     * Voegt de categorieën toe aan de lijst     *      
+     * Voegt de categorieën toe aan de lijst *
      */
     private void addcategoryItems() {
         QueryManager queryManager = WinkelApplication.getQueryManager();
         List<Category> categories = queryManager.getCategories();
-        
+
         JPanel categorys = new JPanel();
         BoxLayout layoutCat = new BoxLayout(categorys, BoxLayout.Y_AXIS);
         categorys.setLayout(layoutCat);
-               
+
         for (int i = 0; i < categories.size(); i++) {
             Category category = categories.get(i);
-            
+
             JPanel pnlCategory = new JPanel();
             BoxLayout layout = new BoxLayout(pnlCategory, BoxLayout.Y_AXIS);
             pnlCategory.setLayout(layout);
-            pnlCategory.setBorder(new EmptyBorder(15,15,15,15));
-            
+            pnlCategory.setBorder(new EmptyBorder(15, 15, 15, 15));
+
             JLabel lblCategorie = new JLabel();
             lblCategorie.setName(String.valueOf(category.getCategoryId()));
             lblCategorie.setText(category.getName());
@@ -166,40 +161,41 @@ public class CategoryList extends JPanel implements MouseListener {
             JLabel lblDescription = new JLabel();
             lblDescription.setText(category.getDescription());
             lblDescription.setFont(WinkelApplication.FONT_12_PLAIN);
-            pnlCategory.add(lblDescription);           
- 
+            pnlCategory.add(lblDescription);
+
             categorys.add(pnlCategory);
         }
-        
+
         items.add(categorys, BorderLayout.LINE_START);
         revalidate();
 
     }
-    
+
     /**
      * Voegt de producten toe die bij een bepaalde categorie horen.
-     * @param categoryID 
+     *
+     * @param categoryID
      */
-    private void addProducts(int categoryID){
+    private void addProducts(int categoryID) {
         List<Product> products = WinkelApplication.getQueryManager().getProducts(categoryID);
-                 
+
         JPanel jpProducts = new JPanel();
-        jpProducts.setMinimumSize(new Dimension(250,0));
-        jpProducts.setMaximumSize(new Dimension(250,0));
-        jpProducts.setPreferredSize(new Dimension(250,0));
+        jpProducts.setMinimumSize(new Dimension(250, 0));
+        jpProducts.setMaximumSize(new Dimension(250, 0));
+        jpProducts.setPreferredSize(new Dimension(250, 0));
         BoxLayout layoutPro = new BoxLayout(jpProducts, BoxLayout.Y_AXIS);
         jpProducts.setLayout(layoutPro);
 
-        
+
         for (int i = 0; i < products.size(); i++) {
-            Product product =  products.get(i);
-            
+            Product product = products.get(i);
+
             JPanel pnlProduct = new JPanel();
             BoxLayout layout = new BoxLayout(pnlProduct, BoxLayout.Y_AXIS);
             pnlProduct.setLayout(layout);
-            pnlProduct.setBorder(new EmptyBorder(15,15,15,15));
-            
-            
+            pnlProduct.setBorder(new EmptyBorder(15, 15, 15, 15));
+
+
             JLabel lblProduct = new JLabel();
             lblProduct.setName(String.valueOf(product.getProduct_id()));
             lblProduct.setText(product.getNaam());
@@ -207,22 +203,22 @@ public class CategoryList extends JPanel implements MouseListener {
             lblProduct.addMouseListener(new ProductListener());
             lblProduct.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             pnlProduct.add(lblProduct);
-            
+
             JLabel lblPrice = new JLabel(WinkelApplication.CURRENCY.format(product.getPrijs()));
             lblPrice.setFont(WinkelApplication.FONT_12_PLAIN);
             pnlProduct.add(lblPrice);
 
             jpProducts.add(pnlProduct);
         }
-        try{
+        try {
             items.remove(1);
-        }catch(Exception e){
+        } catch (Exception e) {
             // do nothing
         }
         items.add(jpProducts, BorderLayout.LINE_END);
-        jpProducts.setBorder(BorderFactory.createMatteBorder(0, 1, 0,1,Color.black));
+        jpProducts.setBorder(BorderFactory.createMatteBorder(0, 1, 0, 1, Color.black));
         revalidate();
-    
+
     }
 
     /**
@@ -232,71 +228,74 @@ public class CategoryList extends JPanel implements MouseListener {
         BasketDisplay basket = new BasketDisplay();
         this.add(basket, BorderLayout.EAST);
     }
-    
+
     /**
      * Voegt de inlog panel toe
      */
-    private void addInlog()
-    {
+    private void addInlog() {
         InloggenDisplay logIn = new InloggenDisplay();
         this.add(logIn, BorderLayout.NORTH);
     }
-    
+
     /**
      * Zet de details van een bepaald product op het scherm worden getoond
-     * @param productId 
+     *
+     * @param productId
      */
-    private void addProductDetails(int productId){
+    private void addProductDetails(int productId) {
         Product product = WinkelApplication.getQueryManager().getProduct(productId);
-        
-        try{
+
+        try {
             productDetails.removeAll();
-        }catch(Exception e){
+        } catch (Exception e) {
             //do nothing
         }
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.weighty=1;
+        gbc.weighty = 1;
         gbc.anchor = GridBagConstraints.PAGE_START;
-        
+
         JLabel image = new JLabel();
-        gbc.gridx=0;
-        gbc.gridy=0;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
         image.setIcon(new ImageIcon(getClass().getResource("/pictures/icons/noImage.gif")));
         productDetails.add(image, gbc);
-        
-        
-        StringBuilder omschrijving =  new StringBuilder(product.getOmschrijving());
+
+
+        StringBuilder omschrijving = new StringBuilder(product.getOmschrijving());
         omschrijving.insert(0, "<html> ");
         omschrijving.append("</html>");
-        for(int i = 80; i<omschrijving.length(); i+=80){
-            omschrijving.insert(i, " <br/>");
+        for (int i = 80; i < omschrijving.length(); i += 80) {
+            if (omschrijving.length() - i > 7) {
+                omschrijving.insert(i, " <br/>");
+            } else {
+                omschrijving.append("<br/>");
+            }
         }
         String str = omschrijving.toString();
         JLabel description = new JLabel(str);
         description.setFont(new Font("Calibri", Font.ITALIC, 20));
         gbc.gridy = 1;
-        productDetails.add(description,gbc);
-        
+        productDetails.add(description, gbc);
+
         JButton voegToe = new JButton("Voeg toe aan winkelmand");
         currentProduct = product;
         voegToe.addActionListener(new ToevoegListener());
-        gbc.gridy=2;
+        gbc.gridy = 2;
         productDetails.add(voegToe, gbc);
 
         revalidate();
         repaint();
-    
+
     }
-    
-    private class ToevoegListener implements ActionListener{
+
+    private class ToevoegListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
             WinkelApplication.getBasket().addProduct(currentProduct);
         }
-    
     }
-    
-    private class ProductListener implements MouseListener{
+
+    private class ProductListener implements MouseListener {
 
         public void mouseClicked(MouseEvent e) {
             JLabel label = (JLabel) e.getSource();
@@ -305,21 +304,16 @@ public class CategoryList extends JPanel implements MouseListener {
         }
 
         public void mousePressed(MouseEvent e) {
-            
         }
 
         public void mouseReleased(MouseEvent e) {
-            
         }
 
         public void mouseEntered(MouseEvent e) {
-            
         }
 
         public void mouseExited(MouseEvent e) {
-            
         }
-    
     }
 
     @Override
@@ -351,8 +345,4 @@ public class CategoryList extends JPanel implements MouseListener {
     public void mouseExited(MouseEvent event) {
         // Intentionally left blank.
     }
-
 }
-
-        
-      

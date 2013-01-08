@@ -255,6 +255,11 @@ public class GebruikerOverzicht extends javax.swing.JPanel {
                 buttonVerwijderenGebruikerMouseClicked(evt);
             }
         });
+        buttonVerwijderenGebruiker.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonVerwijderenGebruikerActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Medew. Toevoegen");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -417,6 +422,10 @@ public class GebruikerOverzicht extends javax.swing.JPanel {
     {//GEN-HEADEREND:event_jButton2ActionPerformed
            WinkelApplication.getInstance().showPanel(new NieuweGebruiker(NieuweGebruiker.KLANTEN_OVERZICHT_MEDEWERKER));
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void buttonVerwijderenGebruikerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVerwijderenGebruikerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonVerwijderenGebruikerActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonVerwijderenGebruiker;
