@@ -1,26 +1,28 @@
 package view;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+import java.awt.event.*;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import main.WinkelApplication;
-import model.Gebruiker;
 import model.Product;
 import model.Session;
+import java.net.URI;
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 /**
  * @author Bono
@@ -40,10 +42,11 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
     private JComboBox cmbPayMethod;
     private JTextField tfNote;
     private JLabel lblFormTitle;
-    private final String[] payMethods = {"Vooraf per bank", "Onder rembours", "Geen"};
+    private final String[] payMethods = {"iDeal", "Contante betaling"};
     
     private JPanel content;
     private JPanel container;
+    public JPanel price;
 
     public Payment() {
         super.AddTitle("Betalen");
@@ -51,16 +54,23 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         
         container = new JPanel();
         container.setLayout(null);
-        container.setBackground(Color.white);
+
         container.setOpaque(true);
                
         content = new JPanel();
         content.setLayout(null);
         content.setBounds(250, 20, 900, 600);
+        
+        price = new JPanel();
+        price.setLayout(null);
+        price.setOpaque(false);
+        price.setBounds(0, 20, 900, 600);
+  
+        
         initComponents();
         
         container.add(content);
-        
+        content.add(price);
         add(container);
     }
 
@@ -135,7 +145,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         lblTitle1.setText("Winkelapplicatie");
         lblTitle1.setBounds(20, 20, 150, 20);
         lblTitle1.setFont(WinkelApplication.FONT_18_BOLD);
-        lblTitle1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
         
         content.add(lblTitle1);
 
@@ -173,23 +183,35 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         content.add(lblPriceHeader);
 
         for (int i = 0; i < products.size(); i++) {
-            Product product = products.get(i);
+            final Product product = products.get(i);
 
             JLabel lblProduct = new JLabel(product.getNaam());
             lblProduct.setBounds(20, verticalPosition + i * productOffset, 420, 20);
             lblProduct.setFont(WinkelApplication.FONT_12_PLAIN);
             content.add(lblProduct);
 
-            JLabel lblAmount = new JLabel(String.valueOf(WinkelApplication.getBasket().getProductAmount(product)));
-            lblAmount.setBounds(410, verticalPosition + i * productOffset, 70, 20);
-            lblAmount.setIcon(new ImageIcon(getClass().getResource("/pictures/icons/delete.png")));
-            lblAmount.setFont(WinkelApplication.FONT_12_PLAIN);
-            content.add(lblAmount);
+            final SpinnerNumberModel model = new SpinnerNumberModel(WinkelApplication.getBasket().getProductAmount(product), 0, WinkelApplication.getQueryManager().getVoorraad(product.getProduct_id()), 1);
+            JSpinner amountItems = new JSpinner(model);
+            amountItems.setBounds(400, verticalPosition + i * productOffset, 40, 20);
+            amountItems.setFont(WinkelApplication.FONT_12_PLAIN);
+            amountItems.addChangeListener(new ChangeListener() {
+  public void stateChanged(ChangeEvent e) {
+     WinkelApplication.getBasket().removeProduct(product, (Integer) model.getValue());
+
+     price.removeAll();
+     price.revalidate();
+     price.repaint();
+     content.removeAll();
+     content.add(price);
+     
+  }
+});
+            content.add(amountItems);
+            
 
             JLabel lblPrice = new JLabel(WinkelApplication.CURRENCY.format(product.getPrijs()));
             lblPrice.setBounds(480, verticalPosition + i * productOffset, 70, 20);
             lblPrice.setFont(WinkelApplication.FONT_12_PLAIN);
-            
             content.add(lblPrice);
         }
 
@@ -197,13 +219,13 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         JLabel lblTotal = new JLabel("Totaal: ");
         lblTotal.setBounds(20, verticalPosition + products.size() * productOffset, 50, 20);
         lblTotal.setFont(WinkelApplication.FONT_12_BOLD);
-        content.add(lblTotal);
+        price.add(lblTotal);
 
         // create total labels
         JLabel lblTotalPrice = new JLabel(WinkelApplication.CURRENCY.format(WinkelApplication.getBasket().getTotalCosts()));
         lblTotalPrice.setBounds(480, verticalPosition + products.size() * productOffset, 70, 20);
         lblTotalPrice.setFont(WinkelApplication.FONT_12_BOLD);
-        content.add(lblTotalPrice);
+        price.add(lblTotalPrice);
     }
 
     private void addForm() {
@@ -309,15 +331,22 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
 
     }
 
-    class RemoveProduct implements ActionListener {
 
-        public void actionPerformed(ActionEvent e) {
-            
+    public static void openURL(String urlText)
+    {
+        if (Desktop.isDesktopSupported())
+        {
+            URI uri = URI.create(urlText);
+            try
+            {
+                Desktop.getDesktop().browse(uri);
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
         }
-    
     }
-
-   
     
     /**
      * A listener for textfields. Use the formats to test if the user is filling
@@ -397,7 +426,10 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
             String woonplaats = tfWoonplaats.getText();
             String betaalmethode = (String) cmbPayMethod.getSelectedItem();
             WinkelApplication.getQueryManager().setOrder(WinkelApplication.getBasket(),
-                    naam, adres, postcode, woonplaats, opmerking, betaalmethode);
+                   naam, adres, postcode, woonplaats, opmerking, betaalmethode);
+            if("iDeal".equals(betaalmethode)) {
+                openURL("https://bankieren.rabobank.nl/rib/");
+            }
             WinkelApplication.getBasket().empty();
             WinkelApplication.getInstance().showPanel(new OrderSend());
         } else {
@@ -406,6 +438,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
             this.lblFormTitle.setSize(400, 20);
         }
     }
+    
 
     @Override
     public void mouseClicked(MouseEvent event) {

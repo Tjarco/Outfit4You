@@ -42,8 +42,8 @@ public class Basket extends Observable {
      * Verwijdert een specifiek product uit de winkelmand
      * @param product 
      */
-    public void removeProduct (Product product) {
-        products.remove(product);
+    public void removeProduct (Product product, int value) {
+        products.put(product, value);
         setChanged();
         notifyObservers();
     }

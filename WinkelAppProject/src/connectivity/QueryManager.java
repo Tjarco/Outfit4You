@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import model.Category;
 import model.Gebruiker;
 import model.Product;
+import misc.timestamp;
 
 public class QueryManager {
 
@@ -416,9 +417,11 @@ public class QueryManager {
      */
     public void setOrder(model.Basket basket, String naam, String adres, String postcode, String woonplaats, String opmerking, String betaalmethode) 
     {
-        String SQL_order = "INSERT INTO `order` (naam, adres, postcode, woonplaats, notes, betaalmethode, datum)"
-                + " VALUES('" + naam + "', '" + adres + "', '" + postcode + "', '"
-                + woonplaats + "', '" + opmerking + "', '" + betaalmethode + "', CURDATE() )";
+        timestamp timestamp = new timestamp();
+        long currentTimestamp = timestamp.getTimestamp();
+        String SQL_order = "INSERT INTO `order` (`order_id`, `naam`, `adres`, `postcode`, `woonplaats`, `notes`, `betaalmethode`, `datum`, `status`, `datum_gewijzigd`)"
+                + " VALUES(NULL, '" + naam + "', '" + adres + "', '" + postcode + "', '"
+                + woonplaats + "', '" + opmerking + "', '" + betaalmethode + "', '" + currentTimestamp + "', '', '0')";
         
         int order_id = 0;
         

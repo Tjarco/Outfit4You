@@ -4,7 +4,6 @@ import main.WinkelApplication;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
@@ -12,7 +11,6 @@ import java.util.Observer;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import model.Product;
-import model.Session;
 
 /**
  * @version 1.0

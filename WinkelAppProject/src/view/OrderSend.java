@@ -48,7 +48,7 @@ public class OrderSend extends MainLayout implements ActionListener, MouseListen
 
 
         JLabel lblMessage = new JLabel();
-        lblMessage.setText("<html>Uw order is gemaakt. Wij zullen deze zo spoedig<br /> mogelijk verzenden. Bedankt dat u heeft<br/>"
+        lblMessage.setText("<html>Uw order is gemaakt. Wij zullen deze verzenden<br /> wanneer de betaling is voltooid. Bedankt dat u heeft<br/>"
                 + "gekozen voor Outfit4You.</html> ");
         lblMessage.setFont(new Font("Calibri", Font.ITALIC, 16));
         gbc.insets = new Insets(0,15,60,15);
