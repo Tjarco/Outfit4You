@@ -22,6 +22,10 @@ import model.Session;
  * @author Tjarco
  * 
  * De klasse om het winkelmandje op het scherm te tonen.
+ * 
+ * @version 2.1
+ * @author Bono
+ * Gebruikers hoeven niet meer ingelogd te zijn om te kunnen betalen.
  */
 public class BasketDisplay extends JPanel implements ActionListener, Observer {
 

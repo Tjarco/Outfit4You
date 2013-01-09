@@ -22,6 +22,11 @@ import java.util.Date;
  * 
  * @version 2.0
  * @author Tjarco
+ * 
+ * @version 2.1
+ * @author Bono
+ * 
+ * Functie getKlant() weggehaald, nutteloos gebleken.
  */
 public final class WinkelApplication {
 
@@ -131,13 +136,6 @@ public final class WinkelApplication {
     public static QueryManager getQueryManager() {
         return getInstance().queryManager;
     }
-    /**
-     * 
-     * @return the Gebruiker
-     */
-   public static Gebruiker getGebruiker(){
-       return getInstance().gebruiker;
-   }
 
     /**
      * @return the basket

@@ -20,6 +20,12 @@ import model.Gebruiker;
 import model.Product;
 import model.Session;
 
+/**
+ * @author Bono
+ * 
+ * @version 1.1
+ * Ingelogde gebruikers informatie wordt automagisch ingevuld in de velden, deze kan altijd nog veranderd worden door de gebruiker.
+ */
 public class Payment extends MainLayout implements MouseListener, ActionListener {
 
     private final int verticalPosition = 80;
