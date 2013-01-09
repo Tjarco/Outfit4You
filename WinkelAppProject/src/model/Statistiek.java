@@ -40,6 +40,7 @@ public class Statistiek {
         this.tussen_30_50 = tussen_30_50;
         this.tussen_50_65 = tussen_50_65;
         this.ouder_dan_65 = ouder_dan_65;
+        this.totaal_verkocht = totaal_verkocht;
     }
     
     public Statistiek(Gebruiker gebruiker, Product product){

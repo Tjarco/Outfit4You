@@ -503,16 +503,16 @@ public class QueryManager {
             
             while(r.next()){
                 statistieken.add(new Statistiek(
-                        r.getInt("id"),
-                        r.getInt("product_id"),
-                        r.getInt("jonger_dan_15"),
-                        r.getInt("tussen_15_20"),
-                        r.getInt("tussen_20_25"),
-                        r.getInt("tussen_25_30"),
-                        r.getInt("tussen_30_50"),
-                        r.getInt("tussen_50_65"),
-                        r.getInt("ouder_dan_65"),
-                        r.getInt("totaal_verkocht")));
+                                      r.getInt("id"),
+                                      r.getInt("product_id"),
+                                      r.getInt("jonger_dan_15"),
+                                      r.getInt("tussen_15_20"),
+                                      r.getInt("tussen_20_25"),
+                                      r.getInt("tussen_25_30"),
+                                      r.getInt("tussen_30_50"),
+                                      r.getInt("tussen_50_65"),
+                                      r.getInt("ouder_dan_65"),
+                                      r.getInt("totaal_verkocht")));
             }
         }catch(SQLException ex){
             System.out.println(Dbmanager.SQL_EXCEPTION + ex.getMessage());
@@ -564,6 +564,21 @@ public class QueryManager {
         }
         
         return gelukt;
+    }
+    
+    public int getAantalVerkocht(int product_id){
+        String sql= "SELECT totaal_verkocht FROM statistieken WHERE `product_id` = '"+product_id+"'";
+        ResultSet result = dbmanager.doQuery(sql);
+        int aantalVerkocht=0;
+        try{
+            while (result.next())
+            {
+                aantalVerkocht=result.getInt("totaal_verkocht");
+            }
+        } catch (SQLException ex){
+            System.out.println(Dbmanager.SQL_EXCEPTION + ex.getMessage());
+        }
+        return aantalVerkocht;
     }
     
 }

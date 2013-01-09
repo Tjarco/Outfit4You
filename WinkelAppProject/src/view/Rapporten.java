@@ -4,17 +4,28 @@
  */
 package view;
 
+import java.awt.Dimension;
+import java.util.List;
+import model.Statistiek;
+import model.StatistiekGenerator;
+
 /**
  *
  * @author Tjarco
  */
 public class Rapporten extends javax.swing.JPanel {
+    private StatistiekGenerator statistiekGenerator = new StatistiekGenerator();
 
     /**
      * Creates new form Rapporten
      */
     public Rapporten() {
         initComponents();
+        initOmzetPanel();
+    }
+    
+    private void initOmzetPanel(){
+        jlblOmzet.setText(statistiekGenerator.getOmzet());
     }
 
     /**
@@ -25,11 +36,24 @@ public class Rapporten extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel2 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jlbOmzet = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jlblOmzet = new javax.swing.JLabel();
+        jlblProductenVerkocht = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jlblProductenVerkocht1 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jlbOmzet1 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jlbOmzet2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -37,34 +61,137 @@ public class Rapporten extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
 
-        jPanel2.setLayout(new java.awt.GridBagLayout());
+        jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jButton2.setText("Omzet");
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(0, 0, 0)));
+        jPanel4.setMaximumSize(new java.awt.Dimension(700, 800));
+        jPanel4.setMinimumSize(new java.awt.Dimension(300, 800));
+        jPanel4.setPreferredSize(new java.awt.Dimension(430, 800));
 
-        jButton1.setText("Verkocht per leeftijd");
+        jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+        jlbOmzet.setFont(new java.awt.Font("Calibri", 3, 18)); // NOI18N
+        jlbOmzet.setText("Omzet");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 15;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(29, 190, 29, 176);
+        jPanel1.add(jlbOmzet, gridBagConstraints);
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 3, 14)); // NOI18N
+        jLabel1.setText("Op dit moment is de volgende omzet behaald:");
+
+        jLabel2.setFont(new java.awt.Font("Calibri", 3, 14)); // NOI18N
+        jLabel2.setText("Op dit moment is volgende hoeveelheid producten verkocht:");
+
+        jlblOmzet.setFont(new java.awt.Font("Calibri", 3, 40)); // NOI18N
+        jlblOmzet.setForeground(new java.awt.Color(0, 204, 0));
+
+        jlblProductenVerkocht.setFont(new java.awt.Font("Calibri", 3, 40)); // NOI18N
+        jlblProductenVerkocht.setForeground(new java.awt.Color(0, 204, 0));
+
+        jLabel3.setFont(new java.awt.Font("Calibri", 3, 14)); // NOI18N
+        jLabel3.setText("En zijn er de volgende hoeveelheid klanten geregistreerd:");
+
+        jlblProductenVerkocht1.setFont(new java.awt.Font("Calibri", 3, 40)); // NOI18N
+        jlblProductenVerkocht1.setForeground(new java.awt.Color(0, 204, 0));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlblOmzet, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel1)
+                        .addComponent(jlblProductenVerkocht, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)
+                        .addComponent(jlblProductenVerkocht1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jlblOmzet, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jlblProductenVerkocht, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jlblProductenVerkocht1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 247, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel1, new java.awt.GridBagConstraints());
+        jPanel2.add(jPanel4, java.awt.BorderLayout.WEST);
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(0, 0, 0)));
+
+        jPanel7.setLayout(new java.awt.GridBagLayout());
+
+        jlbOmzet1.setFont(new java.awt.Font("Calibri", 3, 18)); // NOI18N
+        jlbOmzet1.setText("Producten");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(27, 65, 31, 93);
+        jPanel7.add(jlbOmzet1, gridBagConstraints);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 760, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(jPanel6, java.awt.BorderLayout.CENTER);
+
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel8.setMaximumSize(new java.awt.Dimension(700, 800));
+        jPanel8.setMinimumSize(new java.awt.Dimension(100, 800));
+        jPanel8.setPreferredSize(new java.awt.Dimension(430, 800));
+
+        jPanel9.setLayout(new java.awt.GridBagLayout());
+
+        jlbOmzet2.setFont(new java.awt.Font("Calibri", 3, 18)); // NOI18N
+        jlbOmzet2.setText("Leeftijdsgroepen");
+        jPanel9.add(jlbOmzet2, new java.awt.GridBagConstraints());
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 760, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(jPanel8, java.awt.BorderLayout.EAST);
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
 
@@ -82,7 +209,7 @@ public class Rapporten extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(597, Short.MAX_VALUE))
+                .addContainerGap(952, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,7 +243,7 @@ public class Rapporten extends javax.swing.JPanel {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jbBack)
-                .addContainerGap(564, Short.MAX_VALUE))
+                .addContainerGap(919, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,13 +261,25 @@ public class Rapporten extends javax.swing.JPanel {
     }//GEN-LAST:event_jbBackActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JButton jbBack;
+    private javax.swing.JLabel jlbOmzet;
+    private javax.swing.JLabel jlbOmzet1;
+    private javax.swing.JLabel jlbOmzet2;
+    private javax.swing.JLabel jlblOmzet;
+    private javax.swing.JLabel jlblProductenVerkocht;
+    private javax.swing.JLabel jlblProductenVerkocht1;
     // End of variables declaration//GEN-END:variables
 }
