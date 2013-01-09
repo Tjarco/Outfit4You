@@ -98,6 +98,7 @@ public final class WinkelApplication {
         showPanel(new view.CategoryList());
         System.out.println("Showing main window...");
         mainWindow.setVisible(true);
+
     }
 
     public void showPanel(JPanel panel) {
