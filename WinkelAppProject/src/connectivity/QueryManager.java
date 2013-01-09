@@ -9,11 +9,11 @@ import java.util.logging.Logger;
 import model.Category;
 import model.Gebruiker;
 import model.Product;
-<<<<<<< HEAD
+
 import misc.timestamp;
-=======
+
 import model.Statistiek;
->>>>>>> 5ed37a5d0d395fa708f719a49a8e35770aa8c75a
+
 
 public class QueryManager {
 
