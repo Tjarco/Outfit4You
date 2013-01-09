@@ -15,6 +15,7 @@ import model.Gebruiker;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import model.Statistiek;
 
 /**
  * @version 1
@@ -80,6 +81,7 @@ public final class WinkelApplication {
     }
 
     public void startup() {
+                
         System.out.println("Creating main window...");
         mainWindow = new JFrame(NAME);
        // Zet het scherm fullScreen

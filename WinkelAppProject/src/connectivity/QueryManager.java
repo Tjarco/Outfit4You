@@ -9,7 +9,11 @@ import java.util.logging.Logger;
 import model.Category;
 import model.Gebruiker;
 import model.Product;
+<<<<<<< HEAD
 import misc.timestamp;
+=======
+import model.Statistiek;
+>>>>>>> 5ed37a5d0d395fa708f719a49a8e35770aa8c75a
 
 public class QueryManager {
 
@@ -487,6 +491,79 @@ public class QueryManager {
             System.out.println("connectivity.QueryManager.getGebruikerId() Exception:"+ ex.getMessage());
         }
         return gebruikerId;
+    }
+    
+    public List<Statistiek> getStatistieken(){
+        List<Statistiek> statistieken = new ArrayList<Statistiek>();
+        
+        String sql = "SELECT * FROM statistieken";
+        
+        try{
+            ResultSet r = dbmanager.doQuery(sql);
+            
+            while(r.next()){
+                statistieken.add(new Statistiek(
+                        r.getInt("id"),
+                        r.getInt("product_id"),
+                        r.getInt("jonger_dan_15"),
+                        r.getInt("tussen_15_20"),
+                        r.getInt("tussen_20_25"),
+                        r.getInt("tussen_25_30"),
+                        r.getInt("tussen_30_50"),
+                        r.getInt("tussen_50_65"),
+                        r.getInt("ouder_dan_65"),
+                        r.getInt("totaal_verkocht")));
+            }
+        }catch(SQLException ex){
+            System.out.println(Dbmanager.SQL_EXCEPTION + ex.getMessage());
+        }
+        
+        return statistieken;
+    }
+    
+    public void updateStatistieken(Statistiek statistiek){
+        
+        try{
+            String sql = "UPDATE statistieken SET "
+                    + "product_id = '" + statistiek.getProduct_id() + "' ,"
+                    + "jonger_dan_15 = (jonger_dan_15 + " + statistiek.getJonger_dan_15() + "),"
+                    + "tussen_15_20 = (tussen_15_20 + "+ statistiek.getTussen_15_20() + "), "
+                    + "tussen_20_25 = (tussen_20_25 + "+ statistiek.getTussen_20_25() + "), "
+                    + "tussen_25_30 = (tussen_25_30 + "+ statistiek.getTussen_25_30() + "), "
+                    + "tussen_30_50 = (tussen_30_50 + "+ statistiek.getTussen_30_50() + "), "
+                    + "tussen_50_65 = (tussen_50_65 + "+ statistiek.getTussen_50_65() + "), "
+                    + "ouder_dan_65 = (ouder_dan_65 + "+ statistiek.getOuder_dan_65() + "), "
+                    + "totaal_verkocht = (totaal_verkocht + "+ statistiek.getTotaal_verkocht() + ")"
+                    + "WHERE product_id = '" + statistiek.getProduct_id() + "'";
+            dbmanager.insertQuery(sql);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public boolean insertStatistiek(Statistiek statistiek){
+        boolean gelukt = false;
+        
+        try{
+            String sql = "INSERT INTO statistieken VALUES ("
+                    + "'"+statistiek.getId()+"',"
+                    + "'"+statistiek.getProduct_id()+"',"
+                    + "'"+statistiek.getJonger_dan_15()+"',"
+                    + "'"+statistiek.getTussen_15_20()+"',"
+                    + "'"+statistiek.getTussen_20_25()+"',"
+                    + "'"+statistiek.getTussen_25_30()+"',"
+                    + "'"+statistiek.getTussen_30_50()+"',"
+                    + "'"+statistiek.getTussen_50_65()+"',"
+                    + "'"+statistiek.getOuder_dan_65()+"',"
+                    + "'"+statistiek.getTotaal_verkocht()+"')";
+            
+            ResultSet res = dbmanager.insertQuery(sql);
+            gelukt = res.next();
+        } catch(SQLException ex){
+            System.out.print(Dbmanager.JDBC_EXCEPTION + ex.getMessage());
+        }
+        
+        return gelukt;
     }
     
 }
