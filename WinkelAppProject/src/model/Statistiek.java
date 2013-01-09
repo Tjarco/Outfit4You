@@ -23,11 +23,14 @@ public class Statistiek {
     private int tussen_30_50;
     private int tussen_50_65;
     private int ouder_dan_65;
+    private int totaal_verkocht;
+
 
     
     public Statistiek(){}
     
-    public Statistiek(int id, int product_id, int jonger_dan_15, int tussen_15_20, int tussen_20_25, int tussen_25_30, int tussen_30_50, int tussen_50_65, int ouder_dan_65) {
+    public Statistiek(int id, int product_id, int jonger_dan_15, int tussen_15_20, int tussen_20_25,
+            int tussen_25_30, int tussen_30_50, int tussen_50_65, int ouder_dan_65, int totaal_verkocht ) {
         this.id = id;
         this.product_id = product_id;
         this.jonger_dan_15 = jonger_dan_15;
@@ -163,6 +166,13 @@ public class Statistiek {
     public void setTussen_50_65(int tussen_50_65) {
         this.tussen_50_65 = tussen_50_65;
     }
+    
+    public int getTotaal_verkocht() {
+        return totaal_verkocht;
+    }
 
+    public void setTotaal_verkocht(int totaal_verkocht) {
+        this.totaal_verkocht = totaal_verkocht;
+    }
     
 }
