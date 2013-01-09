@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import model.Category;
 import model.Gebruiker;
 import model.Product;
+import model.Statistiek;
 
 public class QueryManager {
 
@@ -484,6 +485,33 @@ public class QueryManager {
             System.out.println("connectivity.QueryManager.getGebruikerId() Exception:"+ ex.getMessage());
         }
         return gebruikerId;
+    }
+    
+    public List<Statistiek> getStatistieken(){
+        List<Statistiek> statistieken = new ArrayList<Statistiek>();
+        
+        String sql = "SELECT * FROM statistieken";
+        
+        try{
+            ResultSet r = dbmanager.doQuery(sql);
+            
+            while(r.next()){
+                statistieken.add(new Statistiek(
+                        r.getInt("id"),
+                        r.getInt("product_id"),
+                        r.getInt("jonger_dan_15"),
+                        r.getInt("tussen_15_20"),
+                        r.getInt("tussen_20_25"),
+                        r.getInt("tussen_25_30"),
+                        r.getInt("tussen_30_50"),
+                        r.getInt("tussen_50_65"),
+                        r.getInt("ouder_dan_65")));
+            }
+        }catch(SQLException ex){
+            System.out.println(Dbmanager.SQL_EXCEPTION + ex.getMessage());
+        }
+        
+        return statistieken;
     }
     
 }
