@@ -14,6 +14,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import main.WinkelApplication;
 import model.Gebruiker;
+import model.Session;
 
 /**
  * @version 1.0
@@ -43,6 +44,10 @@ public class GebruikerOverzicht extends javax.swing.JPanel {
         
         jtZoekveld.getDocument().addDocumentListener(new ZoekListener());
         jtZoekveld.addKeyListener(new SnelToetsListener());
+        
+        if(!Session.getGebruiker().isManager()){
+            jbMedewerkerToevoegen.setVisible(false);
+        }
     }
     
     /**
