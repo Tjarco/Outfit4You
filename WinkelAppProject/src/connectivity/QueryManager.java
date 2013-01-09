@@ -98,6 +98,27 @@ public class QueryManager {
     }
     /**
      * 
+     * Geeft de voorraad terug van het product met het gegeven product id
+     * @param productId
+     * @return 
+     */
+    
+    public int getVoorraad(int productId) {
+        int voorraad = 0;
+        try{
+            String sql = "SELECT `voorraad` FROM `product` WHERE `product_id` = '" + productId +"'";
+            ResultSet result = dbmanager.doQuery(sql);      
+            if (result.next()) {
+                voorraad = result.getInt("voorraad");
+            }
+        }catch(Exception e){
+           System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage()); 
+        }
+        return voorraad;
+    }
+    
+    /**
+     * 
      * Geeft het product terug dat overeen komt met het gegeven product id
      * @param productId
      * @return 

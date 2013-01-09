@@ -8,9 +8,11 @@ import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -134,7 +136,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         lblTitle1.setBounds(20, 20, 150, 20);
         lblTitle1.setFont(WinkelApplication.FONT_18_BOLD);
         lblTitle1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        lblTitle1.addMouseListener(this);
+        
         content.add(lblTitle1);
 
         JLabel lblTitle2 = new JLabel();
@@ -180,12 +182,14 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
 
             JLabel lblAmount = new JLabel(String.valueOf(WinkelApplication.getBasket().getProductAmount(product)));
             lblAmount.setBounds(410, verticalPosition + i * productOffset, 70, 20);
+            lblAmount.setIcon(new ImageIcon(getClass().getResource("/pictures/icons/delete.png")));
             lblAmount.setFont(WinkelApplication.FONT_12_PLAIN);
             content.add(lblAmount);
 
             JLabel lblPrice = new JLabel(WinkelApplication.CURRENCY.format(product.getPrijs()));
             lblPrice.setBounds(480, verticalPosition + i * productOffset, 70, 20);
             lblPrice.setFont(WinkelApplication.FONT_12_PLAIN);
+            
             content.add(lblPrice);
         }
 
@@ -305,6 +309,16 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
 
     }
 
+    class RemoveProduct implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            
+        }
+    
+    }
+
+   
+    
     /**
      * A listener for textfields. Use the formats to test if the user is filling
      * in correct information. If the underlaying document, which is automaticly generated, changes, this listener 
@@ -345,6 +359,8 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
                
             }
         }
+        
+     
 
         public void changedUpdate(DocumentEvent e) {
             if (e.getDocument().equals(tfPostcode.getDocument())) {
@@ -394,7 +410,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
     @Override
     public void mouseClicked(MouseEvent event) {
         // the user clicked on the title, go back to the first screen
-        WinkelApplication.getInstance().showPanel(new view.CategoryList());
+   
     }
 
     @Override

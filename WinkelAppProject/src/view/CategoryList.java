@@ -293,7 +293,11 @@ public class CategoryList extends JPanel implements MouseListener {
     private class ToevoegListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            WinkelApplication.getBasket().addProduct(currentProduct);
+            if(WinkelApplication.getQueryManager().getVoorraad(currentProduct.getProduct_id()) == 0) {
+                JOptionPane.showMessageDialog(null, "Dit product is helaas niet meer op voorraad.");
+            }else{
+                WinkelApplication.getBasket().addProduct(currentProduct);
+            }
         }
     }
 

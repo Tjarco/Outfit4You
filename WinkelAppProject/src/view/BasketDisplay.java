@@ -28,6 +28,8 @@ import model.Session;
  * Gebruikers hoeven niet meer ingelogd te zijn om te kunnen betalen.
  */
 public class BasketDisplay extends JPanel implements ActionListener, Observer {
+    
+    private int productInBasket;
 
     public BasketDisplay() {
         super();
@@ -60,15 +62,20 @@ public class BasketDisplay extends JPanel implements ActionListener, Observer {
         products.setBorder(new EmptyBorder(15,15,15,15));
         products.setOpaque(false);
         
+        this.productInBasket = 0;
+        
         for (Product product : basket.getProducts()) {
-            JLabel lblProduct = new JLabel(basket.getProductAmount(product) +
-                    " - " + product.toString());
-            lblProduct.setFont(WinkelApplication.FONT_12_PLAIN);
-            products.add(lblProduct);
+            
+                JLabel lblProduct = new JLabel(basket.getProductAmount(product) +
+                        " - " + product.toString());
+                lblProduct.setFont(WinkelApplication.FONT_12_PLAIN);
+                products.add(lblProduct);
 
-            JLabel lblPrice = new JLabel(WinkelApplication.CURRENCY.format(product.getPrijs()));
-            lblPrice.setFont(WinkelApplication.FONT_12_PLAIN);
-            products.add(lblPrice);
+                JLabel lblPrice = new JLabel(WinkelApplication.CURRENCY.format(product.getPrijs()));
+                lblPrice.setFont(WinkelApplication.FONT_12_PLAIN);
+                products.add(lblPrice);
+                this.productInBasket++;
+              
         }
         
         add(products);
@@ -89,6 +96,7 @@ public class BasketDisplay extends JPanel implements ActionListener, Observer {
         btnGoToPay.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btnGoToPay.setFont(WinkelApplication.FONT_14_BOLD);
         btnGoToPay.addActionListener(this);
+        
 
         add(btnGoToPay);
     }
@@ -103,7 +111,11 @@ public class BasketDisplay extends JPanel implements ActionListener, Observer {
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        // als gebruiker is ingelogd: new payment, anders inloggenRegistreren
-        WinkelApplication.getInstance().showPanel(new Payment());
+        if( this.productInBasket == 0) {
+           JOptionPane.showMessageDialog(null, "Er bevinden zich nog geen producten \nin uw winkelmandje");
+        }else{
+            // als gebruiker is ingelogd: new payment, anders inloggenRegistreren
+            WinkelApplication.getInstance().showPanel(new Payment());
+        }
     }
 }
