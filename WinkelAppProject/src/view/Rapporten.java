@@ -26,6 +26,8 @@ public class Rapporten extends javax.swing.JPanel {
     
     private void initOmzetPanel(){
         jlblOmzet.setText(statistiekGenerator.getOmzet());
+        jlblAantalKlanten.setText(statistiekGenerator.getAantalKlanten());
+        jlblProductenVerkocht.setText(statistiekGenerator.getAantalProductenVerkocht());
     }
 
     /**
@@ -47,7 +49,7 @@ public class Rapporten extends javax.swing.JPanel {
         jlblOmzet = new javax.swing.JLabel();
         jlblProductenVerkocht = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jlblProductenVerkocht1 = new javax.swing.JLabel();
+        jlblAantalKlanten = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jlbOmzet1 = new javax.swing.JLabel();
@@ -96,8 +98,8 @@ public class Rapporten extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Calibri", 3, 14)); // NOI18N
         jLabel3.setText("En zijn er de volgende hoeveelheid klanten geregistreerd:");
 
-        jlblProductenVerkocht1.setFont(new java.awt.Font("Calibri", 3, 40)); // NOI18N
-        jlblProductenVerkocht1.setForeground(new java.awt.Color(0, 204, 0));
+        jlblAantalKlanten.setFont(new java.awt.Font("Calibri", 3, 40)); // NOI18N
+        jlblAantalKlanten.setForeground(new java.awt.Color(0, 204, 0));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -105,15 +107,19 @@ public class Rapporten extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jlblOmzet, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jlblProductenVerkocht, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jlblAantalKlanten, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel1)
-                        .addComponent(jlblProductenVerkocht, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)
-                        .addComponent(jlblProductenVerkocht1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jlblOmzet, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -124,15 +130,15 @@ public class Rapporten extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jlblOmzet, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlblProductenVerkocht, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jlblProductenVerkocht1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 247, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlblAantalKlanten, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 274, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel4, java.awt.BorderLayout.WEST);
@@ -162,7 +168,7 @@ public class Rapporten extends javax.swing.JPanel {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 760, Short.MAX_VALUE))
+                .addGap(0, 719, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel6, java.awt.BorderLayout.CENTER);
@@ -188,7 +194,7 @@ public class Rapporten extends javax.swing.JPanel {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 760, Short.MAX_VALUE))
+                .addGap(0, 719, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel8, java.awt.BorderLayout.EAST);
@@ -278,8 +284,8 @@ public class Rapporten extends javax.swing.JPanel {
     private javax.swing.JLabel jlbOmzet;
     private javax.swing.JLabel jlbOmzet1;
     private javax.swing.JLabel jlbOmzet2;
+    private javax.swing.JLabel jlblAantalKlanten;
     private javax.swing.JLabel jlblOmzet;
     private javax.swing.JLabel jlblProductenVerkocht;
-    private javax.swing.JLabel jlblProductenVerkocht1;
     // End of variables declaration//GEN-END:variables
 }

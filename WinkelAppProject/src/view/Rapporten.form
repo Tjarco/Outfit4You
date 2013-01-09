@@ -56,15 +56,22 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jlblOmzet" alignment="1" min="-2" pref="325" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jlblProductenVerkocht" alignment="0" min="-2" pref="325" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jlblAantalKlanten" alignment="0" min="-2" pref="325" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Component id="jlblOmzet" min="-2" pref="325" max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jlblProductenVerkocht" alignment="0" min="-2" pref="325" max="-2" attributes="0"/>
-                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jlblProductenVerkocht1" alignment="0" min="-2" pref="325" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -79,15 +86,15 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jlblOmzet" min="-2" pref="82" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" pref="54" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jlblProductenVerkocht" min="-2" pref="82" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" pref="54" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jlblProductenVerkocht1" min="-2" pref="82" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="247" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jlblAantalKlanten" min="-2" pref="82" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="274" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -156,7 +163,7 @@
                 <Property name="text" type="java.lang.String" value="En zijn er de volgende hoeveelheid klanten geregistreerd:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jlblProductenVerkocht1">
+            <Component class="javax.swing.JLabel" name="jlblAantalKlanten">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Calibri" size="40" style="3"/>
@@ -195,7 +202,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="760" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="719" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -253,7 +260,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanel9" min="-2" pref="81" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="760" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="719" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
