@@ -7,7 +7,6 @@ package view;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -22,14 +21,18 @@ import model.Session;
  * 
  * Een klasse die het overzicht geeft van alle klanten in de database. Er kunnen vanaf hier nieuwe 
  * klanten worden toegevoegd. Ook kunenn klanten gewijzigd worden.
- */
-
-/**
+ *
  * @version 1.1
  * @author Bono
  * 
  * Klanten verwijderen toegevoegd
  * updateTable() method toegevoegd om sneller data toe te voegen/verversen
+ * 
+ * @version 1.2
+ * @author Vernon de Goede < vernon.de.goede@hva.nl >
+ * 
+ * Fixed unused imports
+ * 
  */
 public class GebruikerOverzicht extends javax.swing.JPanel {
 

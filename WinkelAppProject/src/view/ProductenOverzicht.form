@@ -199,8 +199,10 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="jbProductVerwijderen" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="jbProductWijzigen" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jbProductWijzigen1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jbProductToevoegen" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -227,6 +229,7 @@
                           <Component id="jbProductToevoegen" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                           <Component id="jbProductWijzigen" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                           <Component id="jbProductVerwijderen" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="jbProductWijzigen1" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="42" max="32767" attributes="0"/>
                   </Group>
@@ -275,8 +278,14 @@
             </Component>
             <Component class="javax.swing.JButton" name="jbProductWijzigen">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Wijzig een product"/>
+                <Property name="label" type="java.lang.String" value="Product retourneren"/>
               </Properties>
+              <AccessibilityProperties>
+                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Product retourneren"/>
+              </AccessibilityProperties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbProductWijzigenActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
@@ -302,6 +311,11 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbProductVerwijderenMouseClicked"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jbProductWijzigen1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Wijzig een product"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

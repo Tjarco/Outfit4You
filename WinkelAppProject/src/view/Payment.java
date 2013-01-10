@@ -125,8 +125,6 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         return isValid;
     }
     
-    
-    
     private Boolean validateAdres(String validatie){
         Boolean isValid = true;
         String format = "([a-zA-Z \\s]+)([\\d]+)";
@@ -149,14 +147,16 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
             tfWoonplaats.setBackground(Color.green);
         }
         return isValid;
-        
     }
-       
 
     private void initComponents() {
         addTitle();
         addProductList();
         addForm();
+    }
+    
+    private void initProductList() {
+        addProductList();
     }
 
     private void addTitle() {
@@ -164,20 +164,20 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         lblTitle1.setText("Winkelapplicatie");
         lblTitle1.setBounds(20, 20, 150, 20);
         lblTitle1.setFont(WinkelApplication.FONT_18_BOLD);
-
-        
         content.add(lblTitle1);
-
+        
         JLabel lblTitle2 = new JLabel();
         lblTitle2.setText("-");
         lblTitle2.setBounds(170, 20, 20, 20);
         lblTitle2.setFont(WinkelApplication.FONT_14_BOLD);
         content.add(lblTitle2);
+        
         JLabel lblTitle3 = new JLabel();
         lblTitle3.setText("Betaling");
         lblTitle3.setBounds(190, 20, 500, 20);
         lblTitle3.setFont(WinkelApplication.FONT_14_BOLD);
         content.add(lblTitle3);
+        
     }
 
     private void addProductList() {
@@ -214,18 +214,17 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
             amountItems.setBounds(400, verticalPosition + i * productOffset, 40, 20);
             amountItems.setFont(WinkelApplication.FONT_12_PLAIN);
             amountItems.addChangeListener(new ChangeListener() {
-  public void stateChanged(ChangeEvent e) {
-     WinkelApplication.getBasket().removeProduct(product, (Integer) model.getValue());
+                public void stateChanged(ChangeEvent e) {
+                   WinkelApplication.getBasket().removeProduct(product, (Integer) model.getValue());
 
-     price.removeAll();
-     price.revalidate();
-     price.repaint();
-     initComponents();
-  }
-});
-            content.add(amountItems);
+                   price.removeAll();
+                   price.revalidate();
+                   price.repaint();
+                   initProductList();
+                }
+              });
             
-
+            content.add(amountItems);
             JLabel lblPrice = new JLabel(WinkelApplication.CURRENCY.format(product.getPrijs()));
             lblPrice.setBounds(480, verticalPosition + i * productOffset, 70, 20);
             lblPrice.setFont(WinkelApplication.FONT_12_PLAIN);
@@ -345,9 +344,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         btnSend.addActionListener(this);
         content.add(btnSend);
 
-
     }
-
 
     public static void openURL(String urlText)
     {
@@ -405,8 +402,6 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
                
             }
         }
-        
-     
 
         public void changedUpdate(DocumentEvent e) {
             if (e.getDocument().equals(tfPostcode.getDocument())) {
@@ -420,16 +415,10 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
                 
             } else if(e.getDocument().equals(tfWoonplaats.getDocument())){
                 validateWoonplaats(tfWoonplaats.getText());
-                
+
             }
         }
-
-       
-        
     }
-
-
-
 
     @Override
     public void actionPerformed(ActionEvent event) {

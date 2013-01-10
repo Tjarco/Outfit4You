@@ -29,6 +29,11 @@ import model.Statistiek;
  * @author Bono
  * 
  * Functie getKlant() weggehaald, nutteloos gebleken.
+ * 
+ * @version 2.2
+ * @author Vernon de Goede < vernon.de.goede@hva.nl >
+ * 
+ * Security fix: gebruiker is nu niet meer standaard ingelogd. Werd eerst standard ingelogd als medewerker.
  */
 public final class WinkelApplication {
 

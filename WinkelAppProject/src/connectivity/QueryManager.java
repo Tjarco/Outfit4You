@@ -179,6 +179,20 @@ public class QueryManager {
            System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage()); 
         }
     }
+    /**
+     * @author Vernon de Goede < vernon.de.goede@hva.nl >
+     * @param productID
+     * @param voorraad 
+     */
+    public void UpdateVoorraadByID(int productID, int voorraad){
+        try{
+            String sql = "UPDATE product SET voorraad = '" + voorraad + "'"
+                    + "WHERE product_id = '"+productID+"'";
+            dbmanager.insertQuery(sql);            
+        }catch(Exception e){
+           System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage()); 
+        }
+    }
 
     /**
      * Geeft alle producten die horen bij een bepaalde categorie.
