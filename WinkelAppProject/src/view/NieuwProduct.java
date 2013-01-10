@@ -24,17 +24,16 @@ import model.Product;
  */
 public class NieuwProduct extends JPanel {
     
-    public PictureCollector pc;
+    private PictureCollector pc;
+    private String[] uploadData; 
     
     /**
      * Creates new form NieuweKlant
      */
     public NieuwProduct() {
         initComponents();
-        addData();
-        
+        addData(); 
         this.pc = new PictureCollector();
-        
         //Make the listener to validate the textfields
         
     }
@@ -81,6 +80,7 @@ public class NieuwProduct extends JPanel {
         tfPrijs = new javax.swing.JTextField();
         tfVoorraad = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        upload_btn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -119,6 +119,13 @@ public class NieuwProduct extends JPanel {
 
         jLabel8.setText("Categorie");
 
+        upload_btn.setText("Klik hier om een afbeelding te kiezen");
+        upload_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upload_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -139,6 +146,9 @@ public class NieuwProduct extends JPanel {
                                     .addComponent(jLabel7)))
                             .addComponent(jButton2))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tfPrijs, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,11 +157,10 @@ public class NieuwProduct extends JPanel {
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(tfNaam, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(selectCategories, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tfPrijs, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(upload_btn)
+                                            .addComponent(selectCategories, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(tfVoorraad, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -189,7 +198,9 @@ public class NieuwProduct extends JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(upload_btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addContainerGap())
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,16 +333,19 @@ public class NieuwProduct extends JPanel {
             p.setDatum_aangemaakt((int) date.getTime());
             p.setDatum_gewijzigd((int) date.getTime());
             p.setVoorraad(Integer.parseInt(tfVoorraad.getText()));
-            //afbeelding
-            //thumbnail
-            p.setIs_actief( (boolean) true );
-            
+            p.setAfbeelding(this.uploadData[1]);
+            p.setThumbnail(this.uploadData[1]);
+            p.setIs_actief( (boolean) true );            
             main.WinkelApplication.getQueryManager().setProduct(p);
 
             //Ga terug naar productoverzicht
             main.WinkelApplication.getInstance().showPanel(new ProductenOverzicht());
        }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void upload_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upload_btnActionPerformed
+        this.uploadData = this.pc.getImage();
+    }//GEN-LAST:event_upload_btnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -355,5 +369,6 @@ public class NieuwProduct extends JPanel {
     private javax.swing.JTextPane tfOmschrijving;
     private javax.swing.JTextField tfPrijs;
     private javax.swing.JTextField tfVoorraad;
+    private javax.swing.JButton upload_btn;
     // End of variables declaration//GEN-END:variables
 }
