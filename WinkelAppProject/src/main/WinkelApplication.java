@@ -11,12 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import model.Gebruiker;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import model.Session;
-import model.Statistiek;
 
 /**
  * @version 1
@@ -34,6 +30,7 @@ import model.Statistiek;
  * @author Vernon de Goede < vernon.de.goede@hva.nl >
  * 
  * Security fix: gebruiker is nu niet meer standaard ingelogd. Werd eerst standard ingelogd als medewerker.
+ * Fix imports
  */
 public final class WinkelApplication {
 
