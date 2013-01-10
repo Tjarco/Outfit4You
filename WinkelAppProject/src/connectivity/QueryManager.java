@@ -4,15 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.Category;
 import model.Gebruiker;
 import model.Product;
-
 import misc.timestamp;
 import model.Paginatie;
-
 import model.Statistiek;
 
 public class QueryManager {
@@ -68,6 +64,27 @@ public class QueryManager {
         return categories;
     }
 
+     /**
+     * Voegt een categorie toe
+     *
+     * @param product
+     * @return true als het gelukt is
+     */
+    public boolean addCategory(String catName, String catOmschrijving) {
+        boolean success = false;
+
+        String sql = "INSERT INTO `categorie` (`categorie_id`, `naam`, `omschrijving`, `datum_aangemaakt`, `datum_gewijzigd`, `parent_id`) VALUES (NULL, '" + catName + "', '" + catOmschrijving + "', 0, 0, 0);";
+
+        try {
+            ResultSet result = dbmanager.insertQuery(sql);
+            success = result.next();
+        } catch (SQLException e) {
+            System.out.println("connectivity.QueryManager.setOrder() Exception:" + e.getMessage());
+        }
+
+        return success;
+    }
+    
     /**
      * Voegt een product toe.
      *

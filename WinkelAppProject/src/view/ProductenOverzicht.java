@@ -289,6 +289,13 @@ public class ProductenOverzicht extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        jFrame1 = new javax.swing.JFrame();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -315,6 +322,57 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jbBack = new javax.swing.JButton();
+
+        jFrame1.setTitle("Nieuwe categorie toevoegen");
+        jFrame1.setMinimumSize(new java.awt.Dimension(500, 300));
+
+        jLabel5.setText("Naam:");
+
+        jLabel6.setText("Omschrijving:");
+
+        jButton1.setText("Categorie toevoegen");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane3.setViewportView(jTextArea1);
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrame1Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                        .addComponent(jTextField1)))
+                .addContainerGap(95, Short.MAX_VALUE))
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrame1Layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(221, Short.MAX_VALUE))
+        );
 
         setLayout(new java.awt.BorderLayout());
 
@@ -613,7 +671,7 @@ public class ProductenOverzicht extends javax.swing.JPanel {
     }//GEN-LAST:event_jbBackActionPerformed
 
     private void jbToevoegenCategorieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbToevoegenCategorieActionPerformed
-        // TODO add your handling code here:
+        jFrame1.show();
     }//GEN-LAST:event_jbToevoegenCategorieActionPerformed
 
     //Verwijderen product (klik op knop "verwijderen")
@@ -717,12 +775,33 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         updateTable(true, false, true, false);
     }//GEN-LAST:event_voorraadRetourneren
 
+    /**
+     * @author Vernon de Goede < vernon.de.goede@hva.nl >
+     * @param evt 
+     * 
+     * ActionPerformed die geladen wordt als er op de knop Toevoegen wordt geklikt in jFrame1. De query wordt dan gerunt waarmee een nieuwe categorie wordt toegevoegd.
+     */
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String catnaam, catOmschrijving;
+        catnaam = jTextField1.getText();
+        catOmschrijving = jTextArea1.getText();
+        
+        WinkelApplication.getQueryManager().addCategory(catnaam, catOmschrijving);
+        updateTable(true, false, true, false);
+        JOptionPane.showMessageDialog(null, "De categorie is toegevoegd!");
+        jFrame1.hide();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -730,6 +809,9 @@ public class ProductenOverzicht extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton jbBack;
     private javax.swing.JButton jbProductToevoegen;
     private javax.swing.JButton jbProductVerwijderen;
