@@ -5,11 +5,12 @@
 package view;
 
 import java.awt.Color;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JPanel;
-import main.WinkelApplication;
 import misc.ComboItem;
 import model.Category;
+import model.PictureCollector;
 import model.Product;
 
 /**
@@ -22,12 +23,17 @@ import model.Product;
  * menu na het registreren.
  */
 public class NieuwProduct extends JPanel {
+    
+    public PictureCollector pc;
+    
     /**
      * Creates new form NieuweKlant
      */
     public NieuwProduct() {
         initComponents();
         addData();
+        
+        this.pc = new PictureCollector();
         
         //Make the listener to validate the textfields
         
@@ -182,8 +188,8 @@ public class NieuwProduct extends JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addContainerGap())
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,13 +313,14 @@ public class NieuwProduct extends JPanel {
             //Product opslaan in de database...
             ComboItem cat = (ComboItem) selectCategories.getSelectedItem();
             Product p = new Product();
+            Date date = new Date();
             
             p.setCategorie_id(Integer.parseInt(cat.getValue()));
             p.setNaam(tfNaam.getText());
             p.setPrijs(Double.parseDouble(tfPrijs.getText().replace(',', '.')));
             p.setOmschrijving(tfOmschrijving.getText());
-            p.setDatum_aangemaakt(WinkelApplication.getCurrentTimeStamp());
-            p.setDatum_gewijzigd(WinkelApplication.getCurrentTimeStamp());
+            p.setDatum_aangemaakt((int) date.getTime());
+            p.setDatum_gewijzigd((int) date.getTime());
             p.setVoorraad(Integer.parseInt(tfVoorraad.getText()));
             //afbeelding
             //thumbnail
