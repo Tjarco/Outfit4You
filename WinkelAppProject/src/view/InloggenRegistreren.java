@@ -3,9 +3,9 @@ package view;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.swing.*;
 import main.WinkelApplication;
 import model.Session;
@@ -105,7 +105,7 @@ public class InloggenRegistreren extends MainLayout {
 
         btninloggen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (WinkelApplication.getQueryManager().isValidLogin(txtmail.getText(), jpwachtwoord.getText())){
+                if (WinkelApplication.getQueryManager().isValidLogin(txtmail.getText(), md5(jpwachtwoord.getText()))){
                     if (WinkelApplication.getQueryManager().getGebruikerId(txtmail.getText())<=0){
                         JOptionPane.showMessageDialog(registreren,
                         "U heeft een verkeerde e-mail of wachtwoord ingevuld",//"tekst",
@@ -177,9 +177,19 @@ public class InloggenRegistreren extends MainLayout {
         gbc.gridy = 0;
         content.add(registreren, gbc);
     }
-
+    
+    private String md5(String in){
+        String hashword=null;
+        try{
+            MessageDigest md5=
+                    MessageDigest.getInstance("MD5");
+            md5.update(in.getBytes());
+            BigInteger hash= new BigInteger(1, md5.digest());
+            hashword=hash.toString(16);
+        } catch (NoSuchAlgorithmException e){}
+        return hashword;
+    }
    
-
     private class ButtonListener implements ActionListener {
 
         /**
