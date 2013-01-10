@@ -21,6 +21,7 @@ import java.net.URI;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.util.Random; 
+import model.Statistiek;
 
 /**
  * @author Administrator
@@ -427,6 +428,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         /**
          * 1. Velden worden gecontroleerd d.m.v. regex
          * 2. Queries zullen de order in de database plaatsen.
+         * 3. De statistieken zullen gëupdate worden
          * 3. Gebruiker zal (afhankelijk van zijn betaalmethode) naar een pagina worden gestuurd, zie hieronder:
          *  3.1 iDeal - Gebruiker wordt naar een iDeal betaalpagina gestuurd
          *  3.2 Contante betaling - Gebruiker krijgt een code waarmee hij contant kan betalen bij een medewerker en vervolgens zijn product in ontvangst kan nemen.
@@ -446,6 +448,12 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
             String betaalmethode = (String) cmbPayMethod.getSelectedItem();
             WinkelApplication.getQueryManager().setOrder(WinkelApplication.getBasket(),
                    naam, adres, postcode, woonplaats, opmerking, betaalmethode, betaalCode);
+            
+            for(int i =0; i<WinkelApplication.getBasket().size(); i++){
+                Statistiek s = new Statistiek(Session.getGebruiker(), WinkelApplication.getBasket().getProducts().get(i));
+                main.WinkelApplication.getQueryManager().updateStatistieken(s);
+            }
+            
             WinkelApplication.getBasket().empty();
             if("iDeal".equals(betaalmethode)) {
                 // Betaling verloopt via iDeal

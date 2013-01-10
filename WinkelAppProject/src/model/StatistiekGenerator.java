@@ -35,7 +35,6 @@ public class StatistiekGenerator {
         List<Statistiek> statistieken = WinkelApplication.getQueryManager().getStatistieken();
         //Double variabele om alles in op te slaan
         double omzet = 0.00;
-        DecimalFormat df = new DecimalFormat("0.00");
         
         for(Product product : products)
         {
@@ -48,7 +47,7 @@ public class StatistiekGenerator {
             }
         }
         
-        return ""+df.format(omzet) +"";
+        return ""+main.WinkelApplication.CURRENCY.format(omzet) +"";
     }
 
     public String getAantalKlanten() 
