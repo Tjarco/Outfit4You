@@ -547,8 +547,6 @@ public class QueryManager {
         String SQL_order = "INSERT INTO `order` (`order_id`, `naam`, `adres`, `postcode`, `woonplaats`, `notes`, `betaalmethode`, `datum`, `status`, `datum_gewijzigd`, `code`)"
                 + " VALUES(NULL, '" + naam + "', '" + adres + "', '" + postcode + "', '"
 
-                + woonplaats + "', '" + opmerking + "', '" + betaalmethode + "', '" + currentTimestamp + "', '', '0')"
-
                 + woonplaats + "', '" + opmerking + "', '" + betaalmethode + "', '" + currentTimestamp + "', '', '0', '" + betaalCode + "')";
         
 
