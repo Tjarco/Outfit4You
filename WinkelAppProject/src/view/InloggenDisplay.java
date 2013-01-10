@@ -1,21 +1,10 @@
-
 package view;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import main.WinkelApplication;
 import model.Gebruiker;
 import model.Session;
@@ -25,6 +14,12 @@ import model.Session;
  * @author Tjarco
  * 
  * Het inlog panel dat in de categorie panel komt te staan.
+ * 
+ * @version 1.1
+ * @author Vernon de Goede < vernon.de.goede@hva.nl >
+ * 
+ * Fixed unused imports
+ * Cleaned source code
  */
 public class InloggenDisplay extends JPanel {
     JLabel InUitlogLabel;
@@ -35,22 +30,12 @@ public class InloggenDisplay extends JPanel {
     private Font labels ;
     private GridBagConstraints gbc;
     private Gebruiker gebruiker;
-    
-    
-    
-        private JPanel gegevensPanel=new JPanel();
-        
-    //private InloggenRegistreren inloggenRegistreren=new InloggenRegistreren();
+    private JPanel gegevensPanel=new JPanel();
     
     //De kleuren voor de labels
     private final Color foreground = Color.getHSBColor(0.7f, 0.2f, 0.8f);
     private final Color foregroundHover = Color.getHSBColor(0.7f, 0.1f, 1f);
     
-
-    
-    
-    //Zet de componenten op de panel, als de gebruiker als is ingelogd kan hij/zij zijn/haar profiel bekijken of
-    //uitloggen.
     public InloggenDisplay()
     {
         System.out.println("getting user");
@@ -85,8 +70,6 @@ public class InloggenDisplay extends JPanel {
         this.setVisible(true);
         
     }
-    
-    
     
     // inlog label en uitlog label
     private void addInUitLoglabel(){
@@ -191,7 +174,6 @@ public class InloggenDisplay extends JPanel {
                 main.WinkelApplication.getInstance().showPanel(new InloggenRegistreren());
                }
            }
-           
             
         }
 
