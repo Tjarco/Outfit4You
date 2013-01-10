@@ -13,6 +13,7 @@ import main.WinkelApplication;
 import model.Category;
 import model.Product;
 import model.Session;
+import model.Paginatie;
 
 /**
  * @version 1.0
@@ -32,6 +33,11 @@ import model.Session;
  * @author Vernon de Goede < vernon.de.goede@hva.nl >
  * 
  * Wanneer er geen enkel product meer op voorraad is van een bepaald product wordt een melding hiervan gegeven en zal het product niet in de basket verschijnen.
+ * 
+ * @version 2.3
+ * @author Bono
+ * 
+ * Paginatie toegevoegd voor producten.
  */
 public class CategoryList extends JPanel implements MouseListener {
 
@@ -42,7 +48,9 @@ public class CategoryList extends JPanel implements MouseListener {
     private JPanel productDetails;
     //Het product dat de 'focus' heeft
     private Product currentProduct;
-
+    //Paginatie
+    private Paginatie paginatie = new Paginatie(1);
+    
     public CategoryList() {
         super();
         setLayout(new BorderLayout());
@@ -184,8 +192,8 @@ public class CategoryList extends JPanel implements MouseListener {
      * @param categoryID
      */
     private void addProducts(int categoryID) {
-        List<Product> products = WinkelApplication.getQueryManager().getProducts(categoryID);
-
+        List<Product> products = WinkelApplication.getQueryManager().getProducts(categoryID, this.paginatie);
+        
         JPanel jpProducts = new JPanel();
         jpProducts.setMinimumSize(new Dimension(250, 0));
         jpProducts.setMaximumSize(new Dimension(250, 0));
@@ -194,7 +202,8 @@ public class CategoryList extends JPanel implements MouseListener {
         jpProducts.setLayout(layoutPro);
 
 
-        for (int i = 0; i < products.size(); i++) {
+        for (int i = 0; i < products.size(); i++) 
+        {
             Product product = products.get(i);
 
             JPanel pnlProduct = new JPanel();
@@ -217,6 +226,35 @@ public class CategoryList extends JPanel implements MouseListener {
 
             jpProducts.add(pnlProduct);
         }
+        
+        JPanel panelPaginatie = new JPanel();        
+        
+        if(paginatie.getCurrentPage() > 1)
+        {
+            JLabel goLeft = new JLabel("<<");
+            
+            goLeft.setFont(WinkelApplication.FONT_12_BOLD);
+            goLeft.setName("goLeft");
+            goLeft.addMouseListener(new paginatieListener(this.paginatie, goLeft, this, categoryID));
+            goLeft.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            
+            panelPaginatie.add(goLeft);
+        }
+        
+        if(paginatie.getCurrentPage() < paginatie.getAantalPaginas())
+        {
+            JLabel goRight = new JLabel(">>");
+            
+            goRight.setFont(WinkelApplication.FONT_12_BOLD);
+            goRight.setName("goRight");
+            goRight.addMouseListener(new paginatieListener(this.paginatie, goRight, this, categoryID));
+            goRight.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            
+            panelPaginatie.add(goRight);
+        }
+        
+        jpProducts.add(panelPaginatie);
+        
         try {
             items.remove(1);
         } catch (Exception e) {
@@ -355,5 +393,40 @@ public class CategoryList extends JPanel implements MouseListener {
     @Override
     public void mouseExited(MouseEvent event) {
         // Intentionally left blank.
+    }
+    
+    public class paginatieListener implements MouseListener
+    {
+        Paginatie paginatie;
+        JLabel label;
+        CategoryList current;
+        int categorieId;
+        
+        paginatieListener(Paginatie paginatie, JLabel label, CategoryList current, int categorieId)
+        {
+            this.paginatie = paginatie;
+            this.label = label;
+            this.categorieId = categorieId;
+            this.current = current;
+        }
+
+        public void mouseClicked(MouseEvent e) 
+        {            
+            if(this.label.getName().equals("goRight"))
+            {
+                this.paginatie.nextPage();
+                this.current.addProducts(this.categorieId);
+            }
+            else
+            {
+                this.paginatie.previousPage();
+                this.current.addProducts(this.categorieId);
+            }
+        }
+
+        public void mousePressed(MouseEvent e) {}
+        public void mouseReleased(MouseEvent e) {}
+        public void mouseEntered(MouseEvent e) {}
+        public void mouseExited(MouseEvent e) {}
     }
 }

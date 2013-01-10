@@ -11,6 +11,7 @@ import model.Gebruiker;
 import model.Product;
 
 import misc.timestamp;
+import model.Paginatie;
 
 import model.Statistiek;
 
@@ -235,17 +236,19 @@ public class QueryManager {
 
     /**
      * Geeft alle producten die horen bij een bepaalde categorie.
-     *
      * @param categoryId
      * @return een lijst met categorieën
      */
-    public List<Product> getProducts(int categoryId) {
+    public List<Product> getProducts(int categoryId, Paginatie paginatie) {
         List<Product> products = new ArrayList<Product>();
-        try {
-            String sql = "SELECT * FROM product WHERE categorie_id='" + categoryId + "' AND is_actief = 1 ORDER BY naam ASC";
+        paginatie.calculateOffset();
+        
+        try 
+        {            
+            String sql = "SELECT SQL_CALC_FOUND_ROWS * FROM product WHERE categorie_id='" + categoryId + "' AND is_actief = 1 ORDER BY naam ASC LIMIT " + paginatie.getOffset() + "," + paginatie.getAantalPerPagina() + "";
             ResultSet result = dbmanager.doQuery(sql);
-            while (result.next()) {
-
+            while (result.next()) 
+            {
                 products.add(new Product(
                         result.getInt("product_id"),
                         result.getInt("categorie_id"),
@@ -259,19 +262,23 @@ public class QueryManager {
                         result.getInt("voorraad"),
                         result.getString("afbeelding"),
                         result.getString("thumbnail"),
-                        (result.getInt("is_actief") == 0) ? false : true));
-
-                /*
-                 * products.add(new Product(result.getInt("product_id"),
-                 * result.getInt("categorie_id"), result.getString("naam"),
-                 * result.getString("omschrijving"), result.getDouble("prijs"),
-                 * result.getInt("voorraad"), (result.getInt("is_actief") == 0)
-                 * ? false : true));
-                 */
+                        (result.getInt("is_actief") == 0) ? false : true
+                ));
             }
-        } catch (SQLException e) {
+            
+            result = dbmanager.doQuery("SELECT FOUND_ROWS()");
+            if(result.next())
+            {
+                paginatie.setAantalProducten(result.getInt(1));
+            }
+        } 
+        catch (SQLException e) 
+        {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
         }
+        
+        paginatie.calculatePages();
+        
         return products;
     }
     
