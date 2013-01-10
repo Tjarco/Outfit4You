@@ -646,18 +646,26 @@ public class QueryManager {
         return gelukt;
     }
 
-    public int getAantalVerkocht(int product_id) {
-        String sql = "SELECT totaal_verkocht FROM statistieken WHERE `product_id` = '" + product_id + "'";
-        ResultSet result = dbmanager.doQuery(sql);
-        int aantalVerkocht = 0;
-        try {
-            while (result.next()) {
-                aantalVerkocht = result.getInt("totaal_verkocht");
+    public int getAantalProductenVerkocht()
+    {
+        int aantal = 0;
+        
+        try
+        {
+            String sql = "SELECT SUM(totaal_verkocht) as totaal FROM statistieken";
+            ResultSet result = dbmanager.doQuery(sql);
+            
+            if(result.next())
+            {
+                aantal = result.getInt(1);
             }
-        } catch (SQLException ex) {
-            System.out.println(Dbmanager.SQL_EXCEPTION + ex.getMessage());
         }
-        return aantalVerkocht;
+        catch(SQLException ex)
+        {
+            System.err.print(Dbmanager.SQL_EXCEPTION + ex.getMessage());
+        }
+        
+        return aantal;
     }
 
     public Statistiek getStatistiek(int product_id) {
@@ -684,5 +692,31 @@ public class QueryManager {
         }
 
         return s;
+    }
+    
+        /**
+     * @return aantal actieve klanten
+     */
+    public int getAantalKlanten()
+    {
+        int aantal = 0;
+        
+        try
+        {
+            String sql = "SELECT COUNT(id) FROM gebruiker WHERE `actief` = 1";
+            ResultSet result = dbmanager.doQuery(sql);
+            
+
+            if(result.next())
+            {
+                aantal = result.getInt(1);
+            }
+        }
+        catch(SQLException ex)
+        {
+            System.err.print(Dbmanager.SQL_EXCEPTION + ex.getMessage());
+        }
+        
+        return aantal;
     }
 }

@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Font;
+import java.text.DecimalFormat;
 import java.util.List;
 import main.WinkelApplication;
 import org.jfree.chart.ChartFactory;
@@ -26,56 +27,50 @@ public class StatistiekGenerator {
         producten = main.WinkelApplication.getQueryManager().getAllProducts();
     }
 
-    public String getOmzet() {
-
-        String omzet;
-
-        double omzetDouble = 0;
-
-        for (int i = 0; i < producten.size(); i++) {
-
-            int id = producten.get(i).getProduct_id();
-            double prijs = producten.get(i).getPrijs();
-
-            int verkocht = main.WinkelApplication.getQueryManager().getAantalVerkocht(id);
-
-            omzetDouble += (verkocht * prijs);
-
+    public String getOmzet() 
+    {
+        //Alle producten ophalen
+        List<Product> products = WinkelApplication.getQueryManager().getAllProducts();
+        //Alle statistieken ophalen
+        List<Statistiek> statistieken = WinkelApplication.getQueryManager().getStatistieken();
+        //Double variabele om alles in op te slaan
+        double omzet = 0.00;
+        DecimalFormat df = new DecimalFormat("0.00");
+        
+        for(Product product : products)
+        {
+            for(Statistiek statistiek : statistieken)
+            {
+                if(statistiek.getProduct_id() == product.getProduct_id())
+                {
+                    omzet += product.getPrijs() * statistiek.getTotaal_verkocht();
+                }
+            }
         }
-
-        omzet = main.WinkelApplication.CURRENCY.format(omzetDouble);
-
-        return omzet;
+        
+        return ""+df.format(omzet) +"";
     }
 
-    public String getAantalKlanten() {
-        String aantal;
+    public String getAantalKlanten() 
+    {
+        int aantal = WinkelApplication.getQueryManager().getAantalKlanten();
 
-        int i = main.WinkelApplication.getQueryManager().getGebruikersList().size();
-
-        aantal = Integer.toString(i) + " gebruikers";
-
-        return aantal;
+        return ""+ aantal +"";
     }
 
-    public String getTotaalAantalProductenVerkocht() {
-        String aantal;
-
-        int a = 0;
-        for (int i = 0; i < producten.size(); i++) {
-            a += main.WinkelApplication.getQueryManager().getAantalVerkocht(producten.get(i).getProduct_id());
-        }
-        aantal = Integer.toString(a) + " producten";
-
-        return aantal;
+    public String getTotaalAantalProductenVerkocht() 
+    {
+        int aantal = WinkelApplication.getQueryManager().getAantalProductenVerkocht();
+        
+        return ""+ aantal +"";
     }
 
     public String[] getAantalProductenInfo(Product p) {
         String[] info = new String[2];
 
-        Statistiek s = main.WinkelApplication.getQueryManager().getStatistiek(p.getProduct_id());
-
-        int aantal = s.getTotaal_verkocht();
+        Statistiek statistiek = main.WinkelApplication.getQueryManager().getStatistiek(p.getProduct_id());
+        
+        int aantal = statistiek.getTotaal_verkocht();
         double prijs = p.getPrijs();
         double omzet = aantal * prijs;
 
