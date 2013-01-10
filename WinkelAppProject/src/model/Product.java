@@ -7,8 +7,8 @@ public class Product {
     private String naam;
     private double prijs;
     private String omschrijving;
-    private int datum_aangemaakt;
-    private int datum_gewijzigd;
+    private String datum_aangemaakt;
+    private String datum_gewijzigd;
     private int sku;
     private String omschrijving_kort;
     private int voorraad;
@@ -21,7 +21,7 @@ public class Product {
         
     }
 
-    public Product(int product_id, int categorie_id, String naam, double prijs, String omschrijving, int datum_aangemaakt, int datum_gewijzigd, int sku, String omschrijving_kort, int voorraad, String afbeelding, String thumbnail, boolean is_actief) {
+    public Product(int product_id, int categorie_id, String naam, double prijs, String omschrijving, String datum_aangemaakt, String datum_gewijzigd, int sku, String omschrijving_kort, int voorraad, String afbeelding, String thumbnail, boolean is_actief) {
         this.product_id = product_id;
         this.categorie_id = categorie_id;
         this.naam = naam;
@@ -78,19 +78,19 @@ public class Product {
         this.omschrijving = omschrijving;
     }
 
-    public int getDatum_aangemaakt() {
+    public String getDatum_aangemaakt() {
         return datum_aangemaakt;
     }
 
-    public void setDatum_aangemaakt(int datum_aangemaakt) {
+    public void setDatum_aangemaakt(String datum_aangemaakt) {
         this.datum_aangemaakt = datum_aangemaakt;
     }
 
-    public int getDatum_gewijzigd() {
+    public String getDatum_gewijzigd() {
         return datum_gewijzigd;
     }
 
-    public void setDatum_gewijzigd(int datum_gewijzigd) {
+    public void setDatum_gewijzigd(String datum_gewijzigd) {
         this.datum_gewijzigd = datum_gewijzigd;
     }
 

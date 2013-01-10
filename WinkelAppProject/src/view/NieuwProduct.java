@@ -324,14 +324,14 @@ public class NieuwProduct extends JPanel {
             //Product opslaan in de database...
             ComboItem cat = (ComboItem) selectCategories.getSelectedItem();
             Product p = new Product();
-            Date date = new Date();
+            
             
             p.setCategorie_id(Integer.parseInt(cat.getValue()));
             p.setNaam(tfNaam.getText());
             p.setPrijs(Double.parseDouble(tfPrijs.getText().replace(',', '.')));
             p.setOmschrijving(tfOmschrijving.getText());
-            p.setDatum_aangemaakt((int) date.getTime());
-            p.setDatum_gewijzigd((int) date.getTime());
+            p.setDatum_aangemaakt(main.WinkelApplication.getCurrentTimeStamp());
+            p.setDatum_gewijzigd(main.WinkelApplication.getCurrentTimeStamp());
             p.setVoorraad(Integer.parseInt(tfVoorraad.getText()));
             p.setAfbeelding(this.uploadData[1]);
             p.setThumbnail(this.uploadData[1]);
