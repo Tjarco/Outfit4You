@@ -441,6 +441,7 @@ public class QueryManager {
                     + "             `datum_gewijzigd`, "
                     + "             `datum_laatst_ingelogd`, "
                     + "             `email`, "
+                    + "             `wachtwoord`, "
                     + "             `voornaam`, "
                     + "             `tussenvoegsel`, "
                     + "             `achternaam`, "
@@ -465,7 +466,7 @@ public class QueryManager {
                         result.getString("datum_aangemaakt"),
                         result.getString("datum_gewijzigd"),
                         result.getString("datum_laatst_ingelogd"),
-                        "", //wachtwoord veld
+                        result.getString("wachtwoord"),//"", //wachtwoord veld
                         result.getString("email"),
                         result.getString("voornaam"),
                         result.getString("tussenvoegsel"),
