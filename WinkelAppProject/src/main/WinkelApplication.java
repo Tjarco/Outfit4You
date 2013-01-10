@@ -82,8 +82,9 @@ public final class WinkelApplication {
     }
 
     public void startup() {
-        Gebruiker g = new Gebruiker();
-        g.setMedewerker(false);
+//        Gebruiker g = new Gebruiker();
+//        g.setMedewerker(true);
+//        Session.startSesionFor(g);
            
         System.out.println("Creating main window...");
         mainWindow = new JFrame(NAME);
