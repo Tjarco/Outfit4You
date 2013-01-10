@@ -64,30 +64,34 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
     public JPanel price;
 
     public Payment() {
-        super.AddTitle("Betalen");
-        super.addBackButton(new CategoryList());
         
-        container = new JPanel();
-        container.setLayout(null);
+        
+        
+            super.AddTitle("Betalen");
+            super.addBackButton(new CategoryList());
 
-        container.setOpaque(true);
-               
-        content = new JPanel();
-        content.setLayout(null);
-        content.setBounds(250, 20, 900, 600);
+            container = new JPanel();
+            container.setLayout(null);
+
+            container.setOpaque(true);
+
+            content = new JPanel();
+            content.setLayout(null);
+            content.setBounds(250, 20, 900, 600);
+
+            price = new JPanel();
+            price.setLayout(null);
+            price.setOpaque(false);
+            price.setBounds(0, 20, 900, 600);
+
+
+            initComponents();
+
+            container.add(content);
+            content.add(price);
+            add(container);
         
-        price = new JPanel();
-        price.setLayout(null);
-        price.setOpaque(false);
-        price.setBounds(0, 20, 900, 600);
-  
-        
-        initComponents();
-        
-        container.add(content);
-        content.add(price);
-        add(container);
-    }
+     }
 
     /**
      * Validators voor de textfields.

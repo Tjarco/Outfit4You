@@ -19,7 +19,8 @@ package model;
  * Controleert of gebruiker is ingelogd
  */
 public class Session {
-    static private Gebruiker gebruiker = null;
+    static public Gebruiker gebruiker = null;
+    static private boolean isIngelogd;
     
     public static Gebruiker getGebruiker(){
         return gebruiker;
@@ -30,6 +31,7 @@ public class Session {
      * @param sessionGebruiker 
      */
     public static void startSesionFor(Gebruiker sessionGebruiker){
+        Session.isIngelogd = true;
         gebruiker = sessionGebruiker;
     }
     
@@ -39,12 +41,16 @@ public class Session {
     public static void stopSession(){
         gebruiker = null;
     }
+
+    public Session() {
+        Session.isIngelogd = false;
+    }
     /**
      * Checkt of de gebruiker momenteel is ingelogd.
      * @return boolean, true wanneer gebruiker is ingelogd, false wanneer gebruiker niet is ingelogd
      */
-    public boolean isIngelogd() {
-        if(gebruiker == null) {
+    public static boolean isIngelogd() {
+        if(Session.isIngelogd == false) {
             return false;
         }else{
             return true;

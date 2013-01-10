@@ -83,8 +83,8 @@ public final class WinkelApplication {
 
     public void startup() {
         Gebruiker g = new Gebruiker();
-        g.setMedewerker(true);
-        Session.startSesionFor(g);     
+        g.setMedewerker(false);
+           
         System.out.println("Creating main window...");
         mainWindow = new JFrame(NAME);
        // Zet het scherm fullScreen
@@ -104,7 +104,7 @@ public final class WinkelApplication {
         
         System.out.println("Setting layout...");
         mainWindow.getContentPane().setLayout(new BorderLayout());
-        System.out.println("creating new category list...");
+        System.out.println("Creating new category list...");
         showPanel(new view.CategoryList());
         System.out.println("Showing main window...");
         mainWindow.setVisible(true);
