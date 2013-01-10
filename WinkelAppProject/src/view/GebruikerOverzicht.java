@@ -74,7 +74,7 @@ public class GebruikerOverzicht extends javax.swing.JPanel {
         for (Gebruiker klant : klanten) 
         {
             model.addRow(new Object[]{new Integer(klant.getId()),
-            klant.getVoornaam() + klant.getAchternaam(),
+            klant.getVoornaam() +" "+ klant.getTussenvoegsel() + " "+ klant.getAchternaam(),
             klant.getStraatnaam(),
             klant.getPostcode(),
             klant.getWoonplaats(),
