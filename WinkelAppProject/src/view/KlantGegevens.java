@@ -1,7 +1,6 @@
 
 package view;
 
-import connectivity.QueryManager;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Cursor;
@@ -10,10 +9,9 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Method;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -45,9 +43,6 @@ JButton jbTerug;
 Gebruiker gebruiker;
 String wijzigingonthoud;
 
-// kan later weg
-boolean isValid=true;
-//!
     /**
      * Creates new form MainMenu
      */
@@ -206,10 +201,6 @@ boolean isValid=true;
             JLabel          lNieuwWachtwoord=new JLabel("     Nieuw wachtwoord:         ");
             JLabel   lHerhaalNieuwWachtwoord=new JLabel("     Herhaling wachtwoord:     ");
             
-          //  lOudWachtwoord.setHorizontalAlignment(JLabel.RIGHT);
-            //lNieuwWachtwoord.setHorizontalAlignment(JLabel.RIGHT);
-           // lHerhaalNieuwWachtwoord.setHorizontalAlignment(JLabel.RIGHT);
-            
             final JPasswordField pfOudWachtwoord=new JPasswordField();
             final JPasswordField pfNieuwWachtwoord=new JPasswordField();
             final JPasswordField pfNieuwWachtwoord2=new JPasswordField();
@@ -226,14 +217,14 @@ boolean isValid=true;
                 {
                     // als het oude wachtwoord niet klopt, een foutmelding geven
                     // hiervoor kan je de isvalidlogin gebruiken aangezien die true of false terug stuurd en de email van de gebruiker heb je al.
-                    if (WinkelApplication.getQueryManager().isValidLogin(gebruiker.getEmail(), pfOudWachtwoord.getText())==false){
+                    if (WinkelApplication.getQueryManager().isValidLogin(gebruiker.getEmail(), md5(pfOudWachtwoord.getText()))==false){
                         resultaatFrame("Wachtwoord wijzigen", "Fout: het ingevulde wachtwoord klopt niet");
                         //Fout: wachtwoord klopt niet
                     }
                     else // anders: als wachtwoord wel klopt
                         if (pfNieuwWachtwoord.getText().equals(pfNieuwWachtwoord2.getText())){
                             frame.dispose();
-                            gebruiker.setWachtwoord(pfNieuwWachtwoord2.getText());
+                            gebruiker.setWachtwoord(md5(pfNieuwWachtwoord2.getText()));
                             resultaatFrame("Wachtwoord wijzigen", "Druk op de knop 'Wijzigingen opslaan' om uw wijzigingen op te slaan.");
                             
                         }
@@ -276,6 +267,18 @@ boolean isValid=true;
                 titel,//"titel",
                 JOptionPane.PLAIN_MESSAGE);
         }
+        
+        private String md5(String in){
+        String hashword=null;
+        try{
+            MessageDigest md5=
+                    MessageDigest.getInstance("MD5");
+            md5.update(in.getBytes());
+            BigInteger hash= new BigInteger(1, md5.digest());
+            hashword=hash.toString(16);
+        } catch (NoSuchAlgorithmException e){}
+        return hashword;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -5,8 +5,10 @@
 package view;
 
 import java.awt.Color;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
@@ -487,7 +489,7 @@ public class NieuweGebruiker extends JPanel {
             for (int i = 0; i <= tfWachtwoord.getPassword().length - 1; i++) {
                 wachtwoord += tfWachtwoord.getPassword()[i];
             }
-            g.setWachtwoord(wachtwoord);
+            g.setWachtwoord(md5(wachtwoord));
 
 
             g.setDatum_aangemaakt(WinkelApplication.getCurrentTimeStamp());
@@ -551,6 +553,17 @@ public class NieuweGebruiker extends JPanel {
             JOptionPane.showMessageDialog(this, message);
 
         }
+    }
+    private String md5(String in){
+        String hashword=null;
+        try{
+            MessageDigest md5=
+                    MessageDigest.getInstance("MD5");
+            md5.update(in.getBytes());
+            BigInteger hash= new BigInteger(1, md5.digest());
+            hashword=hash.toString(16);
+        } catch (NoSuchAlgorithmException e){}
+        return hashword;
     }//GEN-LAST:event_jbVoegToeActionPerformed
 
     private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
