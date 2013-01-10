@@ -27,6 +27,11 @@ import model.Session;
  * @author Bono
  *
  * Alleen terug knop toevoegen als er een medewerker/manager is ingelogd
+ * 
+ * @version 2.2
+ * @author Vernon de Goede < vernon.de.goede@hva.nl >
+ * 
+ * Wanneer er geen enkel product meer op voorraad is van een bepaald product wordt een melding hiervan gegeven en zal het product niet in de basket verschijnen.
  */
 public class CategoryList extends JPanel implements MouseListener {
 

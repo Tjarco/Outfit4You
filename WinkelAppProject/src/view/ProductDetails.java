@@ -12,6 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.Product;
 
+/**
+ * @deprecated Deze pagina wordt op dit moment niet meer gebruikt en kan volgens mij (Vernon) worden verwijderd. Moet nog nagekeken worden of er eventuele verwijzingen naar deze pagina in de rest van de code staan.
+ */
+
 public class ProductDetails extends JPanel implements MouseListener, ActionListener {
 
     private final int product_id;

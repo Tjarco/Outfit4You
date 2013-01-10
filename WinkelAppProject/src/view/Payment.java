@@ -3,7 +3,6 @@ package view;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -21,14 +20,30 @@ import model.Session;
 import java.net.URI;
 import java.awt.Desktop;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
+
+/**
+ * @author Administrator
+ * 
+ * @version 1.0
+ * Initial Payment class created.
+ */
 
 /**
  * @author Bono
  * 
  * @version 1.1
  * Ingelogde gebruikers informatie wordt automagisch ingevuld in de velden, deze kan altijd nog veranderd worden door de gebruiker.
+ */
+
+/**
+ * @author Vernon de Goede  < vernon.de.goede@hva.nl >
+ * @version 1.2
+ * 
+ * Laat gebruiker waardes in zijn basket veranderen, de input boxes kunnen geen hogere waardes aannemen dan de voorraad van een bepaald product.
+ * Gebruikers worden doorgestuurd naar een betaalpagina van de Rabobank
+ * Query van OrderSend() is nu kloppend gemaakt met de database update
+ * 
+ * Let op: bugfix nodig om repaint te fixen wanneer de waardes in de basket worden veranderd. Sommige teksten komen nu over elkaar heen te staan
  */
 public class Payment extends MainLayout implements MouseListener, ActionListener {
 
@@ -168,19 +183,19 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         lblProductHeader.setText("Producten");
         lblProductHeader.setBounds(20, 60, 150, 20);
         lblProductHeader.setFont(WinkelApplication.FONT_12_BOLD);
-        content.add(lblProductHeader);
+        price.add(lblProductHeader);
 
         JLabel lblAmountHeader = new JLabel();
         lblAmountHeader.setText("Aantal");
         lblAmountHeader.setBounds(400, 60, 150, 20);
         lblAmountHeader.setFont(WinkelApplication.FONT_12_BOLD);
-        content.add(lblAmountHeader);
+        price.add(lblAmountHeader);
 
         JLabel lblPriceHeader = new JLabel();
         lblPriceHeader.setText("Prijs");
         lblPriceHeader.setBounds(480, 60, 150, 20);
         lblPriceHeader.setFont(WinkelApplication.FONT_12_BOLD);
-        content.add(lblPriceHeader);
+        price.add(lblPriceHeader);
 
         for (int i = 0; i < products.size(); i++) {
             final Product product = products.get(i);
@@ -188,7 +203,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
             JLabel lblProduct = new JLabel(product.getNaam());
             lblProduct.setBounds(20, verticalPosition + i * productOffset, 420, 20);
             lblProduct.setFont(WinkelApplication.FONT_12_PLAIN);
-            content.add(lblProduct);
+            price.add(lblProduct);
 
             final SpinnerNumberModel model = new SpinnerNumberModel(WinkelApplication.getBasket().getProductAmount(product), 0, WinkelApplication.getQueryManager().getVoorraad(product.getProduct_id()), 1);
             JSpinner amountItems = new JSpinner(model);
@@ -201,9 +216,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
      price.removeAll();
      price.revalidate();
      price.repaint();
-     content.removeAll();
-     content.add(price);
-     
+     initComponents();
   }
 });
             content.add(amountItems);
@@ -212,7 +225,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
             JLabel lblPrice = new JLabel(WinkelApplication.CURRENCY.format(product.getPrijs()));
             lblPrice.setBounds(480, verticalPosition + i * productOffset, 70, 20);
             lblPrice.setFont(WinkelApplication.FONT_12_PLAIN);
-            content.add(lblPrice);
+            price.add(lblPrice);
         }
 
         // create total labels
@@ -347,7 +360,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
             }
         }
     }
-    
+
     /**
      * A listener for textfields. Use the formats to test if the user is filling
      * in correct information. If the underlaying document, which is automaticly generated, changes, this listener 
