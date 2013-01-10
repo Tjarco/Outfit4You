@@ -38,7 +38,7 @@ public class InloggenRegistreren extends MainLayout {
 
         addInloggen();
         addRegistreren();
-        addPayWithoutAccount();
+      
 
         add(content, BorderLayout.CENTER);
 
@@ -178,22 +178,7 @@ public class InloggenRegistreren extends MainLayout {
         content.add(registreren, gbc);
     }
 
-    private void addPayWithoutAccount() {
-        JButton pay = new JButton("Betalen zonder Account");
-        pay.setMinimumSize(new Dimension(100, 50));
-        pay.setMaximumSize(new Dimension(200, 50));
-        pay.setPreferredSize(new Dimension(150, 50));
-        pay.addActionListener(new ButtonListener());
-
-        if (main.WinkelApplication.getBasket().size() == 0) {
-            pay.setEnabled(false);
-        }
-
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        content.add(pay, gbc);
-
-    }
+   
 
     private class ButtonListener implements ActionListener {
 

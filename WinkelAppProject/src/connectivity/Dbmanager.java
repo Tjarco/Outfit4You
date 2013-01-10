@@ -16,7 +16,7 @@ public class Dbmanager {
     public void openConnection() {
                     
             //online database
-            String url = "jdbc:mysql://192.169.52.228:3306/vernondg_winkelApp2012";
+            String url = "jdbc:mysql://192.169.52.228:3306/vernondg_winkelApp2012?autoReconnect=true";
             String user = "vernondg_goedev", pass = "geheim123";
             
             //locale database
