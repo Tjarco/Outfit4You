@@ -71,14 +71,19 @@ public class StatistiekGenerator {
         return aantal;
     }
     
-    public String getAantalProductenVerkocht(Product p){
-        String aantal;
+    public String[] getAantalProductenInfo(Product p){
+        String[] info = new String[2];
         
-        int a = main.WinkelApplication.getQueryManager().getAantalVerkocht(p.getProduct_id());
+        Statistiek s = main.WinkelApplication.getQueryManager().getStatistiek(p.getProduct_id());
         
-        aantal = Integer.toString(a) + "producten";
+        int aantal = s.getTotaal_verkocht();
+        double prijs = p.getPrijs();
+        double omzet = aantal * prijs;
         
-        return aantal;
+        info[0] = Integer.toString(aantal) + "producten";
+        info[1] = main.WinkelApplication.CURRENCY.format(omzet);
+        
+        return info;
     }
     
     public ChartPanel getProductenGrafiek(Product product){
@@ -102,7 +107,7 @@ public class StatistiekGenerator {
        
        
         ChartPanel pane = new ChartPanel(chart);
-        pane.setSize(450, 290);
+        pane.setSize(450, 280);
         
         return pane;
     

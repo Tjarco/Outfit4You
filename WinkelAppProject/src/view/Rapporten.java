@@ -39,6 +39,13 @@ public class Rapporten extends javax.swing.JPanel {
       jpChartProducten.removeAll();
       jpChartProducten.add(statistiekGenerator.getProductenGrafiek(p));
       System.out.println("test");
+      
+      String[] info = statistiekGenerator.getAantalProductenInfo(p);
+      jlblAantalVerkochtProduct.setText(info[0]);
+      jlblPrijsProduct.setText(main.WinkelApplication.CURRENCY.format(p.getPrijs()));
+      jlblOmzetProduct.setText(info[1]);
+      
+      
       repaint();
       revalidate();
     }
@@ -74,9 +81,9 @@ public class Rapporten extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        jlblOmzetProduct = new javax.swing.JLabel();
+        jlblAantalVerkochtProduct = new javax.swing.JLabel();
+        jlblPrijsProduct = new javax.swing.JLabel();
         jpChartProducten = new javax.swing.JPanel();
         jpLeeftijdsgroepen = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
@@ -211,17 +218,16 @@ public class Rapporten extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         jLabel8.setText("Prijs:");
 
-        jLabel9.setFont(new java.awt.Font("Calibri", 3, 16)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 204, 0));
-        jLabel9.setText("€34,33");
+        jlblOmzetProduct.setFont(new java.awt.Font("Calibri", 3, 16)); // NOI18N
+        jlblOmzetProduct.setForeground(new java.awt.Color(0, 204, 0));
 
-        jLabel10.setFont(new java.awt.Font("Calibri", 3, 16)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 204, 0));
-        jLabel10.setText("4534534");
+        jlblAantalVerkochtProduct.setFont(new java.awt.Font("Calibri", 3, 16)); // NOI18N
+        jlblAantalVerkochtProduct.setForeground(new java.awt.Color(0, 204, 0));
 
-        jLabel11.setFont(new java.awt.Font("Calibri", 3, 16)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 204, 0));
-        jLabel11.setText("€34,33");
+        jlblPrijsProduct.setFont(new java.awt.Font("Calibri", 3, 16)); // NOI18N
+        jlblPrijsProduct.setForeground(new java.awt.Color(0, 204, 0));
+
+        jpChartProducten.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jpChartProductenLayout = new javax.swing.GroupLayout(jpChartProducten);
         jpChartProducten.setLayout(jpChartProductenLayout);
@@ -231,7 +237,7 @@ public class Rapporten extends javax.swing.JPanel {
         );
         jpChartProductenLayout.setVerticalGroup(
             jpChartProductenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 326, Short.MAX_VALUE)
+            .addGap(0, 294, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jpProductenLayout = new javax.swing.GroupLayout(jpProducten);
@@ -243,29 +249,33 @@ public class Rapporten extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jpProductenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpChartProducten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
                     .addGroup(jpProductenLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
                         .addGroup(jpProductenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jpProductenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
                             .addGroup(jpProductenLayout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1))
-                            .addGroup(jpProductenLayout.createSequentialGroup()
-                                .addGap(58, 58, 58)
                                 .addGroup(jpProductenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(80, 80, 80)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jlblAantalVerkochtProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jpProductenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jtZoekveld, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(31, Short.MAX_VALUE))
+                                    .addGroup(jpProductenLayout.createSequentialGroup()
+                                        .addGap(58, 58, 58)
+                                        .addGroup(jpProductenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jlblPrijsProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(33, 33, 33)
+                                        .addGroup(jpProductenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jlblOmzetProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jpProductenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(jpProductenLayout.createSequentialGroup()
+                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jButton1))
+                                        .addComponent(jtZoekveld, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
         jpProductenLayout.setVerticalGroup(
             jpProductenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,17 +292,17 @@ public class Rapporten extends javax.swing.JPanel {
                     .addComponent(jButton1))
                 .addGap(12, 12, 12)
                 .addGroup(jpProductenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpProductenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jlblAantalVerkochtProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblPrijsProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblOmzetProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpChartProducten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 230, Short.MAX_VALUE))
+                .addGap(0, 274, Short.MAX_VALUE))
         );
 
         jPanel2.add(jpProducten, java.awt.BorderLayout.CENTER);
@@ -408,8 +418,6 @@ public class Rapporten extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -418,7 +426,6 @@ public class Rapporten extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -430,7 +437,10 @@ public class Rapporten extends javax.swing.JPanel {
     private javax.swing.JLabel jlbOmzet1;
     private javax.swing.JLabel jlbOmzet2;
     private javax.swing.JLabel jlblAantalKlanten;
+    private javax.swing.JLabel jlblAantalVerkochtProduct;
     private javax.swing.JLabel jlblOmzet;
+    private javax.swing.JLabel jlblOmzetProduct;
+    private javax.swing.JLabel jlblPrijsProduct;
     private javax.swing.JLabel jlblProductenVerkocht;
     private javax.swing.JPanel jpChartProducten;
     private javax.swing.JPanel jpLeeftijdsgroepen;
