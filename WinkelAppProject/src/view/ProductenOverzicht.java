@@ -603,6 +603,11 @@ public class ProductenOverzicht extends javax.swing.JPanel {
                 jbProductVerwijderenMouseClicked(evt);
             }
         });
+        jbProductVerwijderen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbProductVerwijderenActionPerformed(evt);
+            }
+        });
 
         jbProductWijzigen1.setText("Wijzig product");
 
@@ -904,6 +909,10 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         wijzigCatOmschrijving.setText(WinkelApplication.getQueryManager().getCategorie(id).getDescription());
         wijzigCatID.setText(Integer.toString(id));
     }//GEN-LAST:event_jbWijzigCategorieActionPerformed
+
+    private void jbProductVerwijderenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbProductVerwijderenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbProductVerwijderenActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

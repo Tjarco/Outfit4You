@@ -171,7 +171,7 @@ public class Voorraad extends javax.swing.JPanel {
             String output = "*";
             String format = "[\\d]+";
             while (!output.matches(format) && !output.equals("")) {
-                output = JOptionPane.showInputDialog("wat is de voorraad van ' " + product + "'?");
+                output = JOptionPane.showInputDialog("Wat is de voorraad van ' " + product + "'?");
             }            
             main.WinkelApplication.getQueryManager().UpdateVoorraad(product, Integer.parseInt(output));
             
@@ -181,6 +181,32 @@ public class Voorraad extends javax.swing.JPanel {
             //Doe niks, er is geen rij geselecteerd.
         }
 
+    }
+    
+    /**
+     * Bestel de voorraad met een Input dialog.
+     * 
+     * Valideer de input met een regex. Als de input niet correct is, laat het nog een keer 
+     * de input dialog zien.
+     */
+    private void bestelVoorraad() {
+        try {
+            String product = String.valueOf(jtProducten.getModel().getValueAt(jtProducten.getSelectedRow(), 1));
+
+            String output = "*";
+            String format = "[\\d]+";
+            
+            while (!output.matches(format) && !output.equals("")) 
+            {
+                output = JOptionPane.showInputDialog("Hoeveel wilt u bestellen van ' " + product + "'?");
+            }
+            
+            //Bestel procces hier...
+            JOptionPane.showMessageDialog(null, "De bestelling is geplaatst.");
+        } catch (Exception e) {
+            //Doe niks, er is geen rij geselecteerd.
+            JOptionPane.showMessageDialog(null, "Er is geen product geselecteerd.");
+        }
     }
 
     /**
@@ -201,6 +227,7 @@ public class Voorraad extends javax.swing.JPanel {
         jtZoekveld = new javax.swing.JTextField();
         jbWijzigVoorraad = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox();
+        jbBestelVoorraad = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -251,6 +278,13 @@ public class Voorraad extends javax.swing.JPanel {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Naam", "Product_idd", "Beschrijving", "Voorraad" }));
 
+        jbBestelVoorraad.setText("Voorraad Bestellen");
+        jbBestelVoorraad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBestelVoorraadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -268,6 +302,8 @@ public class Voorraad extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jbBestelVoorraad)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbWijzigVoorraad)))
                 .addContainerGap())
         );
@@ -282,7 +318,9 @@ public class Voorraad extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbWijzigVoorraad, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbWijzigVoorraad, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbBestelVoorraad, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 23, Short.MAX_VALUE))
         );
 
@@ -362,6 +400,11 @@ public class Voorraad extends javax.swing.JPanel {
     private void jbWijzigVoorraadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbWijzigVoorraadActionPerformed
         this.veranderVoorraad();
     }//GEN-LAST:event_jbWijzigVoorraadActionPerformed
+
+    private void jbBestelVoorraadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBestelVoorraadActionPerformed
+        this.bestelVoorraad();
+    }//GEN-LAST:event_jbBestelVoorraadActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -372,6 +415,7 @@ public class Voorraad extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbBack;
+    private javax.swing.JButton jbBestelVoorraad;
     private javax.swing.JButton jbWijzigVoorraad;
     private javax.swing.JTable jtProducten;
     private javax.swing.JTextField jtZoekveld;
