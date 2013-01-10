@@ -137,8 +137,10 @@ public class StatistiekGenerator {
         
 
         for (int i = 0; i <= producten.size()-1; i++) {
+            
             int product_id = producten.get(i).getProduct_id(); 
-            System.out.print(producten.get(i).getProduct_id());
+            
+            System.out.println(producten.get(i).getProduct_id());
             
             int a;
             for( a = 0; a<=s.size()-1; a++){
