@@ -20,6 +20,7 @@ import model.Session;
 import java.net.URI;
 import java.awt.Desktop;
 import java.io.IOException;
+import java.util.Random; 
 
 /**
  * @author Administrator
@@ -357,7 +358,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
             }
             catch (IOException e)
             {
-                e.printStackTrace();
+                System.out.println("Foutmelding: Browser kan betaalpagina niet openen.");
             }
         }
     }
@@ -423,8 +424,20 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
     @Override
     public void actionPerformed(ActionEvent event) {
         
+        /**
+         * 1. Velden worden gecontroleerd d.m.v. regex
+         * 2. Queries zullen de order in de database plaatsen.
+         * 3. Gebruiker zal (afhankelijk van zijn betaalmethode) naar een pagina worden gestuurd, zie hieronder:
+         *  3.1 iDeal - Gebruiker wordt naar een iDeal betaalpagina gestuurd
+         *  3.2 Contante betaling - Gebruiker krijgt een code waarmee hij contant kan betalen bij een medewerker en vervolgens zijn product in ontvangst kan nemen.
+         */
         if (validateNaam(tfNaam.getText()) && validateAdres(tfAddress.getText()) && validatePostcode(tfPostcode.getText())
                 && validateWoonplaats(tfWoonplaats.getText())) {
+            // Unieke code wordt meegegeven
+            Random rndNumbers = new Random(30);
+            int rndNumber = rndNumbers.nextInt( Integer.MAX_VALUE ) + 1;
+            String betaalCode = Integer.toString(rndNumber);
+            
             String naam = tfNaam.getText();
             String adres = tfAddress.getText();
             String opmerking = tfNote.getText();
@@ -432,12 +445,17 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
             String woonplaats = tfWoonplaats.getText();
             String betaalmethode = (String) cmbPayMethod.getSelectedItem();
             WinkelApplication.getQueryManager().setOrder(WinkelApplication.getBasket(),
-                   naam, adres, postcode, woonplaats, opmerking, betaalmethode);
-            if("iDeal".equals(betaalmethode)) {
-                openURL("https://bankieren.rabobank.nl/rib/");
-            }
+                   naam, adres, postcode, woonplaats, opmerking, betaalmethode, betaalCode);
             WinkelApplication.getBasket().empty();
-            WinkelApplication.getInstance().showPanel(new OrderSend());
+            if("iDeal".equals(betaalmethode)) {
+                // Betaling verloopt via iDeal
+                openURL("https://bankieren.rabobank.nl/rib/");
+                WinkelApplication.getInstance().showPanel(new OrderSend());
+            }else{
+                // Betaling verloopt via contante betaling, unieke code wordt meegegeven aan het volgende scherm
+                WinkelApplication.getInstance().showPanel(new OrderSendContantBetaald(betaalCode));
+            }
+            
         } else {
             this.lblFormTitle.setText("Verzendgegevens -- Niet alle gegevens zijn correct ingevuld");
             this.lblFormTitle.setForeground(Color.red);

@@ -433,13 +433,13 @@ public class QueryManager {
      * @param opmerking
      * @param betaalmethode 
      */
-    public void setOrder(model.Basket basket, String naam, String adres, String postcode, String woonplaats, String opmerking, String betaalmethode) 
+    public void setOrder(model.Basket basket, String naam, String adres, String postcode, String woonplaats, String opmerking, String betaalmethode, String betaalCode) 
     {
         timestamp timestamp = new timestamp();
         long currentTimestamp = timestamp.getTimestamp();
-        String SQL_order = "INSERT INTO `order` (`order_id`, `naam`, `adres`, `postcode`, `woonplaats`, `notes`, `betaalmethode`, `datum`, `status`, `datum_gewijzigd`)"
+        String SQL_order = "INSERT INTO `order` (`order_id`, `naam`, `adres`, `postcode`, `woonplaats`, `notes`, `betaalmethode`, `datum`, `status`, `datum_gewijzigd`, `code`)"
                 + " VALUES(NULL, '" + naam + "', '" + adres + "', '" + postcode + "', '"
-                + woonplaats + "', '" + opmerking + "', '" + betaalmethode + "', '" + currentTimestamp + "', '', '0')";
+                + woonplaats + "', '" + opmerking + "', '" + betaalmethode + "', '" + currentTimestamp + "', '', '0', '" + betaalCode + "')";
         
         int order_id = 0;
         
