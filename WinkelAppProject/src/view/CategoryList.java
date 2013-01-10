@@ -304,9 +304,8 @@ public class CategoryList extends JPanel implements MouseListener {
         gbc.gridy = 0;
         
         String imagePath = product.getAfbeelding();
-        if (imagePath.length() > 0) {
+        if (imagePath.length() > 10) {
             String im = "/" + imagePath.substring(3, 11) + "/" + imagePath.substring(11, imagePath.length());
-            System.out.println(im);
             image.setIcon(new ImageIcon(getClass().getResource(im)));
         } else {
             
