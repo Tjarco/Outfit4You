@@ -296,6 +296,15 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jTextField1 = new javax.swing.JTextField();
+        jFrame2 = new javax.swing.JFrame();
+        jLabel7 = new javax.swing.JLabel();
+        wijzigCatButton = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        wijzigCatOmschrijving = new javax.swing.JTextArea();
+        wijzigCatNaam = new javax.swing.JTextField();
+        wijzigCatID = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -374,6 +383,66 @@ public class ProductenOverzicht extends javax.swing.JPanel {
                 .addContainerGap(221, Short.MAX_VALUE))
         );
 
+        jFrame2.setTitle("Categorie wijzigen");
+        jFrame2.setMinimumSize(new java.awt.Dimension(500, 300));
+
+        jLabel7.setText("Naam:");
+
+        wijzigCatButton.setText("Categorie wijzigen");
+        wijzigCatButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wijzigCatButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Omschrijving:");
+
+        wijzigCatOmschrijving.setColumns(20);
+        wijzigCatOmschrijving.setRows(5);
+        jScrollPane4.setViewportView(wijzigCatOmschrijving);
+
+        wijzigCatID.setEnabled(false);
+
+        jLabel9.setText("Categorie ID");
+
+        javax.swing.GroupLayout jFrame2Layout = new javax.swing.GroupLayout(jFrame2.getContentPane());
+        jFrame2.getContentPane().setLayout(jFrame2Layout);
+        jFrame2Layout.setHorizontalGroup(
+            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrame2Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(wijzigCatButton)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                    .addComponent(wijzigCatNaam)
+                    .addComponent(wijzigCatID))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        jFrame2Layout.setVerticalGroup(
+            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrame2Layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addGroup(jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(wijzigCatNaam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(wijzigCatID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
+                .addComponent(wijzigCatButton)
+                .addContainerGap(84, Short.MAX_VALUE))
+        );
+
         setLayout(new java.awt.BorderLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -419,6 +488,11 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         });
 
         jbWijzigCategorie.setText("Wijzig een categorie");
+        jbWijzigCategorie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbWijzigCategorieActionPerformed(evt);
+            }
+        });
 
         jcCategoryVeld.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Naam", "Categorie_id", "Beschrijving", "Status" }));
 
@@ -792,9 +866,49 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         jFrame1.hide();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+     /**
+     * @author Vernon de Goede < vernon.de.goede@hva.nl >
+     * @param evt 
+     * 
+     * Slaat alle gegevens uit de textfields op d.m.v. een methode uit de QueryManger
+     */
+    private void wijzigCatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wijzigCatButtonActionPerformed
+        String wijzigCatNaamValue, wijzigCatOmschrijvingValue;
+        int temp, wijzigCatIDValue;
+        wijzigCatNaamValue = wijzigCatNaam.getText();
+        wijzigCatOmschrijvingValue = wijzigCatOmschrijving.getText();
+        temp =  Integer.parseInt(wijzigCatID.getText());
+        wijzigCatIDValue = temp;
+        
+        WinkelApplication.getQueryManager().updateCategory(wijzigCatIDValue, wijzigCatNaamValue, wijzigCatOmschrijvingValue);
+        updateTable(true, false, true, false);
+        
+        JOptionPane.showMessageDialog(null, "De categorie is gewijzigd!");
+        jFrame2.hide();
+    }//GEN-LAST:event_wijzigCatButtonActionPerformed
+
+    /**
+     * @author Vernon de Goede < vernon.de.goede@hva.nl >
+     * @param evt 
+     * 
+     * Opent een nieuw jPanel waar hij alle opgeslagen values uit de database haalt en deze in de jusite textfields zet.
+     */
+    private void jbWijzigCategorieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbWijzigCategorieActionPerformed
+        // Fetch categorie_id
+        int row = jtCategorie.getSelectedRow();
+        int col = 0;
+        int id = (Integer) jtCategorie.getModel().getValueAt(row, col);
+        
+        jFrame2.show();
+        wijzigCatNaam.setText(WinkelApplication.getQueryManager().getCategorie(id).getName());
+        wijzigCatOmschrijving.setText(WinkelApplication.getQueryManager().getCategorie(id).getDescription());
+        wijzigCatID.setText(Integer.toString(id));
+    }//GEN-LAST:event_jbWijzigCategorieActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JFrame jFrame1;
+    private javax.swing.JFrame jFrame2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
@@ -802,6 +916,9 @@ public class ProductenOverzicht extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -810,6 +927,7 @@ public class ProductenOverzicht extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton jbBack;
@@ -826,5 +944,9 @@ public class ProductenOverzicht extends javax.swing.JPanel {
     private javax.swing.JTable jtProducten;
     private javax.swing.JTextField jtZoekveld;
     private javax.swing.JTextField jtZoekveldCat;
+    private javax.swing.JButton wijzigCatButton;
+    private javax.swing.JTextField wijzigCatID;
+    private javax.swing.JTextField wijzigCatNaam;
+    private javax.swing.JTextArea wijzigCatOmschrijving;
     // End of variables declaration//GEN-END:variables
 }

@@ -63,17 +63,60 @@ public class QueryManager {
         }
         return categories;
     }
+    
+    public Category getCategorie( int catID) {
+        Category category = new Category();
+        try {
+            String sql = "SELECT * FROM categorie WHERE categorie_id = '" + catID + "'";
+            ResultSet result = dbmanager.doQuery(sql);
+            if (result.next()) {
+                category = new Category(
+                        catID,
+                        result.getString("naam"),
+                        result.getString("omschrijving")
+                        );
+            }
+        } catch (SQLException e) {
+            System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
+        }
+        return category;
+    }
 
      /**
      * Voegt een categorie toe
      *
-     * @param product
+     * @author Vernon de Goede < vernon.de.goede@hva.nl >
+     * @param catName De naam van de categorie
+     * @param catOmschrijving De omschrijving van de categorie
      * @return true als het gelukt is
      */
-    public boolean addCategory(String catName, String catOmschrijving) {
+    public boolean addCategory( String catName, String catOmschrijving ) {
         boolean success = false;
 
         String sql = "INSERT INTO `categorie` (`categorie_id`, `naam`, `omschrijving`, `datum_aangemaakt`, `datum_gewijzigd`, `parent_id`) VALUES (NULL, '" + catName + "', '" + catOmschrijving + "', 0, 0, 0);";
+
+        try {
+            ResultSet result = dbmanager.insertQuery(sql);
+            success = result.next();
+        } catch (SQLException e) {
+            System.out.println("connectivity.QueryManager.setOrder() Exception:" + e.getMessage());
+        }
+
+        return success;
+    }
+    
+    /**
+     * Update een bepaalde categorie
+     * 
+     * @author Vernon de Goede < vernon.de.goede@hva.nl >
+     * @param catID Het ID van de categorie die geupdate moet worden
+     * @param catNaam De nieuwe naam van de categorie
+     * @param catOmschrijving De nieuwe omschrijving voor de categorie
+     */
+    public boolean updateCategory( int catID, String catNaam, String catOmschrijving ) {
+        boolean success = false;
+        
+        String sql = "UPDATE `categorie` SET `naam` = '" + catNaam + "', `omschrijving` = '" + catOmschrijving + "' WHERE `categorie_id` = " + catID + ";";
 
         try {
             ResultSet result = dbmanager.insertQuery(sql);
