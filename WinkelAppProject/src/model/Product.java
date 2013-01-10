@@ -37,6 +37,7 @@ public class Product {
         this.is_actief = is_actief;
     }
 
+
     public int getProduct_id() {
         return product_id;
     }

@@ -135,11 +135,10 @@ public class StatistiekGenerator {
 
         DefaultPieDataset pieDataset = new DefaultPieDataset();
         
-        System.out.println(s.size());
 
-        for (int i = 0; i >= producten.size(); i++) {
-            int product_id = producten.get(i).getProduct_id();            
-            System.out.println("test");
+        for (int i = 0; i <= producten.size()-1; i++) {
+            int product_id = producten.get(i).getProduct_id(); 
+            
             
             int a;
             for( a = 0; a<=s.size(); a++){
@@ -147,30 +146,45 @@ public class StatistiekGenerator {
                     break;
                 }
             }
-
+            
+            double amount;
             switch (leeftijd) {
                 case 0:
-                    pieDataset.setValue(producten.get(product_id).getNaam(), (double) s.get(a).getJonger_dan_15());
+                    amount= (double) s.get(a).getJonger_dan_15();
+                    if(amount >0)
+                    pieDataset.setValue(producten.get(i).getNaam(), amount );
                     break;
                 case 1:
-                    pieDataset.setValue(producten.get(product_id).getNaam(), (double) s.get(a).getTussen_15_20());
+                    amount = (double) s.get(a).getTussen_15_20();
+                    if(amount >0)
+                    pieDataset.setValue(producten.get(i).getNaam(), amount );
                     break;
                 case 2:
-                    pieDataset.setValue(producten.get(product_id).getNaam(), (double) s.get(a).getTussen_20_25());
+                    amount = (double) s.get(a).getTussen_20_25();
+                    if(amount >0)
+                    pieDataset.setValue(producten.get(i).getNaam(), amount );
                     break;
                 case 3:
-                    pieDataset.setValue(producten.get(product_id).getNaam(), (double) s.get(a).getTussen_25_30());
+                    amount = (double) s.get(a).getTussen_25_30();
+                    if(amount >0)
+                    pieDataset.setValue(producten.get(i).getNaam(),amount );
                     break;
                 case 4:
-                    pieDataset.setValue(producten.get(product_id).getNaam(), (double) s.get(a).getTussen_30_50());
+                    amount = (double) s.get(a).getTussen_30_50();
+                    if(amount >0)
+                    pieDataset.setValue(producten.get(i).getNaam(),amount );
                     break;
                 case 5:
-                    pieDataset.setValue(producten.get(product_id).getNaam(), (double) s.get(a).getTussen_50_65());
+                    amount = (double) s.get(a).getTussen_50_65();
+                    if(amount >0)
+                    pieDataset.setValue(producten.get(i).getNaam(), amount);
                     break;
                 case 6:
-                    pieDataset.setValue(producten.get(product_id).getNaam(), (double) s.get(a).getOuder_dan_65());
+                    amount = (double) s.get(a).getOuder_dan_65();
+                    if(amount >0)
+                    pieDataset.setValue(producten.get(i).getNaam(),amount );
                     break;
-                default: pieDataset.setValue("", 0); break;
+                default: pieDataset.setValue("", 0);
             }
         }
 
