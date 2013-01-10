@@ -30,6 +30,7 @@ import model.Product;
  * @author Vernon de Goede < vernon.de.goede@hva.nl >
  * 
  * Product kan nu worden geretourneerd. Medewerker kan aangeven hoeveel product geretourneerd dienen te worden. Vervolgens wordt met een SQL query het aantal geretourneerde producten bij de voorraad worden opgeteld.
+ * Voorraad kan nu ook worden geretourneerd. De producten worden dan teruggestuurd naar de leverancier. Een medewerker kan aangeven hoeveel dit er zijn. Vervolgens zal dit aantal van de voorraad van het betreffende product worden afgehaald.
  */
 public class ProductenOverzicht extends javax.swing.JPanel {
 
@@ -309,6 +310,7 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         jcProductVeld = new javax.swing.JComboBox();
         jbProductVerwijderen = new javax.swing.JButton();
         jbProductWijzigen1 = new javax.swing.JButton();
+        jbProductWijzigen2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -445,14 +447,14 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         jLabel1.setText("Zoek Product");
 
         jbProductToevoegen.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
-        jbProductToevoegen.setText("Voeg een product toe");
+        jbProductToevoegen.setText("Nieuw product");
         jbProductToevoegen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbProductToevoegenActionPerformed(evt);
             }
         });
 
-        jbProductWijzigen.setLabel("Product retourneren");
+        jbProductWijzigen.setText("Product retourner.");
         jbProductWijzigen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbProductWijzigenActionPerformed(evt);
@@ -470,7 +472,14 @@ public class ProductenOverzicht extends javax.swing.JPanel {
             }
         });
 
-        jbProductWijzigen1.setText("Wijzig een product");
+        jbProductWijzigen1.setText("Wijzig product");
+
+        jbProductWijzigen2.setText("Voorraad retourner.");
+        jbProductWijzigen2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voorraadRetourneren(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -492,12 +501,14 @@ public class ProductenOverzicht extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jbProductVerwijderen)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbProductWijzigen2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbProductWijzigen)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbProductWijzigen1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbProductToevoegen))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -516,7 +527,8 @@ public class ProductenOverzicht extends javax.swing.JPanel {
                     .addComponent(jbProductToevoegen, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbProductWijzigen, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbProductVerwijderen, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbProductWijzigen1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbProductWijzigen1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbProductWijzigen2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 42, Short.MAX_VALUE))
         );
 
@@ -660,7 +672,7 @@ public class ProductenOverzicht extends javax.swing.JPanel {
             newVoorraad = Integer.parseInt(str) + currentVoorraad;
             //product.setVoorraad(newVoorraad);
             main.WinkelApplication.getQueryManager().UpdateVoorraadByID(product.getProduct_id(), newVoorraad);
-            JOptionPane.showMessageDialog(null, "Er zullen " + str + " producten aan de voorraad worden toegevoegd.", 
+            JOptionPane.showMessageDialog(null, "Er zullen " + str + " producten aan de voorraad worden toegevoegd. De nieuwe voorraad is dan " + newVoorraad, 
           "Product retourneren", 1);
         }else{
             JOptionPane.showMessageDialog(null, "De voorraad is niet veranderd.", 
@@ -670,6 +682,40 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         // Update tabellen
         updateTable(true, false, true, false);
     }//GEN-LAST:event_jbProductWijzigenActionPerformed
+
+    /**
+     * @author Vernon de Goede < vernon.de.goede@hva.nl >
+     * 
+     * Voorraad retourneren
+     * Hiermee kan de voorraad worden geretourneerd en kunnen producten worden teruggestuurd naar de leverancier. Er kan door een medewerker worden opgegeven hoeveel producten worden teruggestuurd d.m.v. een InputDialog. Vervolgens wordt dit aantal van de voorraad afgetrokken.
+     */
+    private void voorraadRetourneren(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voorraadRetourneren
+        //Product_id ophalen uit de table
+        int row = jtProducten.getSelectedRow();
+        int col = 0;
+        int id = (Integer) jtProducten.getModel().getValueAt(row, col);
+        int currentVoorraad, newVoorraad;
+        
+        // Product als object aanmaken
+        Product product = WinkelApplication.getQueryManager().getProduct(id);
+        currentVoorraad = product.getVoorraad();
+        
+        String str = JOptionPane.showInputDialog(null, "Het aantal producten dat terug naar de leverancier moet: ", 
+      "Voorraad retourneren", 1);
+        if(str != null) {
+            newVoorraad =  currentVoorraad - Integer.parseInt(str);
+            //product.setVoorraad(newVoorraad);
+            main.WinkelApplication.getQueryManager().UpdateVoorraadByID(product.getProduct_id(), newVoorraad);
+            JOptionPane.showMessageDialog(null, "Er zullen " + str + " producten van de voorraad worden afgetrokken. De nieuwe voorraad is dan " + newVoorraad, 
+          "Voorraad retourneren", 1);
+        }else{
+            JOptionPane.showMessageDialog(null, "De voorraad is niet veranderd.", 
+          "Voorraad retourneren", 1);
+        }
+        
+        // Update tabellen
+        updateTable(true, false, true, false);
+    }//GEN-LAST:event_voorraadRetourneren
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -689,6 +735,7 @@ public class ProductenOverzicht extends javax.swing.JPanel {
     private javax.swing.JButton jbProductVerwijderen;
     private javax.swing.JButton jbProductWijzigen;
     private javax.swing.JButton jbProductWijzigen1;
+    private javax.swing.JButton jbProductWijzigen2;
     private javax.swing.JButton jbToevoegenCategorie;
     private javax.swing.JButton jbWijzigCategorie;
     private javax.swing.JComboBox jcCategoryVeld;
