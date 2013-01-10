@@ -28,19 +28,21 @@ import model.Paginatie;
  * @author Bono
  *
  * Alleen terug knop toevoegen als er een medewerker/manager is ingelogd
- * 
+ *
  * @version 2.2
  * @author Vernon de Goede < vernon.de.goede@hva.nl >
- * 
- * Wanneer er geen enkel product meer op voorraad is van een bepaald product wordt een melding hiervan gegeven en zal het product niet in de basket verschijnen.
- * 
+ *
+ * Wanneer er geen enkel product meer op voorraad is van een bepaald product
+ * wordt een melding hiervan gegeven en zal het product niet in de basket
+ * verschijnen.
+ *
  * @version 2.3
  * @author Bono
- * 
+ *
  * Paginatie toegevoegd voor producten.
  */
 public class CategoryList extends JPanel implements MouseListener {
-
+    
     private JButton jbTerug;
     //Het panel voor de items, d.w.z catetorieën en producten
     private JPanel items;
@@ -63,30 +65,30 @@ public class CategoryList extends JPanel implements MouseListener {
      * The listener For the back Button
      */
     private class BackButtonListener implements MouseListener {
-
+        
         public void mouseClicked(MouseEvent e) {
             WinkelApplication.getInstance().showPanel(new MainMenu());
         }
-
+        
         public void mousePressed(MouseEvent e) {
             // do nothing
         }
-
+        
         public void mouseReleased(MouseEvent e) {
             // do nothing
         }
-
+        
         public void mouseEntered(MouseEvent e) {
             // do nothing
         }
-
+        
         public void mouseExited(MouseEvent e) {
             // do nothing
         }
     }
 
     /**
-     * Bouw het GUI op. 
+     * Bouw het GUI op.
      */
     private void initComponents() {
         System.out.println("initpanels");
@@ -130,8 +132,8 @@ public class CategoryList extends JPanel implements MouseListener {
         down.setPreferredSize(new Dimension(0, 70));
         down.setBackground(WinkelApplication.BACKGROUND);
         down.setOpaque(true);
-
-
+        
+        
         jbTerug = new JButton("Terug");
         jbTerug.setFont(new Font("Calibri", Font.PLAIN, 18));
         jbTerug.setIcon(new ImageIcon(getClass().getResource("/pictures/backButton.png")));
@@ -141,49 +143,49 @@ public class CategoryList extends JPanel implements MouseListener {
         jbTerug.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         jbTerug.addMouseListener(new BackButtonListener());
         down.add(jbTerug);
-
+        
         add(down, BorderLayout.PAGE_END);
     }
 
     /**
-     * Voegt de categorieën toe aan de lijst 
+     * Voegt de categorieën toe aan de lijst
      */
     private void addcategoryItems() {
         QueryManager queryManager = WinkelApplication.getQueryManager();
         List<Category> categories = queryManager.getCategories();
-
+        
         JPanel categorys = new JPanel();
         BoxLayout layoutCat = new BoxLayout(categorys, BoxLayout.Y_AXIS);
         categorys.setLayout(layoutCat);
-
+        
         for (int i = 0; i < categories.size(); i++) {
             Category category = categories.get(i);
-
+            
             JPanel pnlCategory = new JPanel();
             BoxLayout layout = new BoxLayout(pnlCategory, BoxLayout.Y_AXIS);
             pnlCategory.setLayout(layout);
             pnlCategory.setBorder(new EmptyBorder(15, 15, 15, 15));
-
+            
             JLabel lblCategorie = new JLabel();
             lblCategorie.setName(String.valueOf(category.getCategoryId()));
             lblCategorie.setText(category.getName());
             lblCategorie.setFont(WinkelApplication.FONT_12_BOLD);
             lblCategorie.addMouseListener(this);
             lblCategorie.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
+            
             pnlCategory.add(lblCategorie);
-
+            
             JLabel lblDescription = new JLabel();
             lblDescription.setText(category.getDescription());
             lblDescription.setFont(WinkelApplication.FONT_12_PLAIN);
             pnlCategory.add(lblDescription);
-
+            
             categorys.add(pnlCategory);
         }
-
+        
         items.add(categorys, BorderLayout.LINE_START);
         revalidate();
-
+        
     }
 
     /**
@@ -200,18 +202,17 @@ public class CategoryList extends JPanel implements MouseListener {
         jpProducts.setPreferredSize(new Dimension(250, 0));
         BoxLayout layoutPro = new BoxLayout(jpProducts, BoxLayout.Y_AXIS);
         jpProducts.setLayout(layoutPro);
-
-
-        for (int i = 0; i < products.size(); i++) 
-        {
+        
+        
+        for (int i = 0; i < products.size(); i++) {
             Product product = products.get(i);
-
+            
             JPanel pnlProduct = new JPanel();
             BoxLayout layout = new BoxLayout(pnlProduct, BoxLayout.Y_AXIS);
             pnlProduct.setLayout(layout);
             pnlProduct.setBorder(new EmptyBorder(15, 15, 15, 15));
-
-
+            
+            
             JLabel lblProduct = new JLabel();
             lblProduct.setName(String.valueOf(product.getProduct_id()));
             lblProduct.setText(product.getNaam());
@@ -219,18 +220,17 @@ public class CategoryList extends JPanel implements MouseListener {
             lblProduct.addMouseListener(new ProductListener());
             lblProduct.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             pnlProduct.add(lblProduct);
-
+            
             JLabel lblPrice = new JLabel(WinkelApplication.CURRENCY.format(product.getPrijs()));
             lblPrice.setFont(WinkelApplication.FONT_12_PLAIN);
             pnlProduct.add(lblPrice);
-
+            
             jpProducts.add(pnlProduct);
         }
         
         JPanel panelPaginatie = new JPanel();        
         
-        if(paginatie.getCurrentPage() > 1)
-        {
+        if (paginatie.getCurrentPage() > 1) {
             JLabel goLeft = new JLabel("<<");
             
             goLeft.setFont(WinkelApplication.FONT_12_BOLD);
@@ -241,8 +241,7 @@ public class CategoryList extends JPanel implements MouseListener {
             panelPaginatie.add(goLeft);
         }
         
-        if(paginatie.getCurrentPage() < paginatie.getAantalPaginas())
-        {
+        if (paginatie.getCurrentPage() < paginatie.getAantalPaginas()) {
             JLabel goRight = new JLabel(">>");
             
             goRight.setFont(WinkelApplication.FONT_12_BOLD);
@@ -263,7 +262,7 @@ public class CategoryList extends JPanel implements MouseListener {
         items.add(jpProducts, BorderLayout.LINE_END);
         jpProducts.setBorder(BorderFactory.createMatteBorder(0, 1, 0, 1, Color.black));
         revalidate();
-
+        
     }
 
     /**
@@ -289,7 +288,7 @@ public class CategoryList extends JPanel implements MouseListener {
      */
     private void addProductDetails(int productId) {
         Product product = WinkelApplication.getQueryManager().getProduct(productId);
-
+        
         try {
             productDetails.removeAll();
         } catch (Exception e) {
@@ -298,14 +297,24 @@ public class CategoryList extends JPanel implements MouseListener {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.weighty = 1;
         gbc.anchor = GridBagConstraints.PAGE_START;
-
+        
         JLabel image = new JLabel();
+        gbc.insets = new Insets(20,0,0,0);
         gbc.gridx = 0;
         gbc.gridy = 0;
-        image.setIcon(new ImageIcon(getClass().getResource("/pictures/icons/noImage.gif")));
+        
+        String imagePath = product.getAfbeelding();
+        if (imagePath.length() > 0) {
+            String im = "/" + imagePath.substring(3, 11) + "/" + imagePath.substring(11, imagePath.length());
+            System.out.println(im);
+            image.setIcon(new ImageIcon(getClass().getResource(im)));
+        } else {
+            
+            image.setIcon(new ImageIcon(getClass().getResource("/pictures/icons/noImage.gif")));
+        }
         productDetails.add(image, gbc);
-
-
+        
+        
         StringBuilder omschrijving = new StringBuilder(product.getOmschrijving());
         omschrijving.insert(0, "<html> ");
         omschrijving.append("</html>");
@@ -320,38 +329,106 @@ public class CategoryList extends JPanel implements MouseListener {
         JLabel description = new JLabel(str);
         description.setFont(new Font("Calibri", Font.ITALIC, 20));
         gbc.gridy = 1;
+        gbc.insets = new Insets(0,0,0,0);
         productDetails.add(description, gbc);
-
+        
         JButton voegToe = new JButton("Voeg toe aan winkelmand");
         currentProduct = product;
         voegToe.addActionListener(new ToevoegListener());
         gbc.gridy = 2;
         productDetails.add(voegToe, gbc);
-
+        
         revalidate();
         repaint();
-
+        
     }
-
+    
     private class ToevoegListener implements ActionListener {
-
+        
         public void actionPerformed(ActionEvent e) {
-            if(WinkelApplication.getQueryManager().getVoorraad(currentProduct.getProduct_id()) == 0) {
+            if (WinkelApplication.getQueryManager().getVoorraad(currentProduct.getProduct_id()) == 0) {
                 JOptionPane.showMessageDialog(null, "Dit product is helaas niet meer op voorraad.");
-            }else{
+            } else {
                 WinkelApplication.getBasket().addProduct(currentProduct);
             }
         }
     }
-
+    
     private class ProductListener implements MouseListener {
-
+        
         public void mouseClicked(MouseEvent e) {
             JLabel label = (JLabel) e.getSource();
             int productId = Integer.parseInt(label.getName());
             addProductDetails(productId);
         }
+        
+        public void mousePressed(MouseEvent e) {
+        }
+        
+        public void mouseReleased(MouseEvent e) {
+        }
+        
+        public void mouseEntered(MouseEvent e) {
+        }
+        
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+    
+    @Override
+    public void mouseClicked(MouseEvent event) {
+        JLabel label = (JLabel) event.getSource();
+        int categoryId = Integer.parseInt(label.getName());
+        this.addProducts(categoryId);
+        this.productDetails.removeAll();
+        revalidate();
+        repaint();
+    }
+    
+    @Override
+    public void mouseEntered(MouseEvent event) {
+        // Intentionally left blank.
+    }
+    
+    @Override
+    public void mousePressed(MouseEvent event) {
+        // Intentionally left blank.
+    }
+    
+    @Override
+    public void mouseReleased(MouseEvent event) {
+        // Intentionally left blank.
+    }
+    
+    @Override
+    public void mouseExited(MouseEvent event) {
+        // Intentionally left blank.
+    }
+    
+    public class paginatieListener implements MouseListener {
 
+        Paginatie paginatie;
+        JLabel label;
+        CategoryList current;
+        int categorieId;
+        
+        paginatieListener(Paginatie paginatie, JLabel label, CategoryList current, int categorieId) {
+            this.paginatie = paginatie;
+            this.label = label;
+            this.categorieId = categorieId;
+            this.current = current;
+        }
+        
+        public void mouseClicked(MouseEvent e) {            
+            if (this.label.getName().equals("goRight")) {
+                this.paginatie.nextPage();
+                this.current.addProducts(this.categorieId);
+            } else {
+                this.paginatie.previousPage();
+                this.current.addProducts(this.categorieId);
+            }
+        }
+        
         public void mousePressed(MouseEvent e) {
         }
 
@@ -363,70 +440,5 @@ public class CategoryList extends JPanel implements MouseListener {
 
         public void mouseExited(MouseEvent e) {
         }
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent event) {
-        JLabel label = (JLabel) event.getSource();
-        int categoryId = Integer.parseInt(label.getName());
-        this.addProducts(categoryId);
-        this.productDetails.removeAll();
-        revalidate();
-        repaint();
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent event) {
-        // Intentionally left blank.
-    }
-
-    @Override
-    public void mousePressed(MouseEvent event) {
-        // Intentionally left blank.
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent event) {
-        // Intentionally left blank.
-    }
-
-    @Override
-    public void mouseExited(MouseEvent event) {
-        // Intentionally left blank.
-    }
-    
-    public class paginatieListener implements MouseListener
-    {
-        Paginatie paginatie;
-        JLabel label;
-        CategoryList current;
-        int categorieId;
-        
-        paginatieListener(Paginatie paginatie, JLabel label, CategoryList current, int categorieId)
-        {
-            this.paginatie = paginatie;
-            this.label = label;
-            this.categorieId = categorieId;
-            this.current = current;
-        }
-
-        public void mouseClicked(MouseEvent e) 
-        {            
-            if(this.label.getName().equals("goRight"))
-            {
-                this.paginatie.nextPage();
-                this.current.addProducts(this.categorieId);
-            }
-            else
-            {
-                this.paginatie.previousPage();
-                this.current.addProducts(this.categorieId);
-            }
-        }
-
-        public void mousePressed(MouseEvent e) {}
-        public void mouseReleased(MouseEvent e) {}
-        public void mouseEntered(MouseEvent e) {}
-        public void mouseExited(MouseEvent e) {}
     }
 }

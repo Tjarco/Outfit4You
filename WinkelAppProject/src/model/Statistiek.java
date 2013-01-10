@@ -58,6 +58,7 @@ public class Statistiek {
         Date birth;
         try {
             now = sdf.parse(WinkelApplication.getCurrentTimeStamp().substring(0,10));
+            if(g.getGeboortedatum()!=null){
             birth = sdf.parse(g.getGeboortedatum().substring(0,10));
             
             int sec = (int) (now.getTime()/1000 - birth.getTime()/1000);
@@ -89,7 +90,7 @@ public class Statistiek {
             else{
                 this.ouder_dan_65++;
             }
-            
+            }
         } catch (ParseException ex) {
             Logger.getLogger(Statistiek.class.getName()).log(Level.SEVERE, null, ex);
         }
