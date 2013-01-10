@@ -19,8 +19,7 @@ import model.StatistiekGenerator;
  */
 public class Rapporten extends javax.swing.JPanel {
     private StatistiekGenerator statistiekGenerator = new StatistiekGenerator();
-    private JPanel chartProduct;
-
+    
     /**
      * Creates new form Rapporten
      */
@@ -37,10 +36,8 @@ public class Rapporten extends javax.swing.JPanel {
     }
     
     private void initProductPanel(Product p){
-      chartProduct.removeAll();
-      chartProduct.add(statistiekGenerator.getProductenGrafiek(p));
-      chartProduct.revalidate();
-      chartProduct.repaint();
+      jpChartProducten.removeAll();
+      jpChartProducten.add(statistiekGenerator.getProductenGrafiek(p));
       System.out.println("test");
       repaint();
       revalidate();
@@ -80,6 +77,7 @@ public class Rapporten extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jpChartProducten = new javax.swing.JPanel();
         jpLeeftijdsgroepen = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jlbOmzet2 = new javax.swing.JLabel();
@@ -225,6 +223,17 @@ public class Rapporten extends javax.swing.JPanel {
         jLabel11.setForeground(new java.awt.Color(0, 204, 0));
         jLabel11.setText("€34,33");
 
+        javax.swing.GroupLayout jpChartProductenLayout = new javax.swing.GroupLayout(jpChartProducten);
+        jpChartProducten.setLayout(jpChartProductenLayout);
+        jpChartProductenLayout.setHorizontalGroup(
+            jpChartProductenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 486, Short.MAX_VALUE)
+        );
+        jpChartProductenLayout.setVerticalGroup(
+            jpChartProductenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 326, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jpProductenLayout = new javax.swing.GroupLayout(jpProducten);
         jpProducten.setLayout(jpProductenLayout);
         jpProductenLayout.setHorizontalGroup(
@@ -233,6 +242,7 @@ public class Rapporten extends javax.swing.JPanel {
             .addGroup(jpProductenLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpProductenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpChartProducten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addGroup(jpProductenLayout.createSequentialGroup()
                         .addGroup(jpProductenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,7 +265,7 @@ public class Rapporten extends javax.swing.JPanel {
                                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jtZoekveld, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jpProductenLayout.setVerticalGroup(
             jpProductenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,7 +290,9 @@ public class Rapporten extends javax.swing.JPanel {
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 574, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jpChartProducten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 230, Short.MAX_VALUE))
         );
 
         jPanel2.add(jpProducten, java.awt.BorderLayout.CENTER);
@@ -420,6 +432,7 @@ public class Rapporten extends javax.swing.JPanel {
     private javax.swing.JLabel jlblAantalKlanten;
     private javax.swing.JLabel jlblOmzet;
     private javax.swing.JLabel jlblProductenVerkocht;
+    private javax.swing.JPanel jpChartProducten;
     private javax.swing.JPanel jpLeeftijdsgroepen;
     private javax.swing.JPanel jpOmzet;
     private javax.swing.JPanel jpProducten;
