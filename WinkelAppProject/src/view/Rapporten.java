@@ -29,6 +29,14 @@ public class Rapporten extends javax.swing.JPanel {
         
     }
     
+    
+    private void initLeeftijdsgroepPanel() {
+       this.jpLeeftijdGrafiek.removeAll();
+       this.jpLeeftijdGrafiek.add(statistiekGenerator.getLeeftijdsgroepGrafiek(jComboBox2.getSelectedItem().toString()));
+       this.revalidate();
+       this.repaint();
+    }
+    
     private void initOmzetPanel(){
         jlblOmzet.setText(statistiekGenerator.getOmzet());
         jlblAantalKlanten.setText(statistiekGenerator.getAantalKlanten());
@@ -88,6 +96,10 @@ public class Rapporten extends javax.swing.JPanel {
         jpLeeftijdsgroepen = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jlbOmzet2 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox();
+        jButton2 = new javax.swing.JButton();
+        jpLeeftijdGrafiek = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -178,6 +190,7 @@ public class Rapporten extends javax.swing.JPanel {
         jpProducten.setBackground(new java.awt.Color(255, 255, 255));
         jpProducten.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(0, 0, 0)));
 
+        jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(0, 0, 0)));
         jPanel7.setLayout(new java.awt.GridBagLayout());
 
         jlbOmzet1.setFont(new java.awt.Font("Calibri", 3, 18)); // NOI18N
@@ -199,7 +212,7 @@ public class Rapporten extends javax.swing.JPanel {
         jLabel5.setText("Zoek op:");
 
         jComboBox1.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Product id", "Naam", "Beschrijving", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Product id", "Naam", "Beschrijving" }));
 
         jButton1.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jButton1.setText("Toon rapporten");
@@ -244,7 +257,6 @@ public class Rapporten extends javax.swing.JPanel {
         jpProducten.setLayout(jpProductenLayout);
         jpProductenLayout.setHorizontalGroup(
             jpProductenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jpProductenLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpProductenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,6 +288,7 @@ public class Rapporten extends javax.swing.JPanel {
                                             .addComponent(jButton1))
                                         .addComponent(jtZoekveld, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(96, Short.MAX_VALUE))
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpProductenLayout.setVerticalGroup(
             jpProductenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,17 +331,61 @@ public class Rapporten extends javax.swing.JPanel {
         jlbOmzet2.setText("Leeftijdsgroepen");
         jPanel9.add(jlbOmzet2, new java.awt.GridBagConstraints());
 
+        jLabel9.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel9.setText("Leeftijdsgroep:");
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jonger dan 15", "Tussen de 15 en de 20 jaar", "Tussen de 20 en de 25 jaar", "Tussen de 25 en de 30 jaar", "Tussen de 30 en de 50 jaar", "Tussen de 50 en de 65 jaar", "Ouder dan 65" }));
+
+        jButton2.setText("Toon rapporten");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jpLeeftijdGrafiek.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jpLeeftijdGrafiekLayout = new javax.swing.GroupLayout(jpLeeftijdGrafiek);
+        jpLeeftijdGrafiek.setLayout(jpLeeftijdGrafiekLayout);
+        jpLeeftijdGrafiekLayout.setHorizontalGroup(
+            jpLeeftijdGrafiekLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 401, Short.MAX_VALUE)
+        );
+        jpLeeftijdGrafiekLayout.setVerticalGroup(
+            jpLeeftijdGrafiekLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 286, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jpLeeftijdsgroepenLayout = new javax.swing.GroupLayout(jpLeeftijdsgroepen);
         jpLeeftijdsgroepen.setLayout(jpLeeftijdsgroepenLayout);
         jpLeeftijdsgroepenLayout.setHorizontalGroup(
             jpLeeftijdsgroepenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jpLeeftijdsgroepenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpLeeftijdsgroepenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpLeeftijdsgroepenLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jpLeeftijdsgroepenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jpLeeftijdGrafiek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jpLeeftijdsgroepenLayout.setVerticalGroup(
             jpLeeftijdsgroepenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpLeeftijdsgroepenLayout.createSequentialGroup()
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 719, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addGroup(jpLeeftijdsgroepenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jpLeeftijdGrafiek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 327, Short.MAX_VALUE))
         );
 
         jPanel2.add(jpLeeftijdsgroepen, java.awt.BorderLayout.EAST);
@@ -414,9 +471,15 @@ public class Rapporten extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       initLeeftijdsgroepPanel();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
@@ -426,6 +489,7 @@ public class Rapporten extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -443,9 +507,11 @@ public class Rapporten extends javax.swing.JPanel {
     private javax.swing.JLabel jlblPrijsProduct;
     private javax.swing.JLabel jlblProductenVerkocht;
     private javax.swing.JPanel jpChartProducten;
+    private javax.swing.JPanel jpLeeftijdGrafiek;
     private javax.swing.JPanel jpLeeftijdsgroepen;
     private javax.swing.JPanel jpOmzet;
     private javax.swing.JPanel jpProducten;
     private javax.swing.JTextField jtZoekveld;
     // End of variables declaration//GEN-END:variables
+
 }
