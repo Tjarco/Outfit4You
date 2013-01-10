@@ -32,6 +32,9 @@ public class NieuwProduct extends JPanel {
         initComponents();
         addData(); 
         this.pc = new PictureCollector();
+        uploadData = new String[2];
+        uploadData[1] = "";
+        uploadData[0] = "";
         //Make the listener to validate the textfields
         
     }
