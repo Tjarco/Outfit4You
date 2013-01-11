@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JPanel;
+import main.WinkelApplication;
 import misc.ComboItem;
 import model.*;
 
@@ -37,6 +38,32 @@ public class NieuwProduct extends JPanel {
         uploadData[0] = "";
         //Make the listener to validate the textfields
         
+    }
+    
+    public NieuwProduct(Product product)
+    {
+        initComponents();
+        addData();
+        this.pc = new PictureCollector();
+        uploadData = new String[2];
+        uploadData[1] = "";
+        uploadData[0] = "";
+        
+        List<Category> categories = main.WinkelApplication.getQueryManager().getCategories();
+        
+        //Combobox vullen met alle categorieen
+        selectCategories.removeAllItems();
+        for (Category c : categories)
+        {
+            System.out.println(c.getName());
+            selectCategories.addItem( new ComboItem(Integer.toString(c.getCategoryId()), c.getName()));
+        }
+        
+        //Velden vullen met alle doorgegeven data
+        tfNaam.setText(product.getNaam());
+        tfPrijs.setText("" + product.getPrijs() + "");
+        tfOmschrijving.setText(product.getOmschrijving());
+        labelProductId.setText("" + product.getProduct_id() + "");
     }
     
     /**
@@ -83,6 +110,7 @@ public class NieuwProduct extends JPanel {
         jLabel8 = new javax.swing.JLabel();
         upload_btn = new javax.swing.JButton();
         jlblPath = new javax.swing.JLabel();
+        labelProductId = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -157,9 +185,6 @@ public class NieuwProduct extends JPanel {
                                             .addComponent(jLabel7)))
                                     .addComponent(jButton2))
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(tfPrijs, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addGap(28, 28, 28)
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,7 +194,12 @@ public class NieuwProduct extends JPanel {
                                                 .addComponent(tfNaam, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(jPanel4Layout.createSequentialGroup()
                                                 .addComponent(selectCategories, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE)))))))))
+                                                .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tfPrijs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(labelProductId, javax.swing.GroupLayout.Alignment.TRAILING))))))))
                 .addContainerGap())
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
@@ -181,7 +211,9 @@ public class NieuwProduct extends JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jlTitel)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlTitel)
+                    .addComponent(labelProductId))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(selectCategories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -331,9 +363,17 @@ public class NieuwProduct extends JPanel {
        {
             //Product opslaan in de database...
             ComboItem cat = (ComboItem) selectCategories.getSelectedItem();
-            Product p = new Product();
+            Product p;
             
-            
+            if(labelProductId.getText() != "")
+            {
+                int id = Integer.parseInt(labelProductId.getText());
+                p = WinkelApplication.getQueryManager().getProduct(id);
+            }
+            else
+            {
+                p = new Product();
+            }
             p.setCategorie_id(Integer.parseInt(cat.getValue()));
             p.setNaam(tfNaam.getText());
             p.setPrijs(Double.parseDouble(tfPrijs.getText().replace(',', '.')));
@@ -377,6 +417,7 @@ public class NieuwProduct extends JPanel {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel jlTitel;
     private javax.swing.JLabel jlblPath;
+    private javax.swing.JLabel labelProductId;
     private javax.swing.JComboBox selectCategories;
     private javax.swing.JTextField tfNaam;
     private javax.swing.JTextPane tfOmschrijving;

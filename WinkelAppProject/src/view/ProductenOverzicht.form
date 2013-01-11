@@ -396,9 +396,9 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jbProductWijzigen2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jbProductWijzigen" min="-2" max="-2" attributes="0"/>
+                              <Component id="jbProductRetour" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jbProductWijzigen1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jbProductWijzigen" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jbProductToevoegen" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -423,9 +423,9 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jbProductToevoegen" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                          <Component id="jbProductWijzigen" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="jbProductRetour" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                           <Component id="jbProductVerwijderen" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                          <Component id="jbProductWijzigen1" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="jbProductWijzigen" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                           <Component id="jbProductWijzigen2" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="42" max="32767" attributes="0"/>
@@ -473,7 +473,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbProductToevoegenActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jbProductWijzigen">
+            <Component class="javax.swing.JButton" name="jbProductRetour">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Product retourner."/>
               </Properties>
@@ -481,7 +481,7 @@
                 <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Product retourneren"/>
               </AccessibilityProperties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbProductWijzigenActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbProductRetourActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
@@ -510,10 +510,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbProductVerwijderenActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jbProductWijzigen1">
+            <Component class="javax.swing.JButton" name="jbProductWijzigen">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Wijzig product"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbProductWijzigenMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jbProductWijzigen2">
               <Properties>
