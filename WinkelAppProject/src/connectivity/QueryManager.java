@@ -11,6 +11,7 @@ import misc.timestamp;
 import model.Paginatie;
 import model.Statistiek;
 import model.Bestelling;
+import model.OrderRegel;
 
 public class QueryManager {
 
@@ -74,15 +75,15 @@ public class QueryManager {
         Bestelling bestelling = new Bestelling();
         
         // Vul orders in ArrayList in
-        List orderList = new ArrayList();
+        ArrayList orderList = new ArrayList();
         try {
             String sql = "SELECT * FROM orderregel WHERE order_id = '" + orderID + "'";
             ResultSet result = dbmanager.doQuery(sql);
             while (result.next()) {
-                Category category = new Category(result.getInt("categorie_id"),
-                        result.getString("naam"),
-                        result.getString("omschrijving"));
-                orderList.add(category);
+                OrderRegel orderRegel = new OrderRegel(result.getInt("product_id"),
+                        result.getInt("order_id"),
+                        result.getInt("aantal"));
+                orderList.add(orderRegel);
             }
         } catch (SQLException e) {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
@@ -101,7 +102,7 @@ public class QueryManager {
                         result.getString("notes"),
                         result.getString("betaalmethode"),
                         result.getString("code"),
-                        result.getString("sdf")
+                        orderList
                         );
             }
         } catch (SQLException e) {
