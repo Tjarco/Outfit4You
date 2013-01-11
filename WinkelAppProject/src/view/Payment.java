@@ -20,32 +20,32 @@ import model.Session;
 import java.net.URI;
 import java.awt.Desktop;
 import java.io.IOException;
-import java.util.Random; 
+import java.util.Random;
+import model.Gebruiker;
 import model.Statistiek;
 
 /**
  * @author Administrator
- * 
- * @version 1.0
- * Initial Payment class created.
+ *
+ * @version 1.0 Initial Payment class created.
  */
-
 /**
  * @author Bono
- * 
- * @version 1.1
- * Ingelogde gebruikers informatie wordt automagisch ingevuld in de velden, deze kan altijd nog veranderd worden door de gebruiker.
+ *
+ * @version 1.1 Ingelogde gebruikers informatie wordt automagisch ingevuld in de
+ * velden, deze kan altijd nog veranderd worden door de gebruiker.
  */
-
 /**
- * @author Vernon de Goede  < vernon.de.goede@hva.nl >
+ * @author Vernon de Goede < vernon.de.goede@hva.nl >
  * @version 1.2
- * 
- * Laat gebruiker waardes in zijn basket veranderen, de input boxes kunnen geen hogere waardes aannemen dan de voorraad van een bepaald product.
- * Gebruikers worden doorgestuurd naar een betaalpagina van de Rabobank
- * Query van OrderSend() is nu kloppend gemaakt met de database update
- * 
- * Let op: bugfix nodig om repaint te fixen wanneer de waardes in de basket worden veranderd. Sommige teksten komen nu over elkaar heen te staan
+ *
+ * Laat gebruiker waardes in zijn basket veranderen, de input boxes kunnen geen
+ * hogere waardes aannemen dan de voorraad van een bepaald product. Gebruikers
+ * worden doorgestuurd naar een betaalpagina van de Rabobank Query van
+ * OrderSend() is nu kloppend gemaakt met de database update
+ *
+ * Let op: bugfix nodig om repaint te fixen wanneer de waardes in de basket
+ * worden veranderd. Sommige teksten komen nu over elkaar heen te staan
  */
 public class Payment extends MainLayout implements MouseListener, ActionListener {
 
@@ -60,47 +60,47 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
     private JTextField tfNote;
     private JLabel lblFormTitle;
     private final String[] payMethods = {"iDeal", "Contante betaling"};
-    
     private JPanel content;
     private JPanel container;
     public JPanel price;
 
     public Payment() {
-        
-        
-        
-            super.AddTitle("Betalen");
-            super.addBackButton(new CategoryList());
-
-            container = new JPanel();
-            container.setLayout(null);
-
-            container.setOpaque(true);
-
-            content = new JPanel();
-            content.setLayout(null);
-            content.setBounds(250, 20, 900, 600);
-
-            price = new JPanel();
-            price.setLayout(null);
-            price.setOpaque(false);
-            price.setBounds(0, 20, 900, 600);
 
 
-            initComponents();
 
-            container.add(content);
-            content.add(price);
-            add(container);
-        
-     }
+        super.AddTitle("Betalen");
+        super.addBackButton(new CategoryList());
+
+        container = new JPanel();
+        container.setLayout(null);
+
+        container.setOpaque(true);
+
+        content = new JPanel();
+        content.setLayout(null);
+        content.setBounds(250, 20, 900, 600);
+
+        price = new JPanel();
+        price.setLayout(null);
+        price.setOpaque(false);
+        price.setBounds(0, 20, 900, 600);
+
+
+        initComponents();
+
+        container.add(content);
+        content.add(price);
+        add(container);
+
+    }
 
     /**
      * Validators voor de textfields.
-     * 
-     * Als het format niet correct is zal het bijbehorende veld rood kleuren. Deze methoden 
-     * Geven ook een boolean terug, dus kunnen ook gebruikt worden om te testen of de formats correct zijn.
-     * 
+     *
+     * Als het format niet correct is zal het bijbehorende veld rood kleuren.
+     * Deze methoden Geven ook een boolean terug, dus kunnen ook gebruikt worden
+     * om te testen of de formats correct zijn.
+     *
      */
     private Boolean validatePostcode(String validatie) {
         Boolean isValid = true;
@@ -109,9 +109,9 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         if (!validatie.matches(format)) {
             tfPostcode.setBackground(Color.red);
             isValid = false;
-        }else{
+        } else {
             tfPostcode.setBackground(Color.green);
-            }
+        }
         return isValid;
     }
 
@@ -126,19 +126,19 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         }
         return isValid;
     }
-    
-    private Boolean validateAdres(String validatie){
+
+    private Boolean validateAdres(String validatie) {
         Boolean isValid = true;
         String format = "([a-zA-Z \\s]+)([\\d]+)";
-           if(validatie.length()>49 || validatie.length()==0 || !validatie.matches(format)){
-               tfAddress.setBackground(Color.red);
-               isValid = false;
-           }else{
-               tfAddress.setBackground(Color.green);
-           }
-           return isValid;
+        if (validatie.length() > 49 || validatie.length() == 0 || !validatie.matches(format)) {
+            tfAddress.setBackground(Color.red);
+            isValid = false;
+        } else {
+            tfAddress.setBackground(Color.green);
         }
-    
+        return isValid;
+    }
+
     private Boolean validateWoonplaats(String validatie) {
         Boolean isValid = true;
         String format = "[a-zA-Z ']+";
@@ -156,7 +156,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         addProductList();
         addForm();
     }
-    
+
     private void initProductList() {
         addProductList();
     }
@@ -167,19 +167,19 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         lblTitle1.setBounds(20, 20, 150, 20);
         lblTitle1.setFont(WinkelApplication.FONT_18_BOLD);
         content.add(lblTitle1);
-        
+
         JLabel lblTitle2 = new JLabel();
         lblTitle2.setText("-");
         lblTitle2.setBounds(170, 20, 20, 20);
         lblTitle2.setFont(WinkelApplication.FONT_14_BOLD);
         content.add(lblTitle2);
-        
+
         JLabel lblTitle3 = new JLabel();
         lblTitle3.setText("Betaling");
         lblTitle3.setBounds(190, 20, 500, 20);
         lblTitle3.setFont(WinkelApplication.FONT_14_BOLD);
         content.add(lblTitle3);
-        
+
     }
 
     private void addProductList() {
@@ -216,16 +216,17 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
             amountItems.setBounds(400, verticalPosition + i * productOffset, 40, 20);
             amountItems.setFont(WinkelApplication.FONT_12_PLAIN);
             amountItems.addChangeListener(new ChangeListener() {
-                public void stateChanged(ChangeEvent e) {
-                   WinkelApplication.getBasket().removeProduct(product, (Integer) model.getValue());
 
-                   price.removeAll();
-                   price.revalidate();
-                   price.repaint();
-                   initProductList();
+                public void stateChanged(ChangeEvent e) {
+                    WinkelApplication.getBasket().removeProduct(product, (Integer) model.getValue());
+
+                    price.removeAll();
+                    price.revalidate();
+                    price.repaint();
+                    initProductList();
                 }
-              });
-            
+            });
+
             content.add(amountItems);
             JLabel lblPrice = new JLabel(WinkelApplication.CURRENCY.format(product.getPrijs()));
             lblPrice.setBounds(480, verticalPosition + i * productOffset, 70, 20);
@@ -248,7 +249,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
 
     private void addForm() {
         List<Product> products = WinkelApplication.getBasket().getProducts();
-        
+
         lblFormTitle = new JLabel("Verzendgegevens");
         lblFormTitle.setBounds(20, verticalPosition + products.size() * productOffset + (formOffset * 2), 150, 20);
         lblFormTitle.setFont(WinkelApplication.FONT_14_BOLD);
@@ -263,8 +264,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         tfNaam.setBounds(120, verticalPosition + products.size() * productOffset + (formOffset * 3), 130, 20);
         tfNaam.setFont(WinkelApplication.FONT_12_BOLD);
         tfNaam.setText("");
-        if(Session.getGebruiker() != null)
-        {
+        if (Session.getGebruiker() != null) {
             System.out.println("gebruiker ingelogd: set naam etc.");
             tfNaam.setText(Session.getGebruiker().getVoornaam() + " " + Session.getGebruiker().getTussenvoegsel() + " " + Session.getGebruiker().getAchternaam());
         }
@@ -280,8 +280,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         tfPostcode.setBounds(420, verticalPosition + products.size() * productOffset + (formOffset * 3), 130, 20);
         tfPostcode.setFont(WinkelApplication.FONT_12_BOLD);
         tfPostcode.setText("");
-        if(Session.getGebruiker() != null)
-        {
+        if (Session.getGebruiker() != null) {
             tfPostcode.setText(Session.getGebruiker().getPostcode());
         }
         tfPostcode.getDocument().addDocumentListener(new ValidateListener());
@@ -296,8 +295,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         tfAddress.setBounds(120, verticalPosition + products.size() * productOffset + (formOffset * 4), 130, 20);
         tfAddress.setFont(WinkelApplication.FONT_12_BOLD);
         tfAddress.setText("");
-        if(Session.getGebruiker() != null)
-        {
+        if (Session.getGebruiker() != null) {
             tfAddress.setText(Session.getGebruiker().getStraatnaam() + " " + Session.getGebruiker().getHuisnummer());
         }
         tfAddress.getDocument().addDocumentListener(new ValidateListener());
@@ -312,8 +310,7 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         tfWoonplaats.setBounds(420, verticalPosition + products.size() * productOffset + (formOffset * 4), 130, 20);
         tfWoonplaats.setFont(WinkelApplication.FONT_12_BOLD);
         tfWoonplaats.setText("");
-        if(Session.getGebruiker() != null)
-        {
+        if (Session.getGebruiker() != null) {
             tfWoonplaats.setText(Session.getGebruiker().getWoonplaats());
         }
 
@@ -348,17 +345,12 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
 
     }
 
-    public static void openURL(String urlText)
-    {
-        if (Desktop.isDesktopSupported())
-        {
+    public static void openURL(String urlText) {
+        if (Desktop.isDesktopSupported()) {
             URI uri = URI.create(urlText);
-            try
-            {
+            try {
                 Desktop.getDesktop().browse(uri);
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 System.out.println("Foutmelding: Browser kan betaalpagina niet openen.");
             }
         }
@@ -366,9 +358,9 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
 
     /**
      * A listener for textfields. Use the formats to test if the user is filling
-     * in correct information. If the underlaying document, which is automaticly generated, changes, this listener 
-     * will be called.
-     * 
+     * in correct information. If the underlaying document, which is automaticly
+     * generated, changes, this listener will be called.
+     *
      * The source will be checked, and the right validator is called.
      */
     private class ValidateListener implements DocumentListener {
@@ -376,46 +368,46 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         public void insertUpdate(DocumentEvent e) {
             if (e.getDocument().equals(tfPostcode.getDocument())) {
                 validatePostcode(tfPostcode.getText());
-                
+
             } else if (e.getDocument().equals(tfNaam.getDocument())) {
                 validateNaam(tfNaam.getText());
-               
-            } else if(e.getDocument().equals(tfAddress.getDocument())){
+
+            } else if (e.getDocument().equals(tfAddress.getDocument())) {
                 validateAdres(tfAddress.getText());
-               
-            } else if(e.getDocument().equals(tfWoonplaats.getDocument())){
+
+            } else if (e.getDocument().equals(tfWoonplaats.getDocument())) {
                 validateWoonplaats(tfWoonplaats.getText());
-                
+
             }
         }
 
         public void removeUpdate(DocumentEvent e) {
             if (e.getDocument().equals(tfPostcode.getDocument())) {
                 validatePostcode(tfPostcode.getText());
-                
+
             } else if (e.getDocument().equals(tfNaam.getDocument())) {
                 validateNaam(tfNaam.getText());
-                
-            } else if(e.getDocument().equals(tfAddress.getDocument())){
+
+            } else if (e.getDocument().equals(tfAddress.getDocument())) {
                 validateAdres(tfAddress.getText());
-                
-            } else if(e.getDocument().equals(tfWoonplaats.getDocument())){
+
+            } else if (e.getDocument().equals(tfWoonplaats.getDocument())) {
                 validateWoonplaats(tfWoonplaats.getText());
-               
+
             }
         }
 
         public void changedUpdate(DocumentEvent e) {
             if (e.getDocument().equals(tfPostcode.getDocument())) {
                 validatePostcode(tfPostcode.getText());
-                
+
             } else if (e.getDocument().equals(tfNaam.getDocument())) {
                 validateNaam(tfNaam.getText());
-                
-            } else if(e.getDocument().equals(tfAddress.getDocument())){
+
+            } else if (e.getDocument().equals(tfAddress.getDocument())) {
                 validateAdres(tfAddress.getText());
-                
-            } else if(e.getDocument().equals(tfWoonplaats.getDocument())){
+
+            } else if (e.getDocument().equals(tfWoonplaats.getDocument())) {
                 validateWoonplaats(tfWoonplaats.getText());
 
             }
@@ -424,22 +416,23 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        
+
         /**
-         * 1. Velden worden gecontroleerd d.m.v. regex
-         * 2. Queries zullen de order in de database plaatsen.
-         * 3. De statistieken zullen gëupdate worden
-         * 3. Gebruiker zal (afhankelijk van zijn betaalmethode) naar een pagina worden gestuurd, zie hieronder:
-         *  3.1 iDeal - Gebruiker wordt naar een iDeal betaalpagina gestuurd
-         *  3.2 Contante betaling - Gebruiker krijgt een code waarmee hij contant kan betalen bij een medewerker en vervolgens zijn product in ontvangst kan nemen.
+         * 1. Velden worden gecontroleerd d.m.v. regex 2. Queries zullen de
+         * order in de database plaatsen. 3. De statistieken zullen gëupdate
+         * worden 3. Gebruiker zal (afhankelijk van zijn betaalmethode) naar een
+         * pagina worden gestuurd, zie hieronder: 3.1 iDeal - Gebruiker wordt
+         * naar een iDeal betaalpagina gestuurd 3.2 Contante betaling -
+         * Gebruiker krijgt een code waarmee hij contant kan betalen bij een
+         * medewerker en vervolgens zijn product in ontvangst kan nemen.
          */
         if (validateNaam(tfNaam.getText()) && validateAdres(tfAddress.getText()) && validatePostcode(tfPostcode.getText())
                 && validateWoonplaats(tfWoonplaats.getText())) {
             // Unieke code wordt meegegeven
             Random rndNumbers = new Random(30);
-            int rndNumber = rndNumbers.nextInt( Integer.MAX_VALUE ) + 1;
+            int rndNumber = rndNumbers.nextInt(Integer.MAX_VALUE) + 1;
             String betaalCode = Integer.toString(rndNumber);
-            
+
             String naam = tfNaam.getText();
             String adres = tfAddress.getText();
             String opmerking = tfNote.getText();
@@ -447,35 +440,41 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
             String woonplaats = tfWoonplaats.getText();
             String betaalmethode = (String) cmbPayMethod.getSelectedItem();
             WinkelApplication.getQueryManager().setOrder(WinkelApplication.getBasket(),
-                   naam, adres, postcode, woonplaats, opmerking, betaalmethode, betaalCode);
-            
-            for(int i =0; i<WinkelApplication.getBasket().size(); i++){
-                Statistiek s = new Statistiek(Session.getGebruiker(), WinkelApplication.getBasket().getProducts().get(i));
-                main.WinkelApplication.getQueryManager().updateStatistieken(s);
+                    naam, adres, postcode, woonplaats, opmerking, betaalmethode, betaalCode);
+
+                       
+            for (int i = 0; i < WinkelApplication.getBasket().size(); i++) {
+                if (Session.getGebruiker() != null) {
+                    Statistiek s = new Statistiek(Session.getGebruiker(), WinkelApplication.getBasket().getProducts().get(i));
+                    main.WinkelApplication.getQueryManager().updateStatistieken(s);
+                } else{
+                    Statistiek s = new Statistiek();
+                    s.setProduct_id(WinkelApplication.getBasket().getProducts().get(i).getProduct_id());
+                    s.setTotaal_verkocht(1);
+                    main.WinkelApplication.getQueryManager().updateStatistieken(s);
+                }
             }
-            
+
             WinkelApplication.getBasket().empty();
-            if("iDeal".equals(betaalmethode)) {
+            if ("iDeal".equals(betaalmethode)) {
                 // Betaling verloopt via iDeal
                 openURL("https://bankieren.rabobank.nl/rib/");
                 WinkelApplication.getInstance().showPanel(new OrderSend());
-            }else{
+            } else {
                 // Betaling verloopt via contante betaling, unieke code wordt meegegeven aan het volgende scherm
                 WinkelApplication.getInstance().showPanel(new OrderSendContantBetaald(betaalCode));
             }
-            
+
         } else {
             this.lblFormTitle.setText("Verzendgegevens -- Niet alle gegevens zijn correct ingevuld");
             this.lblFormTitle.setForeground(Color.red);
             this.lblFormTitle.setSize(400, 20);
         }
     }
-    
 
     @Override
     public void mouseClicked(MouseEvent event) {
         // the user clicked on the title, go back to the first screen
-   
     }
 
     @Override
@@ -497,6 +496,4 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
     public void mouseExited(MouseEvent event) {
         // Intentionally left blank.
     }
-
-
 }
