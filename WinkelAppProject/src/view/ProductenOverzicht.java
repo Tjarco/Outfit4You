@@ -305,6 +305,7 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         wijzigCatNaam = new javax.swing.JTextField();
         wijzigCatID = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        jFrame3 = new javax.swing.JFrame();
         jPanel1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -441,6 +442,17 @@ public class ProductenOverzicht extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(wijzigCatButton)
                 .addContainerGap(84, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jFrame3Layout = new javax.swing.GroupLayout(jFrame3.getContentPane());
+        jFrame3.getContentPane().setLayout(jFrame3Layout);
+        jFrame3Layout.setHorizontalGroup(
+            jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame3Layout.setVerticalGroup(
+            jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         setLayout(new java.awt.BorderLayout());
@@ -933,6 +945,7 @@ public class ProductenOverzicht extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
+    private javax.swing.JFrame jFrame3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;

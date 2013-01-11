@@ -10,6 +10,7 @@ import model.Product;
 import misc.timestamp;
 import model.Paginatie;
 import model.Statistiek;
+import model.Bestelling;
 
 public class QueryManager {
 
@@ -62,6 +63,51 @@ public class QueryManager {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
         }
         return categories;
+    }
+    
+    /**
+     * @author Vernon de Goede < vernon.de.goede@hva.nl >
+     * @param orderID
+     * @return Bestelling klasse
+     */
+    public Bestelling getOrder ( int orderID ) {
+        Bestelling bestelling = new Bestelling();
+        
+        // Vul orders in ArrayList in
+        List orderList = new ArrayList();
+        try {
+            String sql = "SELECT * FROM orderregel WHERE order_id = '" + orderID + "'";
+            ResultSet result = dbmanager.doQuery(sql);
+            while (result.next()) {
+                Category category = new Category(result.getInt("categorie_id"),
+                        result.getString("naam"),
+                        result.getString("omschrijving"));
+                orderList.add(category);
+            }
+        } catch (SQLException e) {
+            System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
+        }
+        
+        try {
+            String sql = "SELECT * FROM order WHERE order_id = '" + orderID + "'";
+            ResultSet result = dbmanager.doQuery(sql);
+            if (result.next()) {
+                bestelling = new Bestelling(
+                        orderID,
+                        result.getString("naam"),
+                        result.getString("adres"),
+                        result.getString("postcode"),
+                        result.getString("woonplaats"),
+                        result.getString("notes"),
+                        result.getString("betaalmethode"),
+                        result.getString("code"),
+                        result.getString("sdf")
+                        );
+            }
+        } catch (SQLException e) {
+            System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
+        }
+        return bestelling;
     }
     
     public Category getCategorie( int catID) {
