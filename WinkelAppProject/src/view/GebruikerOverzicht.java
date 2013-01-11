@@ -311,7 +311,7 @@ public class GebruikerOverzicht extends javax.swing.JPanel {
                         jTable1.setValueAt(tfInvoer.getText(), jTable1.getSelectedRow(), jTable1.getSelectedColumn());
                         WinkelApplication.getQueryManager().setGebruiker(gebruiker);
                         JOptionPane.showMessageDialog(frame,
-                                "Geboortedatum iss succesvol gewijzigd",
+                                "Geboortedatum is succesvol gewijzigd",
                                 "Klant wijzigen",
                                 JOptionPane.PLAIN_MESSAGE
                                 );
