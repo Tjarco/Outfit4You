@@ -91,18 +91,18 @@ public class QueryManager {
         }
         
         try {
-            String sql = "SELECT * FROM order WHERE order_id = '" + orderID + "'";
-            ResultSet result = dbmanager.doQuery(sql);
-            if (result.next()) {
+            String sql = "SELECT * FROM `order` WHERE `order_id` =" + orderID;
+            ResultSet results = dbmanager.doQuery(sql);
+            if (results.next()) {
                 bestelling = new Bestelling(
                         orderID,
-                        result.getString("naam"),
-                        result.getString("adres"),
-                        result.getString("postcode"),
-                        result.getString("woonplaats"),
-                        result.getString("notes"),
-                        result.getString("betaalmethode"),
-                        result.getString("code"),
+                        results.getString("naam"),
+                        results.getString("adres"),
+                        results.getString("postcode"),
+                        results.getString("woonplaats"),
+                        results.getString("notes"),
+                        results.getString("betaalmethode"),
+                        results.getString("code"),
                         orderList
                         );
             }

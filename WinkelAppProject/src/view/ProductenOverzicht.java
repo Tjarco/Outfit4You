@@ -306,6 +306,8 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         wijzigCatID = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jFrame3 = new javax.swing.JFrame();
+        variabeleTest = new javax.swing.JLabel();
+        testKlasse = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -316,6 +318,7 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         jbWijzigCategorie = new javax.swing.JButton();
         jcCategoryVeld = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
+        bekijkBestellingenVenster = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtProducten = new javax.swing.JTable();
@@ -444,15 +447,36 @@ public class ProductenOverzicht extends javax.swing.JPanel {
                 .addContainerGap(84, Short.MAX_VALUE))
         );
 
+        jFrame3.setMinimumSize(new java.awt.Dimension(500, 400));
+
+        variabeleTest.setText("jLabel10");
+
+        testKlasse.setText("jButton2");
+        testKlasse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testKlasseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jFrame3Layout = new javax.swing.GroupLayout(jFrame3.getContentPane());
         jFrame3.getContentPane().setLayout(jFrame3Layout);
         jFrame3Layout.setHorizontalGroup(
             jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jFrame3Layout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(variabeleTest, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(testKlasse)
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         jFrame3Layout.setVerticalGroup(
             jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jFrame3Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(variabeleTest)
+                    .addComponent(testKlasse))
+                .addContainerGap(247, Short.MAX_VALUE))
         );
 
         setLayout(new java.awt.BorderLayout());
@@ -510,6 +534,13 @@ public class ProductenOverzicht extends javax.swing.JPanel {
 
         jLabel4.setText("op:");
 
+        bekijkBestellingenVenster.setText("Wijzig een categorie");
+        bekijkBestellingenVenster.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bekijkBestellingenVensterActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -525,8 +556,10 @@ public class ProductenOverzicht extends javax.swing.JPanel {
                         .addComponent(jLabel4)
                         .addGap(7, 7, 7)
                         .addComponent(jcCategoryVeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addComponent(bekijkBestellingenVenster)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jbWijzigCategorie)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jbToevoegenCategorie))
@@ -546,7 +579,9 @@ public class ProductenOverzicht extends javax.swing.JPanel {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbWijzigCategorie, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jbWijzigCategorie, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bekijkBestellingenVenster, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jbToevoegenCategorie, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 44, Short.MAX_VALUE))
         );
@@ -941,7 +976,18 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         main.WinkelApplication.getInstance().showPanel(new NieuwProduct(product));
     }//GEN-LAST:event_jbProductWijzigenMouseClicked
 
+    private void testKlasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testKlasseActionPerformed
+        String naamTest;
+        naamTest = WinkelApplication.getQueryManager().getOrder(3).getNaam();
+        variabeleTest.setText(naamTest);
+    }//GEN-LAST:event_testKlasseActionPerformed
+
+    private void bekijkBestellingenVensterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bekijkBestellingenVensterActionPerformed
+        jFrame3.show();
+    }//GEN-LAST:event_bekijkBestellingenVensterActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bekijkBestellingenVenster;
     private javax.swing.JButton jButton1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
@@ -981,6 +1027,8 @@ public class ProductenOverzicht extends javax.swing.JPanel {
     private javax.swing.JTable jtProducten;
     private javax.swing.JTextField jtZoekveld;
     private javax.swing.JTextField jtZoekveldCat;
+    private javax.swing.JButton testKlasse;
+    private javax.swing.JLabel variabeleTest;
     private javax.swing.JButton wijzigCatButton;
     private javax.swing.JTextField wijzigCatID;
     private javax.swing.JTextField wijzigCatNaam;
