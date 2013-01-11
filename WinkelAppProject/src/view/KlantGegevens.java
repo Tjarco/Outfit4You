@@ -100,7 +100,6 @@ String wijzigingonthoud;
             tfHuisnummer.setText(Integer.toString(gebruiker.getHuisnummer()));
             tfWoonplaats.setText(gebruiker.getWoonplaats());
             tfPostcode.setText(gebruiker.getPostcode());
-           // tfTelefoonnummer.setText(gebruiker.getTelefoonnummer); // er is nog geen getTelefoonnummer in de gebruiker klasse
             tfEmail.setText(gebruiker.getEmail());
         }
         
@@ -145,8 +144,6 @@ String wijzigingonthoud;
                                 break;
                             case 7: { gebruiker.setPostcode(tfInvoer.getText());}
                                 break;
-                   //         case 8: { gebruiker.setTelefoonnummer(tfInvoer.getText());} // er is nog geen setTelefoonnummer
-                     //           break;
                             case 9: { gebruiker.setEmail(tfInvoer.getText());}
                                 break;
 
@@ -305,8 +302,6 @@ String wijzigingonthoud;
         tfWoonplaats = new javax.swing.JTextField();
         lPostcode = new javax.swing.JLabel();
         tfPostcode = new javax.swing.JTextField();
-        lTelefoonnummer = new javax.swing.JLabel();
-        tfTelefoonnummer = new javax.swing.JTextField();
         lEmail = new javax.swing.JLabel();
         tfEmail = new javax.swing.JTextField();
         jbWachtwoordWijzigen = new javax.swing.JButton();
@@ -318,7 +313,6 @@ String wijzigingonthoud;
         lHuisnummerWijzigen = new javax.swing.JLabel();
         lWoonplaatsWijzigen = new javax.swing.JLabel();
         lPostcodeWijzigen = new javax.swing.JLabel();
-        lTelefoonnummerWijzigen = new javax.swing.JLabel();
         lEmailWijzigen = new javax.swing.JLabel();
         jbOpslaan = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -354,10 +348,6 @@ String wijzigingonthoud;
         lPostcode.setText("Postcode");
 
         tfPostcode.setEditable(false);
-
-        lTelefoonnummer.setText("Telefoonnummer");
-
-        tfTelefoonnummer.setEditable(false);
 
         lEmail.setText("E-mail");
 
@@ -421,13 +411,6 @@ String wijzigingonthoud;
             }
         });
 
-        lTelefoonnummerWijzigen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons/wijzigen.png"))); // NOI18N
-        lTelefoonnummerWijzigen.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lTelefoonnummerWijzigenMousePressed(evt);
-            }
-        });
-
         lEmailWijzigen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/icons/wijzigen.png"))); // NOI18N
         lEmailWijzigen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -447,40 +430,37 @@ String wijzigingonthoud;
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(lTelefoonnummer, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(lPostcode)
-                                                    .addComponent(lEmail))
-                                                .addComponent(lWoonplaats))
-                                            .addComponent(lHuisnummer))
-                                        .addComponent(lStraatnaam))
-                                    .addComponent(lAchternaam))
-                                .addComponent(lTussenvoegsel))
-                            .addComponent(lNaam))
-                        .addGap(73, 73, 73))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jbOpslaan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                            .addComponent(lPostcode)
+                                            .addGap(120, 120, 120))
+                                        .addComponent(lWoonplaats))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lHuisnummer)
+                                            .addComponent(lEmail))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addComponent(lStraatnaam))
+                            .addComponent(lAchternaam))
+                        .addComponent(lTussenvoegsel))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(lNaam)
+                        .addGap(73, 73, 73)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tfNaam, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
-                                    .addComponent(tfTussenvoegsel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(tfTelefoonnummer)
-                                .addGap(7, 7, 7)))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(tfNaam, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+                                .addComponent(tfTussenvoegsel))
+                            .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbOpslaan))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lTussenvoegselWijzigen)
                             .addComponent(jbWachtwoordWijzigen)
@@ -490,14 +470,12 @@ String wijzigingonthoud;
                             .addComponent(lHuisnummerWijzigen)
                             .addComponent(lWoonplaatsWijzigen)
                             .addComponent(lPostcodeWijzigen)
-                            .addComponent(lTelefoonnummerWijzigen)
                             .addComponent(lEmailWijzigen)))
                     .addComponent(tfAchternaam, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfStraatnaam, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfHuisnummer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfWoonplaats, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfPostcode, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfPostcode, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(596, 596, 596))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -555,25 +533,15 @@ String wijzigingonthoud;
                     .addComponent(lPostcodeWijzigen))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lEmailWijzigen)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tfTelefoonnummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lTelefoonnummer))
-                    .addComponent(lTelefoonnummerWijzigen))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lEmail))
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(jbWachtwoordWijzigen))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(64, 64, 64)
-                                .addComponent(jbOpslaan))))
-                    .addComponent(lEmailWijzigen))
-                .addContainerGap(135, Short.MAX_VALUE))
+                        .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lEmail)))
+                .addGap(63, 63, 63)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbWachtwoordWijzigen)
+                    .addComponent(jbOpslaan))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
 
         add(jPanel4, java.awt.BorderLayout.CENTER);
@@ -623,10 +591,6 @@ String wijzigingonthoud;
         newFrame(7, "Postcode wijzigen", "Uw postcode wijzigen in: ");
     }//GEN-LAST:event_lPostcodeWijzigenMousePressed
 
-    private void lTelefoonnummerWijzigenMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lTelefoonnummerWijzigenMousePressed
-        newFrame(8, "Telefoonnummer wijzigen", "[Momenteel niet in werking!] Uw telefoonnummer wijzigen in: ");
-    }//GEN-LAST:event_lTelefoonnummerWijzigenMousePressed
-
     private void lEmailWijzigenMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lEmailWijzigenMousePressed
         newFrame(9, "E-mail wijzigen", "Uw E-mail wijzigen in: ");
     }//GEN-LAST:event_lEmailWijzigenMousePressed
@@ -660,8 +624,6 @@ String wijzigingonthoud;
     private javax.swing.JLabel lPostcodeWijzigen;
     private javax.swing.JLabel lStraatnaam;
     private javax.swing.JLabel lStraatnaamWijzigen;
-    private javax.swing.JLabel lTelefoonnummer;
-    private javax.swing.JLabel lTelefoonnummerWijzigen;
     private javax.swing.JLabel lTussenvoegsel;
     private javax.swing.JLabel lTussenvoegselWijzigen;
     private javax.swing.JLabel lWoonplaats;
@@ -672,7 +634,6 @@ String wijzigingonthoud;
     private javax.swing.JTextField tfNaam;
     private javax.swing.JTextField tfPostcode;
     private javax.swing.JTextField tfStraatnaam;
-    private javax.swing.JTextField tfTelefoonnummer;
     private javax.swing.JTextField tfTussenvoegsel;
     private javax.swing.JTextField tfWoonplaats;
     // End of variables declaration//GEN-END:variables

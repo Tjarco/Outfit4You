@@ -47,7 +47,6 @@ public class NieuweGebruiker extends JPanel {
         tfHuisnummer.getDocument().addDocumentListener(lis);
         tfNaam.getDocument().addDocumentListener(lis);
         tfStraat.getDocument().addDocumentListener(lis);
-        tfTelefoon.getDocument().addDocumentListener(lis);
         tfEmail.getDocument().addDocumentListener(lis);
         tfAchternaam.getDocument().addDocumentListener(lis);
         tfTussenvoegsel.getDocument().addDocumentListener(lis);
@@ -75,19 +74,6 @@ public class NieuweGebruiker extends JPanel {
             isValid = false;
         } else {
             tfPostcode.setBackground(Color.green);
-        }
-        return isValid;
-    }
-
-    private Boolean validateTelefoon(String validatie) {
-        Boolean isValid = true;
-        String format = "([\\d]+)+([- \\s]?)+([\\d]+)";
-
-        if (!validatie.matches(format) || validatie.length() > 13) {
-            tfTelefoon.setBackground(Color.red);
-            isValid = false;
-        } else {
-            tfTelefoon.setBackground(Color.green);
         }
         return isValid;
     }
@@ -231,8 +217,6 @@ public class NieuweGebruiker extends JPanel {
         tfHuisnummer = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         tfEmail = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        tfTelefoon = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         tfWachtwoord = new javax.swing.JPasswordField();
         jLabel12 = new javax.swing.JLabel();
@@ -274,8 +258,6 @@ public class NieuweGebruiker extends JPanel {
 
         jLabel10.setText("E-mail");
 
-        jLabel3.setText("Telefoon");
-
         jLabel11.setText("Wachtwoord");
 
         jLabel12.setText("Herhaal Wachtwoord");
@@ -296,26 +278,29 @@ public class NieuweGebruiker extends JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jlTitel)
-                        .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jbVoegToe))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jbVoegToe))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfWoonplaats, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfPostcode, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfTelefoon, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfWachtwoord, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfWachtwoordHerhaal, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -334,9 +319,9 @@ public class NieuweGebruiker extends JPanel {
                         .addGap(80, 80, 80))))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(303, 303, Short.MAX_VALUE)
+                    .addGap(320, 320, Short.MAX_VALUE)
                     .addComponent(jLabel6)
-                    .addGap(0, 184, Short.MAX_VALUE)))
+                    .addGap(0, 191, Short.MAX_VALUE)))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,15 +346,18 @@ public class NieuweGebruiker extends JPanel {
                         .addGap(13, 13, 13)
                         .addComponent(tfWoonplaats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
-                        .addComponent(tfPostcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(tfTelefoon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(tfWachtwoord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(tfWachtwoordHerhaal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfPostcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfWachtwoord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -380,22 +368,16 @@ public class NieuweGebruiker extends JPanel {
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel4)
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel10)
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel11)
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel12)))
-                .addGap(18, 18, 18)
+                        .addGap(102, 102, 102)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfWachtwoordHerhaal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addGap(54, 54, 54)
                 .addComponent(jbVoegToe)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 4, Short.MAX_VALUE)
+                    .addGap(0, 18, Short.MAX_VALUE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(403, 403, 403)))
         );
@@ -418,14 +400,14 @@ public class NieuweGebruiker extends JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(895, Short.MAX_VALUE))
+                .addContainerGap(893, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         add(jPanel2, java.awt.BorderLayout.PAGE_START);
@@ -452,7 +434,7 @@ public class NieuweGebruiker extends JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jbBack)
-                .addContainerGap(862, Short.MAX_VALUE))
+                .addContainerGap(856, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -469,7 +451,6 @@ public class NieuweGebruiker extends JPanel {
         if (validateNaam(tfNaam.getText()) && validateAchternaam(tfAchternaam.getText())
                 && validateTussenvoegsel(tfTussenvoegsel.getText()) && validateStraat(tfStraat.getText())
                 && validateHuisnummer(tfHuisnummer.getText()) && validateWoonplaats(tfWoonplaats.getText())
-                && validatePostcode(tfPostcode.getText()) && validateTelefoon(tfTelefoon.getText())
                 && validateEmail(tfEmail.getText()) && validateWachtwoord(tfWachtwoord.getPassword())
                 && validateWachtwoordHerhaling(tfWachtwoordHerhaal.getPassword())) {
 
@@ -483,7 +464,6 @@ public class NieuweGebruiker extends JPanel {
             g.setHuisnummer(Integer.parseInt(tfHuisnummer.getText()));
             g.setWoonplaats(tfWoonplaats.getText());
             g.setPostcode(tfPostcode.getText());
-            //g.setTelefoonnummer(tfTelefoon.getText());
             g.setEmail(tfEmail.getText());
             String wachtwoord = "";
             for (int i = 0; i <= tfWachtwoord.getPassword().length - 1; i++) {
@@ -536,9 +516,6 @@ public class NieuweGebruiker extends JPanel {
             }
             if (!this.validatePostcode(tfPostcode.getText())){
                 message += "<br/>Postcode: de postcode moet in de volgende vorm gegeven worden: '1000AA'<br/> ";
-            }
-            if (!this.validateTelefoon(tfTelefoon.getText())){
-                message += "<Br/>Telefoon: Het telefoonnummer is te lang of bevat ongebruikelijke tekens <br/>";
             }
             if (!this.validateEmail(tfEmail.getText())){
                 message +="<br/>Email: Het emailadres kan in de volgende vormen gegeven worden:<br/>"
@@ -612,8 +589,6 @@ public class NieuweGebruiker extends JPanel {
                 validateEmail(tfEmail.getText());
             } else if (d.equals(tfWoonplaats.getDocument())) {
                 validateWoonplaats(tfWoonplaats.getText());
-            } else if (d.equals(tfTelefoon.getDocument())) {
-                validateTelefoon(tfTelefoon.getText());
             } else if (d.equals(tfPostcode.getDocument())) {
                 validatePostcode(tfPostcode.getText());
             } else if (d.equals(tfWoonplaats.getDocument())) {
@@ -634,7 +609,6 @@ public class NieuweGebruiker extends JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -655,7 +629,6 @@ public class NieuweGebruiker extends JPanel {
     private javax.swing.JTextField tfNaam;
     private javax.swing.JTextField tfPostcode;
     private javax.swing.JTextField tfStraat;
-    private javax.swing.JTextField tfTelefoon;
     private javax.swing.JTextField tfTussenvoegsel;
     private javax.swing.JPasswordField tfWachtwoord;
     private javax.swing.JPasswordField tfWachtwoordHerhaal;

@@ -34,54 +34,49 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace pref="23" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                       <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                                      <Component id="lTelefoonnummer" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="lPostcode" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="lEmail" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Component id="lWoonplaats" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="lHuisnummer" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="lPostcode" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="lStraatnaam" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lWoonplaats" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="lAchternaam" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lHuisnummer" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <Component id="lTussenvoegsel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lStraatnaam" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="lNaam" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lAchternaam" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="73" pref="73" max="-2" attributes="0"/>
+                          <Component id="lTussenvoegsel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="jbOpslaan" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="lNaam" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="73" pref="73" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="tfNaam" pref="490" max="32767" attributes="0"/>
-                                      <Component id="tfTussenvoegsel" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="tfNaam" pref="490" max="32767" attributes="0"/>
+                                  <Component id="tfTussenvoegsel" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="tfTelefoonnummer" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="tfEmail" alignment="1" min="-2" pref="490" max="-2" attributes="0"/>
+                              <Component id="jbOpslaan" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="lTussenvoegselWijzigen" min="-2" max="-2" attributes="0"/>
                               <Component id="jbWachtwoordWijzigen" min="-2" max="-2" attributes="0"/>
@@ -91,7 +86,6 @@
                               <Component id="lHuisnummerWijzigen" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lWoonplaatsWijzigen" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lPostcodeWijzigen" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lTelefoonnummerWijzigen" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lEmailWijzigen" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -100,7 +94,6 @@
                       <Component id="tfHuisnummer" alignment="0" min="-2" pref="490" max="-2" attributes="0"/>
                       <Component id="tfWoonplaats" alignment="0" min="-2" pref="490" max="-2" attributes="0"/>
                       <Component id="tfPostcode" alignment="0" min="-2" pref="490" max="-2" attributes="0"/>
-                      <Component id="tfEmail" alignment="0" min="-2" pref="490" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="596" max="-2" attributes="0"/>
               </Group>
@@ -177,33 +170,18 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="tfTelefoonnummer" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lTelefoonnummer" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="lTelefoonnummerWijzigen" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="tfEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                                  <Component id="jbWachtwoordWijzigen" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                                  <Component id="jbOpslaan" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
                       <Component id="lEmailWijzigen" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="tfEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="135" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jbWachtwoordWijzigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbOpslaan" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="165" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -275,16 +253,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfPostcode">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lTelefoonnummer">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Telefoonnummer"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="tfTelefoonnummer">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
@@ -380,16 +348,6 @@
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lPostcodeWijzigenMousePressed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lTelefoonnummerWijzigen">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/pictures/icons/wijzigen.png"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lTelefoonnummerWijzigenMousePressed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lEmailWijzigen">

@@ -396,7 +396,6 @@ public class QueryManager {
         String fields = "datum_aangemaakt = '" + gebruiker.getDatum_aangemaakt() + "', "
                 + "datum_gewijzigd = '" + gebruiker.getDatum_gewijzigd() + "', "
                 + "datum_laatst_ingelogd = '" + gebruiker.getDatum_laatst_ingelogd() + "', "
-                //+       "Telefoonnummer = '" + gebruiker.Telefoonnummer() + "', "  
                 + "wachtwoord = '" + gebruiker.getWachtwoord() + "', "
                 + "email = '" + gebruiker.getEmail() + "', "
                 + "voornaam = '" + gebruiker.getVoornaam() + "', "
@@ -436,7 +435,6 @@ public class QueryManager {
         try {
             String sql = "SELECT "
                     + "             `id`, "
-                    //+ "             `Telefoonnummer`, "
                     + "             `datum_aangemaakt`, "
                     + "             `datum_gewijzigd`, "
                     + "             `datum_laatst_ingelogd`, "
@@ -462,11 +460,10 @@ public class QueryManager {
                 gebruiker = new Gebruiker(
                         result.getInt("id"),
                         result.getInt("huisnummer"),
-                        //result.getString("telefoonnummer"),
                         result.getString("datum_aangemaakt"),
                         result.getString("datum_gewijzigd"),
                         result.getString("datum_laatst_ingelogd"),
-                        result.getString("wachtwoord"),//"", //wachtwoord veld
+                        result.getString("wachtwoord"),
                         result.getString("email"),
                         result.getString("voornaam"),
                         result.getString("tussenvoegsel"),
@@ -501,7 +498,6 @@ public class QueryManager {
                 gebruikers.add(new Gebruiker(
                         result.getInt("id"),
                         result.getInt("huisnummer"),
-                        //result.getString("telefoonnummer"),
                         result.getString("datum_aangemaakt"),
                         result.getString("datum_gewijzigd"),
                         result.getString("datum_laatst_ingelogd"),
