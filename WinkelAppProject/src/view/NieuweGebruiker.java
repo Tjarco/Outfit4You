@@ -171,7 +171,7 @@ public class NieuweGebruiker extends JPanel {
              jaar = Integer.parseInt(tfGeboortedatum.getText().substring(0, 4));
             System.out.println(jaar);
              maand = Integer.parseInt(tfGeboortedatum.getText().substring(5, 7));
-             dag = Integer.parseInt(tfGeboortedatum.getText().substring(9, 11));
+             dag = Integer.parseInt(tfGeboortedatum.getText().substring(8, 10));
         } catch (Exception e) {
             //de datum is nog niet compleet
         }
