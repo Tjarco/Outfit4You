@@ -63,7 +63,10 @@
                               <Component id="jScrollPane1" min="-2" pref="669" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="buttonVerwijderenGebruiker" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="buttonVerwijderenGebruiker" max="32767" attributes="0"/>
+                                  <Component id="buttonVerwijderenGebruiker1" max="32767" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jbMedewerkerToevoegen" max="32767" attributes="0"/>
@@ -71,13 +74,13 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="159" max="32767" attributes="0"/>
+                      <EmptySpace pref="-41" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="416" max="32767" attributes="0"/>
+                          <EmptySpace pref="442" max="32767" attributes="0"/>
                           <Component id="jcKlantenZoekOpties" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="415" max="32767" attributes="0"/>
+                          <EmptySpace pref="180" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -98,7 +101,10 @@
                           <Component id="buttonVerwijderenGebruiker" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jbMedewerkerToevoegen" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jbMedewerkerToevoegen" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonVerwijderenGebruiker1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
@@ -182,6 +188,15 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbMedewerkerToevoegenActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JButton" name="buttonVerwijderenGebruiker1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Wijzigen"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonVerwijderenGebruiker1MouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonVerwijderenGebruiker1ActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
@@ -207,7 +222,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel14" min="-2" pref="281" max="-2" attributes="0"/>
-                  <EmptySpace pref="734" max="32767" attributes="0"/>
+                  <EmptySpace pref="732" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -216,7 +231,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel14" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                  <EmptySpace pref="24" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -253,7 +268,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="jbBack" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="862" max="32767" attributes="0"/>
+                  <EmptySpace pref="856" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
