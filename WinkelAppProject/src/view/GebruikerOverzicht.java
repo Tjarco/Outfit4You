@@ -85,7 +85,7 @@ public class GebruikerOverzicht extends javax.swing.JPanel {
         {
             model.addRow(new Object[]{new Integer(klant.getId()),
             klant.getVoornaam() +" "+ klant.getTussenvoegsel() + " "+ klant.getAchternaam(),
-            klant.getStraatnaam(),
+            klant.getStraatnaam() + " " + klant.getHuisnummer(),
             klant.getPostcode(),
             klant.getWoonplaats(),
             klant.isMedewerker()});
@@ -224,21 +224,43 @@ public class GebruikerOverzicht extends javax.swing.JPanel {
                         gebruiker.setAchternaam(achternaam);
                         jTable1.setValueAt(tfInvoer.getText(), jTable1.getSelectedRow(), jTable1.getSelectedColumn());
                         WinkelApplication.getQueryManager().setGebruiker(gebruiker);
+                        JOptionPane.showMessageDialog(frame,
+                                "Naam is succesvol gewijzigd",
+                                "Klant wijzigen",
+                                JOptionPane.PLAIN_MESSAGE
+                                );
                     }
                     else if (kolomnaam.equals("Postcode")){ 
                         gebruiker.setPostcode(tfInvoer.getText());
                         jTable1.setValueAt(tfInvoer.getText(), jTable1.getSelectedRow(), jTable1.getSelectedColumn());
                         WinkelApplication.getQueryManager().setGebruiker(gebruiker);
+                        JOptionPane.showMessageDialog(frame,
+                                "Postcode is succesvol gewijzigd",
+                                "Klant wijzigen",
+                                JOptionPane.PLAIN_MESSAGE
+                                );
                     }
                     else if (kolomnaam.equals("Adres")){
-                        gebruiker.setStraatnaam(tfInvoer.getText());
+                        String split[]=tfInvoer.getText().split(" ");
+                        gebruiker.setStraatnaam(split[0]);
+                        gebruiker.setHuisnummer(Integer.parseInt(split[1]));
                         jTable1.setValueAt(tfInvoer.getText(), jTable1.getSelectedRow(), jTable1.getSelectedColumn());
                         WinkelApplication.getQueryManager().setGebruiker(gebruiker);
+                        JOptionPane.showMessageDialog(frame,
+                                "Adres is succesvol gewijzigd",
+                                "Klant wijzigen",
+                                JOptionPane.PLAIN_MESSAGE
+                                );
                     }
                     else if (kolomnaam.equals("Woonplaats")){
                         gebruiker.setWoonplaats(tfInvoer.getText());
                         jTable1.setValueAt(tfInvoer.getText(), jTable1.getSelectedRow(), jTable1.getSelectedColumn());
                         WinkelApplication.getQueryManager().setGebruiker(gebruiker);
+                        JOptionPane.showMessageDialog(frame,
+                                "Woonplaats is succesvol gewijzigd",
+                                "Klant wijzigen",
+                                JOptionPane.PLAIN_MESSAGE
+                                );
                     }
                     frame.dispose();
                 }
@@ -386,9 +408,9 @@ public class GebruikerOverzicht extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(442, Short.MAX_VALUE)
+                    .addContainerGap(468, Short.MAX_VALUE)
                     .addComponent(jcKlantenZoekOpties, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(180, Short.MAX_VALUE)))
+                    .addContainerGap(154, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -532,12 +554,12 @@ public class GebruikerOverzicht extends javax.swing.JPanel {
     private void buttonVerwijderenGebruiker1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVerwijderenGebruiker1ActionPerformed
          int row = jTable1.getSelectedRow();
          int col = jTable1.getSelectedColumn();
-        int id = (Integer) jTable1.getModel().getValueAt(row, 0);
+         int id = (Integer) jTable1.getModel().getValueAt(row, 0);
         
         //Zet de gebruiker op inactief
         gebruiker = WinkelApplication.getQueryManager().getGebruiker(id);
         
-        newFrame("a", "b");// TODO add your handling code here:
+        newFrame("Klant wijzigen", "Waarin wil u '" + jTable1.getValueAt(row, col)+ "' wijzigen?");// TODO add your handling code here:
     }//GEN-LAST:event_buttonVerwijderenGebruiker1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
