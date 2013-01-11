@@ -86,6 +86,8 @@ public class GebruikerOverzicht extends javax.swing.JPanel {
         {
             model.addRow(new Object[]{new Integer(klant.getId()),
             klant.getVoornaam() + (!klant.getTussenvoegsel().equals("") ? " " + klant.getTussenvoegsel() + " " : " ") + klant.getAchternaam(),
+            klant.getEmail(),
+            klant.getGeboortedatum(),
             klant.getStraatnaam() + " " + klant.getHuisnummer(),
             klant.getPostcode(),
             klant.getWoonplaats(),
@@ -294,6 +296,26 @@ public class GebruikerOverzicht extends javax.swing.JPanel {
                                 JOptionPane.PLAIN_MESSAGE
                                 );
                     }
+                    else if (kolomnaam.equals("E-mail")){
+                        gebruiker.setEmail(tfInvoer.getText());
+                        jTable1.setValueAt(tfInvoer.getText(), jTable1.getSelectedRow(), jTable1.getSelectedColumn());
+                        WinkelApplication.getQueryManager().setGebruiker(gebruiker);
+                        JOptionPane.showMessageDialog(frame,
+                                "E-mail is succesvol gewijzigd",
+                                "Klant wijzigen",
+                                JOptionPane.PLAIN_MESSAGE
+                                );
+                    }
+                    else if (kolomnaam.equals("Geboortedatum")){
+                        gebruiker.setGeboortedatum(tfInvoer.getText());
+                        jTable1.setValueAt(tfInvoer.getText(), jTable1.getSelectedRow(), jTable1.getSelectedColumn());
+                        WinkelApplication.getQueryManager().setGebruiker(gebruiker);
+                        JOptionPane.showMessageDialog(frame,
+                                "Geboortedatum iss succesvol gewijzigd",
+                                "Klant wijzigen",
+                                JOptionPane.PLAIN_MESSAGE
+                                );
+                    }
                     frame.dispose();
                 }
             });
@@ -329,7 +351,7 @@ public class GebruikerOverzicht extends javax.swing.JPanel {
         jtZoekveld = new javax.swing.JTextField();
         buttonVerwijderenGebruiker = new javax.swing.JButton();
         jbMedewerkerToevoegen = new javax.swing.JButton();
-        buttonVerwijderenGebruiker1 = new javax.swing.JButton();
+        bWijzigen = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -349,14 +371,14 @@ public class GebruikerOverzicht extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Klant_id", "Naam", "Adres", "Postcode", "Woonplaats", "Medewerker"
+                "Klant_id", "Naam", "E-mail", "Geboortedatum", "Adres", "Postcode", "Woonplaats", "Medewerker"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -404,15 +426,15 @@ public class GebruikerOverzicht extends javax.swing.JPanel {
             }
         });
 
-        buttonVerwijderenGebruiker1.setText("Wijzigen");
-        buttonVerwijderenGebruiker1.addMouseListener(new java.awt.event.MouseAdapter() {
+        bWijzigen.setText("Wijzigen");
+        bWijzigen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonVerwijderenGebruiker1MouseClicked(evt);
+                bWijzigenMouseClicked(evt);
             }
         });
-        buttonVerwijderenGebruiker1.addActionListener(new java.awt.event.ActionListener() {
+        bWijzigen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonVerwijderenGebruiker1ActionPerformed(evt);
+                bWijzigenActionPerformed(evt);
             }
         });
 
@@ -422,27 +444,28 @@ public class GebruikerOverzicht extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(72, 72, 72)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(jtZoekveld, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(buttonVerwijderenGebruiker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonVerwijderenGebruiker1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jbMedewerkerToevoegen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbKlantToevoegen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jtZoekveld, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(331, 331, 331))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(buttonVerwijderenGebruiker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bWijzigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jbMedewerkerToevoegen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jbKlantToevoegen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(468, Short.MAX_VALUE)
+                    .addContainerGap(754, Short.MAX_VALUE)
                     .addComponent(jcKlantenZoekOpties, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(154, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -460,7 +483,7 @@ public class GebruikerOverzicht extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbMedewerkerToevoegen)
-                    .addComponent(buttonVerwijderenGebruiker1))
+                    .addComponent(bWijzigen))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -579,24 +602,41 @@ public class GebruikerOverzicht extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonVerwijderenGebruikerActionPerformed
 
-    private void buttonVerwijderenGebruiker1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonVerwijderenGebruiker1MouseClicked
+    private void bWijzigenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bWijzigenMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonVerwijderenGebruiker1MouseClicked
+    }//GEN-LAST:event_bWijzigenMouseClicked
 
-    private void buttonVerwijderenGebruiker1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVerwijderenGebruiker1ActionPerformed
+    private void bWijzigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bWijzigenActionPerformed
          int row = jTable1.getSelectedRow();
          int col = jTable1.getSelectedColumn();
          int id = (Integer) jTable1.getModel().getValueAt(row, 0);
+         String selectedColumnName;
         
         //Zet de gebruiker op inactief
         gebruiker = WinkelApplication.getQueryManager().getGebruiker(id);
-        
-        newFrame("Klant wijzigen", "Waarin wil u '" + jTable1.getValueAt(row, col)+ "' wijzigen?");// TODO add your handling code here:
-    }//GEN-LAST:event_buttonVerwijderenGebruiker1ActionPerformed
+        selectedColumnName= jTable1.getModel().getColumnName(col);
+        if (selectedColumnName.equals("Klant_id")){
+            JOptionPane.showMessageDialog(this,
+                                "U kunt de klant_id niet wijzigen",
+                                "Klant wijzigen",
+                                JOptionPane.PLAIN_MESSAGE
+                                );
+        }
+        else if (selectedColumnName.equals("Medewerker")){
+            JOptionPane.showMessageDialog(this,
+                                "U kunt deze kolom niet wijzigen",
+                                "Klant wijzigen",
+                                JOptionPane.PLAIN_MESSAGE
+                                );
+        }
+        else {
+        newFrame("Klant wijzigen", "Waarin wil u '" + jTable1.getValueAt(row, col)+ "' wijzigen?");
+        }
+    }//GEN-LAST:event_bWijzigenActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bWijzigen;
     private javax.swing.JButton buttonVerwijderenGebruiker;
-    private javax.swing.JButton buttonVerwijderenGebruiker1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JPanel jPanel1;
