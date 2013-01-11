@@ -70,25 +70,30 @@ public class QueryManager {
     /**
      * @author Vernon de Goede < vernon.de.goede@hva.nl >
      * @param orderID
-     * @return Bestelling klasse
+     * @return ArrayList
      */
-    public Bestelling getOrder ( int orderID ) {
-        Bestelling bestelling = new Bestelling();
-        
-        // Vul orders in ArrayList in
-        ArrayList orderList = new ArrayList();
+    public List<String> getProductsByOrderID(int orderID) {
+        List<String> orders = new ArrayList<String>();
         try {
-            String sql = "SELECT * FROM orderregel WHERE order_id = '" + orderID + "'";
+            String sql = "SELECT * FROM orderregel WHERE order_id='" + orderID + "' ORDER BY order_id";
             ResultSet result = dbmanager.doQuery(sql);
             while (result.next()) {
-                OrderRegel orderRegel = new OrderRegel(result.getInt("product_id"),
-                        result.getInt("order_id"),
-                        result.getInt("aantal"));
-                orderList.add(orderRegel);
+                orders.add(result.getInt("product_id") + ":" + result.getInt("order_id") + ":" + result.getString("aantal"));
             }
         } catch (SQLException e) {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
         }
+        return orders;
+    }
+    
+    /**
+     * @author Vernon de Goede < vernon.de.goede@hva.nl >
+     * @param orderID
+     * @return Bestelling klasse
+     */
+    public Bestelling getOrder ( int orderID ) {
+        Bestelling bestelling = new Bestelling();
+        List<String> orderList = getProductsByOrderID( orderID );
         
         try {
             String sql = "SELECT * FROM `order` WHERE `order_id` =" + orderID;
@@ -110,6 +115,28 @@ public class QueryManager {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
         }
         return bestelling;
+    }
+    
+    /**
+     * @author Vernon de Goede < vernon.de.goede@hva.nl >
+     * @since 11-1-2013
+     * 
+     */
+     public List<String> getOrders() {
+        List<String> productList = new ArrayList<String>();
+        
+        try {
+            String sql = "SELECT * FROM `order`";
+            ResultSet result = dbmanager.doQuery(sql);
+            while (result.next()) {
+                
+                productList.add(result.getString("order_id") + ":" + result.getString("naam") + ":" + result.getString("datum"));
+            }
+        } catch (SQLException e) {
+            System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
+        }
+        
+        return productList;
     }
     
     public Category getCategorie( int catID) {

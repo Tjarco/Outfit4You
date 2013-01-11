@@ -5,6 +5,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 import main.WinkelApplication;
 
 /**
@@ -25,13 +26,13 @@ public class Bestelling {
     private String betaalmethode;
     private String datum;
     private String code;
-    private ArrayList bestelling;
+    private List<String> bestelling;
 
     public Bestelling() {
         
     }
 
-    public Bestelling(int order_id, String naam, String adres, String postcode, String woonplaats, String notes, String betaalmethode, String code, ArrayList bestelling) {
+    public Bestelling(int order_id, String naam, String adres, String postcode, String woonplaats, String notes, String betaalmethode, String code, List<String> bestelling) {
         this.order_id = order_id;
         this.naam = naam;
         this.adres = adres;
@@ -77,6 +78,10 @@ public class Bestelling {
 
     public String getCode() {
         return code;
+    }
+
+    public List<String> getBestelling() {
+        return bestelling;
     }
 
     

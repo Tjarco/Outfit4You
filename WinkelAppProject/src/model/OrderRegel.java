@@ -29,7 +29,4 @@ public class OrderRegel {
         return aantal;
     }
     
-    
-    
-    
 }
