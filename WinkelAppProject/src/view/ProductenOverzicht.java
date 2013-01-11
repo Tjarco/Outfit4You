@@ -1022,15 +1022,20 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         String str = JOptionPane.showInputDialog(null, "Aantal producten dat wordt geretourneerd: ", "Product retourneren", 1);
         if (str != null) 
         {
-            newVoorraad = Integer.parseInt(str) + currentVoorraad;
-            Statistiek statistiek = WinkelApplication.getQueryManager().getStatistiek(product.getProduct_id());
-            System.out.println("Totaal verkocht voor retour: " + statistiek.getTotaal_verkocht());
-            statistiek.setTotaal_verkocht((statistiek.getTotaal_verkocht() - Integer.parseInt(str)));
-            System.out.println("Totaal verkocht na retour: " + statistiek.getTotaal_verkocht());
-            
-            main.WinkelApplication.getQueryManager().UpdateVoorraadByID(product.getProduct_id(), newVoorraad);
-            main.WinkelApplication.getQueryManager().setStatistieken(statistiek);
-            JOptionPane.showMessageDialog(null, "Er zullen " + str + " producten aan de voorraad worden toegevoegd. De nieuwe voorraad is dan " + newVoorraad, "Product retourneren", 1);
+            try
+            {
+                newVoorraad = Integer.parseInt(str) + currentVoorraad;
+                Statistiek statistiek = WinkelApplication.getQueryManager().getStatistiek(product.getProduct_id());
+                statistiek.setTotaal_verkocht((statistiek.getTotaal_verkocht() - Integer.parseInt(str)));
+
+                main.WinkelApplication.getQueryManager().UpdateVoorraadByID(product.getProduct_id(), newVoorraad);
+                main.WinkelApplication.getQueryManager().setStatistieken(statistiek);
+                JOptionPane.showMessageDialog(null, "Er zullen " + str + " producten aan de voorraad worden toegevoegd. De nieuwe voorraad is dan " + newVoorraad, "Product retourneren", 1);
+            }
+            catch(NumberFormatException ex)
+            {
+                JOptionPane.showMessageDialog(null, "U heeft geen getal ingevoerd.\nProbeer het nogmaals.", "Fout!", JOptionPane.WARNING_MESSAGE);
+            }
         } 
         else 
         {
@@ -1058,17 +1063,23 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         Product product = WinkelApplication.getQueryManager().getProduct(id);
         currentVoorraad = product.getVoorraad();
         
-        String str = JOptionPane.showInputDialog(null, "Het aantal producten dat terug naar de leverancier moet: ", 
-      "Voorraad retourneren", 1);
+        String str = JOptionPane.showInputDialog(null, "Het aantal producten dat terug naar de leverancier moet: ", "Voorraad retourneren", 1);
         if(str != null) {
-            newVoorraad =  currentVoorraad - Integer.parseInt(str);
-            //product.setVoorraad(newVoorraad);
-            main.WinkelApplication.getQueryManager().UpdateVoorraadByID(product.getProduct_id(), newVoorraad);
-            JOptionPane.showMessageDialog(null, "Er zullen " + str + " producten van de voorraad worden afgetrokken. De nieuwe voorraad is dan " + newVoorraad, 
-          "Voorraad retourneren", 1);
-        }else{
-            JOptionPane.showMessageDialog(null, "De voorraad is niet veranderd.", 
-          "Voorraad retourneren", 1);
+            try
+            {
+                newVoorraad =  currentVoorraad - Integer.parseInt(str);
+                //product.setVoorraad(newVoorraad);
+                main.WinkelApplication.getQueryManager().UpdateVoorraadByID(product.getProduct_id(), newVoorraad);
+                JOptionPane.showMessageDialog(null, "Er zullen " + str + " producten van de voorraad worden afgetrokken. De nieuwe voorraad is dan " + newVoorraad, "Voorraad retourneren", 1);
+            }
+            catch(NumberFormatException ex)
+            {
+                JOptionPane.showMessageDialog(null, "U heeft geen getal ingevoerd.\nProbeer het nogmaals.", "Fout!", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "De voorraad is niet veranderd.", "Voorraad retourneren", 1);
         }
         
         // Update tabellen
