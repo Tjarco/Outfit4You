@@ -127,24 +127,104 @@ String wijzigingonthoud;
             bWijzigen.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e)
                 {
+                    String format;
                     //wel wijzigen
                     if (!tfInvoer.getText().equals("")){
                         switch (methodenummer) {
-                            case 1: { gebruiker.setVoornaam(tfInvoer.getText()); }
+                            case 1: { 
+                                format = "[a-zA-Z . \\s]+";
+                            
+                                if (tfInvoer.getText().matches(format)){
+                                gebruiker.setVoornaam(tfInvoer.getText());
+                                resultaatFrame("Profiel wijzigen", "Druk op de knop 'Wijzigingen opslaan' om uw wijzigingen op te slaan.");
+                                frame.dispose();
+                                }
+                                else { resultaatFrame("Fout", "Dit is geen geldige naam");
+                                }
+                            }
                                 break;
-                            case 2: { gebruiker.setTussenvoegsel(tfInvoer.getText()); }
+                            case 2: {
+                            
+                                if (tfInvoer.getText().length()<20){
+                                gebruiker.setTussenvoegsel(tfInvoer.getText());
+                                resultaatFrame("Profiel wijzigen", "Druk op de knop 'Wijzigingen opslaan' om uw wijzigingen op te slaan.");
+                                frame.dispose();
+                                }
+                                else { resultaatFrame("Fout", "Dit is geen geldige tussenvoegsel");
+                                }
+                            }
                                 break;
-                            case 3: { gebruiker.setAchternaam(tfInvoer.getText());}
+                            case 3: {
+                                format = "[a-zA-Z \\s]+";
+                            
+                                if (tfInvoer.getText().matches(format)){
+                                gebruiker.setAchternaam(tfInvoer.getText());
+                                resultaatFrame("Profiel wijzigen", "Druk op de knop 'Wijzigingen opslaan' om uw wijzigingen op te slaan.");
+                                frame.dispose();
+                                }
+                                else { resultaatFrame("Fout", "Dit is geen geldige achternaam");
+                                }
+                            }
                                 break;
-                            case 4: { gebruiker.setStraatnaam(tfInvoer.getText());}
+                            case 4: {
+                                format = "[a-zA-Z . \\s]+";
+                            
+                                if (tfInvoer.getText().matches(format)){
+                                gebruiker.setStraatnaam(tfInvoer.getText());
+                                resultaatFrame("Profiel wijzigen", "Druk op de knop 'Wijzigingen opslaan' om uw wijzigingen op te slaan.");
+                                frame.dispose();
+                                }
+                                else { resultaatFrame("Fout", "Dit is geen geldige straatnaam");
+                                }
+                            }
                                 break;
-                            case 5: { gebruiker.setHuisnummer(Integer.parseInt(tfInvoer.getText()));}
+                            case 5: {
+                                format = "([\\d]+)([a-zA-Z]?)";
+                            
+                                if (tfInvoer.getText().matches(format)){
+                                gebruiker.setHuisnummer(Integer.parseInt(tfInvoer.getText()));
+                                resultaatFrame("Profiel wijzigen", "Druk op de knop 'Wijzigingen opslaan' om uw wijzigingen op te slaan.");
+                                frame.dispose();
+                                }
+                                else { resultaatFrame("Fout", "Dit is geen geldig huisnummer");
+                                }
+                            }
                                 break;
-                            case 6: { gebruiker.setWoonplaats(tfInvoer.getText());}
+                            case 6: {
+                                format = "[a-zA-Z ' \\s]+";
+                            
+                                if (tfInvoer.getText().matches(format)){
+                                gebruiker.setWoonplaats(tfInvoer.getText());
+                                resultaatFrame("Profiel wijzigen", "Druk op de knop 'Wijzigingen opslaan' om uw wijzigingen op te slaan.");
+                                frame.dispose();
+                                }
+                                else { resultaatFrame("Fout", "Dit is geen geldige woonplaats");
+                                }
+                            }
                                 break;
-                            case 7: { gebruiker.setPostcode(tfInvoer.getText());}
+                            case 7: {
+                                format = "[\\d]{4}+[A-Z]{2}";
+                            
+                                if (tfInvoer.getText().matches(format)){
+                                gebruiker.setPostcode(tfInvoer.getText());
+                                resultaatFrame("Profiel wijzigen", "Druk op de knop 'Wijzigingen opslaan' om uw wijzigingen op te slaan.");
+                                frame.dispose();
+                                }
+                                else { resultaatFrame("Fout", "Dit is geen geldige postcode");
+                                }
+                            }
                                 break;
-                            case 9: { gebruiker.setEmail(tfInvoer.getText());}
+                            case 9: { 
+                                format = "(.+)+[@]+(.+)+[.]+([\\w]){1,6}";
+                            
+                                if (tfInvoer.getText().matches(format)){
+                                gebruiker.setEmail(tfInvoer.getText());
+                                resultaatFrame("Profiel wijzigen", "Druk op de knop 'Wijzigingen opslaan' om uw wijzigingen op te slaan.");
+                                frame.dispose();
+                                }
+                                else { resultaatFrame("Fout", "Dit is geen geldige e-mail");
+                                }
+                            }
                                 break;
 
 
@@ -152,8 +232,6 @@ String wijzigingonthoud;
                                 default: System.out.println("verkeerde nummer");
                         }
                         loadGegevens();
-                        frame.dispose();
-                        resultaatFrame("Profiel wijzigen", "Druk op de knop 'Wijzigingen opslaan' om uw wijzigingen op te slaan.");
                     }
                     else resultaatFrame("Fout" , "U heeft niks ingevuld");
                 }
