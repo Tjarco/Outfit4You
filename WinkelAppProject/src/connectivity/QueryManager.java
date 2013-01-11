@@ -63,6 +63,7 @@ public class QueryManager {
         } catch (SQLException e) {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
         }
+        
         return categories;
     }
     

@@ -46,8 +46,9 @@ public class NieuwProduct extends JPanel {
         addData();
         this.pc = new PictureCollector();
         uploadData = new String[2];
-        uploadData[1] = "";
+        uploadData[1] = product.getAfbeelding();
         uploadData[0] = "";
+        int i = 0;
         
         List<Category> categories = main.WinkelApplication.getQueryManager().getCategories();
         
@@ -55,8 +56,14 @@ public class NieuwProduct extends JPanel {
         selectCategories.removeAllItems();
         for (Category c : categories)
         {
-            System.out.println(c.getName());
             selectCategories.addItem( new ComboItem(Integer.toString(c.getCategoryId()), c.getName()));
+            
+            if(c.getCategoryId() == product.getCategorie_id())
+            {
+                selectCategories.setSelectedIndex(i);
+            }
+            
+            i++;
         }
         
         //Velden vullen met alle doorgegeven data
@@ -99,14 +106,12 @@ public class NieuwProduct extends JPanel {
         selectCategories = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tfOmschrijving = new javax.swing.JTextPane();
         tfNaam = new javax.swing.JTextField();
         tfPrijs = new javax.swing.JTextField();
-        tfVoorraad = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         upload_btn = new javax.swing.JButton();
         jlblPath = new javax.swing.JLabel();
@@ -131,8 +136,6 @@ public class NieuwProduct extends JPanel {
         jLabel2.setText("Productnaam");
 
         jLabel3.setText("Prijs");
-
-        jLabel4.setText("Voorraad");
 
         jLabel7.setText("Omschrijving lang");
 
@@ -161,45 +164,39 @@ public class NieuwProduct extends JPanel {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tfVoorraad, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jlblPath, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(upload_btn))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(jlblPath, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(upload_btn))
                             .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jlTitel)
-                                            .addComponent(jLabel8)
-                                            .addComponent(jLabel7)))
-                                    .addComponent(jButton2))
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jlTitel)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel7)))
+                            .addComponent(jButton2))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(28, 28, 28)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jScrollPane1)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(tfNaam, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                                .addComponent(selectCategories, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addComponent(jScrollPane1)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(tfPrijs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(labelProductId, javax.swing.GroupLayout.Alignment.TRAILING))))))))
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(tfNaam, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(selectCategories, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelProductId, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(tfPrijs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap())
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
@@ -215,7 +212,7 @@ public class NieuwProduct extends JPanel {
                     .addComponent(jlTitel)
                     .addComponent(labelProductId))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(selectCategories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(18, 18, 18)
@@ -226,22 +223,21 @@ public class NieuwProduct extends JPanel {
                         .addComponent(jLabel3))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(tfNaam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(tfPrijs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfVoorraad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(upload_btn)
-                    .addComponent(jlblPath, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(146, 146, 146)
+                        .addComponent(jlblPath, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(upload_btn)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
@@ -350,22 +346,13 @@ public class NieuwProduct extends JPanel {
            tfOmschrijving.setBackground(Color.green);
        }
        
-       if ( tfVoorraad.getText().length() == 0 || !tfVoorraad.getText().matches("[\\d]+")) //Voorraad
-       {
-           tfVoorraad.setBackground(Color.red);
-           isValid = false;
-       } else
-       {
-           tfVoorraad.setBackground(Color.green);
-       }
-       
        if (isValid)
        {
             //Product opslaan in de database...
             ComboItem cat = (ComboItem) selectCategories.getSelectedItem();
             Product p;
             
-            if(labelProductId.getText() != "")
+            if(!labelProductId.getText().equals(""))
             {
                 int id = Integer.parseInt(labelProductId.getText());
                 p = WinkelApplication.getQueryManager().getProduct(id);
@@ -380,7 +367,6 @@ public class NieuwProduct extends JPanel {
             p.setOmschrijving(tfOmschrijving.getText());
             p.setDatum_aangemaakt(main.WinkelApplication.getCurrentTimeStamp());
             p.setDatum_gewijzigd(main.WinkelApplication.getCurrentTimeStamp());
-            p.setVoorraad(Integer.parseInt(tfVoorraad.getText()));
             p.setAfbeelding(this.uploadData[1]);
             p.setThumbnail(this.uploadData[1]);
             p.setIs_actief( (boolean) true );            
@@ -405,7 +391,6 @@ public class NieuwProduct extends JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -422,7 +407,6 @@ public class NieuwProduct extends JPanel {
     private javax.swing.JTextField tfNaam;
     private javax.swing.JTextPane tfOmschrijving;
     private javax.swing.JTextField tfPrijs;
-    private javax.swing.JTextField tfVoorraad;
     private javax.swing.JButton upload_btn;
     // End of variables declaration//GEN-END:variables
 }
