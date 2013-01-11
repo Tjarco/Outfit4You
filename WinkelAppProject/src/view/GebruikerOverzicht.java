@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -215,14 +216,45 @@ public class GebruikerOverzicht extends javax.swing.JPanel {
                 {
                     String kolomnaam = jTable1.getColumnName(jTable1.getSelectedColumn());
                     if (kolomnaam.equals("Naam")){
-                        String split[]=tfInvoer.getText().split(" ");
-                        String voornaam=split[0];
-                        String tussenvoegsel=split[1];
-                        String achternaam=split[2];
-                        gebruiker.setVoornaam(voornaam);
+                        String[] splitArray = tfInvoer.getText().split(" ");
+                        ArrayList<String> namesArray = new ArrayList<String>();
+                        int i = 0;
+                        String tussenvoegsel = "";
+                        
+                        for(String split : splitArray)
+                        {
+                            namesArray.add(split);
+                        }
+                        
+                        for(String name : namesArray)
+                        {
+                            if(i == 0)
+                            {
+                                gebruiker.setVoornaam(name);
+                            }
+                            
+                            if(i > 0 && i < (namesArray.size() - 1) && i != (namesArray.size() - 1))
+                            {
+                                tussenvoegsel += name;
+                                
+                                if(i != (namesArray.size() - 2))
+                                {
+                                    tussenvoegsel += " ";
+                                }
+                            }
+                            
+                            if(i == namesArray.size())
+                            {
+                                gebruiker.setAchternaam(name);
+                            }
+                            
+                            i++;
+                        }
+                        
                         gebruiker.setTussenvoegsel(tussenvoegsel);
-                        gebruiker.setAchternaam(achternaam);
+                        
                         jTable1.setValueAt(tfInvoer.getText(), jTable1.getSelectedRow(), jTable1.getSelectedColumn());
+                        
                         WinkelApplication.getQueryManager().setGebruiker(gebruiker);
                         JOptionPane.showMessageDialog(frame,
                                 "Naam is succesvol gewijzigd",
