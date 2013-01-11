@@ -216,6 +216,7 @@ public class GebruikerOverzicht extends javax.swing.JPanel {
             bWijzigen.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e)
                 {
+                    String format;
                     String kolomnaam = jTable1.getColumnName(jTable1.getSelectedColumn());
                     if (kolomnaam.equals("Naam")){
                         String[] splitArray = tfInvoer.getText().split(" ");
@@ -265,56 +266,101 @@ public class GebruikerOverzicht extends javax.swing.JPanel {
                                 );
                     }
                     else if (kolomnaam.equals("Postcode")){ 
-                        gebruiker.setPostcode(tfInvoer.getText());
-                        jTable1.setValueAt(tfInvoer.getText(), jTable1.getSelectedRow(), jTable1.getSelectedColumn());
-                        WinkelApplication.getQueryManager().setGebruiker(gebruiker);
-                        JOptionPane.showMessageDialog(frame,
-                                "Postcode is succesvol gewijzigd",
-                                "Klant wijzigen",
-                                JOptionPane.PLAIN_MESSAGE
-                                );
+                        format="[\\d]{4}+[A-Z]{2}";
+                        if (tfInvoer.getText().matches(format)){
+                            gebruiker.setPostcode(tfInvoer.getText());
+                            jTable1.setValueAt(tfInvoer.getText(), jTable1.getSelectedRow(), jTable1.getSelectedColumn());
+                            WinkelApplication.getQueryManager().setGebruiker(gebruiker);
+                            JOptionPane.showMessageDialog(frame,
+                                    "Postcode is succesvol gewijzigd",
+                                    "Klant wijzigen",
+                                    JOptionPane.PLAIN_MESSAGE
+                                    );
+                        } else {
+                            JOptionPane.showMessageDialog(frame,
+                                    "Dit is geen geldige postcode [Voorbeeld: 1111AA]",
+                                    "Fout",
+                                    JOptionPane.PLAIN_MESSAGE
+                                    );
+                        }
                     }
                     else if (kolomnaam.equals("Adres")){
-                        String split[]=tfInvoer.getText().split(" ");
-                        gebruiker.setStraatnaam(split[0]);
-                        gebruiker.setHuisnummer(Integer.parseInt(split[1]));
-                        jTable1.setValueAt(tfInvoer.getText(), jTable1.getSelectedRow(), jTable1.getSelectedColumn());
-                        WinkelApplication.getQueryManager().setGebruiker(gebruiker);
+                        format="([a-zA-Z \\s]+)([\\d]+)";
+                        if (tfInvoer.getText().matches(format)){
+                            String split[]=tfInvoer.getText().split(" ");
+                            gebruiker.setStraatnaam(split[0]);
+                            gebruiker.setHuisnummer(Integer.parseInt(split[1]));
+                            jTable1.setValueAt(tfInvoer.getText(), jTable1.getSelectedRow(), jTable1.getSelectedColumn());
+                            WinkelApplication.getQueryManager().setGebruiker(gebruiker);
+                            JOptionPane.showMessageDialog(frame,
+                                    "Adres is succesvol gewijzigd",
+                                    "Klant wijzigen",
+                                    JOptionPane.PLAIN_MESSAGE
+                                    );
+                        } else {
                         JOptionPane.showMessageDialog(frame,
-                                "Adres is succesvol gewijzigd",
-                                "Klant wijzigen",
-                                JOptionPane.PLAIN_MESSAGE
-                                );
+                                    "Dit is geen geldig adres",
+                                    "Fout",
+                                    JOptionPane.PLAIN_MESSAGE
+                                    );
+                        }
                     }
                     else if (kolomnaam.equals("Woonplaats")){
-                        gebruiker.setWoonplaats(tfInvoer.getText());
-                        jTable1.setValueAt(tfInvoer.getText(), jTable1.getSelectedRow(), jTable1.getSelectedColumn());
-                        WinkelApplication.getQueryManager().setGebruiker(gebruiker);
-                        JOptionPane.showMessageDialog(frame,
-                                "Woonplaats is succesvol gewijzigd",
-                                "Klant wijzigen",
-                                JOptionPane.PLAIN_MESSAGE
-                                );
+                        format="[a-zA-Z ' \\s]+";
+                        if (tfInvoer.getText().matches(format)){
+                            gebruiker.setWoonplaats(tfInvoer.getText());
+                            jTable1.setValueAt(tfInvoer.getText(), jTable1.getSelectedRow(), jTable1.getSelectedColumn());
+                            WinkelApplication.getQueryManager().setGebruiker(gebruiker);
+                            JOptionPane.showMessageDialog(frame,
+                                    "Woonplaats is succesvol gewijzigd",
+                                    "Klant wijzigen",
+                                    JOptionPane.PLAIN_MESSAGE
+                                    );
+                        } else {
+                            JOptionPane.showMessageDialog(frame,
+                                    "Dit is geen geldige woonplaats",
+                                    "Fout",
+                                    JOptionPane.PLAIN_MESSAGE
+                                    );
+                        }
                     }
                     else if (kolomnaam.equals("E-mail")){
-                        gebruiker.setEmail(tfInvoer.getText());
-                        jTable1.setValueAt(tfInvoer.getText(), jTable1.getSelectedRow(), jTable1.getSelectedColumn());
-                        WinkelApplication.getQueryManager().setGebruiker(gebruiker);
-                        JOptionPane.showMessageDialog(frame,
-                                "E-mail is succesvol gewijzigd",
-                                "Klant wijzigen",
-                                JOptionPane.PLAIN_MESSAGE
-                                );
+                        format="(.+)+[@]+(.+)+[.]+([\\w]){1,6}";
+                        if (tfInvoer.getText().matches(format)){
+                            gebruiker.setEmail(tfInvoer.getText());
+                            jTable1.setValueAt(tfInvoer.getText(), jTable1.getSelectedRow(), jTable1.getSelectedColumn());
+                            WinkelApplication.getQueryManager().setGebruiker(gebruiker);
+                            JOptionPane.showMessageDialog(frame,
+                                    "E-mail is succesvol gewijzigd",
+                                    "Klant wijzigen",
+                                    JOptionPane.PLAIN_MESSAGE
+                                    );
+                        } else {
+                            JOptionPane.showMessageDialog(frame,
+                                    "Dit is geen geldige e-mail",
+                                    "fout",
+                                    JOptionPane.PLAIN_MESSAGE
+                                    );
+                        }
                     }
                     else if (kolomnaam.equals("Geboortedatum")){
-                        gebruiker.setGeboortedatum(tfInvoer.getText());
-                        jTable1.setValueAt(tfInvoer.getText(), jTable1.getSelectedRow(), jTable1.getSelectedColumn());
-                        WinkelApplication.getQueryManager().setGebruiker(gebruiker);
-                        JOptionPane.showMessageDialog(frame,
-                                "Geboortedatum is succesvol gewijzigd",
-                                "Klant wijzigen",
-                                JOptionPane.PLAIN_MESSAGE
-                                );
+                        format="\\d{4}-\\d{2}-\\d{2}";
+                        if (tfInvoer.getText().matches(format)){
+                            gebruiker.setGeboortedatum(tfInvoer.getText());
+                            jTable1.setValueAt(tfInvoer.getText(), jTable1.getSelectedRow(), jTable1.getSelectedColumn());
+                            WinkelApplication.getQueryManager().setGebruiker(gebruiker);
+                            JOptionPane.showMessageDialog(frame,
+                                    "Geboortedatum is succesvol gewijzigd",
+                                    "Klant wijzigen",
+                                    JOptionPane.PLAIN_MESSAGE
+                                    );
+                        } else {
+                            JOptionPane.showMessageDialog(frame,
+                                    "Dit is geen geldige geboortedatum [Voorbeeld: 2000-12-29]",
+                                    "Fout",
+                                    JOptionPane.PLAIN_MESSAGE
+                                    );
+                        }
                     }
                     frame.dispose();
                 }
