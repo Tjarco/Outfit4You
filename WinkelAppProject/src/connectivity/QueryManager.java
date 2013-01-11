@@ -602,7 +602,7 @@ public class QueryManager {
      * @return De gebruiker id die hoort bij het email adres
      */
     public int getGebruikerId(String email) {
-        String sql = "SELECT * FROM gebruiker WHERE `email` = '" + email + "'";
+        String sql = "SELECT * FROM gebruiker WHERE `email` = '" + email + "' AND `actief` = 1";
         ResultSet result = dbmanager.doQuery(sql);
         int gebruikerId = 0;
         try {
