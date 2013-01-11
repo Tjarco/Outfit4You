@@ -222,10 +222,10 @@ String wijzigingonthoud;
                                     resultaatFrame("Profie wijzigen", "Druk op de knop 'Wijzigingen opslaan' om uw wijzigingen op te slaan.");
                                     frame.dispose();
                                 }
-                                else { resultaatFrame("Fout", "Dit is geen juiste geboortedatum. [Voorbeeld: 2000-01-12");
+                                else { resultaatFrame("Fout", "Dit is geen juiste geboortedatum. [Voorbeeld: 2000-12-29]");
                                 }
                             }
-                                
+                                break;
                             case 9: { 
                                 format = "(.+)+[@]+(.+)+[.]+([\\w]){1,6}";
                             
@@ -725,7 +725,7 @@ String wijzigingonthoud;
     }//GEN-LAST:event_jbOpslaanActionPerformed
 
     private void lGeboortedatumWijzigenMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lGeboortedatumWijzigenMousePressed
-        // TODO add your handling code here:
+        newFrame(8, "Geboortedatum wijzigen", "Uw geboortedatum wijzigen in: ");
     }//GEN-LAST:event_lGeboortedatumWijzigenMousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
