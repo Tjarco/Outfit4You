@@ -832,4 +832,33 @@ public class QueryManager {
         
         return aantal;
     }
+    
+        public boolean setStatistieken(Statistiek statistiek)
+    {
+        boolean succes = false;
+        
+        try 
+        {
+            String sql = "UPDATE statistieken SET "
+                    + "jonger_dan_15 = " + statistiek.getJonger_dan_15() + ","
+                    + "tussen_15_20 = " + statistiek.getTussen_15_20() + ", "
+                    + "tussen_20_25 = " + statistiek.getTussen_20_25() + ", "
+                    + "tussen_25_30 = " + statistiek.getTussen_25_30() + ", "
+                    + "tussen_30_50 = " + statistiek.getTussen_30_50() + ", "
+                    + "tussen_50_65 = " + statistiek.getTussen_50_65() + ", "
+                    + "ouder_dan_65 = " + statistiek.getOuder_dan_65() + ", "
+                    + "totaal_verkocht = " + statistiek.getTotaal_verkocht() + " "
+                    + "WHERE product_id = '" + statistiek.getProduct_id() + "'";
+            
+            ResultSet result = dbmanager.insertQuery(sql); //Sla resultaat op in result (kijken of de query is gelukt of niet)
+            
+            succes = result.next();
+        }
+        catch (Exception ex) 
+        {
+            System.out.print("SQL Exception: " + ex.getMessage());
+        }
+        
+        return succes;
+    }
 }

@@ -15,6 +15,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import main.WinkelApplication;
 import model.Product;
+import model.Statistiek;
 
 /**
  * @author Tjarco
@@ -34,6 +35,11 @@ import model.Product;
  * Product kan nu worden geretourneerd. Medewerker kan aangeven hoeveel product geretourneerd dienen te worden. Vervolgens wordt met een SQL query het aantal geretourneerde producten bij de voorraad worden opgeteld.
  * Voorraad kan nu ook worden geretourneerd. De producten worden dan teruggestuurd naar de leverancier. Een medewerker kan aangeven hoeveel dit er zijn. Vervolgens zal dit aantal van de voorraad van het betreffende product worden afgehaald.
  * Extra venster gemaakt om alle orders te beheren
+ * 
+ * @version 1.3
+ * @author Bono
+ * 
+ * Retourneren producten update de statistieken nu correct
  */
 public class ProductenOverzicht extends javax.swing.JPanel {
 
@@ -1003,7 +1009,6 @@ public class ProductenOverzicht extends javax.swing.JPanel {
      * Hiermee kan de voorraad van een product worden veranderd doordat er een aantal producten (de hoeveelheid kan de medewerker zelf invullen d.m.v. een InputDialog) bij de voorraad worden opgeteld.
      */
     private void jbProductRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbProductRetourActionPerformed
-
         //Product_id ophalen uit de table
         int row = jtProducten.getSelectedRow();
         int col = 0;
@@ -1014,17 +1019,22 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         Product product = WinkelApplication.getQueryManager().getProduct(id);
         currentVoorraad = product.getVoorraad();
         
-        String str = JOptionPane.showInputDialog(null, "Aantal producten dat wordt geretourneerd: ", 
-      "Product retourneren", 1);
-        if(str != null) {
+        String str = JOptionPane.showInputDialog(null, "Aantal producten dat wordt geretourneerd: ", "Product retourneren", 1);
+        if (str != null) 
+        {
             newVoorraad = Integer.parseInt(str) + currentVoorraad;
-            //product.setVoorraad(newVoorraad);
+            Statistiek statistiek = WinkelApplication.getQueryManager().getStatistiek(product.getProduct_id());
+            System.out.println("Totaal verkocht voor retour: " + statistiek.getTotaal_verkocht());
+            statistiek.setTotaal_verkocht((statistiek.getTotaal_verkocht() - Integer.parseInt(str)));
+            System.out.println("Totaal verkocht na retour: " + statistiek.getTotaal_verkocht());
+            
             main.WinkelApplication.getQueryManager().UpdateVoorraadByID(product.getProduct_id(), newVoorraad);
-            JOptionPane.showMessageDialog(null, "Er zullen " + str + " producten aan de voorraad worden toegevoegd. De nieuwe voorraad is dan " + newVoorraad, 
-          "Product retourneren", 1);
-        }else{
-            JOptionPane.showMessageDialog(null, "De voorraad is niet veranderd.", 
-          "Product retourneren", 1);
+            main.WinkelApplication.getQueryManager().setStatistieken(statistiek);
+            JOptionPane.showMessageDialog(null, "Er zullen " + str + " producten aan de voorraad worden toegevoegd. De nieuwe voorraad is dan " + newVoorraad, "Product retourneren", 1);
+        } 
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "De voorraad is niet veranderd.", "Product retourneren", 1);
         }
         
         // Update tabellen
