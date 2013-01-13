@@ -380,6 +380,7 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jbBack = new javax.swing.JButton();
 
+        jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         jFrame1.setTitle("Nieuwe categorie toevoegen");
         jFrame1.setMinimumSize(new java.awt.Dimension(500, 300));
 
@@ -431,6 +432,7 @@ public class ProductenOverzicht extends javax.swing.JPanel {
                 .addContainerGap(221, Short.MAX_VALUE))
         );
 
+        jFrame2.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         jFrame2.setTitle("Categorie wijzigen");
         jFrame2.setMinimumSize(new java.awt.Dimension(500, 300));
 
@@ -491,6 +493,7 @@ public class ProductenOverzicht extends javax.swing.JPanel {
                 .addContainerGap(84, Short.MAX_VALUE))
         );
 
+        jFrame3.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         jFrame3.setTitle("Bekijk bestellingen");
         jFrame3.setMinimumSize(new java.awt.Dimension(800, 600));
 
