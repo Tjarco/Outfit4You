@@ -93,7 +93,7 @@ public class QueryManager {
      */
     public Bestelling getOrder ( int orderID ) {
         Bestelling bestelling = new Bestelling();
-        List<String> orderList = getProductsByOrderID( orderID );
+        List<String> products = getProductsByOrderID( orderID );
         
         try {
             String sql = "SELECT * FROM `order` WHERE `order_id` =" + orderID;
@@ -108,12 +108,14 @@ public class QueryManager {
                         results.getString("notes"),
                         results.getString("betaalmethode"),
                         results.getString("code"),
-                        orderList
+                        products,
+                        results.getBoolean("status")
                         );
             }
         } catch (SQLException e) {
             System.out.println(Dbmanager.SQL_EXCEPTION + e.getMessage());
         }
+        
         return bestelling;
     }
     
@@ -610,7 +612,7 @@ public class QueryManager {
 
    
 
-    public void setOrder(model.Basket basket, String naam, String adres, String postcode, String woonplaats, String opmerking, String betaalmethode, String betaalCode) 
+    public void setOrder(model.Basket basket, String naam, String adres, String postcode, String woonplaats, String opmerking, String betaalmethode, String betaalCode, boolean status) 
     {
 
         timestamp timestamp = new timestamp();
@@ -618,7 +620,7 @@ public class QueryManager {
         String SQL_order = "INSERT INTO `order` (`order_id`, `naam`, `adres`, `postcode`, `woonplaats`, `notes`, `betaalmethode`, `datum`, `status`, `datum_gewijzigd`, `code`)"
                 + " VALUES(NULL, '" + naam + "', '" + adres + "', '" + postcode + "', '"
 
-                + woonplaats + "', '" + opmerking + "', '" + betaalmethode + "', '" + currentTimestamp + "', '', '0', '" + betaalCode + "')";
+                + woonplaats + "', '" + opmerking + "', '" + betaalmethode + "', '" + currentTimestamp + "', " + status + ", '0', '" + betaalCode + "')";
         
 
         int order_id = 0;
@@ -860,5 +862,49 @@ public class QueryManager {
         }
         
         return succes;
+    }
+        
+    public boolean activeerOrderByCode(String code)
+    {
+        boolean succes = true;
+        
+        try
+        {
+            String sql = "UPDATE `order` SET `status` = 1 WHERE `code` = '"+ code +"' LIMIT 1";
+            
+            dbmanager.insertQuery(sql); //Sla resultaat op in result (kijken of de query is gelukt of niet)
+        }
+        catch(Exception ex)
+        {
+            System.out.println("SQL Exception: " + ex.getMessage());
+            succes = false;
+        }
+        
+        System.out.println(succes ? "succes" : "faal");
+        
+        return succes;
+    }
+    
+    public String getHighestOrderCode()
+    {
+        String hoogste = "";
+        
+        try
+        {
+            String sql = "SELECT MAX(code) AS 'hoogste' FROM `order`";
+            
+            ResultSet result = dbmanager.doQuery(sql);
+            
+            if(result.next())
+            {
+                hoogste = result.getString("hoogste");
+            }
+        }
+        catch(Exception ex)
+        {
+            System.out.println("SQL Exception: " + ex.getMessage());
+        }
+        
+        return hoogste;
     }
 }

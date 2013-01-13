@@ -429,9 +429,8 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
         if (validateNaam(tfNaam.getText()) && validateAdres(tfAddress.getText()) && validatePostcode(tfPostcode.getText())
                 && validateWoonplaats(tfWoonplaats.getText())) {
             // Unieke code wordt meegegeven
-            Random rndNumbers = new Random(30);
-            int rndNumber = rndNumbers.nextInt(Integer.MAX_VALUE) + 1;
-            String betaalCode = Integer.toString(rndNumber);
+            String betaalCode = ""+(Integer.parseInt(WinkelApplication.getQueryManager().getHighestOrderCode()) + 1)+"";
+            
 
             String naam = tfNaam.getText();
             String adres = tfAddress.getText();
@@ -439,8 +438,14 @@ public class Payment extends MainLayout implements MouseListener, ActionListener
             String postcode = tfPostcode.getText();
             String woonplaats = tfWoonplaats.getText();
             String betaalmethode = (String) cmbPayMethod.getSelectedItem();
-            WinkelApplication.getQueryManager().setOrder(WinkelApplication.getBasket(),
-                    naam, adres, postcode, woonplaats, opmerking, betaalmethode, betaalCode);
+            boolean status = false; //status laat zien of de bestelling betaald is
+            
+            if(betaalmethode.equals("iDeal"))
+            {
+                status = true; //Geen manier om te checken of er ook echt een betaling is gedaan, maar voor het realisme zetten we hem op true
+            }
+            
+            WinkelApplication.getQueryManager().setOrder(WinkelApplication.getBasket(), naam, adres, postcode, woonplaats, opmerking, betaalmethode, betaalCode, status);
 
                        
             for (int i = 0; i < WinkelApplication.getBasket().size(); i++) {

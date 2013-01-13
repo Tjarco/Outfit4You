@@ -204,14 +204,13 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane6" pref="440" max="32767" attributes="0"/>
+                  <Component id="jScrollPane6" pref="477" max="32767" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="filler1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="jScrollPane5" alignment="1" min="-2" pref="375" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="labelStaticGeactiveerd" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -219,7 +218,7 @@
                               <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="textNaam" min="-2" pref="112" max="-2" attributes="0"/>
                               <Component id="textAdres" min="-2" max="-2" attributes="0"/>
@@ -227,9 +226,12 @@
                               <Component id="textBetaalmethode" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="textCode" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="textWoonplaats" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelGeactiveerd" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="buttonActiveerBestelling" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="jScrollPane5" alignment="1" min="-2" pref="375" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               </Group>
@@ -242,7 +244,11 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="filler1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="15" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="textNaam" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -273,12 +279,14 @@
                                           <Component id="textCode" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="labelGeactiveerd" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="buttonActiveerBestelling" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelStaticGeactiveerd" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                   <Component id="jScrollPane5" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="filler1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="15" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -446,8 +454,31 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="labelStaticGeactiveerd">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Geactiveerd:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelGeactiveerd">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Niet beschikbaar"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="buttonActiveerBestelling">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Activeer bestelling"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonActiveerBestellingMouseClicked"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton2"/>
+      </Properties>
+    </Component>
   </NonVisualComponents>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>

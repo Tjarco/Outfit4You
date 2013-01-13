@@ -14,6 +14,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import main.WinkelApplication;
+import model.Bestelling;
 import model.Product;
 import model.Statistiek;
 
@@ -40,6 +41,11 @@ import model.Statistiek;
  * @author Bono
  * 
  * Retourneren producten update de statistieken nu correct
+ * 
+ * @version 1.4
+ * @author Bono
+ * 
+ * Contante bestellingen kunnen nu geactiveerd worden
  */
 public class ProductenOverzicht extends javax.swing.JPanel {
 
@@ -342,6 +348,10 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 500), new java.awt.Dimension(0, 500), new java.awt.Dimension(32767, 500));
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        labelStaticGeactiveerd = new javax.swing.JLabel();
+        labelGeactiveerd = new javax.swing.JLabel();
+        buttonActiveerBestelling = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -569,35 +579,48 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         jTable2.getColumnModel().getColumn(0).setPreferredWidth(80);
         jTable2.getColumnModel().getColumn(0).setMaxWidth(80);
 
+        labelStaticGeactiveerd.setText("Geactiveerd:");
+
+        labelGeactiveerd.setText("Niet beschikbaar");
+
+        buttonActiveerBestelling.setText("Activeer bestelling");
+        buttonActiveerBestelling.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonActiveerBestellingMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jFrame3Layout = new javax.swing.GroupLayout(jFrame3.getContentPane());
         jFrame3.getContentPane().setLayout(jFrame3Layout);
         jFrame3Layout.setHorizontalGroup(
             jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrame3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addGroup(jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jFrame3Layout.createSequentialGroup()
+                .addGroup(jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrame3Layout.createSequentialGroup()
                         .addGroup(jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelStaticGeactiveerd)
                             .addComponent(jLabel12)
                             .addComponent(jLabel13)
                             .addComponent(jLabel10)
                             .addComponent(jLabel11)
                             .addComponent(jLabel15)
                             .addComponent(jLabel18))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(textNaam, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textAdres)
                             .addComponent(textPostcode)
                             .addComponent(textBetaalmethode)
                             .addComponent(textCode)
-                            .addComponent(textWoonplaats))
-                        .addGap(149, 149, 149)))
+                            .addComponent(textWoonplaats)
+                            .addComponent(labelGeactiveerd))
+                        .addGap(60, 60, 60)
+                        .addComponent(buttonActiveerBestelling))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
         );
         jFrame3Layout.setVerticalGroup(
@@ -607,7 +630,10 @@ public class ProductenOverzicht extends javax.swing.JPanel {
                     .addGroup(jFrame3Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrame3Layout.createSequentialGroup()
+                            .addGroup(jFrame3Layout.createSequentialGroup()
+                                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 15, Short.MAX_VALUE))
+                            .addGroup(jFrame3Layout.createSequentialGroup()
                                 .addGroup(jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(textNaam)
                                     .addComponent(jLabel10))
@@ -633,16 +659,20 @@ public class ProductenOverzicht extends javax.swing.JPanel {
                                         .addComponent(textBetaalmethode)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(textCode)))
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addGroup(jFrame3Layout.createSequentialGroup()
-                                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 15, Short.MAX_VALUE))))
+                                .addGap(7, 7, 7)
+                                .addGroup(jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(labelGeactiveerd)
+                                    .addComponent(buttonActiveerBestelling)
+                                    .addComponent(labelStaticGeactiveerd))
+                                .addGap(22, 22, 22)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrame3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane6)))
                 .addContainerGap())
         );
+
+        jButton2.setText("jButton2");
 
         setLayout(new java.awt.BorderLayout());
 
@@ -1167,38 +1197,24 @@ public class ProductenOverzicht extends javax.swing.JPanel {
      * Zorgt ervoor dat de juiste data in jTable1 geladen wordt. Daarnaast worden eerst alle gegevens van de vorige selectie (de vorige data die erin stond) verwijderd en is de tabel helemaal leeg gemaakt. Vervolgens worden de nieuwe data erin geladen.
      */
     private void jTable2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MousePressed
-        
         int row = jTable2.getSelectedRow();
         int col = 0;
+        String value = (String) jTable2.getModel().getValueAt(row, col);
+        
+        int id = Integer.parseInt(value);
         
         DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
         dm.getDataVector().removeAllElements();
         
-        int id = row + 1;
+        Bestelling bestelling = WinkelApplication.getQueryManager().getOrder(id);
         
-        String naamTest, adres, woonplaats, postcode, betaalmethode, code;
-        naamTest = WinkelApplication.getQueryManager().getOrder(id).getNaam();
-        textNaam.setText(naamTest);
-        
-        adres = WinkelApplication.getQueryManager().getOrder(id).getAdres();
-        textAdres.setText(adres);
-        
-        woonplaats = WinkelApplication.getQueryManager().getOrder(id).getWoonplaats();
-        textWoonplaats.setText(woonplaats);
-        
-        postcode = WinkelApplication.getQueryManager().getOrder(id).getPostcode();
-        textPostcode.setText(postcode);
-        
-        betaalmethode = WinkelApplication.getQueryManager().getOrder(id).getBetaalmethode();
-        textBetaalmethode.setText(betaalmethode);
-        
-        code = WinkelApplication.getQueryManager().getOrder(id).getCode();
-        textCode.setText(code);
-        
-        List<String> bestelling = WinkelApplication.getQueryManager().getOrder(id).getBestelling();
-        
-        
-        
+        textNaam.setText(bestelling.getNaam());
+        textAdres.setText(bestelling.getAdres());
+        textWoonplaats.setText(bestelling.getWoonplaats());
+        textPostcode.setText(bestelling.getPostcode());
+        textBetaalmethode.setText(bestelling.getBetaalmethode());
+        textCode.setText(bestelling.getCode());
+        labelGeactiveerd.setText((bestelling.getStatus() ? "Ja" : "Nee"));
         
         DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
         
@@ -1206,24 +1222,56 @@ public class ProductenOverzicht extends javax.swing.JPanel {
         String product_id, aantal, productNaam;
         int newProductID;
         
-        for (int i = 0; i < bestelling.size(); i++) {
-                        String[] order = bestelling.get(i).split(":");
-                        orderRegelsText = orderRegelsText + order[0] + "\t" + order[1] + "\t" + order[2] + "\n\n";
-                        product_id = order[0];
-                        newProductID = Integer.parseInt(product_id);
-                        productNaam = WinkelApplication.getQueryManager().getProduct(newProductID).getNaam();
-                        aantal = order[2];
+        for (int i = 0; i < bestelling.getProducts().size(); i++) 
+        {
+            String[] order = bestelling.getProducts().get(i).split(":");
+            orderRegelsText = orderRegelsText + order[0] + "\t" + order[1] + "\t" + order[2] + "\n\n";//product_id, order_id, aantal besteld
+            product_id = order[0];
+            newProductID = Integer.parseInt(product_id);
+            productNaam = WinkelApplication.getQueryManager().getProduct(newProductID).getNaam();
+            aantal = order[2];
                         
-                        model.addRow(new Object[]{ productNaam,
-            aantal});
-                        
-	}
+            model.addRow(new Object[]{ productNaam, aantal});
+        }
     }//GEN-LAST:event_jTable2MousePressed
+
+    private void buttonActiveerBestellingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonActiveerBestellingMouseClicked
+        String uniekeCode = textCode.getText();
+        boolean succes;
+        
+        System.out.println(uniekeCode);
+        
+        if(!uniekeCode.equals(""))
+        {
+            System.out.println("Code is goed");
+            succes = WinkelApplication.getQueryManager().activeerOrderByCode(uniekeCode);
+            System.out.println(succes ? "Goed" : "Niet goed");
+            if(succes)
+            {
+                System.out.println("Succes");
+                JOptionPane.showMessageDialog(null, "De bestelling is geactiveerd.", "Succes", JOptionPane.INFORMATION_MESSAGE);
+                labelGeactiveerd.setText("Ja");
+            }
+            else
+            {
+                System.out.println("Geen succes");
+                JOptionPane.showMessageDialog(null, "Er is iets fout gegaan.\nNeem contact op met uw systeem administrator of probeer het nogaals.", "Fout!", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else
+        {
+            System.out.println("Code is fout");
+            System.out.println(uniekeCode);
+            JOptionPane.showMessageDialog(null, "Er is iets fout gegaan.\nNeem contact op met uw systeem administrator of probeer het nogaals.", "Fout!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_buttonActiveerBestellingMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bekijkBestellingenVenster;
+    private javax.swing.JButton buttonActiveerBestelling;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JFrame jFrame3;
@@ -1272,6 +1320,8 @@ public class ProductenOverzicht extends javax.swing.JPanel {
     private javax.swing.JTable jtProducten;
     private javax.swing.JTextField jtZoekveld;
     private javax.swing.JTextField jtZoekveldCat;
+    private javax.swing.JLabel labelGeactiveerd;
+    private javax.swing.JLabel labelStaticGeactiveerd;
     private javax.swing.JLabel textAdres;
     private javax.swing.JLabel textBetaalmethode;
     private javax.swing.JLabel textCode;
