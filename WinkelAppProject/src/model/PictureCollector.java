@@ -96,12 +96,12 @@ public class PictureCollector {
  
         String extension = getExtension(f.getName());
         if (extension != null) {
-            if (extension.equals(".tiff") ||
-                extension.equals(".tif") ||
-                extension.equals(".gif") ||
-                extension.equals(".jpeg") ||
-                extension.equals(".jpg") ||
-                extension.equals(".png")) {
+            if (extension.toLowerCase().equals(".tiff") ||
+                extension.toLowerCase().equals(".tif") ||
+                extension.toLowerCase().equals(".gif") ||
+                extension.toLowerCase().equals(".jpeg") ||
+                extension.toLowerCase().equals(".jpg") ||
+                extension.toLowerCase().equals(".png")) {
                     valid= true;
             } else {
                 valid = false;
